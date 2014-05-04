@@ -1,23 +1,22 @@
 /*   
 Theme Name: Arras
-Theme URI: http://www.arrastheme.com/
+Theme URI: http://www.iCasparWebDevelopment.com/
 Description: A sophisticated, yet simple and clean WordPress theme for magazine/news blogs. Homepage comes with a featured slideshow and 3 featured post areas with 4 different customisable layouts. Comes with in one, two and three column layouts and 7 different alternate styles. WordPress 3.0-ready with two menu locations, custom post types and custom taxonomies support. Child theme ready with numerous action and filter hooks available for use. Community support available at <a href="http://www.arrastheme.com/forums/">theme forums</a>. 
-Author: Melvin Lee
-Author URI: http://www.zy.sg/
-Version: 1.5.3-RC1
+Author: Caspar Green
+Author URI: http://iCasparWebDevelopment.com/
+Version: 1.5.4.1
 Tags: blue,brown,green,orange,purple,red,white,light,two-columns,three-columns,left-sidebar,right-sidebar,fixed-width,theme-options,threaded-comments,sticky-post,microformats,translation-ready,custom-menu,rtl-language-support
 
 License: GNU General Public License, v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-.
 Arras, like WordPress, is released under the GNU General Public License, version 2 (GPL).
-
 For more information about the GPL, please visit:
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-If you require any support, please visit the theme website at 
-http://www.arrastheme.com/.
-.
+This theme is not (yet) supported on WordPress.org.
+If you require support, please check:
+Arras Theme Google group: https://groups.google.com/forum/#!forum/arras-theme
+Resumed Development Wiki: https://github.com/iCaspar/arras/wiki
 */
 
 /* Default Stylesheet */
@@ -25,7 +24,12 @@ http://www.arrastheme.com/.
 /* User Override Stylesheet */
 @import url('user.css');
 
-/* Trick the WordPress Theme Bot *Evil* */
+/** -- LEFTOVER FROM 1.5.2
+ * TODO: Can we remove this, or move it to default.css?
+ * _____________________________________________________________________
+ */
+
+/* Trick the WordPress Theme Bot *Evil*
 .aligncenter			{ display: block; margin: 0 auto !important; }
 .alignright				{ float: right; margin: 0 0 1em 1em; }
 .alignleft				{ float: left; margin: 0 1em 1em 0; }
@@ -43,3 +47,4 @@ img.aligncenter, img.alignright, img.alignleft  { border: 1px solid #DDD; text-a
 
 .sticky { }
 .bypostauthor { }
+*/
