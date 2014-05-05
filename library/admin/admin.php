@@ -2,10 +2,10 @@
 $notices = ''; // store notices here so that options_page.php will echo it out later
 
 function arras_addmenu() {
-	$options_page = add_menu_page( '', __('Arras', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin', get_template_directory_uri() . '/images/icon.png', 63);
-	add_submenu_page( 'arras-options', __('Arras Options', 'arras'), __('Theme Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin' );
+	$options_page = add_theme_page( '', __('Arras', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin', get_template_directory_uri() . '/images/icon.png', 63);
+//	add_submenu_page( 'arras-options', __('Arras Options', 'arras'), __('Theme Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin' );
 	
-	$posttax_page = add_submenu_page( 'arras-options', __('Post Types & Taxonomies', 'arras'), __('Post Types & Tax.', 'arras'), 'edit_theme_options', 'arras-posttax', 'arras_posttax' );
+	$posttax_page = add_theme_page( '', __('Arras Post Types & Taxonomies', 'arras'), 'edit_theme_options', 'arras-posttax', 'arras_posttax', 64 );
 	
 	// $custom_background_page = add_submenu_page( 'arras-options', __('Custom Background', 'arras'), __('Custom Background', 'arras'), 'edit_theme_options', 'arras-custom-background', 'arras_custom_background' );
 
@@ -252,22 +252,17 @@ function arras_right_col() {
 			</ul>
 		</div>
 		
-		<?php if ( !arras_get_option('donate') ) : ?>
 		<div class="postbox">
 			<h3><span><?php _e('How to Support?', 'arras') ?></span></h3>
 			<p><?php _e('There are many ways you can support this theme:', 'arras') ?></p>
 			<ul>
-				<li><?php _e('Share other about the theme', 'arras') ?></li>
+				<li><?php _e('Share it!', 'arras') ?></li>
 				<li><?php _e('Report bugs / Send patches', 'arras') ?></li>
 				<li><?php _e('Contribute to the forums / wiki', 'arras') ?></li>
 				<li><?php _e('Translate the theme', 'arras') ?></li>
-				<li><strong><?php _e('Send in a donation!', 'arras') ?></strong></li>
 			</ul>
-			<p><a class="button-primary" href="http://www.arrastheme.com/donate/"><?php _e('Donate using PayPal', 'arras') ?></a></p>
 		</div>
-		<?php endif; ?>
 		
-		<?php if ( !arras_get_option('donate') ) : ?>
 		<div class="postbox">
 			<h3><span><?php _e('Thanks!', 'arras') ?></span></h3>
 			<p><?php _e('Many thanks to those who have contributed to the theme:', 'arras') ?></p>
@@ -278,7 +273,6 @@ function arras_right_col() {
 			<div id="donors-list">
 			</div>
 		</div>
-		<?php endif; ?>
 		
 		<?php do_action('arras_admin_right_col'); ?>
 
