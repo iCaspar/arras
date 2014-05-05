@@ -148,6 +148,8 @@ function arras_document_description() {
 	} else {
 		echo '<meta name="description" content="' . get_bloginfo('description') . '" />';
 	}
+
+	wp_reset_query();
 }
 
 /**
