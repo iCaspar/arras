@@ -1,19 +1,43 @@
 <?php
 
+/**
+ * functions.php
+ *
+ * Arras functions and definitions.
+ *
+ * Defines Theme constants
+ * Hooks after_setup_theme()
+ * Loads all other required functions
+ *
+ * @author Melvin Lee (2009-2013)
+ * @author Caspar Green <caspar@iCasparWebDevelopment.com>
+ * @package Arras
+ *
+ * (Last update for v1.5.4.1)
+ * 
+ */
+
+if ( ! isset( $content_width ) ) {
+	$content_width = 640; /* maximum content width in pixels */
+}
+
+
 define ( 'ARRAS_CHILD', is_child_theme() );
-define ( 'ARRAS_VERSION' , '1.5.3' );
+define ( 'ARRAS_VERSION' , '1.5.4.1' );
 define ( 'ARRAS_LIB', TEMPLATEPATH . '/library' );
 
-do_action('arras_init');
+// TODO: Nothing is hooked to this. Can we take out?
+// do_action('arras_init'); 
 
+
+if ( ! function_exists( 'arras_setup' ) ) :
 /**
- * Theme setup function - to be run during 'after_setup_theme' action hook.
- * @since 1.6
+ * Sets up theme defaults, loads arras library and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
  */
-add_action( 'after_setup_theme', 'arras_setup' );
-
-if ( !function_exists('arras_setup') ) :
-
 function arras_setup() {
 	/* Load theme options (to be revamped) */
 	require_once ARRAS_LIB . '/admin/options.php';
@@ -37,16 +61,21 @@ function arras_setup() {
 	
 	//require_once ARRAS_LIB . '/admin/background.php';
 	
+	// TODO: These definitions are unused. Queue for deletion?
 	/* Post meta fields */
-	define( 'ARRAS_REVIEW_SCORE', 'score' );
-	define( 'ARRAS_REVIEW_PROS', 'pros' );
-	define( 'ARRAS_REVIEW_CONS', 'cons' );
+	// define( 'ARRAS_REVIEW_SCORE', 'score' );
+	// define( 'ARRAS_REVIEW_PROS', 'pros' );
+	// define( 'ARRAS_REVIEW_CONS', 'cons' );
 	
 	define( 'ARRAS_CUSTOM_FIELDS', false );
 	
-	/* Langauge support */
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on Epidemic, use a find and replace
+	 * to change 'epidemic' to the name of your theme in all the template files
+	 */
 	load_theme_textdomain( 'arras', TEMPLATEPATH . '/language' );
-	
 	$locale = get_locale();
 	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
 	if ( is_readable( $locale_file ) )
@@ -66,10 +95,7 @@ function arras_setup() {
 	
 	/* Thumbnail sizes */
 	arras_add_default_thumbnails();
-	
-	/* Register sidebars */
-	arras_add_sidebars();
-	
+		
 	/* Custom layouts & styles */
 	if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 		add_action( 'arras_custom_styles', 'arras_layout_styles' );
@@ -125,13 +151,13 @@ function arras_setup() {
 	do_action( 'arras_setup' );
 	
 	// print_r($arras_options);
-}
+} 
+endif; // end Arras setup
+add_action( 'after_setup_theme', 'arras_setup' );
 
-endif;
 
 /**
- * Sidebar setup function.
- * @since 1.6
+ * Register widgetized areas and update sidebar with default widgets.
  */
 function arras_add_sidebars() {
 	
@@ -180,6 +206,4 @@ function arras_add_sidebars() {
 	}
 			
 }
- 
-/* End of file functions.php */
-/* Location: ./functions.php */
+add_action( 'widgets_init', 'arras_add_sidebars' );
