@@ -127,7 +127,6 @@ function arras_setup() {
 	
 	add_action( 'wp_head', 'arras_add_facebook_share_meta' );
 	
-	add_action( 'wp_head', 'arras_add_header_js' );
 	add_action( 'wp_footer', 'arras_add_footer_js' );
 	
 	/* Filters */
@@ -205,5 +204,26 @@ function arras_add_sidebars() {
 		) );
 	}
 			
-}
+} // end Sidebar Registration
 add_action( 'widgets_init', 'arras_add_sidebars' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function arras_styles_and_scripts() {
+	/* -- Queue Stylesheets -- */
+	wp_enqueue_style( 'superfish', get_template_directory_uri() . '/css/superfish.css', array(), '1.7.4', 'screen' );
+
+	/* -- Queue Scripts -- */
+	wp_enqueue_script( 'superfish', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '1.7.4', true );
+	wp_enqueue_script( 'hoverIntent' );
+	wp_enqueue_script( 'trigger-superfish', get_template_directory_uri() . '/js/triggersuperfish.js', array ( 'superfish', 'hoverIntent' ), null, true );
+
+	if ( is_singular() ) {
+		wp_enqueue_script( 'comment-reply' );
+		wp_enqueue_script( 'jquery-validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_script( 'trigger-validate', get_template_directory_uri() . '/js/triggervalidate.js', array( 'jquery-validate' ), null, true );
+	}
+} // end styles and scripts queue
+add_action( 'wp_enqueue_scripts', 'arras_styles_and_scripts' );
+

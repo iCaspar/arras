@@ -19,17 +19,21 @@
 <meta name="viewport" content="width=1000" />
 
 <?php
+
+/* TODO: This needs to be moved to functions.php and called properly
 wp_enqueue_script( 'superfish', get_template_directory_uri() . '/js/superfish/superfish.js', array( 'jquery' ), '2011-12-01' );
-wp_enqueue_script( 'hoverIntent', get_template_directory_uri() . '/js/superfish/hoverIntent.js', array( 'jquery' ), '2011-12-01' );
+wp_enqueue_script( 'hoverIntent' );
 
 if ( is_singular() ) {
 	wp_enqueue_script('comment-reply');
 	wp_enqueue_script('jquery-validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array( 'jquery' ), null, false);
 }
+*/
 
 ?>
 
 <?php wp_head(); ?>
+
 </head>
 
 <body <?php arras_body_class() ?>>

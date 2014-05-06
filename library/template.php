@@ -79,20 +79,7 @@ function arras_document_title() {
 	echo $doctitle;
 }
 
-function arras_add_header_js() {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		$('.sf-menu').superfish({autoArrows: true, speed: 'fast', dropShadows: 'true'});
-		<?php if ( is_single() ) : ?>
-			$( '#commentform' ).validate();
-		<?php endif ?>
-		<?php do_action( 'arras_custom_js-header' ) ?>
-	} );
-	</script>
-	<?php
-}
-
+// TODO: This has to come out. Queue scripts in functions.php
 function arras_add_footer_js() {
 	?>
 	<script type="text/javascript">
