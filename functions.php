@@ -219,8 +219,6 @@ function arras_styles_and_scripts() {
 
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
-		wp_enqueue_script( 'jquery-validate', get_template_directory_uri() . '/js/jquery.validate.min.js', array( 'jquery' ), null, true );
-		wp_enqueue_script( 'trigger-validate', get_template_directory_uri() . '/js/triggervalidate.js', array( 'jquery-validate' ), null, true );
 	}
 } // end styles and scripts queue
 add_action( 'wp_enqueue_scripts', 'arras_styles_and_scripts' );
