@@ -23,19 +23,17 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		add_action('arras_tabbed_sidebar_tab-popular', array(&$this, 'popular_tab'));
 		
 		if ( is_active_widget( false, false, $this->id_base ) ) {
-			add_action( 'wp_head', array( &$this, 'load_js' ) );
-//			add_action( 'arras_custom_js-footer', array( &$this, 'do_js' ) );
+			add_action( 'wp_enqueue_scripts', array( &$this, 'load_js' ) );
+			add_action( 'wp_enqueue_scripts', array( &$this, 'do_js' ) );
 		}
 	}
 	
 	function load_js() {
-		wp_enqueue_script( 'jquery-ui-tabs', null, array( 'jquery-ui-core', 'jquery' ), null, false ); 
+		wp_enqueue_script( 'jquery-ui-tabs' ); 
 	}
 	
 	function do_js() {
-		?>
-		$('.multi-sidebar').tabs();
-		<?php
+		wp_enqueue_script( 'trigger-tabs-sidebar', get_template_directory_uri() . '/js/triggertabsidebar.js', array( 'jquery-ui-tabs'), null, true );
 	}
 	
 	function get_tabs() {
