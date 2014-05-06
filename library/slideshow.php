@@ -55,32 +55,21 @@ function arras_add_slideshow() {
 add_action('arras_above_content', 'arras_add_slideshow');
 
 function arras_add_slideshow_js() {
+	wp_register_script( 'slideshow-settings', get_template_directory_uri() . '/js/slideshowsettings.js', array( 'jquery-cycle' ), null, true );
 	$slideshow_size = arras_get_image_size('featured-slideshow-thumb');
-	$slideshow_size_h = $slideshow_size['h'];
-	
+	wp_localize_script( 'slideshow-settings', 'show_size', $slideshow_size );	
 	if (is_home() || is_front_page()) { 
-		?>
-		$('#featured-slideshow').cycle({
-			fx: 'fade',
-			speed: 250,
-			next: '#controls .next',
-			prev: '#controls .prev',
-			timeout: 6000,
-			pause: 1,
-			slideExpr: '.featured-slideshow-inner',
-			height: '<?php echo $slideshow_size_h; ?>px'
-		});
-		<?php
+		wp_enqueue_script( 'slideshow-settings' );
 	}
 }
-add_action('arras_custom_js-footer', 'arras_add_slideshow_js');
+add_action( 'wp_enqueue_scripts', 'arras_add_slideshow_js' );
 
 function arras_load_slideshow_scripts() {
 	if ( ( arras_get_option('enable_slideshow') ) && is_home() || is_front_page() ) {
-		wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.min.js', array( 'jquery' ), null, true);
+		wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.min.js', array( 'jquery' ), null, true );
 	}
 }
-add_action('wp_head', 'arras_load_slideshow_scripts');
+add_action('wp_enqueue_scripts', 'arras_load_slideshow_scripts' );
 
 function arras_add_slideshow_thumb_size() {
 	$layout = arras_get_option('layout');

@@ -1,4 +1,16 @@
 <?php
+/**
+ * template.php
+ *
+ * Functions for various template elements
+ *
+ * @package Arras
+ * @author Melvin Lee (2009-2013)
+ * @author Caspar Green <caspar@iCasparWebDevelopment.com>
+ * 
+ * Latest Update: 1.5.4.1
+ * 
+ */
 
 function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
@@ -77,17 +89,6 @@ function arras_document_title() {
     }
     
 	echo $doctitle;
-}
-
-// TODO: This has to come out. Queue scripts in functions.php
-function arras_add_footer_js() {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		<?php do_action( 'arras_custom_js-footer' ) ?>
-	} );
-	</script>
-	<?php	
 }
 
 /**
@@ -490,6 +491,3 @@ function arras_add_facebook_share_meta() {
 	<?php
 	}
 }
-
-/* End of file template.php */
-/* Location: ./library/template.php */

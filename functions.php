@@ -126,9 +126,7 @@ function arras_setup() {
 	add_action( 'wp_head', 'arras_head' );
 	
 	add_action( 'wp_head', 'arras_add_facebook_share_meta' );
-	
-	add_action( 'wp_footer', 'arras_add_footer_js' );
-	
+		
 	/* Filters */
 	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
 	add_filter( 'gallery_style', 'remove_gallery_css' );
