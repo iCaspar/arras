@@ -72,8 +72,10 @@ function arras_get_image_size($id) {
  */
 function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
 	global $post, $arras_image_sizes;
-	
-	$empty_thumbnail = '<img src="' . get_template_directory_uri() . '/images/thumbnail.png" alt="' . get_the_excerpt() . '" title="' . get_the_title() . '" />';
+
+	$wxh = arras_get_image_size( $size );
+	$empty_thumbnail = 	'<img src="' . get_template_directory_uri() . '/images/thumbnail.png" alt="' . get_the_excerpt()
+											. '" title="' . get_the_title() . '" width="' . $wxh['w'] . '" height="' . $wxh['h'] . '" />';
 	
 	if ($post) $id = $post->ID;
 	
@@ -104,8 +106,7 @@ function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
 			}
 		}
 	}
-	
-	return $empty_thumbnail;	
+	return $empty_thumbnail;
 }
 
 /**

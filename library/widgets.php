@@ -24,18 +24,14 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		
 		if ( is_active_widget( false, false, $this->id_base ) ) {
 			add_action( 'wp_enqueue_scripts', array( &$this, 'load_js' ) );
-			add_action( 'wp_enqueue_scripts', array( &$this, 'do_js' ) );
 		}
 	}
 	
 	function load_js() {
 		wp_enqueue_script( 'jquery-ui-tabs' ); 
-	}
-	
-	function do_js() {
 		wp_enqueue_script( 'trigger-tabs-sidebar', get_template_directory_uri() . '/js/triggertabsidebar.js', array( 'jquery-ui-tabs'), null, true );
 	}
-	
+		
 	function get_tabs() {
 		$_default_tabs = array(
 			'featured'		=> __('Featured', 'arras'), 
