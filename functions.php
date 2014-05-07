@@ -13,7 +13,7 @@
  * @author Caspar Green <caspar@iCasparWebDevelopment.com>
  * @package Arras
  *
- * (Last update for v1.5.4.1)
+ * (Last update for v1.5.5)
  * 
  */
 
@@ -23,7 +23,7 @@ if ( ! isset( $content_width ) ) {
 
 
 define ( 'ARRAS_CHILD', is_child_theme() );
-define ( 'ARRAS_VERSION' , '1.5.4.1' );
+define ( 'ARRAS_VERSION' , '1.5.5' );
 define ( 'ARRAS_LIB', TEMPLATEPATH . '/library' );
 
 // TODO: Nothing is hooked to this. Can we take out?
