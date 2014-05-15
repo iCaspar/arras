@@ -42,7 +42,7 @@ function arras_postheader() {
 			$postheader .= ' &ndash; <abbr class="published" title="' . get_the_time('c') . '">' . sprintf( __('Posted %s', 'arras'), arras_posted_on( false ) ) . '</abbr>';
 		}
 		
-		if (current_user_can('edit_post')) {
+		if (current_user_can('edit_post', $id)) {
 			$postheader .= '<a class="post-edit-link" href="' . get_edit_post_link($id) . '" title="' . __('Edit Post', 'arras') . '">' . __('(Edit Post)', 'arras') . '</a>';
 		}
 		
