@@ -1,56 +1,56 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-<title><?php arras_document_title() ?></title>
-<?php arras_document_description() ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+	<head>
+		<meta charset="<?php bloginfo('charset'); ?>" />
+		<title><?php wp_title( '' ); ?></title>
 
-<?php if ( is_search() || is_author() ) : ?>
-<meta name="robots" content="noindex, nofollow" />
-<?php endif ?>
+		<?php if ( ! class_exists('All_in_One_SEO_Pack') && ! class_exists('Platinum_SEO_Pack') ) : ?>
+			<meta name="description" content="<?php if ( is_single() ) {
+        single_post_title('', true);
+    	} else {
+        bloginfo('name'); echo " - "; bloginfo('description');
+    	} ?>" />
+	  <?php endif; ?>
 
-<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+		<?php if ( is_search() || is_author() ) : ?>
+			<meta name="robots" content="noindex, nofollow" />
+		<?php endif ?>
 
-<?php if ( !file_exists(ABSPATH . 'favicon.ico') ) : ?>
-<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
-<?php else: ?>
-<link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
-<?php endif; ?>
+		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-<meta name="viewport" content="width=1000" />
+		<?php if ( !file_exists(ABSPATH . 'favicon.ico') ) : ?>
+			<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
+		<?php else: ?>
+			<link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
+		<?php endif; ?>
 
-<?php wp_head(); ?>
+		<meta name="viewport" content="width=1000" />
 
+		<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
+
+		<?php wp_head(); ?>
 </head>
 
-<body <?php arras_body_class() ?>>
-<script type="text/javascript">
-//<![CDATA[
-(function(){
-var c = document.body.className;
-c = c.replace(/no-js/, 'js');
-document.body.className = c;
-})();
-//]]>
-</script>
-<?php arras_body() ?>
+<body <?php body_class(); ?>> 
 
-<div id="top-menu" class="clearfix">
-<?php arras_above_top_menu() ?>
-	<?php 
-	if ( function_exists('wp_nav_menu') ) {
-		wp_nav_menu( array( 
+	<?php arras_above_top_menu(); ?>	
+	
+	<?php if( wp_nav_menu( array( 'echo' => false, 'theme_location' => 'top-menu', 'fallback_cb' => '' ) ) ): ?>
+	<nav id="top-menu" class="clearfix">
+	<?php	wp_nav_menu( array( 
 			'sort_column' => 'menu_order', 
-			'menu_class' => 'sf-menu menu clearfix', 
+			'container_id' => 'top-menu-content', 
 			'theme_location' => 'top-menu',
-			'container_id' => 'top-menu-content',
+			'menu_class' => 'sf-menu menu clearfix',
 			'fallback_cb' => ''
-		) );
-	}
-	?>
-<?php arras_below_top_menu() ?>
-</div><!-- #top-menu -->
+			)
+		); ?>
+	</nav>
+	<?php endif; ?>
 
-<div id="header">
+	<?php arras_below_top_menu(); ?>
+
+<header id="header">
 	<div id="branding" class="clearfix">
 	<div class="logo">
 		<?php if ( is_home() || is_front_page() ) : ?>
@@ -63,10 +63,10 @@ document.body.className = c;
 	</div>
 	<div id="searchbar"><?php get_search_form() ?></div>
 	</div><!-- #branding -->
-</div><!-- #header -->
+</header><!-- #header -->
 
 <?php arras_above_nav() ?>
-<div id="nav">
+<nav id="nav">
 	<div id="nav-content" class="clearfix">
 	<?php 
 	if ( function_exists('wp_nav_menu') ) {
@@ -80,7 +80,7 @@ document.body.className = c;
 	arras_beside_nav(); 
 	?>
 	</div><!-- #nav-content -->
-</div><!-- #nav -->
+</nav><!-- #nav -->
 <?php arras_below_nav() ?>
 
 <div id="wrapper">

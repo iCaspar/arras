@@ -12,84 +12,23 @@
  * 
  */
 
+/**
+ * Use with wp_title() per WP Theme Requirements
+ */
+function arras_document_title($title) {
+  if( empty( $title ) && ( is_home() || is_front_page() ) ) {
+    return __( 'Home', 'arras' ) . ' | ' . get_bloginfo( 'name' );
+  }
+  $title = trim( $title );
+  return $title;
+}
+add_filter( 'wp_title', 'arras_document_title' );
+
+
 function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
 }
 
-/**
- * SEO-Friendly title tag, based on Thematic Framework, which is based on Tarski :)
- */
-function arras_document_title() {
-	$site_name = get_bloginfo('name');
-	$separator = '|';
-	
-	if ( is_single() ) {
-      $content = single_post_title('', FALSE);
-    }
-    elseif ( is_home() || is_front_page() ) { 
-      $content = get_bloginfo('description');
-    }
-    elseif ( is_page() ) { 
-      $content = single_post_title('', FALSE); 
-    }
-    elseif ( is_search() ) { 
-      $content = __('Search Results for:', 'arras'); 
-      $content .= ' ' . esc_html(stripslashes(get_search_query()), true);
-    }
-    elseif ( is_category() ) {
-      $content = __('Category Archives:', 'arras');
-      $content .= ' ' . single_cat_title("", false);;
-    }
-    elseif ( is_tag() ) { 
-      $content = __('Tag Archives:', 'arras');
-      $content .= ' ' . arras_tag_query();
-    }
-    elseif ( is_404() ) { 
-      $content = __('Not Found', 'arras'); 
-    }
-    else { 
-      $content = get_bloginfo('description');
-    }
-
-    if (get_query_var('paged')) {
-      $content .= ' ' .$separator. ' ';
-      $content .= 'Page';
-      $content .= ' ';
-      $content .= get_query_var('paged');
-    }
-
-    if($content) {
-      if ( is_home() || is_front_page() ) {
-          $elements = array(
-            'site_name' => $site_name,
-            'separator' => $separator,
-            'content' => $content
-          );
-      }
-      else {
-          $elements = array(
-            'content' => $content
-          );
-      }  
-    } else {
-      $elements = array(
-        'site_name' => $site_name
-      );
-    }
-
-    // Filters should return an array
-    $elements = apply_filters('arras_doctitle', $elements);
-	
-    // But if they don't, it won't try to implode
-    if(is_array($elements)) {
-      $doctitle = implode(' ', $elements);
-    }
-    else {
-      $doctitle = $elements;
-    }
-    
-	echo $doctitle;
-}
 
 /**
  * Based on Thematic's thematic_tag_query()
@@ -121,40 +60,20 @@ function arras_tag_query() {
 }
 
 /**
- * SEO-Friendly META description, based on Thematic Framework.
- */
-function arras_document_description() {
-	if ( class_exists('All_in_One_SEO_Pack') || class_exists('Platinum_SEO_Pack') ) return false;
-	
-	if ( is_single() || is_page() ) {
-		if ( have_posts() ) {
-			while( have_posts() ) {
-				the_post();
-				echo '<meta name="description" content="' . get_the_excerpt() . '" />';
-			}
-		}
-	} else {
-		echo '<meta name="description" content="' . get_bloginfo('description') . '" />';
-	}
-
-	wp_reset_query();
-}
-
-/**
  * Generates semantic classes for BODY element.
  * Sandbox's version was removed from 1.4 onwards.
  */
-function arras_body_class() {
+function arras_body_class($classes) {
 	if ( function_exists('body_class') ) {
-		$body_class = array('layout-' . arras_get_option('layout'), 'no-js');
+		$classes[] = 'layout-' . arras_get_option( 'layout' );
 		
-		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
-			$body_class[] = 'style-' . arras_get_option('style');
-		}	
-		
-		return body_class( apply_filters('arras_body_class', $body_class) );
+		if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
+			$classes[] = 'style-' . arras_get_option('style');
+		}		
+		return $classes;
 	}
 }
+add_filter( 'body_class', 'arras_body_class' );
 
 /**
  * Use arras_featured_loop() for front page loops.

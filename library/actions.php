@@ -1,8 +1,10 @@
 <?php
 
 /**
- * Called after wp_head() in the <head> tag
+ * Originally Called after wp_head() in the <head> tag
  * @since 1.2.1
+ * Unused as of v1.6 (possible deprecation)
+ * Should now be used (if at all) BEFORE wp_head()
  */
 function arras_head() {
 	do_action('arras_head');
@@ -11,6 +13,7 @@ function arras_head() {
 /**
  * Called after the <body> tag is declared
  * @since 1.2.2 
+ * Unused as of v1.6 (possible deprecation)
  */
 function arras_body() {
 	do_action('arras_body');	
