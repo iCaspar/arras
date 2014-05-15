@@ -2,10 +2,11 @@
 html					{ height: 100%; min-height: 100%; margin: 0; padding: 0; }
 body					{ background-color: #F0F0F0; color: #333; font: 12px Helvetica,Arial,sans-serif; height: 100%; min-height: 100%; margin: 0; padding: 0; border: none; }
 
+/* HTML5 for Older Browsers */
+nav, header, footer { display: block; }
+
+
 .clearfix:after			{ clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
-.clearfix				{ display: inline-block; }
-html[xmlns] .clearfix	{ display: block; }
-* html .clearfix		{ height: 1%; }
 
 a, a:link, a:visited	{ color: #0052A3; text-decoration: none; }
 a:hover					{ color: #1A8DFF; }
@@ -79,7 +80,7 @@ img.aligncenter, img.alignright, img.alignleft  { border: 1px solid #DDD; text-a
 .blog-description		{ font-family: 'Segoe UI', Arial, Helvetica, sans-serif; line-height: 1em; display: block; font-size: 11px; font-weight: bold; color: #7d716d; margin: 0; padding: 3px 0 0; text-transform: uppercase; }
 
 /* Menus */
-.sf-menu, .sf-menu *  { list-style: none; margin: 0; padding: 0; z-index: 101; }
+.sf-menu  { list-style: none; margin: 0; padding: 0; z-index: 101; }
 .sf-menu  { line-height: 1; }
 .sf-menu ul	 { position: absolute; left: -999em; width: 11em; }
 .sf-menu ul li  { width: 100%; }
