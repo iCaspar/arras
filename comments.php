@@ -9,7 +9,7 @@ if ( post_password_required() ) {
 	return;
 }
 
-$comments_by_type = &separate_comments($comments);   
+$comments_by_type = separate_comments($comments);   
 
 if ( have_comments() ) : ?>
 
