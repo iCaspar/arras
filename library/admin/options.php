@@ -24,7 +24,7 @@ class ArrasOptions {
 	var $auto_thumbs, $custom_thumbs;
 	
 	// Design
-	var $layout, $style, $logo, $footer_sidebars;
+	var $layout, $style, $logo, $footer_sidebars, $header_color;
 	
 	// Custom Post Types & Taxonomies
 	var $slideshow_posttype, $featured1_posttype, $featured2_posttype, $news_posttype;
@@ -90,6 +90,7 @@ class ArrasOptions {
 			
 			'layout' => '2c-r-fixed',
 			'style' => 'default',
+			'header_color' => '',
 			
 			'auto_thumbs' => true,
 			
@@ -203,6 +204,8 @@ class ArrasOptions {
 		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 			$this->style = (string)$_POST['arras-style'];
 		}
+		
+		$this->header_color = ($_POST['arras-header-color']);
 		
 		$this->auto_thumbs = isset($_POST['arras-thumbs-auto']);
 	}

@@ -2,21 +2,16 @@
 $notices = ''; // store notices here so that options_page.php will echo it out later
 
 function arras_addmenu() {
-	$options_page = add_theme_page( '', __('Arras', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin', get_template_directory_uri() . '/images/icon.png', 63);
-//	add_submenu_page( 'arras-options', __('Arras Options', 'arras'), __('Theme Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin' );
+	$options_page = add_theme_page( 'Arras Options', __('Arras Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin');
 	
-	$posttax_page = add_theme_page( '', __('Arras Post Types & Taxonomies', 'arras'), 'edit_theme_options', 'arras-posttax', 'arras_posttax', 64 );
+//	$posttax_page = add_theme_page( '', __('Arras Post Types & Taxonomies', 'arras'), 'edit_theme_options', 'arras-posttax', 'arras_posttax', 64 );
 	
-	// $custom_background_page = add_submenu_page( 'arras-options', __('Custom Background', 'arras'), __('Custom Background', 'arras'), 'edit_theme_options', 'arras-custom-background', 'arras_custom_background' );
-
 	add_action('admin_print_scripts-'. $options_page, 'arras_admin_scripts');
 	add_action('admin_print_styles-'. $options_page, 'arras_admin_styles');
 	
-	add_action('admin_print_scripts-' . $posttax_page, 'arras_admin_scripts');
-	add_action('admin_print_styles-' . $posttax_page, 'arras_admin_styles');
+//	add_action('admin_print_scripts-' . $posttax_page, 'arras_admin_scripts');
+//	add_action('admin_print_styles-' . $posttax_page, 'arras_admin_styles');
 	
-	// add_action('admin_print_scripts-' . $custom_background_page, 'arras_custom_background_scripts');
-	// add_action('admin_print_styles-' . $custom_background_page, 'arras_custom_background_styles');
 }
 
 function arras_admin() {
@@ -43,11 +38,11 @@ function arras_admin() {
 		} else {
 			if ( !is_plugin_active( 'regenerate-thumbnails/regenerate-thumbnails.php' ) ) {
 				$notices = '<div class="error fade"><p>' . __( '<strong>Notice:</strong> Having <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> plugin installed and activated is highly recommended for Arras.', 'arras' ) . '</p></div>';
-			}
+		}
 			
-			$arras_image_sizes = array();
-			arras_add_default_thumbnails();
-			include 'templates/options_page.php';
+	$arras_image_sizes = array();
+	arras_add_default_thumbnails();
+	include 'templates/options_page.php';
 		}
 	}
 }
@@ -246,9 +241,8 @@ function arras_right_col() {
 		<div class="postbox">
 			<h3><span><?php _e('Helpful Links', 'arras') ?></span></h3>
 			<ul>
-				<li><a href="http://www.arrastheme.com/wiki/doku.php/quick_start_guide"><?php _e('Quick Start Guide', 'arras') ?></a></li>
-				<li><a href="http://www.arrastheme.com/forums/"><?php _e('Community Forums', 'arras') ?></a></li>
-				<li><a href="https://github.com/zyml/arras-theme"><?php _e('Arras on GitHub', 'arras') ?></a></li>
+				<li><a href="http://arrastheme.net/forums/"><?php _e('Arras Them Website', 'arras') ?></a></li>
+				<li><a href="https://github.com/icaspar/arras"><?php _e('Arras on GitHub', 'arras') ?></a></li>
 			</ul>
 		</div>
 		
@@ -289,6 +283,3 @@ function arras_taxonomy_blacklist() {
 	$_default = array();
 	return apply_filters('arras_taxonomy_blacklist', $_default);
 }
-
-/* End of file admin.php */
-/* Location: ./library/admin/admin.php */

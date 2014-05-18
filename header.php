@@ -52,15 +52,12 @@
 
 <header id="header">
 	<div id="branding" class="clearfix">
-	<div class="logo">
-		<?php if ( is_home() || is_front_page() ) : ?>
-		<h1 class="blog-name"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-		<h2 class="blog-description"><?php bloginfo('description'); ?></h2>
-		<?php else: ?>
-		<span class="blog-name"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></span>
-		<span class="blog-description"><?php bloginfo('description'); ?></span>
-		<?php endif ?>
-	</div>
+		<div class="logo">
+			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</a>
+		</div>
 	<div id="searchbar"><?php get_search_form() ?></div>
 	</div><!-- #branding -->
 </header><!-- #header -->

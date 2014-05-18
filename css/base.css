@@ -148,6 +148,10 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul  { left: 11em; top:
 
 .navigation  { margin: 0 10px 20px 0; text-align: center; }
 
+/* Other Post Styles */
+.sticky {}
+.bypostauthor {}
+
 /* Single Post */
 .single .post, #main .single-post	{ margin: 0 10px 15px 0; padding: 0 15px; }
 .single .post .entry-title, .single-post .entry-title	{ padding: 0; margin: 15px 0 5px; line-height: 1.3em; }
