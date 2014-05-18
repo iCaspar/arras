@@ -24,7 +24,7 @@ if ( ! isset( $content_width ) ) {
 
 define ( 'ARRAS_CHILD', is_child_theme() );
 define ( 'ARRAS_VERSION' , '1.5.5' );
-define ( 'ARRAS_LIB', TEMPLATEPATH . '/library' );
+define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
 // TODO: Nothing is hooked to this. Can we take out?
 // do_action('arras_init'); 
@@ -46,13 +46,14 @@ function arras_setup() {
 	
 	/* Load theme library files */
 	require_once ARRAS_LIB . '/actions.php';
+	require_once ARRAS_LIB . '/custom-header.php';
 	require_once ARRAS_LIB . '/deprecated.php';
 	require_once ARRAS_LIB . '/filters.php';
+	require_once ARRAS_LIB . '/slideshow.php';
+	require_once ARRAS_LIB . '/styles.php';
 	require_once ARRAS_LIB . '/tapestries.php';
 	require_once ARRAS_LIB . '/template.php';
 	require_once ARRAS_LIB . '/thumbnails.php';
-	require_once ARRAS_LIB . '/styles.php';
-	require_once ARRAS_LIB . '/slideshow.php';
 	require_once ARRAS_LIB . '/widgets.php';
 	
 	if ( is_admin() ) {
@@ -75,9 +76,9 @@ function arras_setup() {
 	 * If you're building a theme based on Epidemic, use a find and replace
 	 * to change 'epidemic' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'arras', TEMPLATEPATH . '/language' );
+	load_theme_textdomain( 'arras', get_template_directory() . '/language' );
 	$locale = get_locale();
-	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
+	$locale_file = get_template_directory() . "/languages/$locale.php";
 	if ( is_readable( $locale_file ) )
 		require_once( $locale_file );
 	
@@ -97,11 +98,11 @@ function arras_setup() {
 	arras_add_default_thumbnails();
 		
 	/* Custom layouts & styles */
-	if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
+	if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 		add_action( 'arras_custom_styles', 'arras_layout_styles' );
 	}
 	
-	if ( !defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
+	if ( ! defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
 		// Alternate Styles & Layouts
 		register_alternate_layout( '1c-fixed', __('1 Column Layout (No Sidebars)', 'arras') );
 		register_alternate_layout( '2c-r-fixed', __('2 Column Layout (Right Sidebar)', 'arras') );
@@ -109,7 +110,7 @@ function arras_setup() {
 		register_alternate_layout( '3c-fixed', __('3 Column Layout (Left & Right Sidebars)', 'arras') );
 		register_alternate_layout( '3c-r-fixed', __('3 Column Layout (Right Sidebars)', 'arras') );
 		
-		register_style_dir( TEMPLATEPATH . '/css/styles/' );
+		register_style_dir( get_template_directory() . '/css/styles/' );
 	}
 	
 	/* Header actions */

@@ -29,7 +29,6 @@ function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
 }
 
-
 /**
  * Based on Thematic's thematic_tag_query()
  */
