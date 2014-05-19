@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>" />
-		<title><?php wp_title( '' ); ?></title>
+		<title><?php wp_title( '|', true, 'right' ); ?></title>
 
 		<?php if ( ! class_exists('All_in_One_SEO_Pack') && ! class_exists('Platinum_SEO_Pack') ) : ?>
 			<meta name="description" content="<?php if ( is_single() ) {
