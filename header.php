@@ -1,37 +1,32 @@
+<?php
+/**
+ * Arras Theme Header
+ *
+ * Displays everything from begining to <div id="container">
+ *
+ * @package Arras
+ *
+ */
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
-
-		<?php if ( ! class_exists('All_in_One_SEO_Pack') && ! class_exists('Platinum_SEO_Pack') ) : ?>
-			<meta name="description" content="<?php if ( is_single() ) {
-        single_post_title('', true);
-    	} else {
-        bloginfo('name'); echo " - "; bloginfo('description');
-    	} ?>" />
-	  <?php endif; ?>
-
-		<?php if ( is_search() || is_author() ) : ?>
-			<meta name="robots" content="noindex, nofollow" />
-		<?php endif ?>
-
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-
+		<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
 		<?php if ( !file_exists(ABSPATH . 'favicon.ico') ) : ?>
-			<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
+		<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
 		<?php else: ?>
-			<link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
+		<link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
 		<?php endif; ?>
 
-		<meta name="viewport" content="width=1000" />
-
-		<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
-
 		<?php wp_head(); ?>
-</head>
+	</head>
 
-<body <?php body_class(); ?>> 
+	<body <?php body_class(); ?>> 
 
 	<?php arras_above_top_menu(); ?>	
 	
