@@ -26,11 +26,11 @@ function arras_add_slideshow() {
 	<div class="featured clearfix">
 		<?php if ($q->post_count > 1) : ?>
 		<div id="controls">
-			<a href="" class="prev"><?php _e('Prev', 'arras') ?></a>
-			<a href="" class="next"><?php _e('Next', 'arras') ?></a>
+			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
+			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
 		</div>
 		<?php endif ?>
-		<div id="featured-slideshow">
+		<div class="cycle-slideshow" data-cycle-slides="> div" data-cycle-prev=".cycle-prev" data-cycle-next=".cycle-next">
 			<?php $count = 0; ?>
 		
 			<?php while ($q->have_posts()) : $q->the_post(); ?>
@@ -66,7 +66,7 @@ add_action( 'wp_enqueue_scripts', 'arras_add_slideshow_js' );
 
 function arras_load_slideshow_scripts() {
 	if ( ( arras_get_option('enable_slideshow') ) && is_home() || is_front_page() ) {
-		wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle.min.js', array( 'jquery' ), null, true );
+		wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle2-min.js', array( 'jquery' ), null, true );
 	}
 }
 add_action('wp_enqueue_scripts', 'arras_load_slideshow_scripts' );

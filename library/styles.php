@@ -48,14 +48,14 @@ function arras_layout_styles() {
 function arras_load_styles() {
 	global $arras_registered_alt_layouts, $arras_registered_alt_styles;
 	
-	if ( !defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
+	if ( ! defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
 		if ( count( $arras_registered_alt_layouts ) > 0 ) {
 			$layout = ( defined( 'ARRAS_FORCE_LAYOUT' ) ) ? ARRAS_FORCE_LAYOUT : arras_get_option( 'layout' );
 			wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, '2011-12-12', 'all' );
 		}
 	}
 	
-	if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
+	if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 		$scheme = arras_get_option( 'style' );
 		if ( !isset( $scheme ) ) $scheme = 'default';
 	
@@ -68,7 +68,7 @@ function arras_load_styles() {
 	}
 
 	// add user css
-	if ( !ARRAS_CHILD ) {
+	if ( ! ARRAS_CHILD ) {
 		wp_enqueue_style( 'arras-user', get_template_directory_uri() . '/user.css', false, '2011-12-12', 'all' ); 
 	} else {
 		if ( is_rtl() )
@@ -80,38 +80,3 @@ function arras_load_styles() {
 	// load other custom styles
 	do_action( 'arras_load_styles' );
 }
-
-function arras_add_custom_background() {
-	global $arras_custom_bg_options;
-	
-	if ( !isset( $arras_custom_bg_options ) )
-		$arras_custom_bg_options = maybe_unserialize( get_option( 'arras_custom_bg_options' ) );
-	
-	if ( !$arras_custom_bg_options['enable'] )
-		return false;
-	
-	if ( isset( $arras_custom_bg_options['id'] ) )
-		$img = wp_get_attachment_image_src( $arras_custom_bg_options['id'], 'full' );
-	
-	if ($arras_custom_bg_options['wrap']) $css_class = 'body';
-	else $css_class ='#wrapper';
-	
-	echo $css_class . '{ background: ';
-	if ( isset( $img ) ) {
-		echo ' url(' . $img[0] . ') ' . $arras_custom_bg_options['pos-x'] . ' ' . $arras_custom_bg_options['pos-y'] . ' ' . $arras_custom_bg_options['attachment'] . ' ' . $arras_custom_bg_options['repeat'] . ' ';
-	}
-	
-	if ( isset( $arras_custom_bg_options['color'] ) )
-		echo $arras_custom_bg_options['color'];
-	
-	echo ' !important; }';
-	
-	if ($arras_custom_bg_options['foreground']) {
-		?>
-		#main { background: url(<?php echo get_template_directory_uri() ?>/images/foreground.png) !important; }
-		<?php
-	}
-}
-
-/* End of file styles.php */
-/* Location: ./library/styles.php */

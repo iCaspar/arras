@@ -191,7 +191,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul  { left: 11em; top:
 #controls .next:hover, #controls .prev:hover	{ opacity: 1; }
 #controls a:focus		{ outline: none; }
 
-#featured-slideshow		{ position: relative; z-index: 0 !important; border: 5px solid #CCC; }			
+.cycle-slideshow		{ position: relative; z-index: 0 !important; border: 5px solid #CCC; }			
 
 .featured-article		{ display: block; width: 640px; height: 250px; text-decoration: none !important; background-position: center !important; }
 .featured-article img	{ width: 640px; height: 250px; }
