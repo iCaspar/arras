@@ -1,6 +1,3 @@
-/* import base CSS style */
-@import 'default-rtl.css';
-
 
 /* globals */
 input[type=submit]:hover  { background: #313428; }

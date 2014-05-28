@@ -94,12 +94,12 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul  { left: -11em; top
 .featured  { margin: 0 10px 20px 0; overflow: hidden; }
 #controls  { position: relative; float: left; z-index: 100; top: 90px; }
 
-#controls .next, #controls .prev  { text-indent: -9000px; width: 30px; height: 30px; display: block; z-index: 1000; opacity: 0.7; }
-#controls .prev  { background: url(../images/prev.png) no-repeat; float: left; position: absolute; left: 10px; }
-#controls .next  { background: url(../images/next.png) no-repeat; float: right; position: absolute; left: 610px; }
-#controls .next:hover, #controls .prev:hover  { opacity: 1; }
+#controls .cycle-next, #controls .cycle-prev  { text-indent: -9000px; width: 30px; height: 30px; display: block; z-index: 1000; opacity: 0.7; }
+#controls .cycle-prev  { background: url(../images/prev.png) no-repeat; float: left; position: absolute; left: 10px; }
+#controls .cycle-next  { background: url(../images/next.png) no-repeat; float: right; position: absolute; left: 610px; }
+#controls .cycle-next:hover, #controls .cycle-prev:hover  { opacity: 1; }
 
-#featured-slideshow  { position: relative; z-index: 0 !important; }			
+#cycle-slideshow  { position: relative; z-index: 0 !important; }			
 
 .featured-article  { display: block; }
 .featured-entry  { position: relative; top: -85px; overflow: hidden; padding: 0; display: block; opacity: 0.8; }

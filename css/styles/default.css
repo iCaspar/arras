@@ -7,12 +7,10 @@
  * @author Caspar Green (caspar@iCasparWebDevelopment.com)
  * @package Arras
  * 
- * (Last Updated for v1.5.4.1)
+ * (Last Updated for v1.6)
  * 
  */
 
-/* import base CSS style */
-@import '../base.css';
 
 /* globals */
 body					{ background-color: #F0F0F0; color: #333; font: 12px Helvetica, Arial, sans-serif; }

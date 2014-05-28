@@ -57,24 +57,34 @@ function arras_load_styles() {
 	
 	if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 		$scheme = arras_get_option( 'style' );
-		if ( !isset( $scheme ) ) $scheme = 'default';
-	
-		$css_path = '/css/styles/' . $scheme;
-	
-		if ( is_rtl() )
-			$css_path .= '-rtl';
+		$css_base_path = '/css/styles/';
+		if ( ! isset( $scheme ) ) $scheme = 'default';
 		
-		wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, '2011-12-12', 'all' );
+		$css_path = $css_base_path . $scheme;
+
+		if ( $scheme != 'legacy' ) {
+			if ( ! is_rtl() ) {
+				wp_enqueue_style( 'arras-base', get_template_directory_uri() . $css_base_path . 'base.css', false, '1.6', 'all' );
+				wp_enqueue_style( 'arras-default', get_template_directory_uri() . $css_base_path . 'default.css', array( 'arras-base' ), '1.6', 'all' );
+			} else {
+				wp_enqueue_style( 'arras-base-rtl', get_template_directory_uri() . $css_base_path . 'base-rtl.css', false, '1.6', 'all' );
+				wp_enqueue_style( 'arras-default-rtl', get_template_directory_uri() . $css_base_path . 'default-rtl.css', array( 'arras-base-rtl' ), '1.6', 'all' );
+			}
+		}
+		if ( is_rtl() ) $css_path .= '-rtl';
+		if ( $scheme != 'default' ) {
+			wp_enqueue_style( 'arras-schema', get_template_directory_uri() . $css_path . '.css', false, '1.6', 'all' );
+		}
 	}
 
 	// add user css
 	if ( ! ARRAS_CHILD ) {
-		wp_enqueue_style( 'arras-user', get_template_directory_uri() . '/user.css', false, '2011-12-12', 'all' ); 
+		wp_enqueue_style( 'arras-user', get_template_directory_uri() . '/user.css', false, '1.6', 'all' ); 
 	} else {
 		if ( is_rtl() )
-			wp_enqueue_style( 'arras-child', get_stylesheet_directory_uri() . '/rtl.css', false, '2011-12-12', 'all' );
+			wp_enqueue_style( 'arras-child', get_stylesheet_directory_uri() . '/rtl.css', false, '1.6', 'all' );
 		else
-			wp_enqueue_style( 'arras-child', get_stylesheet_directory_uri() . '/style.css', false, '2011-12-12', 'all' );
+			wp_enqueue_style( 'arras-child', get_stylesheet_directory_uri() . '/style.css', false, '1.6', 'all' );
 	}
 	
 	// load other custom styles
