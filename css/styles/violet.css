@@ -23,7 +23,7 @@ a:hover					{ color: #4B5928; }
 #nav .sf-menu ul li  { border: 1px solid #7e1a80; }
 #nav .sf-menu a:hover, #nav .sf-menu li:hover, #nav .sf-menu li.sfHover, #nav .sf-menu ul li  { background: #961E98; color: #FFF; }
 #nav .sf-menu ul a:hover, #nav .sf-menu ul li.sfHover, #nav .sf-menu ul li:hover { color: #961E98; background: #FFF; }
-#nav .sf-menu ul li.sfHover a.sf-with-ul { color: #961E98; }
+#nav .sf-menu ul li.sfHover a.sf-with-ul { color: #4f0d50; }
 
 /* search bar */
 .searchform  { border: 3px solid #4B0F4C; }

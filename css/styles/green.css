@@ -24,7 +24,7 @@ a:hover					{ color: #993A17; }
 #nav .sf-menu ul li  { border: 1px solid #3E7A00; }
 #nav .sf-menu a:hover, #nav .sf-menu li:hover, #nav .sf-menu li.sfHover, #nav .sf-menu ul li  { background: #3E7A00; color: #FFF; }
 #nav .sf-menu ul a:hover, #nav .sf-menu ul li.sfHover, #nav .sf-menu ul li:hover { color: #3E7A00; background: #FFF; }
-#nav .sf-menu ul li.sfHover a.sf-with-ul { color: #3E7A00; }
+#nav .sf-menu ul li.sfHover a.sf-with-ul { color: #67ab67; }
 
 /* search bar */
 .searchform  { border: 3px solid #407E19; }

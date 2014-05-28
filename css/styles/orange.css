@@ -15,7 +15,7 @@ a:hover					{ color: #06BDB6; }
 #top-menu .sf-menu ul li  { border: 1px solid #542004; }
 #top-menu .sf-menu a:hover, #top-menu .sf-menu li:hover, #top-menu .sf-menu li.sfHover, #top-menu .sf-menu ul li  { color: #FFF; background: #642503; }
 #top-menu .sf-menu ul a:hover, #top-menu .sf-menu ul li.sfHover, #top-menu .sf-menu ul li:hover { color: #642503; background: #FFF; }
-#top-menu .sf-menu ul li.sfHover a.sf-with-ul { color: #642503; }
+#top-menu .sf-menu ul li.sfHover a.sf-with-ul { color: #ab6767; }
 
 /* main navigation */
 #nav  { background: #87340E; min-width: 990px; }
@@ -23,7 +23,7 @@ a:hover					{ color: #06BDB6; }
 #nav .sf-menu ul li  { border: 1px solid #cb4c08; }
 #nav .sf-menu a:hover, #nav .sf-menu li:hover, #nav .sf-menu li.sfHover, #nav .sf-menu ul li  { background: #BD4606; color: #FFF; }
 #nav .sf-menu ul a:hover, #nav .sf-menu ul li.sfHover, #nav .sf-menu ul li:hover { color: #BD4606; background: #FFF; }
-#nav .sf-menu ul li.sfHover a.sf-with-ul { color: #BD4606; }
+#nav .sf-menu ul li.sfHover a.sf-with-ul { color: #ab6767; }
 
 /* search bar */
 .searchform  { border: 3px solid #6E2A0B; }
