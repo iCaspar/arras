@@ -53,7 +53,11 @@
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</a>
 		</div>
-	<div id="searchbar"><?php get_search_form() ?></div>
+		<div class="sidebar headerwidgets">
+			<ul class="xoxo">
+				<?php if ( dynamic_sidebar('Header Widgets') ) ; ?>
+			</ul>
+		</div>
 	</div><!-- #branding -->
 </header><!-- #header -->
 

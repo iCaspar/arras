@@ -188,6 +188,14 @@ function arras_add_sidebars() {
 		'before_title' => '<h5 class="widgettitle">',
 		'after_title' => '</h5>'
 	) );
+	register_sidebar( array(
+		'name' => 'Header Widgets',
+		'description' => 'A small widget area in the header. Use for small widgets',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget' => '</li>',
+		'before_title' => '<h5 class="widgettitle">',
+		'after_title' => '</h5>'
+	) );
 	
 	/* Footer sidebars (Up to 4 sidebars based on user preference) */
 	$footer_sidebars = arras_get_option('footer_sidebars');
