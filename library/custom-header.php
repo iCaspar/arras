@@ -3,12 +3,17 @@
  * custom-header.php
  *
  * Displays custom header, if enabled from Appearance > Header
- * (Adapted from Twenty_Thirteen)
- * 
- * Handles custom header colors, if set in Arras Options
+ * Adapted from Automattic's Twenty_Thirteen.
+ *
+ * This replaces the Arras Logo Option
  *
  * @package Arras
  * @since  1.6
+ *
+ * @uses add_theme_support() to register header support.
+ * @uses arras_header_style() to style front-end.
+ * @uses arras_admin_header_style() to style wp-admin form.
+ * @uses arras_admin_header_image() to add custom markup to wp-admin form.
  * 
  */
 
@@ -18,15 +23,17 @@
  */
 function arras_custom_header_setup() {
   $args = array(
-    'default-text-color'  =>  'cecece',
-    'default-image'       =>  '',
-    'flex-width'          =>  true,
-    'width'               =>  980,
-    'flex-height'         =>  true,
-    'height'              =>  200,
-    'header-text'         =>  true,
-    'uploads'             =>  true,
-    'wp-head-callback'    =>  'arras_header_style',
+    'default-text-color'      =>  '000',
+    'default-image'           =>  '',
+    'flex-width'              =>  true,
+    'width'                   =>  980,
+    'flex-height'             =>  true,
+    'height'                  =>  200,
+    'header-text'             =>  true,
+    'uploads'                 =>  true,
+    'wp-head-callback'        =>  'arras_header_style',
+    'admin-head-callback'     =>  'arras_admin_header_style',
+    'admin-preview-callback'  =>  'arras_admin_header_image'
   );
 
   add_theme_support( 'custom-header', $args );
@@ -53,10 +60,10 @@ function arras_header_style() {
   <?php
     if ( ! empty( $header_image ) ) :
   ?>
-    .logo {
+    #branding {
       background: url(<?php header_image(); ?>) no-repeat scroll left;
-      width: 590px;
-      min-height: 134px;
+      background-size: cover;
+      min-height: 200px;
     }
   <?php
     endif;
@@ -97,3 +104,84 @@ function arras_header_style() {
   </style>
   <?php
 }
+
+/**
+ * Style the header image displayed on the Appearance > Header admin panel.
+ */
+function arras_admin_header_style() {
+  $header_image = get_header_image();
+?>
+  <style type="text/css" id="arras-admin-header-css">
+  .appearance_page_custom-header #headimg {
+    border: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    box-sizing:         border-box;
+    <?php
+    if ( ! empty( $header_image ) ) {
+      echo 'background: url(' . esc_url( $header_image ) . ') no-repeat scroll top;
+      background-size: cover;';
+    } ?>
+    padding: 0 20px;
+    max-width: 980px;
+  }
+  #headimg .home-link {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    box-sizing:         border-box;
+    margin: 0 auto;
+    max-width: 980px;
+    <?php
+    if ( ! empty( $header_image ) || display_header_text() ) {
+      echo 'min-height: 200px;';
+    } ?>
+    width: 100%;
+  }
+  <?php if ( ! display_header_text() ) : ?>
+  #headimg h1,
+  #headimg h2 {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+  <?php endif; ?>
+  #headimg h1 {
+    font: bold 24px 'Segoe UI', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 25px 0 10px;
+    text-transform: uppercase;
+  }
+  #headimg h1 a {
+    text-decoration: none;
+  }
+  #headimg h1 a:hover {
+    text-decoration: underline;
+  }
+  #headimg h2 {
+    font: bold 20px 'Segoe UI', Arial, Helvetica, sans-serif;
+    margin: 0;
+    text-shadow: none;
+    text-transform: uppercase;
+  }
+  .default-header img {
+    max-width: 230px;
+    width: auto;
+  }
+  </style>
+<?php
+}
+
+/**
+ * Output markup to be displayed on the Appearance > Header admin panel.
+ * This callback overrides the default markup displayed there.
+ */
+function arras_admin_header_image() {
+  ?>
+  <div id="headimg">
+    <?php $style = ' style="color:#' . get_header_textcolor() . ';"'; ?>
+    <div class="home-link">
+      <h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="#"><?php bloginfo( 'name' ); ?></a></h1>
+      <h2 id="desc" class="displaying-header-text"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></h2>
+    </div>
+  </div>
+<?php }
