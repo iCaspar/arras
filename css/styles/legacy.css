@@ -25,7 +25,17 @@ blockquote				{ border-left: 2px solid #CCC; color: #666; padding: 5px 10px 1px;
 code					{ background: #EAEAEA; color: #333; font-family: Consolas, Monaco, Courier, monospace; font-size: 11px; margin: 1px 0; padding: 1px 3px; }
 pre code				{ background: #322E2C; border: 1px solid #635957; color: #FFF; display: block; overflow: scroll; padding: 1.5em 1.75em; }
 
-input[type=text], input[type=password], textarea	{ background: url(../../images/form.jpg) repeat-x top #FFF; border: 1px solid #CCC; padding: 3px; }
+input[type=text], input[type=password], textarea {
+  background: #fff;
+  background: -webkit-gradient(#eee,#fff) no-repeat;
+  background: -webkit-linear-gradient(#eee,#fff) no-repeat;
+  background: -moz-linear-gradient(#eee,#fff) no-repeat;
+  background: -o-linear-gradient(#eee,#fff) no-repeat;
+  background: linear-gradient(#eee,#fff) no-repeat;
+  background-size: 100% 15px;
+  border: 1px solid #ccc;
+}
+
 input[type=submit], #wp-email-submit    { font-family: Helvetica, Arial, sans-serif; background: url(../../images/feed-title-white.jpg) repeat-x; border: 1px solid #CCC; padding: 5px 10px; font-size: 12px; color: #000; font-weight: bold; }
 input[type=submit]:hover, #wp-email-submit:hover    { background: #314E6A; color: #FFF; }
 
@@ -78,6 +88,23 @@ img.aligncenter, img.alignright, img.alignleft  { border: 1px solid #DDD; text-a
 .blog-name				{ font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 22px; margin: 0 0 3px; line-height: 1em; display: block; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
 .blog-name a:link, .blog-name a:visited	{ color: #FFF; text-decoration: none; }
 .blog-description		{ font-family: 'Segoe UI', Arial, Helvetica, sans-serif; line-height: 1em; display: block; font-size: 11px; font-weight: bold; color: #7d716d; margin: 0; padding: 3px 0 0; text-transform: uppercase; }
+.headerwidgets {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 3px solid;
+    float: right;
+    margin: 20px 10px;
+    max-height: 144px;
+    overflow: hidden;
+    padding: 10px 10px 0;
+    width: 274px;
+}
+
+/** -- ADMIN BAR
+  * ----------------------------------------------------------------- */
+.adminbar-input[type="text"] {
+  background-image: none;
+}
+
 
 /* Menus */
 .sf-menu  { list-style: none; margin: 0; padding: 0; z-index: 101; }
