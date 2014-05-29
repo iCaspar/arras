@@ -88,15 +88,18 @@ img.aligncenter, img.alignright, img.alignleft  { border: 1px solid #DDD; text-a
 .blog-name				{ font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 22px; margin: 0 0 3px; line-height: 1em; display: block; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
 .blog-name a:link, .blog-name a:visited	{ color: #FFF; text-decoration: none; }
 .blog-description		{ font-family: 'Segoe UI', Arial, Helvetica, sans-serif; line-height: 1em; display: block; font-size: 11px; font-weight: bold; color: #7d716d; margin: 0; padding: 3px 0 0; text-transform: uppercase; }
+
+/* Header Widgets */
 .headerwidgets {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 3px solid;
-    float: right;
-    margin: 20px 10px;
-    max-height: 144px;
-    overflow: hidden;
-    padding: 10px 10px 0;
-    width: 274px;
+  float: right;
+  width: 300px;
+  max-height: 160px;
+  margin: 20px 10px;
+  overflow: hidden;
+  background: transparent;
+}
+.headerwidgets .widgetcontainer:last-child {
+  margin-bottom: 0;
 }
 
 /** -- ADMIN BAR

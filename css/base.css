@@ -81,7 +81,17 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul  { left: 11em; top:
 #searchbar  { float: right; overflow: hidden; margin: 25px 10px 0 0; }
 
 /* Header Widgets */
-.headerwidgets { float: right; width: 274px; max-height: 144px; border: 3px solid; margin: 20px 10px; padding: 10px 10px 0; overflow: hidden; background: #fff; }
+.headerwidgets {
+  float: right;
+  width: 300px;
+  max-height: 160px;
+  margin: 20px 10px;
+  overflow: hidden;
+  background: transparent;
+}
+.headerwidgets .widgetcontainer:last-child {
+  margin-bottom: 0;
+}
 
 /* Sidebar */
 .sidebar .xoxo  { list-style: none; padding: 0; margin: 0; }
