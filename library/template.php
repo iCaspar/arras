@@ -257,7 +257,6 @@ function arras_excerpt_length($length) {
 add_filter('excerpt_length', 'arras_excerpt_length');
 
 /**
- * @todo
  * Function adapted from http://graveyard.maniacalrage.net/etc/relative/.
  * @since 1.6
  */

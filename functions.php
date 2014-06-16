@@ -23,11 +23,10 @@ if ( ! isset( $content_width ) ) {
 
 
 define ( 'ARRAS_CHILD', is_child_theme() );
-define ( 'ARRAS_VERSION' , '1.5.5' );
+define ( 'ARRAS_VERSION' , '1.6 RC1' );
 define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
-// TODO: Nothing is hooked to this. Can we take out?
-// do_action('arras_init'); 
+do_action('arras_init'); 
 
 
 if ( ! function_exists( 'arras_setup' ) ) :
@@ -62,7 +61,6 @@ function arras_setup() {
 	
 	//require_once ARRAS_LIB . '/admin/background.php';
 	
-	// TODO: These definitions are unused. Queue for deletion?
 	/* Post meta fields */
 	// define( 'ARRAS_REVIEW_SCORE', 'score' );
 	// define( 'ARRAS_REVIEW_PROS', 'pros' );

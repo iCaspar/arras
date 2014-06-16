@@ -13,14 +13,6 @@
 </td>
 </tr>
 
-<tr valign="top">
-<th scope="row"><label for="arras-credits"><?php _e('Display Credits', 'arras') ?></label></th>
-<td>
-<?php echo arras_form_checkbox('arras-credits', 'show', !arras_get_option('donate'), 'id="arras-credits"') ?> 
-<?php _e('Credits will only appear to the right of the theme options page.', 'arras') ?>
-</td>
-</tr>
-
 </table>
 
 <h3><?php _e('Site Information', 'arras') ?></h3>

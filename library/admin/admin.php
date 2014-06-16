@@ -133,34 +133,6 @@ function arras_admin_reset() {
 	$notices = '<div class="updated fade"><p>' . __('Your settings have been reverted to the defaults.', 'arras') . '</p></div>';
 }
 
-/*
-function arras_posttax() {
-	global $arras_options, $notices;
-	
-	if ( isset($_GET['page']) && $_GET['page'] == 'arras-posttax' ) {
-		if ( isset($_REQUEST['save']) ) {
-			
-			if ( isset($_REQUEST['type']) && $_REQUEST['type'] == 'posttype' ) {
-				arras_update_options();
-				$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
-			}
-			
-			if ( isset($_REQUEST['type']) && $_REQUEST['type'] == 'taxonomy' ) {
-				arras_update_options();
-				$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
-			}
-			
-		}
-	
-		if ( isset($_REQUEST['type']) && $_REQUEST['type'] == 'taxonomy' ) {
-			include 'templates/taxonomy_page.php';
-		} else {
-			include 'templates/posttype_page.php';
-		}
-
-	}
-}
-*/
 
 function arras_admin_scripts() {
 	wp_enqueue_script( 'jquery-multiselect', get_template_directory_uri() . '/js/jquery.multiselect.min.js', null, 'jquery' );
@@ -217,34 +189,14 @@ function arras_get_contributors($arr) {
 	}
 }
 
-function arras_right_col() {
-	$forum_contributors = array(
-		'Giovanni' => 'http://www.animeblog.nl/',
-		'Bobby Clapp' => 'http://profaneentertainment.com/gaming',
-		'Charles' => 'http://www.claireraborar.com/travel',
-		'Nedrago' => 'http://www.nedrago.com/',
-		'Dan' => 'http://www.techunfolding.com/'
-	);
-	$translators = array(
-		'Bestmoose (Dutch)' => 'http://www.arrastheme.com/forums/topic3369-1501-german-translation-deutsche-uebersetzung.html',
-		'Drun Ming Haung (Traditional Chinese)' => 'http://www.arrastheme.com/forums/topic2956-1501-chinese-traditional-translation-zhtw.html',
-		'carlosmarchi (Brazilian Portuguese)' => 'http://www.arrastheme.com/forums/topic3401-1501-brazilian-portuguese-ptbr-pack.html',
-		'PressPlay (Norwegian)' => 'http://www.arrastheme.com/forums/topic3736-1501-norwegian-nb-translation-norsk-bokmal-oversettingnbno.html',
-		'Bob Robot (Simplified Chinese)' => 'http://www.arrastheme.com/forums/topic4412-1501-simplified-chinese-translation-zhcn.html',
-		'edvind (Swedish)' => 'http://www.arrastheme.com/forums/topic3627-1501-swedish-translation-svensk-oeversaettning.html',
-		'Celso Azevedo (Portuguese)' => 'http://www.arrastheme.com/forums/topic3658-1501-portuguese-portugal-translation-traducao-portuguesa.html',
-		'Sokac (Croatian)' => 'http://www.arrastheme.com/forums/topic3219-1501-croatian-translation-hrvatski-prijevod.html',
-		'Berniru (Russian)' => 'http://www.arrastheme.com/forums/topic3202-1501-russkii-perevod-russian-translation.html',
-		'vicsabi (Hungarian)' => 'http://www.arrastheme.com/forums/topic6561-1501-hungarian-translation-magyar-forditas.html',
-		'vfenix (Spanish)' => 'http://www.arrastheme.com/forums/topic3549-1501-spanish-translation-traduccion-espanola.html'
-	);
-	
+function arras_right_col() {	
 	?>
 	<div id="arras-right-col">
 		<div class="postbox">
 			<h3><span><?php _e('Helpful Links', 'arras') ?></span></h3>
 			<ul>
-				<li><a href="http://arrastheme.net/forums/"><?php _e('Arras Them Website', 'arras') ?></a></li>
+				<li><a href="http://arrastheme.net"><?php _e('Arras Theme Website', 'arras') ?></a></li>
+				<li><a href="http://forum.arrastheme.net"><?php _e('Arras Theme Forums', 'arras') ?></a></li>
 				<li><a href="https://github.com/icaspar/arras"><?php _e('Arras on GitHub', 'arras') ?></a></li>
 			</ul>
 		</div>
@@ -262,13 +214,11 @@ function arras_right_col() {
 		
 		<div class="postbox">
 			<h3><span><?php _e('Thanks!', 'arras') ?></span></h3>
-			<p><?php _e('Many thanks to those who have contributed to the theme:', 'arras') ?></p>
-			<p><strong><?php _e('Forum Contributors', 'arras') ?></strong><br />
-			<?php arras_get_contributors($forum_contributors) ?></p>
-			<p><strong><?php _e('Translators', 'arras') ?></strong><br />
-			<?php arras_get_contributors($translators) ?></p>
-			<div id="donors-list">
-			</div>
+			<p>Many Thanks to Everyone who has contributed to Arras over the years.</p>
+			<p>Special Thanks to <strong>Arras</strong>'s Creator and former Lead Developer, <strong><a href="http://www.zy.sg/" title="Melvin Lee">Melvin Lee</a></strong>,
+				for releasing <strong>Arras</strong> for further development.</p>
+			<p><strong>Arras</strong> is licensed under <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU General Public License, v.2</a>.
+
 		</div>
 		
 		<?php do_action('arras_admin_right_col'); ?>
