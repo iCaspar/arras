@@ -230,22 +230,22 @@ class ArrasOptions {
 	}
 	
 	function save_taxonomies() {
-		if ( $this->slideshow_tax != (string)$_POST['arras-taxonomy-slideshow'] ) {
+		if ( isset( $_POST['arras-taxonomy-slideshow'] ) && $this->slideshow_tax != (string)$_POST['arras-taxonomy-slideshow'] ) {
 			$this->slideshow_tax = (string)$_POST['arras-taxonomy-slideshow'];
 			$this->slideshow_cat = null;
 		}
 		
-		if ( $this->featured1_tax != (string)$_POST['arras-taxonomy-featured1'] ) {
+		if ( isset( $_POST['arras-taxonomy-featured1'] ) && $this->featured1_tax != (string)$_POST['arras-taxonomy-featured1'] ) {
 			$this->featured1_tax = (string)$_POST['arras-taxonomy-featured1'];
 			$this->featured1_cat = null;
 		}
 		
-		if ( $this->featured2_tax != (string)$_POST['arras-taxonomy-featured2'] ) {
+		if ( isset( $_POST['arras-taxonomy-featured2'] ) && $this->featured2_tax != (string)$_POST['arras-taxonomy-featured2'] ) {
 			$this->featured2_tax = (string)$_POST['arras-taxonomy-featured2'];
 			$this->featured2_cat = null;
 		}
 		
-		if ( $this->news_tax != (string)$_POST['arras-taxonomy-news'] ) {
+		if ( isset( $_POST['arras-taxonomy-news'] ) && $this->news_tax != (string)$_POST['arras-taxonomy-news'] ) {
 			$this->news_tax = (string)$_POST['arras-taxonomy-news'];
 			$this->news_cat = null;
 		}

@@ -6,8 +6,6 @@
 <?php echo $notices; ?>
 
 <form enctype="multipart/form-data" id="arras-settings-form" method="post" action="<?php get_template_directory() . '/admin/admin.php'; ?>">
-  <?php// settings_fields( 'arras_options' ); ?>
-  <?php// do_settings_sections ( 'arras_options' ); ?>
 <?php wp_nonce_field('arras-admin'); ?>
 
 <ul id="arras-tabs" class="clearfix">
@@ -30,8 +28,8 @@
 <?php include 'arras-layout.php' ?>
 <?php include 'arras-design.php' ?>
 <?php include 'arras-thumbnails.php' ?>
-<?php include 'arras-posttypes.php' ?>
-<?php include 'arras-taxonomies.php' ?>
+<?php include 'posttype_page.php' ?>
+<?php include 'taxonomy_page.php' ?>
 <?php include 'arras-tools.php' ?>
 
 <p class="arras-regen-thumbs-field"><?php echo arras_form_checkbox('arras-regen-thumbs', 'show', false, 'id="arras-regen-thumbs"') ?> 
@@ -41,7 +39,6 @@
 <input class="button-secondary" type="submit" name="reset" value="<?php _e('Reset Settings', 'arras') ?>" />
 </p>
 
-<?php// submit_button(); ?>
 </div>
 
 </form>

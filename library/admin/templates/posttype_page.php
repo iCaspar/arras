@@ -12,24 +12,8 @@ foreach( $posttypes as $id => $obj ) {
 
 ?>
 
-<div class="wrap clearfix">
 
-<?php screen_icon('themes') ?>
-<h2 id="arras-header"><?php _e('Post Types & Taxonomies Options', 'arras') ?></h2>
-
-<?php echo $notices ?>
-
-<form enctype="multipart/form-data" id="arras-posttax-form" class="ui-widget-content" method="post" action="admin.php?page=arras-posttax">
-<?php wp_nonce_field('arras-posttax'); ?>
-
-<ul class="clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" id="arras-tabs">
-	<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="admin.php?page=arras-posttax"><?php _e('Post Types', 'arras') ?></a></li>
-	<li class="ui-state-default ui-corner-top"><a href="admin.php?page=arras-posttax&type=taxonomy"><?php _e('Taxonomies', 'arras') ?></a></li>
-</ul>
-
-<div class="clearfix arras-options-wrapper">
-
-<div class="padding-content">
+<div id="posttype" class="padding-content">
 <h3><?php _e('Home', 'arras') ?></h3>
 <table class="form-table">
 
@@ -64,23 +48,17 @@ foreach( $posttypes as $id => $obj ) {
 </table>
 
 <?php do_action('arras_admin_posttype'); ?>
+<input type="hidden" name="posttype" value="posttype" />
 
 </div>
 
-
+<!--
 <p class="final-submit">
-<input type="hidden" name="type" value="posttype" />
-<input class="button-primary" type="submit" name="save" value="<?php _e('Save Changes', 'arras') ?>" />
-<input class="button-secondary" type="submit" name="reset" value="<?php _e('Reset Settings', 'arras') ?>" />
+<input class="button-primary" type="submit" name="save" value="<?php// _e('Save Changes', 'arras') ?>" />
+<input class="button-secondary" type="submit" name="reset" value="<?php// _e('Reset Settings', 'arras') ?>" />
 </p>
+-->
 
-</div>
-
-</form>
-
-<?php arras_right_col() ?>
-
-</div><!-- .wrap -->
 
 <?php
 

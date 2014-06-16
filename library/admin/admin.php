@@ -109,9 +109,13 @@ function arras_admin_save() {
 		
 		$arras_options->custom_thumbs = $arras_custom_image_sizes;
 		$arras_options->save_options();
+				$arras_options->save_posttypes();
+				$arras_options->save_taxonomies();
 		arras_update_options();
 		
 		do_action('arras_admin_save');
+				do_action('arras_admin_posttype_save');
+				do_action('arras_admin_taxonomy_save');
 		
 		$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
 	}
@@ -129,6 +133,7 @@ function arras_admin_reset() {
 	$notices = '<div class="updated fade"><p>' . __('Your settings have been reverted to the defaults.', 'arras') . '</p></div>';
 }
 
+/*
 function arras_posttax() {
 	global $arras_options, $notices;
 	
@@ -136,16 +141,12 @@ function arras_posttax() {
 		if ( isset($_REQUEST['save']) ) {
 			
 			if ( isset($_REQUEST['type']) && $_REQUEST['type'] == 'posttype' ) {
-				$arras_options->save_posttypes();
 				arras_update_options();
-				do_action('arras_admin_posttype_save');
 				$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
 			}
 			
 			if ( isset($_REQUEST['type']) && $_REQUEST['type'] == 'taxonomy' ) {
-				$arras_options->save_taxonomies();
 				arras_update_options();
-				do_action('arras_admin_taxonomy_save');
 				$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
 			}
 			
@@ -156,8 +157,10 @@ function arras_posttax() {
 		} else {
 			include 'templates/posttype_page.php';
 		}
+
 	}
 }
+*/
 
 function arras_admin_scripts() {
 	wp_enqueue_script( 'jquery-multiselect', get_template_directory_uri() . '/js/jquery.multiselect.min.js', null, 'jquery' );
