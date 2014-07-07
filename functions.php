@@ -12,8 +12,6 @@
  * @author Melvin Lee (2009-2013)
  * @author Caspar Green <caspar@iCasparWebDevelopment.com>
  * @package Arras
- *
- * (Last update for v1.5.5)
  * 
  */
 
@@ -23,7 +21,7 @@ if ( ! isset( $content_width ) ) {
 
 
 define ( 'ARRAS_CHILD', is_child_theme() );
-define ( 'ARRAS_VERSION' , '1.6 RC1' );
+define ( 'ARRAS_VERSION' , '1.6' );
 define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
 do_action('arras_init'); 
