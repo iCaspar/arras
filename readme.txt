@@ -20,7 +20,7 @@ As of May 1, 2014 the theme's website, http://www.arrastheme.com, announced that
 ## Resumed Development at iCaspar Web Development
 **iCaspar Web Development is undertaking this project as an open source project without any warrantee that development will continue, or that the results will be fit for use by anyone for any purpose. iCaspar Web Development is not affiliated with, nor do I have contact with, any previous developers of the Arras theme, nor have I received any payment or benefits from the former developers, other than the GNU licensed code itself.**
 
-## Version 1.6 RC1
+## Version 1.6
 Version 1.6 brings Arras up-to-date with WordPress 3.9.1
 
 ### Bug Fixes:
