@@ -28,8 +28,8 @@
 
 	<body <?php body_class(); ?>> 
 
-	<?php arras_above_top_menu(); ?>	
-	
+	<?php arras_above_top_menu(); ?>
+
 	<?php if( wp_nav_menu( array( 'echo' => false, 'theme_location' => 'top-menu', 'fallback_cb' => '' ) ) ): ?>
 	<nav id="top-menu" class="clearfix">
 	<?php	wp_nav_menu( array( 
@@ -49,8 +49,12 @@
 	<div id="branding" class="clearfix">
 		<div class="logo">
 			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+			<?php if (arras_get_option( 'logo' ) != 0 ) :
+				arras_add_custom_logo();
+			else: ?>
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			<?php endif; ?>
 			</a>
 		</div>
 		<div class="sidebar headerwidgets">
