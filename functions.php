@@ -21,7 +21,7 @@ if ( ! isset( $content_width ) ) {
 
 
 define ( 'ARRAS_CHILD', is_child_theme() );
-define ( 'ARRAS_VERSION' , '1.6.1' );
+define ( 'ARRAS_VERSION' , '1.6.2' );
 define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
 do_action('arras_init'); 

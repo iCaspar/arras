@@ -72,7 +72,7 @@ function arras_header_style() {
     if ( ! display_header_text() ) :
   ?>
     .site-title,
-    .site-description {
+    /*.site-description*/ {
       position: absolute;
       clip: rect(1px 1px 1px 1px); /* IE7 */
       clip: rect(1px, 1px, 1px, 1px);
