@@ -52,7 +52,7 @@
 			<?php if (arras_get_option( 'logo' ) != 0 ) :
 				arras_add_custom_logo();
 				echo '<h2 class="site-description">';
-				bloginfo( 'description' );
+				echo bloginfo( 'description' );
 				echo '</h2>';
 
 			else: ?>

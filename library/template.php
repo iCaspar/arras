@@ -12,8 +12,9 @@
  *
  */
 
-add_filter( 'wp_title', 'arras_document_title' );
+add_filter( 'wp_title', 'arras_document_title', 10, 2 );
 /**
+ * Based on TwentyTwelve
  * Modifies the default WP title to give us something a little more SEO friendly
  * @param  string $title WP default title
  * @param  string $sep   WP default title separator
@@ -36,6 +37,7 @@ function arras_document_title( $title, $sep ) {
 	// Add a page number if necessary.
 	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
 		$title = "$title $sep " . sprintf( __( 'Page %s', 'arras' ), max( $paged, $page ) );
+
 
 	return $title;
 }
