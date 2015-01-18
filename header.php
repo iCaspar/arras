@@ -51,14 +51,10 @@
 			<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 			<?php if (arras_get_option( 'logo' ) != 0 ) :
 				arras_add_custom_logo();
-				echo '<h2 class="site-description">';
-				echo bloginfo( 'description' );
-				echo '</h2>';
-
 			else: ?>
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			<?php endif; ?>
+			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</a>
 		</div>
 		<div class="sidebar headerwidgets">

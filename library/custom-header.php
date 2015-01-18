@@ -5,7 +5,7 @@
  * Displays custom header, if enabled from Appearance > Header
  * Adapted from Automattic's Twenty_Thirteen.
  *
- * This replaces the Arras Logo Option
+ * This compliments the Arras Logo Option
  *
  * @package Arras
  * @since  1.6
@@ -14,7 +14,7 @@
  * @uses arras_header_style() to style front-end.
  * @uses arras_admin_header_style() to style wp-admin form.
  * @uses arras_admin_header_image() to add custom markup to wp-admin form.
- * 
+ *
  */
 
 /**
@@ -72,7 +72,7 @@ function arras_header_style() {
     if ( ! display_header_text() ) :
   ?>
     .site-title,
-    /*.site-description*/ {
+    .site-description {
       position: absolute;
       clip: rect(1px 1px 1px 1px); /* IE7 */
       clip: rect(1px, 1px, 1px, 1px);
