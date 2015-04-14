@@ -53,11 +53,11 @@ function arras_favicons() {
 
 function arras_menu( $location, $fallback, $depth = 0 ) {
 	if ( $fallback || has_nav_menu( $location ) ) {
-		echo '<nav id="' . $location . '" class="clearfix">';
+		echo '<nav id="' . $location . '">';
 		wp_nav_menu( array(
 			'container_id'		=> $location . '-content',
 			'theme_location'	=> $location,
-			'menu_class'		=> 'menu clearfix',
+			'menu_class'		=> 'menu',
 			'depth' 			=> $depth
 			)
 		);

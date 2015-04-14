@@ -50,6 +50,7 @@
 
 	<?php arras_above_nav(); ?>
 	<?php arras_menu( 'main-menu', true, 3 ); ?>
+	<?php arras_beside_nav(); ?>
 	<?php arras_below_nav(); ?>
 
 <div id="wrapper">
