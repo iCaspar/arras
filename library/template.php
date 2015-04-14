@@ -12,6 +12,42 @@
  *
  */
 
+/** Header support functions */
+
+add_action( 'wp_head', 'arras_favicons' );
+/**
+ * Outputs available favicons
+ * @return null Outputs favicon html for use in <head>
+ */
+function arras_favicons() {
+	$color = '#123456';
+	$type = 'image/png';
+	$favicon = esc_url( arras_get_option( 'favicon' ) );
+	$apple_icon = esc_url( arras_get_option( 'appleicon' ) );
+	$ms_tile_color = esc_attr( $color );
+	$ms_tile_image = esc_url( arras_get_option( 'mstileimage' ) );
+
+	if ( ! $favicon ) {
+		$type = 'image/x-icon';
+		if ( ! file_exists( ABSPATH . 'favicon.ico' ) ) {
+			$favicon = get_stylesheet_directory_uri() . '/images/favicon.ico';
+		} else {
+			$favicon = get_site_url( 'favicon.ico' );
+		}
+	}
+	echo '<link rel="icon" type="' . $type . '" href="' . $favicon . '" />';
+	if ( '' != $apple_icon ) {
+		echo '<link rel="apple-touch-icon-precomposed" href="' . $apple_icon . '" />';
+	}
+	if ( '' != $ms_tile_color ) {
+		echo '<meta name="msapplication-TileColor" content="' . $ms_tile_color . '" />';
+	}
+	if ( '' != $ms_tile_image ) {
+		echo '<meta name="msapplication-TileImage" content="' . $ms_tile_image . '" />';
+	}
+} // end arras_favicons()
+
+
 add_filter( 'wp_title', 'arras_document_title', 10, 2 );
 /**
  * Based on TwentyTwelve
@@ -60,7 +96,7 @@ function arras_tag_query() {
 	$tag_ops_counter = 0;
 	$nice_tag_query = '';
 
-	foreach ($tag_slugs as $tag_slug) { 
+	foreach ($tag_slugs as $tag_slug) {
 		$tag = get_term_by('slug', $tag_slug ,'post_tag');
 		// prettify tag operator, if any
 		if ( isset($tag_ops[$tag_ops_counter]) && $tag_ops[$tag_ops_counter] == ',') {
@@ -84,10 +120,10 @@ function arras_tag_query() {
 function arras_body_class($classes) {
 	if ( function_exists('body_class') ) {
 		$classes[] = 'layout-' . arras_get_option( 'layout' );
-		
+
 		if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 			$classes[] = 'style-' . arras_get_option('style');
-		}		
+		}
 		return $classes;
 	}
 }
@@ -98,17 +134,17 @@ add_filter( 'body_class', 'arras_body_class' );
  */
 function arras_render_posts($args = null, $display_type = 'default', $taxonomy = 'category') {
 	global $post, $wp_query, $arras_tapestries;
-	
+
 	if (!$args) {
 		$query = $wp_query;
 	} else {
 		$query = new WP_Query($args);
 	}
-	
-	if ($query->have_posts()) {	
+
+	if ($query->have_posts()) {
 		arras_get_tapestry_callback($display_type, $query, $taxonomy);
 	}
-	
+
 	wp_reset_query();
 }
 
@@ -121,12 +157,12 @@ function arras_featured_loop( $display_type = 'default', $arras_args = array(), 
 		$arras_args = arras_prep_query($arras_args);
 		$q = new WP_Query($arras_args);
 	}
-	
+
 	if ($q->have_posts()) {
 		if ( !isset($arras_args['taxonomy']) ) $arras_args['taxonomy'] = 'category';
 		arras_get_tapestry_callback($display_type, $q, $arras_args['taxonomy']);
 	}
-	
+
 	wp_reset_query();
 }
 
@@ -146,14 +182,14 @@ function arras_prep_query( $args = array() ) {
 			'order'				=> 'DESC'
 		)
 	);
-	
+
 	$args['query'] = wp_parse_args($args['query'], $_defaults['query']);
 	$args = wp_parse_args($args, $_defaults);
 
 	if ( !is_array($args['list']) ) {
 		$args['list'] = array($args['list']);
 	}
-	
+
 	// sticky posts
 	if ( in_array('-5', $args['list']) ) {
 		$stickies = get_option('sticky_posts');
@@ -164,41 +200,41 @@ function arras_prep_query( $args = array() ) {
 			// if no sticky posts are available, return empty value
 			return false;
 		}
-		
+
 		$key = array_search('-5', $args['list']);
 		unset($args['list'][$key]);
 	}
-	
+
 	// taxonomies
 	switch( $args['taxonomy'] ) {
 		case 'category':
 
 			$zero_key = array_search('0', $args['list']);
 			if (is_numeric($zero_key)) unset($args['list'][$zero_key]);
-			
+
 			$args['query']['category__in'] = $args['list'];
 			break;
-			
+
 		case 'post_tag':
 			$args['query']['tag__in'] = $args['list'];
 			break;
-			
+
 		default:
 			$taxonomy_obj = get_taxonomy($args['taxonomy']);
-			
+
 			$args['list'] = implode($args['list'], ',');
 			$args['query'][$taxonomy_obj->query_var] = $args['list'];
 	}
-	
+
 
 	if (is_home() && arras_get_option('hide_duplicates')) {
 		$args['query']['post__not_in'] = array_unique($args['query']['exclude']);
 	}
-	
+
 	if ($args['query']['post_type'] == 'attachment') {
 		$args['query']['post_status'] = 'inherit';
 	}
-	
+
 	//arras_debug($args['query']);
 	return $args['query'];
 }
@@ -226,14 +262,14 @@ function arras_list_comments($comment, $args, $depth) {
 			<cite class="fn"><?php echo get_comment_author_link() ?></cite>
 			</div>
 			<?php if ( $comment->comment_approved == '0' ) : ?>
-				<span class="comment-moderation"><?php _e('Your comment is awaiting moderation.', 'arras') ?></span>	
+				<span class="comment-moderation"><?php _e('Your comment is awaiting moderation.', 'arras') ?></span>
 			<?php endif; ?>
 			<div class="comment-meta commentmetadata">
 				<?php printf( __('Posted %1$s at %2$s', 'arras'), '<abbr class="comment-datetime" title="' . get_comment_time( __('c', 'arras') ) . '">' . get_comment_time( __('F j, Y', 'arras') ), get_comment_time( __('g:i A', 'arras') ) . '</abbr>' ); ?>
 			</div>
 			<div class="comment-content"><?php comment_text() ?></div>
 		</div>
-<?php	
+<?php
 }
 
 function arras_post_class() {
@@ -246,17 +282,17 @@ function arras_single_post_class() {
 
 function arras_parse_single_custom_fields() {
 	if (arras_get_option('single_custom_fields') == '') return false;
-	
+
 	$arr = explode( ',', arras_get_option('single_custom_fields') );
 	$final = array();
-	
+
 	if ( !is_array($arr) ) return false;
-	
+
 	foreach ( $arr as $val ) {
 		$field_arr = explode(':', $val);
 		$final[ $field_arr[1] ] = $field_arr[0];
 	}
-	
+
 	return $final;
 }
 
@@ -268,7 +304,7 @@ add_filter('excerpt_more', 'arras_excerpt_more');
 function arras_excerpt_length($length) {
 	if (!arras_get_option('excerpt_limit')) $limit = 30;
 	else $limit = arras_get_option('excerpt_limit');
-	
+
 	return $limit;
 }
 add_filter('excerpt_length', 'arras_excerpt_length');
@@ -279,7 +315,7 @@ add_filter('excerpt_length', 'arras_excerpt_length');
  */
 function arras_posted_on( $echo = 1 ) {
 	$result = '';
-	
+
 	if ( !arras_get_option( 'relative_postdates' ) ) {
 		$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
 	} else {
@@ -287,44 +323,44 @@ function arras_posted_on( $echo = 1 ) {
 
 		$months = floor( $diff / 2592000 );
 		$diff -= $months * 2419200;
-		
+
 		$weeks = floor( $diff / 604800 );
 		$diff -= $weeks * 604800;
-		
+
 		$days = floor( $diff / 86400 );
 		$diff -= $days * 86400;
-		
+
 		$hours = floor( $diff / 3600 );
 		$diff -= $hours * 3600;
-		
+
 		$minutes = floor( $diff / 60 );
 		$diff -= $minutes * 60;
-		
+
 		if ( $months > 0 || $months < 0 ) {
 			// over a month old, just show date
 			$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
 		} else {
 			if ( $weeks > 0 ) {
 				// weeks
-				if ( $weeks > 1 ) 
+				if ( $weeks > 1 )
 					$result = sprintf( __( '%s weeks ago', 'arras' ), number_format_i18n( $weeks ) );
 				else
 					$result = __( '1 week ago', 'arras' );
 			} elseif ( $days > 0 ) {
 				// days
-				if ( $days > 1 ) 
+				if ( $days > 1 )
 					$result = sprintf( __( '%s days ago', 'arras' ), number_format_i18n( $days ) );
 				else
 					$result = __( '1 day ago', 'arras' );
 			} elseif ( $hours > 0 ) {
 				// hours
-				if ( $hours > 1 ) 
+				if ( $hours > 1 )
 					$result = sprintf( __( '%s hours ago', 'arras' ), number_format_i18n( $hours ) );
 				else
 					$result = __( '1 hour ago', 'arras' );
 			} elseif ( $minutes > 0 ) {
 				// minutes
-				if ( $minutes > 1 ) 
+				if ( $minutes > 1 )
 					$result = sprintf( __( '%s minutes ago', 'arras' ), number_format_i18n( $minutes ) );
 				else
 					$result = __( '1 minute ago', 'arras' );
@@ -333,9 +369,9 @@ function arras_posted_on( $echo = 1 ) {
 				$result = __( 'less than a minute ago', 'arras' );
 			}
 		}
-		
+
 	}
-	
+
 	if ( $echo ) echo $result;
 	return $result;
 }
@@ -344,32 +380,32 @@ function arras_social_nav() {
 ?>
 	<ul class="quick-nav clearfix">
 		<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
-		
+
 		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>
 		<?php if ($facebook_profile != '') : ?>
 			<li><a id="facebook" title="<?php printf( __( '%s Facebook', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $facebook_profile ?>" target="_blank"><?php _e('Facebook', 'arras') ?></a></li>
 		<?php endif ?>
-		
+
 		<?php $flickr_profile = arras_get_option('flickr_profile'); ?>
 		<?php if ($flickr_profile != '') : ?>
 			<li><a id="flickr" title="<?php printf( __( '%s Flickr', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $flickr_profile ?>" target="_blank"><?php _e('Flickr', 'arras') ?></a></li>
 		<?php endif ?>
-		
+
 		<?php $gplus_profile = arras_get_option('gplus_profile'); ?>
 		<?php if ($gplus_profile != '') : ?>
 			<li><a id="gplus" title="<?php printf( __( '%s Google+', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $gplus_profile ?>" target="_blank"><?php _e('Google+', 'arras') ?></a></li>
 		<?php endif ?>
-		
+
 		<?php $twitter_username = arras_get_option('twitter_username'); ?>
 		<?php if ($twitter_username != '') : ?>
 			<li><a id="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="http://www.twitter.com/<?php echo $twitter_username ?>/" target="_blank"><?php _e('Twitter', 'arras') ?></a></li>
 		<?php endif ?>
-		
+
 		<?php $youtube_profile = arras_get_option('youtube_profile'); ?>
 		<?php if ($youtube_profile != '') : ?>
 			<li><a id="youtube" title="<?php printf( __( '%s YouTube', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $youtube_profile ?>" target="_blank"><?php _e('YouTube', 'arras') ?></a></li>
 		<?php endif ?>
-		
+
 		<?php do_action('arras_quick_nav'); // hook to include additional social icons, etc. ?>
 	</ul>
 <?php
@@ -389,7 +425,7 @@ function arras_blacklist_duplicates() {
 function arras_constrain_footer_sidebars() {
 	$footer_sidebars = arras_get_option('footer_sidebars');
 	if ($footer_sidebars == '') $footer_sidebars = 1;
-	
+
 	$width = ceil(920 / $footer_sidebars);
 	?>
 	.footer-sidebar  { width: <?php echo $width ?>px; }
@@ -398,7 +434,7 @@ function arras_constrain_footer_sidebars() {
 
 function arras_nav_fallback_cb() {
 	echo '<ul class="sf-menu menu clearfix">';
-	wp_list_categories('hierarchical=1&orderby=id&hide_empty=1&title_li=');	
+	wp_list_categories('hierarchical=1&orderby=id&hide_empty=1&title_li=');
 	echo '</ul>';
 }
 
@@ -412,12 +448,12 @@ function arras_add_facebook_share_meta() {
 	global $post;
 	if ( is_single() ) {
 		if ( has_post_thumbnail( $post->ID ) )
-			$thumb_id = get_post_thumbnail_id( $post->ID );			
+			$thumb_id = get_post_thumbnail_id( $post->ID );
 		elseif ( arras_get_option( 'auto_thumbs' ) )
 			$thumb_id = arras_get_first_post_image_id();
-		
+
 		if ( !$thumb_id ) return false;
-		
+
 		$image = wp_get_attachment_image_src( $thumb_id );
 		$src = $image[0];
 	?>

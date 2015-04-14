@@ -17,13 +17,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-	<?php if ( !file_exists(ABSPATH . 'favicon.ico') ) : ?>
-		<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
-		<?php else: ?>
-		<link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
-		<?php endif; ?>
-
-	<?php wp_head(); ?>
+	<?php wp_head(); // loads all the other <head> stuff ?>
 </head>
 
 	<body <?php body_class(); ?>>
