@@ -48,35 +48,6 @@ function arras_favicons() {
 } // end arras_favicons()
 
 
-add_filter( 'wp_title', 'arras_document_title', 10, 2 );
-/**
- * Based on TwentyTwelve
- * Modifies the default WP title to give us something a little more SEO friendly
- * @param  string $title WP default title
- * @param  string $sep   WP default title separator
- * @return string        modified Arras title
- */
-function arras_document_title( $title, $sep ) {
-	global $paged, $page;
-
-	if ( is_feed() )
-		return $title;
-
-	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
-
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title = "$title $sep $site_description";
-
-	// Add a page number if necessary.
-	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'arras' ), max( $paged, $page ) );
-
-
-	return $title;
-}
 
 function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
