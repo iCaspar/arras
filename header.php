@@ -21,6 +21,8 @@
 </head>
 
 <body <?php body_class(); ?>>
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content" <?php _e( 'Skip to content', 'arras' ); ?></a>
 
 	<?php arras_above_top_menu(); ?>
 	<?php arras_menu( 'top-menu', false ); ?>
