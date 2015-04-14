@@ -12,7 +12,7 @@
  *
  */
 
-/** Header support functions */
+/** ===== Header support functions ===== */
 
 add_action( 'wp_head', 'arras_favicons' );
 /**
@@ -47,6 +47,23 @@ function arras_favicons() {
 	}
 } // end arras_favicons()
 
+
+
+/** ===== Menu support functions ===== */
+
+function arras_menu( $location, $fallback, $depth = 0 ) {
+	if ( $fallback || has_nav_menu( $location ) ) {
+		echo '<nav id="' . $location . '" class="clearfix">';
+		wp_nav_menu( array(
+			'container_id'		=> $location . '-content',
+			'theme_location'	=> $location,
+			'menu_class'		=> 'menu clearfix',
+			'depth' 			=> $depth
+			)
+		);
+		echo '</nav>';
+	} // endif
+} // end arras_menu()
 
 
 function arras_get_page_no() {
