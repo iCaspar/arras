@@ -33,6 +33,10 @@ add_action( 'after_setup_theme', 'arras_theme_support' );
  */
 function arras_theme_support() {
 	add_theme_support( 'title-tag' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'custom-background' );
+	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets' ) );
 }
 
 
@@ -87,11 +91,6 @@ function arras_setup() {
 	if ( is_readable( $locale_file ) )
 		require_once( $locale_file );
 
-	/* Theme support */
-	add_theme_support('post-thumbnails');
-	add_theme_support('nav-menus');
-	add_theme_support('automatic-feed-links');
-	add_theme_support('custom-background');
 
 	/* Menus locations */
 	register_nav_menus(array(
@@ -121,7 +120,7 @@ function arras_setup() {
 	/* Header actions */
 	remove_action( 'wp_head', 'pagenavi_css' );
 
-	add_action( 'arras_head', 'arras_override_styles' );
+	add_action( 'wp_head', 'arras_override_styles' );
 
 	add_action( 'arras_custom_styles', 'arras_add_custom_logo' );
 	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
