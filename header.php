@@ -34,8 +34,8 @@
 
 	<?php arras_below_top_menu(); ?>
 
-	<header id="header">
-		<div id="branding" class="clearfix">
+	<header id="header" class="section">
+		<div id="branding" class="wrap group">
 			<div class="logo">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 				<?php if (arras_get_option( 'logo' ) != 0 ) :
