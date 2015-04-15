@@ -232,7 +232,6 @@ l
 	}
 
 
-.quick-nav  { float: right; list-style: none; margin: 0 10px 0; padding: 0; }
 .quick-nav li  { float: left; display: inline; }
 
 /*--------------------------------------------------------------
@@ -461,7 +460,7 @@ l
 .col {
   display: block;
   float: left;
-  margin: 1% 0 1% 1.6%; }
+  margin-left: 1.6%; }
 
 .col:first-child {
   margin-left: 0; }
