@@ -36,7 +36,7 @@
 
 	<header id="header" class="section">
 		<div id="branding" class="wrap group">
-			<div class="logo span_3_of_4">
+			<div class="logo col span_2_of_3">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 				<?php if (arras_get_option( 'logo' ) != 0 ) :
 					arras_add_custom_logo();
@@ -46,7 +46,7 @@
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 				</a>
 			</div>
-			<div class="sidebar headerwidgets">
+			<div class="sidebar headerwidgets col span_1_of_3">
 				<ul class="xoxo">
 					<?php if ( dynamic_sidebar('Header Widgets') ) ; ?>
 				</ul>
@@ -58,7 +58,7 @@
 
 	<div id="main-nav-section" class="nav section group">
 		<nav id="primary-nav" class="wrap">
-			<?php arras_menu( 'main-menu', true, 3, 'span_3_of_4' ); ?>
+			<?php arras_menu( 'main-menu', true, 3, 'col span_3_of_4' ); ?>
 			<?php arras_beside_nav(); ?>
 		</nav>
 	</div>

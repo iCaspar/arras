@@ -92,9 +92,10 @@ th, td  { padding: 5px; }
 #main					{ padding: 10px 10px 0; }
 
 /* Header */
-.logo {
-	float: left;
-	padding: 25px 0 30px 20px;
+.logo img,
+.logo .site-title,
+.logo .site-description {
+	padding-left: 30px;
 }
 .blog-name				{ margin: 0 0 3px; line-height: 1em; display: block; }
 .blog-description		{ line-height: 1em; display: block; margin: 0; padding: 3px 0 0; }

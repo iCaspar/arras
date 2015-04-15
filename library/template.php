@@ -365,7 +365,7 @@ function arras_posted_on( $echo = 1 ) {
 
 function arras_social_nav() {
 ?>
-	<ul class="quick-nav span_1_of_4">
+	<ul class="quick-nav col span_1_of_4">
 		<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
 
 		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>

@@ -6,9 +6,9 @@
  * @author Melvin Lee (2009-2013)
  * @author Caspar Green (caspar@iCasparWebDevelopment.com)
  * @package Arras
- * 
+ *
  * (Last Updated for v1.6)
- * 
+ *
  */
 
 
@@ -65,10 +65,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 /* header */
 #header					{ background: #1e1b1a; border-bottom: 5px solid #383332; }
-.logo					{ max-width: 590px; float: left; font-weight: 700; font-family: 'Segoe UI', Arial, Helvetica, sans-serif; text-transform: uppercase; }
-.blog-name				{ font-size: 22px; letter-spacing: 1px;  }
-.blog-name a:link, .blog-name a:visited	{ color: #FFF; text-decoration: none; }
-.blog-description		{ font-size: 11px; color: #7d716d; }
 
 /** -- ADMIN BAR
   * ----------------------------------------------------------------- */
@@ -139,8 +135,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .multi-sidebar .tabs li	{ background: #383332; border: 1px solid #CCC; }
 .multi-sidebar .tabs a:link, .multi-sidebar .tabs a:visited	{ text-decoration: none; font-weight: 700; color: #FFF; }
 .multi-sidebar .tabs a:hover	{ border-bottom: 1px dotted #FFF; }
-.multi-sidebar .tabs .ui-tabs-selected	{ background: #FFF; }					
-.multi-sidebar .tabs .ui-tabs-selected a:link, .multi-sidebar .tabs .ui-tabs-selected a:visited	{ color: #37322F; }			
+.multi-sidebar .tabs .ui-tabs-selected	{ background: #FFF; }
+.multi-sidebar .tabs .ui-tabs-selected a:link, .multi-sidebar .tabs .ui-tabs-selected a:visited	{ color: #37322F; }
 .multi-sidebar .widgetcontainer	{ background: #FFF; border: 1px solid #CCC; }
 
 .multi-sidebar .widgetcontainer li, .featured-stories li,  .related-posts li	{ border-bottom: 1px dotted #CCC; }
@@ -151,7 +147,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 #wp-calendar caption	{ color: #333; font-size: 12px; font-weight: 700; margin: 0; padding: 5px 9px; background: url(../../images/feed-title-white.jpg) repeat-x top #EFEFEF; border: 1px solid #CCC; text-align: center; }
 
 /* featured slideshow */
-.cycle-slideshow		{ border: 5px solid #333; }			
+.cycle-slideshow		{ border: 5px solid #333; }
 
 .featured-article		{ text-decoration: none !important; background-position: center !important; }
 .featured-entry			{ background: #000; height: 85px; color: #a7a7a7; }
