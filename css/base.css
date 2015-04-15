@@ -92,7 +92,10 @@ th, td  { padding: 5px; }
 #main					{ padding: 10px 10px 0; }
 
 /* Header */
-.logo					{ max-width: 590px; float: left; padding: 25px 0 30px 20px; }
+.logo {
+	float: left;
+	padding: 25px 0 30px 20px;
+}
 .blog-name				{ margin: 0 0 3px; line-height: 1em; display: block; }
 .blog-description		{ line-height: 1em; display: block; margin: 0; padding: 3px 0 0; }
 

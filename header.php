@@ -36,7 +36,7 @@
 
 	<header id="header" class="section">
 		<div id="branding" class="wrap group">
-			<div class="logo">
+			<div class="logo span_3_of_4">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 				<?php if (arras_get_option( 'logo' ) != 0 ) :
 					arras_add_custom_logo();
