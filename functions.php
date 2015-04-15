@@ -222,14 +222,6 @@ add_action( 'widgets_init', 'arras_add_sidebars' );
  * Enqueue scripts and styles.
  */
 function arras_styles_and_scripts() {
-	/* -- Queue Stylesheets -- */
-	wp_enqueue_style( 'superfish', get_template_directory_uri() . '/css/superfish.css', array(), '1.7.4', 'screen' );
-
-	/* -- Queue Scripts -- */
-	wp_enqueue_script( 'superfish', get_template_directory_uri() . '/js/superfish.min.js', array( 'jquery' ), '1.7.4', true );
-	wp_enqueue_script( 'hoverIntent' );
-	wp_enqueue_script( 'trigger-superfish', get_template_directory_uri() . '/js/triggersuperfish.js', array ( 'superfish', 'hoverIntent' ), null, true );
-
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
