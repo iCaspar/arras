@@ -92,13 +92,29 @@ th, td  { padding: 5px; }
 #main					{ padding: 10px 10px 0; }
 
 /* Header */
+.logo {
+	min-height: 200px;
+}
+
 .logo img,
 .logo .site-title,
 .logo .site-description {
 	padding-left: 30px;
+	text-transform: uppercase;
 }
-.blog-name				{ margin: 0 0 3px; line-height: 1em; display: block; }
-.blog-description		{ line-height: 1em; display: block; margin: 0; padding: 3px 0 0; }
+
+.site-title	{
+	font-size: 35px;
+	font-size: 3.5rem;
+	font-weight: bold;
+	margin: 45px 0;
+}
+l
+.site-description {
+	font-size: 20px;
+	font-size: 2rem;
+	margin: 20px 0;
+}
 
 /*--------------------------------------------------------------
   Menus
