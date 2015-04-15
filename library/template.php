@@ -51,11 +51,11 @@ function arras_favicons() {
 
 /** ===== Menu support functions ===== */
 
-function arras_menu( $location, $fallback, $depth = 0 ) {
+function arras_menu( $location, $fallback, $depth = 0, $class = '' ) {
 	if ( $fallback || has_nav_menu( $location ) ) {
 		wp_nav_menu( array(
 			'container_id'		=> $location . '-content',
-			'container_class'	=> 'menu-container ' . $location,
+			'container_class'	=> $class . ' ' . $location,
 			'theme_location'	=> $location,
 			'menu_class'		=> 'menu',
 			'depth' 			=> $depth
@@ -365,7 +365,7 @@ function arras_posted_on( $echo = 1 ) {
 
 function arras_social_nav() {
 ?>
-	<ul class="quick-nav clearfix">
+	<ul class="quick-nav span_1_of_4">
 		<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
 
 		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>

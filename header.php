@@ -24,12 +24,14 @@
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'arras' ); ?></a>
 
-	<?php arras_above_top_menu(); ?>
-	<?php if ( has_nav_menu( 'top-menu' ) ): ?>
+	<?php arras_above_top_menu();
+
+	if ( has_nav_menu( 'top-menu' ) ): ?>
 		<div id="top-menu-section" class="primary-utility section group">
-			<?php arras_menu( 'top-menu', false, 2 ); ?>
+			<?php arras_menu( 'top-menu', false, 2, 'wrap' ); ?>
 		</div>
 	<?php endif; ?>
+
 	<?php arras_below_top_menu(); ?>
 
 	<header id="header">
@@ -53,8 +55,14 @@
 	</header><!-- #header -->
 
 	<?php arras_above_nav(); ?>
-	<?php arras_menu( 'main-menu', true, 3 ); ?>
-	<?php arras_beside_nav(); ?>
+
+	<div id="main-nav-section" class="nav section group">
+		<nav id="primary-nav" class="wrap">
+			<?php arras_menu( 'main-menu', true, 3, 'span_3_of_4' ); ?>
+			<?php arras_beside_nav(); ?>
+		</nav>
+	</div>
+
 	<?php arras_below_nav(); ?>
 
 <div id="wrapper">

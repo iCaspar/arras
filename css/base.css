@@ -74,8 +74,8 @@ th, td  { padding: 5px; }
 
 /* Structure */
 .wrap {
-  min-height: 100%;
-  width: 1000px;
+	margin: auto;
+	max-width: 1000px;
 }
 
 #wrapper				{ min-height: 100%; position: relative; padding: 20px 0; }
@@ -95,8 +95,6 @@ th, td  { padding: 5px; }
 .top-menu {
 	clear: both;
 	line-height: 2;
-	max-width: 1000px;
-	margin: 0 auto;
 	text-transform: uppercase;
 }
 	.top-menu ul {
@@ -147,16 +145,15 @@ th, td  { padding: 5px; }
     }
 
 
-.main-menu-nav {
-	background-color: #999;
-	overflow: hidden;
+.nav {
+	background-color: #322c2c;
+	height: 40px;
+	font-variant: small-caps;
 }
 
 .main-menu {
   clear: both;
   line-height: 2;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 	.main-menu ul {
 	    list-style: none;
@@ -164,7 +161,7 @@ th, td  { padding: 5px; }
 	    padding-left: 0;
 	}
     .main-menu ul ul {
-		background-color: #fff;
+		background-color: #322c2c;
 		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 		float: left;
 		position: absolute;
@@ -173,8 +170,9 @@ th, td  { padding: 5px; }
 		z-index: 99999;
 	}
 	.main-menu ul ul ul {
+		background-color: #383838;
 		left: -999em;
-		top: 0;
+		top: 7px;
 	}
 	.main-menu ul ul li:hover > ul {
 		left: 100%;
@@ -189,11 +187,14 @@ th, td  { padding: 5px; }
 	    float: left;
 	    position: relative;
 	}
-	.main-menu a {
-	    color: #f0f0f0;
+	.main-menu a,
+    .main-menu a:link,
+    .main-menu a:hover,
+    .main-menu a:visited {
+	    color: #aaa;
 	    display: block;
-	    font-size: 14px;
-	    font-size: 1.4rem;
+	    font-size: 18px;
+	    font-size: 1.8rem;
 	    margin: 0 10px;
 	    text-decoration: none;
 	}
@@ -201,14 +202,6 @@ th, td  { padding: 5px; }
 		color: white;
 		text-shadow: 1px 1px #999999;
 	}
-
-.main-menu .menu {
-  display: table;
-  float: left;
-  max-width: 700px; }
-
-.main-menu .search-form {
-  float: right; }
 
 
 .quick-nav  { float: right; list-style: none; margin: 0 10px 0; padding: 0; }
