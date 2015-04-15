@@ -274,12 +274,10 @@ l
 
 /* Header Widgets */
 .headerwidgets {
-  float: right;
-  width: 300px;
-  max-height: 160px;
-  margin: 20px 10px;
-  overflow: hidden;
-  background: transparent;
+	margin: 20px 0;
+	max-height: 160px;
+	overflow: hidden;
+	background: transparent;
 }
 .headerwidgets .widgetcontainer:last-child {
   margin-bottom: 0;
