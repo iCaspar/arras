@@ -25,7 +25,11 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'arras' ); ?></a>
 
 	<?php arras_above_top_menu(); ?>
-	<?php arras_menu( 'top-menu', false ); ?>
+	<?php if ( has_nav_menu( 'top-menu' ) ): ?>
+		<div id="top-menu-section" class="primary-utility section group">
+			<?php arras_menu( 'top-menu', false, 2 ); ?>
+		</div>
+	<?php endif; ?>
 	<?php arras_below_top_menu(); ?>
 
 	<header id="header">

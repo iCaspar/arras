@@ -53,15 +53,14 @@ function arras_favicons() {
 
 function arras_menu( $location, $fallback, $depth = 0 ) {
 	if ( $fallback || has_nav_menu( $location ) ) {
-		echo '<nav id="' . $location . '">';
 		wp_nav_menu( array(
 			'container_id'		=> $location . '-content',
+			'container_class'	=> 'menu-container ' . $location,
 			'theme_location'	=> $location,
 			'menu_class'		=> 'menu',
 			'depth' 			=> $depth
 			)
 		);
-		echo '</nav>';
 	} // endif
 } // end arras_menu()
 
