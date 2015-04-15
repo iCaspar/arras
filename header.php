@@ -65,9 +65,8 @@
 
 	<?php arras_below_nav(); ?>
 
-<div id="wrapper">
+	<div id="wrapper" class="section">
 
-	<?php arras_above_main() ?>
+		<?php arras_above_main() ?>
 
-	<div id="main" class="clearfix">
-    <div id="container" class="clearfix">
+		<div id="main" class="wrap group">

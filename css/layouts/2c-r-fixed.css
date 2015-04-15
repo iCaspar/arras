@@ -3,6 +3,8 @@ LAYOUT: One-Column (Right) Fixed
 DESCRIPTION: Two-column fixed layout with one sidebar right of content
 */
 
+/*
+
 #main {
     width:960px;
     margin:0 auto;
@@ -42,6 +44,7 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 	margin-right: 10px;
 }
 .fixed {
-	width:960px; 
+	width:960px;
 	margin:0 auto;
 }
+*/

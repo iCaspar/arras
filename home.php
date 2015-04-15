@@ -1,6 +1,9 @@
 <?php get_header(); ?>
+<!--
+<div id="container" class="clearfix">
+-->
 
-<?php 
+<?php
 $stickies = get_option('sticky_posts');
 rsort($stickies);
 
@@ -16,7 +19,7 @@ $featured2_count 	= (int)arras_get_option('featured2_count');
 $post_blacklist = array();
 ?>
 
-<div id="content" class="section">
+<div id="content" class="col span_2_of_3">
 <?php arras_above_content() ?>
 
 <?php if (!$paged) : ?>
@@ -24,7 +27,7 @@ $post_blacklist = array();
 <?php if ( $featured1_cat !== '' && arras_get_option('enable_featured1') ) : ?>
 <?php arras_above_index_featured1_post() ?>
 <!-- Featured Articles #1 -->
-<div id="index-featured1">
+<div id="index-featured1" class="sub-section group">
 <?php if ( arras_get_option('featured1_title') != '' ) : ?>
 	<div class="home-title"><?php _e( arras_get_option('featured1_title'), 'arras' ) ?></div>
 <?php endif;
@@ -128,8 +131,8 @@ if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 <?php endif ?>
 
 <div id="archive-posts">
-	<?php arras_render_posts(null, arras_get_option('archive_display')) ?>    
- 
+	<?php arras_render_posts(null, arras_get_option('archive_display')) ?>
+
 	<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
     	<div class="navigation clearfix">
 			<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
@@ -142,6 +145,6 @@ if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 
 <?php arras_below_content() ?>
 </div><!-- #content -->
-    
+
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

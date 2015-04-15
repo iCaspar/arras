@@ -88,8 +88,19 @@ th, td  { padding: 5px; }
 	max-width: 1000px;
 }
 
-#wrapper				{ min-height: 100%; position: relative; padding: 20px 0; }
-#main					{ padding: 10px 10px 0; }
+#wrapper {
+	min-height: 100%;
+	position: relative;
+	padding: 20px 0;
+}
+
+#main {
+	padding: 10px;
+}
+
+.sub-section {
+	margin: 10px;
+}
 
 /* Header */
 .logo {
@@ -425,7 +436,11 @@ l
 .author-content dl  	{ margin-left: 115px; }
 
 /* Footer */
-#footer				{ margin: 20px auto 0; width: 980px; padding-bottom: 10px; }
+#footer	{
+	margin: 20px auto 0;
+	padding: 10px;
+}
+
 #footer .widgetcontainer	{ padding: 5px 10px; margin-right: 10px; float: left; }
 #footer .footer-message	{ margin: 0; padding: 10px 15px 0; }
 #footer .footer-message p { margin: 0 0 0.5em; }
