@@ -68,6 +68,7 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 	echo $tapestry->before;
 	if ( $type == 'default' ) {
 		$nodes = arras_get_nodes();
+
 		add_filter( 'arras_post_class', 'arras_add_node_width_class' );
 
 		$c = 0;
@@ -91,6 +92,7 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 		if ( $c % $nodes != 0 )
 			echo '</div>';
 
+		remove_filter( 'arras_post_class', 'arras_add_node_width_class' );
 	} else {
 		while ($query->have_posts()) {
 			$query->the_post();
