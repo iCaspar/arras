@@ -72,22 +72,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
   background-image: none;
 }
 
-/* top menu */
-#top-menu  { background: #111; border-bottom: 1px solid #333; }
-#top-menu-content  { height: 25px; padding: 3px 0; }
-#top-menu-content .sf-menu  { text-transform: uppercase; margin: 0 2px; }
-#top-menu .sf-menu a  { display: block; text-decoration: none; padding: 7px 10px 8px; color: #AAA; font-size: 10px; border-right: 1px solid #333; }
-#top-menu .sf-menu ul a  { border: none; }
-#top-menu .sf-menu ul li  { border: 1px solid #333; margin-top: -1px; }
-#top-menu .sf-menu a:hover, #top-menu .sf-menu li:hover, #top-menu .sf-menu li.sfHover, #top-menu .sf-menu ul li  { color: #FFF; background: #111; }
-#top-menu .sf-menu ul a:hover, #top-menu .sf-menu ul li.sfHover, #top-menu .sf-menu ul li:hover { color: #373331; background: #FFF; }
-#top-menu .sf-menu ul li.sfHover a.sf-with-ul { color: #373331; }
-#top-menu .sf-menu li li a  { padding: 7px 10px; line-height: 1; height: auto; font-size: 10px; }
-#top-menu .sf-menu .sf-with-ul  { padding-right: 15px; }
-#top-menu .sf-sub-indicator  { background: url(../../images/dropdown.png) no-repeat; width: 5px; height: 5px; text-indent: -9999px; display: inline-block; position: relative; left: 7px; top: 0; vertical-align: middle; }
-#top-menu .sf-menu ul .sf-sub-indicator	{ display: none; }
-#top-menu .sf-menu li:hover ul, #top-menu .sf-menu li.sfHover ul { top: 2.4em; }
-#top-menu ul.sf-menu li li:hover ul, #top-menu ul.sf-menu li li.sfHover ul, #top-menu ul.sf-menu li li li:hover ul, #top-menu ul.sf-menu li li li.sfHover ul { top: 0; }
 
 /* main navigation */
 #nav  { background: url(../../images/topnav.jpg) repeat-x bottom #322C2C; min-width: 990px; }

@@ -134,8 +134,11 @@ l
 --------------------------------------------------------------*/
 
 .top-menu {
+	border-bottom: 1px solid #333;
 	clear: both;
 	line-height: 2;
+	height: 33px;
+	padding: 3px 0;
 	text-transform: uppercase;
 }
 	.top-menu ul {
