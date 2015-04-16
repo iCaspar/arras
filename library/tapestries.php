@@ -150,7 +150,7 @@ if (!function_exists('arras_tapestry_traditional')) {
 if (!function_exists('arras_tapestry_line')) {
 	function arras_tapestry_line($dep = '', $taxonomy) {
 		?>
-		<li <?php arras_post_class() ?>>
+		<li <?php arras_post_class( array( 'entry', 'group' ) ) ?>>
 
 			<span class="entry-cat">
 				<?php
@@ -185,7 +185,7 @@ if (!function_exists('arras_tapestry_default')) {
 			$tapestry_settings = arras_defaults_tapestry_default();
 		}
 		?>
-		<div <?php arras_post_class() ?>>
+		<div <?php arras_post_class( array( 'entry', 'col' ) ) ?>>
 			<?php echo apply_filters('arras_tapestry_default_postheader', arras_generic_postheader('node-based', true) ) ?>
 			<?php if ( isset($tapestry_settings['excerpt']) && $tapestry_settings['excerpt'] ) : ?>
 			<div class="entry-summary">
@@ -311,7 +311,7 @@ function arras_style_tapestry_default() {
 if (!function_exists('arras_tapestry_quick')) {
 	function arras_tapestry_quick($dep = '', $taxonomy) {
 		?>
-		<li <?php arras_post_class() ?>>
+		<li <?php arras_post_class( array( 'entry', 'group' ) ) ?>>
 			<?php echo apply_filters('arras_tapestry_quick_postheader', arras_generic_postheader('quick-preview') ) ?>
 			<div class="entry-summary">
 				<div class="entry-info">
