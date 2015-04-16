@@ -20,7 +20,7 @@ $post_blacklist = array();
 ?>
 
 <div id="content" class="col span_2_of_3">
-<?php arras_above_content() ?>
+<?php arras_above_content(); // if the Slideshow is active it is loaded here ?>
 
 <?php if (!$paged) : ?>
 

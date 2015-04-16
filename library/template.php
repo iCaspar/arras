@@ -260,7 +260,7 @@ function arras_list_comments($comment, $args, $depth) {
 }
 
 function arras_post_class() {
-	return post_class( apply_filters('arras_post_class', array( 'entry', 'clearfix' ) ) );
+	return post_class( apply_filters( 'arras_post_class', array( 'entry', 'col' ) ) );
 }
 
 function arras_single_post_class() {
