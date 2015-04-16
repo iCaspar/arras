@@ -97,7 +97,11 @@ function arras_slideshow_styles() {
 		width: 100%;
 		}
 	.featured-article img {
-		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		margin-left: -<?php echo $slideshow_size_w / 2 ?>px;
+		width: <?php echo $slideshow_size_w ?>px;
 	}
 	#controls {
 		top: <?php echo ($slideshow_size_h / 2) - 15 ?>px;
