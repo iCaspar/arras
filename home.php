@@ -27,7 +27,7 @@ $post_blacklist = array();
 <?php if ( $featured1_cat !== '' && arras_get_option('enable_featured1') ) : ?>
 <?php arras_above_index_featured1_post() ?>
 <!-- Featured Articles #1 -->
-<div id="index-featured1" class="sub-section group">
+<div id="index-featured1" class="section group">
 <?php if ( arras_get_option('featured1_title') != '' ) : ?>
 	<div class="home-title"><?php _e( arras_get_option('featured1_title'), 'arras' ) ?></div>
 <?php endif;

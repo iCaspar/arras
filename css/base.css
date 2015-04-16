@@ -8,6 +8,7 @@ small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
+	box-sizing: border-box;
   border: 0;
   font-family: inherit;
   font-size: 100%;
@@ -98,9 +99,6 @@ th, td  { padding: 5px; }
 	padding: 10px;
 }
 
-.sub-section {
-	margin: 10px;
-}
 
 /* Header */
 .logo {
