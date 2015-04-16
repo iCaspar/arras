@@ -274,9 +274,33 @@ function arras_style_tapestry_default() {
 	$node_based_h = $node_based_size['h'];
 
 	?>
-	.posts-default .entry  { width: <?php echo $node_based_w + 10 ?>px; }
-	.posts-default .entry-meta { width: <?php echo $node_based_w ?>px; }
-	.posts-default .entry-thumbnails { width: <?php echo $node_based_w + 10 ?>px; height: <?php echo $node_based_h + 10 ?>px; }
+	.posts-default .entry-thumbnails {
+		height: <?php echo $node_based_h + 10 ?>px;
+	}
+	.posts-default .entry-meta {
+		}
+	.posts-default .entry-thumbnails-link {
+		height: <?php echo $node_based_h + 10 ?>px;
+	}
+	@media only screen and (max-width: 480px) {
+		.posts-default .entry-thumbnails-link {
+			width: <?php echo $node_based_w + 10 ?>px;
+		}
+		.posts-default .entry-meta {
+			float: none;
+			margin: 0 auto;
+			width: <?php echo $node_based_w ?>px;
+
+		}
+	}
+
+	.posts-default .entry-thumbnails img {
+		position: absolute;
+		left: 50%;
+		margin-left: -<?php echo $node_based_w / 2 ?>px;
+		height: <?php echo $node_based_h ?>px;
+		width: <?php echo $node_based_w ?>px;
+	}
 	<?php
 }
 
@@ -334,13 +358,13 @@ function arras_generic_postheader($tapestry, $show_meta = false) {
 	$postheader = '<div class="entry-thumbnails">';
 	$postheader .= '<a class="entry-thumbnails-link" href="' . get_permalink() . '">';
 	$postheader .= arras_get_thumbnail($tapestry . '-thumb');
+	$postheader .= '</a>';
 
 	if ($show_meta) {
 		$postheader .= '<span class="entry-meta"><span class="entry-comments">' . get_comments_number() . '</span>';
 		$postheader .= '<abbr class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</abbr></span>';
 	}
 
-	$postheader .= '</a>';
 
 	$postheader .= '</div>';
 
