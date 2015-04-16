@@ -32,7 +32,11 @@ html {
 }
 
 
-html, body  { height: 100%; min-height: 100%; margin: 0; padding: 0; }
+html,
+body {
+	height: 100%;
+	min-height: 100%
+}
 
 .clearfix:after  { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
 
@@ -314,12 +318,19 @@ l
 #wp-calendar  { width: 100%; }
 
 /* Featured Slideshow */
-.featured  { margin: 0 10px 20px 0; overflow: hidden; }
-#controls  { position: relative; float: left; z-index: 90; top: 90px; }
+.featured  {
+	margin-bottom: 20px
+}
+
+#controls {
+	position: relative;
+	float: left;
+	z-index: 90;
+}
 
 #controls .cycle-next, #controls .cycle-prev  { text-indent: -9000px; width: 30px; height: 30px; display: block; z-index: 1000; opacity: 0.7; }
 #controls .cycle-prev  { background: url(../images/prev.png) no-repeat; float: left; position: absolute; left: 10px; }
-#controls .cycle-next  { background: url(../images/next.png) no-repeat; float: right; position: absolute; left: 610px; }
+#controls .cycle-next  { background: url(../images/next.png) no-repeat; float: right; position: absolute; right: 10px; }
 #controls .cycle-next:hover, #controls .cycle-prev:hover  { opacity: 1; }
 
 .cycle-slideshow  { position: relative; z-index: 0 !important; }

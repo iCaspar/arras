@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 function arras_add_slideshow() {
 	global $post_blacklist, $paged;
 	if ( !is_home() || $paged ) return false;
 
 	$slideshow_cat = arras_get_option('slideshow_cat');
-	
+
 	if (arras_get_option('enable_slideshow') == false) return false;
 
 	$query = arras_prep_query( array(
@@ -18,12 +18,12 @@ function arras_add_slideshow() {
 			'paged'				=> $paged
 		)
 	) );
-	
+
 	$q = new WP_Query( apply_filters('arras_slideshow_query', $query) );
 	if ($q->have_posts()) :
-	?> 
+	?>
 	<!-- Featured Slideshow -->
-	<div class="featured clearfix">
+	<div class="featured group">
 		<?php if ($q->post_count > 1) : ?>
 		<div id="controls">
 			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
@@ -32,7 +32,7 @@ function arras_add_slideshow() {
 		<?php endif ?>
 		<div class="cycle-slideshow" data-cycle-slides="> div" data-cycle-prev=".cycle-prev" data-cycle-next=".cycle-next">
 			<?php $count = 0; ?>
-		
+
 			<?php while ($q->have_posts()) : $q->the_post(); ?>
 			<div class="featured-slideshow-inner" <?php if ($count != 0) echo 'style="display: none"'; ?>>
 				<a class="featured-article" href="<?php the_permalink(); ?>" rel="bookmark">
@@ -44,7 +44,7 @@ function arras_add_slideshow() {
 					<div class="progress"></div>
 				</div>
 			</div>
-			<?php 
+			<?php
 			arras_blacklist_duplicates(); // required for duplicate posts function to work.
 			$count++; endwhile; ?>
 		</div>
@@ -57,8 +57,8 @@ add_action('arras_above_content', 'arras_add_slideshow');
 function arras_add_slideshow_js() {
 	wp_register_script( 'slideshow-settings', get_template_directory_uri() . '/js/slideshowsettings.js', array( 'jquery-cycle' ), null, true );
 	$slideshow_size = arras_get_image_size('featured-slideshow-thumb');
-	wp_localize_script( 'slideshow-settings', 'show_size', $slideshow_size );	
-	if (is_home() || is_front_page()) { 
+	wp_localize_script( 'slideshow-settings', 'show_size', $slideshow_size );
+	if (is_home() || is_front_page()) {
 		wp_enqueue_script( 'slideshow-settings' );
 	}
 }
@@ -73,7 +73,7 @@ add_action('wp_enqueue_scripts', 'arras_load_slideshow_scripts' );
 
 function arras_add_slideshow_thumb_size() {
 	$layout = arras_get_option('layout');
-	
+
 	if ( strpos($layout, '1c') !== false ) {
 		$size = array(950, 450);
 	} else if ( preg_match('/3c/', $layout) ) {
@@ -81,7 +81,7 @@ function arras_add_slideshow_thumb_size() {
 	} else {
 		$size = array(640, 300);
 	}
-	
+
 	$size = apply_filters('arras_slideshow_thumb_size', $size);
 	arras_add_image_size( 'featured-slideshow-thumb', __('Featured Slideshow', 'arras'), $size[0], $size[1]);
 }
@@ -92,13 +92,23 @@ function arras_slideshow_styles() {
 	$slideshow_size_w = $slideshow_size['w'];
 	$slideshow_size_h = $slideshow_size['h'];
 	?>
-	.featured { height: <?php echo $slideshow_size_h + 10 ?>px; }
-	.featured-article { width: <?php echo $slideshow_size_w ?>px; height: <?php echo $slideshow_size_h ?>px; }
-	.featured-article img { width: <?php echo $slideshow_size_w ?>px; height: <?php echo $slideshow_size_h ?>px; }
-	#controls { width: <?php echo $slideshow_size_w - 30 ?>px; top: <?php echo ($slideshow_size_h / 2) - 15 ?>px; }
+	.featured-article {
+		height: <?php echo $slideshow_size_h ?>px;
+		width: 100%;
+		}
+	.featured-article img {
+		width: 100%;
+	}
+	#controls {
+		top: <?php echo ($slideshow_size_h / 2) - 15 ?>px;
+		width: 100%;
+		}
 	#controls .next { left: <?php echo $slideshow_size_w - 30 ?>px; }
 	.featured-entry { height: <?php echo ceil($slideshow_size_h / 3) ?>px; top: -<?php echo ceil($slideshow_size_h / 3) ?>px; }
-	.featured-slideshow-inner { height: <?php echo $slideshow_size_h ?>px }
+	.featured-slideshow-inner {
+		height: <?php echo $slideshow_size_h ?>px;
+		width: 100%;
+	}
 	<?php
 }
 add_action('arras_custom_styles', 'arras_slideshow_styles');
