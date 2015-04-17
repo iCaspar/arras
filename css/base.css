@@ -91,18 +91,26 @@ th, td  { padding: 5px; }
 .wrap {
 	margin: auto;
 	max-width: 1000px;
+	position: relative;
 }
 
-#wrapper {
+.wrap-alt {
+	padding: 10px 23.8%;
+}
+
+#body {
 	min-height: 100%;
 	position: relative;
 	padding: 20px 0;
 }
 
-#main {
+.main {
+	background: #F5F5F5;
+	border: 1px solid #d3d1c7;
 	padding: 10px;
 }
 
+}
 
 /* Header */
 .logo {
@@ -522,13 +530,49 @@ l
   margin-left: 1.6%; }
 
 .col:first-child {
-  margin-left: 0; }
+  margin-left: 0;
+}
+
+.col-alt {
+	display: block;
+	float: right;
+	margin-right: 1.6%;
+}
+
+.col-alt:first-child {
+  margin-right: 0;
+}
+
+/* Split Screen columns should collapse to single for small screens */
+@media screen and (min-width : 768px) {
+	.col-split-center {
+		display: block;
+		float: left;
+		margin-left: 25%;
+		width: 50%;
+		padding: 0 10px;
+	}
+
+	.col-split-left {
+		display: block;
+		float: left;
+		margin-left: -75%;
+		width: 25%;
+	}
+
+	.col-split-right {
+		display: block;
+		float: right;
+		width: 25%;
+	}
+}
 
 /* all browsers except IE6 and lower */
 /*  REMOVE MARGINS AS ALL GO FULL WIDTH AT 480 PIXELS */
 @media only screen and (max-width: 480px) {
   .col {
     margin: 1% 0; } }
+
 /*  GRID OF TWO   ============================================================================= */
 .span_2_of_2 {
   width: 100%; }
@@ -536,13 +580,14 @@ l
 .span_1_of_2 {
   width: 49.2%; }
 
-/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+/*  GO FULL WIDTH AT LESS THAN 768 PIXELS */
+@media only screen and (max-width: 768px) {
   .span_2_of_2 {
     width: 100%; }
 
   .span_1_of_2 {
     width: 100%; } }
+
 /*  GRID OF THREE   ============================================================================= */
 .span_3_of_3 {
   width: 100%; }
@@ -563,6 +608,7 @@ l
 
   .span_1_of_3 {
     width: 100%; } }
+
 /*  GRID OF FOUR   ============================================================================= */
 .span_4_of_4 {
   width: 100%; }
@@ -589,6 +635,7 @@ l
 
   .span_1_of_4 {
     width: 100%; } }
+
 /*  GRID OF FIVE   ============================================================================= */
 .span_5_of_5 {
   width: 100%; }
@@ -621,6 +668,7 @@ l
 
   .span_1_of_5 {
     width: 100%; } }
+
 /*  GRID OF SIX   ============================================================================= */
 .span_6_of_6 {
   width: 100%; }
@@ -659,6 +707,7 @@ l
 
   .span_1_of_6 {
     width: 100%; } }
+
 /*  GRID OF SEVEN   ============================================================================= */
 .span_7_of_7 {
   width: 100%; }
@@ -703,6 +752,7 @@ l
 
   .span_1_of_7 {
     width: 100%; } }
+
 /*  GRID OF EIGHT   ============================================================================= */
 .span_8_of_8 {
   width: 100%; }
@@ -753,6 +803,7 @@ l
 
   .span_1_of_8 {
     width: 100%; } }
+
 /*  GRID OF NINE   ============================================================================= */
 .span_9_of_9 {
   width: 100%; }
@@ -809,6 +860,7 @@ l
 
   .span_1_of_9 {
     width: 100%; } }
+
 /*  GRID OF TEN   ============================================================================= */
 .span_10_of_10 {
   width: 100%; }
@@ -939,6 +991,7 @@ l
 
   .span_1_of_11 {
     width: 100%; } }
+
 /*  GRID OF TWELVE   ============================================================================= */
 .span_12_of_12 {
   width: 100%; }
@@ -1018,12 +1071,12 @@ l
 @media screen and (max-width: 1024px) and (min-width: 768px) {
   .wrap {
     width: 93.75%; }
-
+}
 
 /* -- RESPONSIVE at 768px -- */
 @media screen and (max-width: 768px) and (min-width: 481px) {
   .wrap {
-    width: 93.75%; }
+    width: 96.75%; }
 
 
   /* - GRID OF 4 TURNS INTO A GRID OF TWO - */

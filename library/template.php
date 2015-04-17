@@ -48,9 +48,18 @@ function arras_favicons() {
 } // end arras_favicons()
 
 
-
 /** ===== Menu support functions ===== */
 
+/**
+ * A Wrapper function for wp_nav_menu() that outputs custom markup.
+ * @since 3.0
+ *
+ * @param  string  $location The menu's theme location
+ * @param  bool    $fallback Whether to use the WP fallback menu or skip
+ * @param  integer $depth    How many sub-menu levels to output
+ * @param  string  $class    Desired css class of the menu's container div
+ * @return null
+ */
 function arras_menu( $location, $fallback, $depth = 0, $class = '' ) {
 	if ( $fallback || has_nav_menu( $location ) ) {
 		wp_nav_menu( array(
@@ -63,6 +72,65 @@ function arras_menu( $location, $fallback, $depth = 0, $class = '' ) {
 		);
 	} // endif
 } // end arras_menu()
+
+
+/** ===== Page Structure support functions ===== */
+
+
+function arras_layout_columns( $coltype ) {
+	$coltypes = array( 'content', 'primary', 'secondary', 'wrap' );
+	if ( ! in_array( $coltype, $coltypes ) ) return; // if we haven't got a column type we know about, bail
+
+	$layout = arras_get_option( 'layout' );
+
+//echo $coltype . ' ' . $layout . ' '; // for testing
+
+	switch ( $layout ) {
+		case '1c-fixed':
+			if ( $coltype == 'content' ) {
+				$class = 'group';
+			} else {
+				$class = 'group sidebar';
+			}
+			break;
+		case '2c-r-fixed':
+			if ( $coltype == 'content' ) {
+				$class = 'col span_2_of_3';
+			} else {
+				$class = 'col span_1_of_3 sidebar';
+			}
+			break;
+		case '2c-l-fixed':
+			if ( $coltype == 'content' ) {
+				$class = 'col-alt span_2_of_3';
+			} else {
+				$class = 'col-alt span_1_of_3 sidebar';
+			}
+			break;
+		case '3c-r-fixed':
+			if ( $coltype == 'content' ) {
+				$class = 'col span_1_of_2';
+			} else {
+				$class = 'col span_1_of_4 sidebar';
+			}
+			break;
+		case '3c-fixed':
+			if ( $coltype == 'content' ) {
+				$class = 'col-split-center';
+			} elseif ( $coltype == 'primary' ) {
+				$class = 'col-split-left sidebar';
+			} else {
+				$class = 'col-split-right sidebar';
+			}
+			break;
+		default:
+			$class = ''; // fail silently
+
+	} // end switch
+
+	return $class;
+} // end arras_layout_columns()
+
 
 
 function arras_get_page_no() {

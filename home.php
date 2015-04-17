@@ -1,7 +1,4 @@
 <?php get_header(); ?>
-<!--
-<div id="container" class="clearfix">
--->
 
 <?php
 $stickies = get_option('sticky_posts');
@@ -19,7 +16,7 @@ $featured2_count 	= (int)arras_get_option('featured2_count');
 $post_blacklist = array();
 ?>
 
-<div id="content" class="col span_2_of_3">
+<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content(); // if the Slideshow is active it is loaded here ?>
 
 <?php if (!$paged) : ?>

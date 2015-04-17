@@ -37,7 +37,7 @@ function arras_add_custom_logo() {
 function arras_layout_styles() {
 	$sidebar_size = arras_get_image_size('sidebar-thumb');
 	$sidebar_size_w = $sidebar_size['w'];
-	
+
 	$single_thumb_size = arras_get_image_size('single-thumb');
 	?>
 	.featured-stories-summary  { margin-left: <?php echo $sidebar_size_w + 15 ?>px; }
@@ -47,19 +47,12 @@ function arras_layout_styles() {
 
 function arras_load_styles() {
 	global $arras_registered_alt_layouts, $arras_registered_alt_styles;
-	
-	if ( ! defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
-		if ( count( $arras_registered_alt_layouts ) > 0 ) {
-			$layout = ( defined( 'ARRAS_FORCE_LAYOUT' ) ) ? ARRAS_FORCE_LAYOUT : arras_get_option( 'layout' );
-			wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, '2011-12-12', 'all' );
-		}
-	}
-	
+
 	if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 		$scheme = arras_get_option( 'style' );
 		$css_base_path = '/css/';
 		if ( ! isset( $scheme ) ) $scheme = 'default';
-		
+
 		$css_path = $css_base_path . 'styles/' . $scheme;
 
 		if ( $scheme != 'legacy' ) {
@@ -76,17 +69,6 @@ function arras_load_styles() {
 			wp_enqueue_style( 'arras-schema', get_template_directory_uri() . $css_path . '.css', false, '1.6', 'all' );
 		}
 	}
-
-	// add user css
-	if ( ! ARRAS_CHILD ) {
-		wp_enqueue_style( 'arras-user', get_template_directory_uri() . '/user.css', false, '1.6', 'all' ); 
-	} else {
-		if ( is_rtl() )
-			wp_enqueue_style( 'arras-child', get_stylesheet_directory_uri() . '/rtl.css', false, '1.6', 'all' );
-		else
-			wp_enqueue_style( 'arras-child', get_stylesheet_directory_uri() . '/style.css', false, '1.6', 'all' );
-	}
-	
 	// load other custom styles
 	do_action( 'arras_load_styles' );
 }

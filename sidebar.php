@@ -1,11 +1,10 @@
 <!--
 </div> #container -->
 
-<div id="side-column" class="col span_1_of_3">
 
 <?php wp_reset_query() ?>
 
-<div id="primary" class="aside main-aside sidebar">
+<div id="primary" class="<?php echo arras_layout_columns( 'primary' ); ?>">
 <?php arras_above_sidebar() ?>
 	<ul class="xoxo">
 		<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Primary Sidebar') ) : ?>
@@ -44,7 +43,8 @@
 		<?php endif; ?>
 	</ul>
 </div><!-- #primary -->
-<div id="secondary" class="aside main-aside sidebar">
+
+<div id="secondary" class="<?php echo arras_layout_columns( 'secondary' ); ?>">
     <ul class="xoxo">
         <!-- Widgetized sidebar, if you have the plugin installed.  -->
         <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Secondary Sidebar #1') ) : ?>
@@ -53,4 +53,3 @@
     </ul>
 	<?php arras_below_sidebar() ?>
 </div><!-- #secondary -->
-</div><!-- #side-column -->

@@ -65,8 +65,8 @@
 
 	<?php arras_below_nav(); ?>
 
-	<div id="wrapper" class="section">
+	<div id="body" class="section">
 
 		<?php arras_above_main() ?>
 
-		<div id="main" class="wrap group">
+		<div id="container" class="wrap group main">
