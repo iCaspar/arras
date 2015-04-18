@@ -1,11 +1,15 @@
 <?php
 /* Alternate Styles & Layouts Functions */
-global $arras_registered_alt_layouts, $arras_registered_style_dirs;
+global $arras_layouts, $arras_registered_style_dirs;
 
-function register_alternate_layout($id, $name) {
-	global $arras_registered_alt_layouts;
-	$arras_registered_alt_layouts[$id] = $name;
-}
+$arras_layouts = array(
+	'1c'	=> __('1 Column Layout (No Sidebars)', 'arras'),
+	'2c-r'	=> __('2 Column Layout (Right Sidebar)', 'arras'),
+	'2c-l'	=> __('2 Column Layout (Left Sidebar)', 'arras'),
+	'3c-lr'	=> __('3 Column Layout (Left & Right Sidebars)', 'arras'),
+	'3c-2r'	=> __('3 Column Layout (2 Right Sidebars)', 'arras'),
+);
+
 
 function register_style_dir($dir) {
 	global $arras_registered_style_dirs;
@@ -34,19 +38,8 @@ function arras_add_custom_logo() {
 	}
 }
 
-function arras_layout_styles() {
-	$sidebar_size = arras_get_image_size('sidebar-thumb');
-	$sidebar_size_w = $sidebar_size['w'];
-
-	$single_thumb_size = arras_get_image_size('single-thumb');
-	?>
-	.featured-stories-summary  { margin-left: <?php echo $sidebar_size_w + 15 ?>px; }
-	.single .post .entry-photo img, .single-post .entry-photo img  { width: <?php echo $single_thumb_size['w'] ?>px; height: <?php echo $single_thumb_size['h'] ?>px; }
-	<?php
-}
-
 function arras_load_styles() {
-	global $arras_registered_alt_layouts, $arras_registered_alt_styles;
+	global $arras_registered_alt_styles;
 
 	if ( ! defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 		$scheme = arras_get_option( 'style' );

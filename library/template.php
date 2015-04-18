@@ -83,38 +83,29 @@ function arras_layout_columns( $coltype ) {
 
 	$layout = arras_get_option( 'layout' );
 
-//echo $coltype . ' ' . $layout . ' '; // for testing
-
 	switch ( $layout ) {
-		case '1c-fixed':
+		case '1c':
 			if ( $coltype == 'content' ) {
 				$class = 'group';
 			} else {
 				$class = 'group sidebar';
 			}
 			break;
-		case '2c-r-fixed':
-			if ( $coltype == 'content' ) {
-				$class = 'col span_2_of_3';
-			} else {
-				$class = 'col span_1_of_3 sidebar';
-			}
-			break;
-		case '2c-l-fixed':
+		case '2c-l':
 			if ( $coltype == 'content' ) {
 				$class = 'col-alt span_2_of_3';
 			} else {
 				$class = 'col-alt span_1_of_3 sidebar';
 			}
 			break;
-		case '3c-r-fixed':
+		case '3c-2r':
 			if ( $coltype == 'content' ) {
 				$class = 'col span_1_of_2';
 			} else {
 				$class = 'col span_1_of_4 sidebar';
 			}
 			break;
-		case '3c-fixed':
+		case '3c-lr':
 			if ( $coltype == 'content' ) {
 				$class = 'col-split-center';
 			} elseif ( $coltype == 'primary' ) {
@@ -124,7 +115,12 @@ function arras_layout_columns( $coltype ) {
 			}
 			break;
 		default:
-			$class = ''; // fail silently
+			if ( $coltype == 'content' ) {
+				$class = 'col span_2_of_3';
+			} else {
+				$class = 'col span_1_of_3 sidebar';
+			}
+			break;
 
 	} // end switch
 
