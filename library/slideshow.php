@@ -58,23 +58,3 @@ function arras_make_slide() {
 	$slide = substr_replace( $slide, $slide_data, strpos( $slide, ' />' ), 0 );
 	return $slide;
 }
-
-function arras_add_slideshow_thumb_size() {
-	$layout = arras_get_option('layout');
-
-	if ( strpos($layout, '1c') !== false ) {
-		$size = array(950, 450);
-	} else if ( preg_match('/3c/', $layout) ) {
-		$size = array(490, 225);
-	} else {
-		$size = array(640, 300);
-	}
-
-	$size = apply_filters('arras_slideshow_thumb_size', $size);
-	arras_add_image_size( 'featured-slideshow-thumb', __('Featured Slideshow', 'arras'), $size[0], $size[1]);
-}
-add_action('arras_add_default_thumbnails', 'arras_add_slideshow_thumb_size', 5);
-
-
-/* End of file slideshow.php */
-/* Location: ./library/slideshow.php */

@@ -378,6 +378,46 @@ l
 	padding-bottom: 10px;
 }
 
+/* Node-based styles */
+.posts-default .entry-thumbnails {
+	width: 100%;
+	display: inline-block;
+	position: relative;
+}
+	.posts-default .entry-thumbnails:after {
+		padding-top: 56.25%;  /* 16:9 ratio */
+		display: block;
+		content: '';
+	}
+.posts-default .entry-thumbnails a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.posts-default img {
+	width: 100%;
+	height: 100%;
+}
+.posts-default .entry-meta {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.posts-default .published {
+	float: left;
+	margin: 8px 5px 0;
+}
+.posts-default .entry-comments {
+	background: url(../images/comments.gif) no-repeat left center;
+	padding: 0 0 0 12px;
+	position: absolute;
+	top: 8px;
+	right: 5px;
+}
+
 
 .featured-article  { display: block; }
 .featured-entry {
@@ -399,39 +439,6 @@ l
 .layout-3c-r-fixed #bottom-content-1, .layout-3c-r-fixed #bottom-content-2, .layout-3c-fixed #bottom-content-1, .layout-3c-fixed #bottom-content-2	{ width: 243px; }
 
 /* Tapestries */
-.entry-thumbnails {
-	clear: both;
-	display: inline-block;
-	position: relative;
-}
-.entry-thumbnails-link  { float: left; display: block; }
-
-.posts-default, .posts-quick, .posts-line  { list-style: none; margin: 0 0 10px; padding: 0; overflow: hidden; }
-.posts-default  { margin: 0 0 20px; }
-.posts-default .entry {
-	float: left;
-	padding: 0;
-	overflow: hidden;
-}
-.posts-default .entry-title	{ margin: 5px; line-height: 1.4em; }
-.posts-default .entry-meta {
-    position: absolute;
-    left: 7px;
-    right: 7px;
-    bottom: 5px;
-}
-.posts-default .entry-thumbnails {
-	width: 100%;
-}
-.posts-default .entry-summary  { overflow: hidden; margin: 0 5px; padding-bottom: 10px; line-height: 1.4em; }
-.posts-default .entry-thumbnails-link {
-	float: none;
-	margin: 0 auto;
-	padding: 4px 0;
-	width: 100%;
-}
-.posts-default .published { float: left; margin: 5px 5px 0; }
-
 .posts-quick  { margin: 0 10px 10px 0; padding: 0; }
 .posts-quick li  { padding: 0 10px 0 0; margin: 0 0 10px; }
 .posts-quick .entry-title  { padding: 5px 0 0; margin: 0; line-height: 1.3em; }
@@ -443,7 +450,7 @@ l
 .posts-quick .entry-info span  { padding: 0 4px; }
 
 .posts-default .entry-meta, .posts-quick .entry-meta	{ float: left; display: block; margin: -25px 0 0; }
-.posts-default .entry-comments, .posts-quick .entry-comments {
+.posts-quick .entry-comments {
 	background: url(../images/comments.gif) no-repeat left center;
 	padding: 0 0 0 12px;
 	position: absolute;
