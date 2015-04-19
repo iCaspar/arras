@@ -2,11 +2,11 @@
 
 function arras_add_slideshow() {
 	global $post_blacklist, $paged;
-	if ( !is_home() || $paged ) return false;
+
+	if ( !is_home() || $paged ) return false; // if we're not on the first page of the homepage, quit
+	if ( arras_get_option( 'enable_slideshow' ) == false ) return false; // if the slideshow option is disabled, quit
 
 	$slideshow_cat = arras_get_option('slideshow_cat');
-
-	if (arras_get_option('enable_slideshow') == false) return false;
 
 	$query = arras_prep_query( array(
 		'list'				=> $slideshow_cat,
@@ -30,9 +30,13 @@ function arras_add_slideshow() {
 			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
 		</div>
 		<div class="cycle-slideshow"
+				data-cycle-swipe=true
+				data-cycle-swipe-fx=scrollHorz
+				data-cycle-speed=1000
 				data-cycle-prev=".cycle-prev"
 				data-cycle-next=".cycle-next"
 				data-cycle-auto-height="16:9"
+				data-cycle-caption-plugin="caption2"
 				data-cycle-overlay-template="<div class=entry-title>{{title}}</div><div class=entry-summary>{{excerpt}}</div>">
 			<?php $count = 0; ?>
 			<div class="cycle-overlay custom"></div>
@@ -51,26 +55,9 @@ function arras_make_slide() {
 	global $post;
 	$slide = arras_get_thumbnail('featured-slideshow-thumb');
 	$slide_data = ' data-title="' . get_the_title() . '" data-cycle-excerpt="' . get_the_excerpt() . '"';
-	$slide = substr_replace( $slide, $slide_data, strpos( $slide, '>' ), 0 );
+	$slide = substr_replace( $slide, $slide_data, strpos( $slide, ' />' ), 0 );
 	return $slide;
 }
-
-function arras_add_slideshow_js() {
-	wp_register_script( 'slideshow-settings', get_template_directory_uri() . '/js/slideshowsettings.js', array( 'jquery-cycle' ), null, true );
-	$slideshow_size = arras_get_image_size('featured-slideshow-thumb');
-	wp_localize_script( 'slideshow-settings', 'show_size', $slideshow_size );
-	if (is_home() || is_front_page()) {
-		wp_enqueue_script( 'slideshow-settings' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'arras_add_slideshow_js' );
-
-function arras_load_slideshow_scripts() {
-	if ( ( arras_get_option('enable_slideshow') ) && is_home() || is_front_page() ) {
-		wp_enqueue_script('jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle2-min.js', array( 'jquery' ), null, true );
-	}
-}
-add_action('wp_enqueue_scripts', 'arras_load_slideshow_scripts' );
 
 function arras_add_slideshow_thumb_size() {
 	$layout = arras_get_option('layout');
