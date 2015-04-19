@@ -7,11 +7,11 @@
 $arras_image_sizes = array();
 
 function arras_add_default_thumbnails() {
-	
+
 	$single_thumbs = arras_get_single_thumbs_size();
 	arras_add_image_size( 'single-thumb', __('Single Post Thumbnail', 'arras'), $single_thumbs[0], $single_thumbs[1] );
-	arras_add_image_size( 'sidebar-thumb', __('Sidebar Widgets', 'arras'), 36, 36);	
-	
+	arras_add_image_size( 'sidebar-thumb', __('Sidebar Widgets', 'arras'), 36, 36);
+
 	do_action('arras_add_default_thumbnails');
 }
 
@@ -21,9 +21,9 @@ function arras_add_default_thumbnails() {
  */
 function arras_add_image_size($id, $name, $default_width, $default_height) {
 	global $arras_image_sizes;
-	
+
 	$arras_custom_image_sizes = arras_get_option('custom_thumbs');
-	
+
 	// Check from options if a custom width and height has been specified, else use defaults
 	if (isset($arras_custom_image_sizes[$id])) {
 		$width = $arras_custom_image_sizes[$id]['w'];
@@ -32,15 +32,15 @@ function arras_add_image_size($id, $name, $default_width, $default_height) {
 		$width = $default_width;
 		$height = $default_height;
 	}
-	
+
 	$arras_image_sizes[$id] = array(
-		'name' 	=> $name, 
-		'w' 	=> $width, 
+		'name' 	=> $name,
+		'w' 	=> $width,
 		'h' 	=> $height,
 		'dw' 	=> $default_width,
 		'dh' 	=> $default_height
 	);
-	
+
 	add_image_size($id, $width, $height, true);
 }
 
@@ -50,7 +50,7 @@ function arras_add_image_size($id, $name, $default_width, $default_height) {
  */
 function arras_remove_image_size($id) {
 	global $arras_image_sizes, $_wp_additional_image_sizes;
-	
+
 	unset($arras_images_sizes[$id]);
 	unset($_wp_additional_image_sizes[$id]);
 }
@@ -61,7 +61,7 @@ function arras_remove_image_size($id) {
  */
 function arras_get_image_size($id) {
 	global $arras_image_sizes;
-	
+
 	return (isset($arras_image_sizes[$id])) ? $arras_image_sizes[$id] : false;
 }
 
@@ -75,32 +75,32 @@ function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
 
 	$wxh = arras_get_image_size( $size );
 	$empty_thumbnail = 	'<img src="' . get_template_directory_uri() . '/images/thumbnail.png" alt="' . get_the_excerpt()
-											. '" title="' . get_the_title() . '" width="' . $wxh['w'] . '" height="' . $wxh['h'] . '" />';
-	
+											. '" title="' . get_the_title() . '" />';
+
 	if ($post) $id = $post->ID;
-	
+
 	// get post thumbnail (WordPress 2.9)
 	if (function_exists('has_post_thumbnail')) {
 		if (has_post_thumbnail($id)) {
 			return get_the_post_thumbnail( $id, $size, array(
-				'alt' 	=> get_the_excerpt(), 
+				'alt' 	=> get_the_excerpt(),
 				'title' => get_the_title()
 			) );
 		} else {
 			// Could it be an attachment?
 			if ($post->post_type == 'attachment') {
 				return wp_get_attachment_image( $id, $size, false, array(
-					'alt' 	=> get_the_excerpt(), 
+					'alt' 	=> get_the_excerpt(),
 					'title' => get_the_title()
 				) );
-			}		
+			}
 			// Use first thumbnail if auto thumbs is enabled.
 			if (arras_get_option('auto_thumbs')) {
 				$img_id = arras_get_first_post_image_id();
 				if (!$img_id) return $empty_thumbnail;
-				
+
 				return wp_get_attachment_image($img_id, $size, false, array(
-					'alt' 	=> get_the_excerpt(), 
+					'alt' 	=> get_the_excerpt(),
 					'title' => get_the_title()
 				) );
 			}
@@ -116,10 +116,10 @@ function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
 function arras_get_first_post_image_id($id = NULL) {
 	global $post;
 	if (!$id) $id = $post->ID;
-	
+
 	$attachments = get_children('post_parent=' . $id . '&post_type=attachment&post_mime_type=image');
 	if (!$attachments) return false;
-	
+
 	$keys = array_reverse(array_keys($attachments));
 	return $keys[0];
 }
@@ -134,7 +134,7 @@ function arras_get_single_thumbs_size() {
 	} else {
 		$size = array(620, 300);
 	}
-	
+
 	return apply_filters('arras_content_width', $size);
 }
 

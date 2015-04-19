@@ -29,30 +29,31 @@ function arras_add_slideshow() {
 			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
 			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
 		</div>
-		<?php endif ?>
-		<div class="cycle-slideshow" data-cycle-slides="> div" data-cycle-prev=".cycle-prev" data-cycle-next=".cycle-next">
+		<div class="cycle-slideshow"
+				data-cycle-prev=".cycle-prev"
+				data-cycle-next=".cycle-next"
+				data-cycle-auto-height="16:9"
+				data-cycle-overlay-template="<div class=entry-title>{{title}}</div><div class=entry-summary>{{excerpt}}</div>">
 			<?php $count = 0; ?>
-
+			<div class="cycle-overlay custom"></div>
 			<?php while ($q->have_posts()) : $q->the_post(); ?>
-			<div class="featured-slideshow-inner" <?php if ($count != 0) echo 'style="display: none"'; ?>>
-				<a class="featured-article" href="<?php the_permalink(); ?>" rel="bookmark">
-				<?php echo arras_get_thumbnail('featured-slideshow-thumb'); ?>
-				</a>
-				<div class="featured-entry">
-					<a class="entry-title" href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-					<div class="entry-summary"><?php the_excerpt() ?></div>
-					<div class="progress"></div>
-				</div>
-			</div>
-			<?php
-			arras_blacklist_duplicates(); // required for duplicate posts function to work.
-			$count++; endwhile; ?>
+				<?php echo arras_make_slide('featured-slideshow-thumb'); ?>
+			<?php arras_blacklist_duplicates(); // required for duplicate posts function to work. ?>
+			<?php $count++; endwhile; ?>
 		</div>
+		<?php endif ?>
 	</div>
 	<?php endif;
 }
-
 add_action('arras_above_content', 'arras_add_slideshow');
+
+function arras_make_slide() {
+	global $post;
+	$slide = arras_get_thumbnail('featured-slideshow-thumb');
+	$slide_data = ' data-title="' . get_the_title() . '" data-cycle-excerpt="' . get_the_excerpt() . '"';
+	$slide = substr_replace( $slide, $slide_data, strpos( $slide, '>' ), 0 );
+	return $slide;
+}
 
 function arras_add_slideshow_js() {
 	wp_register_script( 'slideshow-settings', get_template_directory_uri() . '/js/slideshowsettings.js', array( 'jquery-cycle' ), null, true );
@@ -87,35 +88,6 @@ function arras_add_slideshow_thumb_size() {
 }
 add_action('arras_add_default_thumbnails', 'arras_add_slideshow_thumb_size', 5);
 
-function arras_slideshow_styles() {
-	$slideshow_size = arras_get_image_size('featured-slideshow-thumb');
-	$slideshow_size_w = $slideshow_size['w'];
-	$slideshow_size_h = $slideshow_size['h'];
-	?>
-	.featured-article {
-		height: <?php echo $slideshow_size_h ?>px;
-		width: 100%;
-		}
-	.featured-article img {
-		position: absolute;
-		top: 0;
-		left: 50%;
-		margin-left: -<?php echo $slideshow_size_w / 2 ?>px;
-		width: <?php echo $slideshow_size_w ?>px;
-	}
-	#controls {
-		top: <?php echo ($slideshow_size_h / 2) - 15 ?>px;
-		width: 100%;
-		}
-	#controls .next { left: <?php echo $slideshow_size_w - 30 ?>px; }
-	.featured-entry { height: <?php echo ceil($slideshow_size_h / 3) ?>px; top: -<?php echo ceil($slideshow_size_h / 3) ?>px; }
-	.featured-slideshow-inner {
-		height: <?php echo $slideshow_size_h ?>px;
-		width: 100%;
-	}
-	<?php
-}
-add_action('arras_custom_styles', 'arras_slideshow_styles');
 
 /* End of file slideshow.php */
 /* Location: ./library/slideshow.php */
