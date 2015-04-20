@@ -15,16 +15,36 @@
  *
  */
 
+/**
+ * Setting a default content width is a WP theme requirement.
+ * Some WordPress media and plugins may use it.
+ * In a responsive context, the number is a bit arbitrary; we're just
+ * setting it here to be the maximum width of the main content column
+ * in Arras's 2-column layouts.
+ * If you need to change it, you can do so by simply defining it in the
+ * functions.php of your child theme.
+ */
 if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* maximum content width in pixels */
+	$content_width = 647; /* maximum content width in pixels */
 }
-
 
 define ( 'ARRAS_CHILD', is_child_theme() );
 define ( 'ARRAS_VERSION' , '3.0' );
 define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
 do_action('arras_init');
+
+add_action( 'after_setup_theme', 'arras_i18n' );
+/**
+ * Make Arras Translatable
+ * For how to translate Arras, see the Codex:
+ * https://codex.wordpress.org/I18n_for_WordPress_Developers
+ * @return null
+ */
+function arras_i18n() {
+	load_theme_textdomain( 'arras', get_template_directory() . '/languages' );
+}
+
 
 add_action( 'after_setup_theme', 'arras_theme_support' );
 /**
@@ -40,57 +60,7 @@ function arras_theme_support() {
 }
 
 
-if ( ! function_exists( 'arras_setup' ) ) :
-/**
- * Sets up theme defaults, loads arras library and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
 function arras_setup() {
-	/* Load theme options (to be revamped) */
-	require_once ARRAS_LIB . '/admin/options.php';
-	require_once ARRAS_LIB . '/admin/templates/functions.php';
-	arras_flush_options();
-
-	/* Load theme library files */
-	require_once ARRAS_LIB . '/actions.php';
-	require_once ARRAS_LIB . '/custom-header.php';
-	require_once ARRAS_LIB . '/deprecated.php';
-	require_once ARRAS_LIB . '/filters.php';
-	require_once ARRAS_LIB . '/slideshow.php';
-	require_once ARRAS_LIB . '/styles.php';
-	require_once ARRAS_LIB . '/tapestries.php';
-	require_once ARRAS_LIB . '/template.php';
-	require_once ARRAS_LIB . '/thumbnails.php';
-	require_once ARRAS_LIB . '/widgets.php';
-
-	if ( is_admin() ) {
-		require_once ARRAS_LIB . '/admin/admin.php';
-	}
-
-	//require_once ARRAS_LIB . '/admin/background.php';
-
-	/* Post meta fields */
-	// define( 'ARRAS_REVIEW_SCORE', 'score' );
-	// define( 'ARRAS_REVIEW_PROS', 'pros' );
-	// define( 'ARRAS_REVIEW_CONS', 'cons' );
-
-	define( 'ARRAS_CUSTOM_FIELDS', false );
-
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Epidemic, use a find and replace
-	 * to change 'epidemic' to the name of your theme in all the template files
-	 */
-	load_theme_textdomain( 'arras', get_template_directory() . '/language' );
-	$locale = get_locale();
-	$locale_file = get_template_directory() . "/languages/$locale.php";
-	if ( is_readable( $locale_file ) )
-		require_once( $locale_file );
-
 
 	/* Menus locations */
 	register_nav_menus(array(
@@ -121,25 +91,17 @@ function arras_setup() {
 	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
 	add_filter( 'gallery_style', 'remove_gallery_css' );
 
-	if ( defined('ARRAS_CUSTOM_FIELDS') && ARRAS_CUSTOM_FIELDS == true ) {
-		add_filter( 'arras_postheader', 'arras_postmeta' );
-	}
-
 	/* Admin actions */
 	if (is_admin()) {
 		add_action( 'admin_menu', 'arras_addmenu' );
 	}
 
-	/* Max image size */
-	$max_image_size = arras_get_single_thumbs_size();
-	$content_width = $max_image_size[0];
 
 	/* For child themes overrides */
 	do_action( 'arras_setup' );
 
 	// print_r($arras_options);
 }
-endif; // end Arras setup
 add_action( 'after_setup_theme', 'arras_setup' );
 
 /**
@@ -150,36 +112,41 @@ function arras_add_sidebars() {
 	/* Default sidebars */
 	register_sidebar( array(
 		'name' => 'Primary Sidebar',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'id'	=> 'primary',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 		'after_widget' => '</li>',
 		'before_title' => '<h5 class="widgettitle">',
 		'after_title' => '</h5>'
 	) );
 	register_sidebar( array(
-		'name' => 'Secondary Sidebar #1',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'name' => 'Secondary Sidebar',
+		'id'	=> 'secondary',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 		'after_widget' => '</li>',
 		'before_title' => '<h5 class="widgettitle">',
 		'after_title' => '</h5>'
 	) );
 	register_sidebar( array(
 		'name' => 'Bottom Content #1',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'id'	=> 'below-content-1',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 		'after_widget' => '</li>',
 		'before_title' => '<h5 class="widgettitle">',
 		'after_title' => '</h5>'
 	) );
 	register_sidebar( array(
 		'name' => 'Bottom Content #2',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'id'	=> 'below-content-2',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 		'after_widget' => '</li>',
 		'before_title' => '<h5 class="widgettitle">',
 		'after_title' => '</h5>'
 	) );
 	register_sidebar( array(
 		'name' => 'Header Widgets',
+		'id'	=> 'header-widgets',
 		'description' => 'A small widget area in the header. Use for small widgets',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 		'after_widget' => '</li>',
 		'before_title' => '<h5 class="widgettitle">',
 		'after_title' => '</h5>'
@@ -192,6 +159,7 @@ function arras_add_sidebars() {
 	for( $i = 1; $i < $footer_sidebars + 1; $i++ ) {
 		register_sidebar( array(
 			'name' => 'Footer Sidebar #' . $i,
+			'id'	=> 'footer-sidebar-' . $i,
 			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
 			'after_widget' => '</li>',
 			'before_title' => '<h5 class="widgettitle">',
@@ -222,4 +190,26 @@ function arras_styles_and_scripts() {
 	}
 } // end styles and scripts queue
 add_action( 'wp_enqueue_scripts', 'arras_styles_and_scripts' );
+
+/* Load theme options (to be revamped) */
+require_once ARRAS_LIB . '/admin/options.php';
+require_once ARRAS_LIB . '/admin/templates/functions.php';
+arras_flush_options();
+
+/* Load theme library files */
+require_once ARRAS_LIB . '/actions.php';
+require_once ARRAS_LIB . '/custom-header.php';
+require_once ARRAS_LIB . '/deprecated.php';
+require_once ARRAS_LIB . '/filters.php';
+require_once ARRAS_LIB . '/slideshow.php';
+require_once ARRAS_LIB . '/styles.php';
+require_once ARRAS_LIB . '/tapestries.php';
+require_once ARRAS_LIB . '/template.php';
+require_once ARRAS_LIB . '/thumbnails.php';
+require_once ARRAS_LIB . '/widgets.php';
+
+if ( is_admin() ) {
+	require_once ARRAS_LIB . '/admin/admin.php';
+}
+
 
