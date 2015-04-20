@@ -1,5 +1,11 @@
 <?php
 
+add_action( 'after_setup_theme', 'arras_thumbnails' );
+function arras_thumbnails() {
+	set_post_thumbnail_size( 150, 150 );
+	add_image_size( 'wide-thumbnail', 890, 500 );
+}
+
 /**
  * Containers for storing thumbnail types and its default sizes.
  * @since 1.4.4
@@ -70,42 +76,39 @@ function arras_get_image_size($id) {
  * Helper function to grab and display thumbnail from specified post
  * @since 1.4.0
  */
-function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
-	global $post, $arras_image_sizes;
+function arras_get_thumbnail( $size = 'post-thumbnail', $id = NULL ) {
+	global $post;
 
-	$wxh = arras_get_image_size( $size );
 	$empty_thumbnail = 	'<img src="' . get_template_directory_uri() . '/images/thumbnail.png" alt="' . get_the_excerpt()
 											. '" title="' . get_the_title() . '" />';
 
 	if ($post) $id = $post->ID;
 
-	// get post thumbnail (WordPress 2.9)
-	if (function_exists('has_post_thumbnail')) {
-		if (has_post_thumbnail($id)) {
-			return get_the_post_thumbnail( $id, $size, array(
+	if ( has_post_thumbnail( $id ) ) {
+		return get_the_post_thumbnail( $id, $size, array(
+			'alt' 	=> get_the_excerpt(),
+			'title' => get_the_title()
+		) );
+	} else {
+		// Could it be an attachment?
+		if ( $post->post_type == 'attachment' ) {
+			return wp_get_attachment_image( $id, $size, false, array(
 				'alt' 	=> get_the_excerpt(),
 				'title' => get_the_title()
 			) );
-		} else {
-			// Could it be an attachment?
-			if ($post->post_type == 'attachment') {
-				return wp_get_attachment_image( $id, $size, false, array(
-					'alt' 	=> get_the_excerpt(),
-					'title' => get_the_title()
-				) );
-			}
-			// Use first thumbnail if auto thumbs is enabled.
-			if (arras_get_option('auto_thumbs')) {
-				$img_id = arras_get_first_post_image_id();
-				if (!$img_id) return $empty_thumbnail;
+		}
+		// Use first thumbnail if auto thumbs is enabled.
+		if ( arras_get_option( 'auto_thumbs' ) ) {
+			$img_id = arras_get_first_post_image_id();
+			if ( ! $img_id ) return $empty_thumbnail;
 
-				return wp_get_attachment_image($img_id, $size, false, array(
-					'alt' 	=> get_the_excerpt(),
-					'title' => get_the_title()
-				) );
-			}
+			return wp_get_attachment_image( $img_id, $size, false, array(
+				'alt' 	=> get_the_excerpt(),
+				'title' => get_the_title()
+			) );
 		}
 	}
+
 	return $empty_thumbnail;
 }
 
@@ -113,12 +116,12 @@ function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
  * Function to retrieve the first image ID from post.
  * @since 1.5.0
  */
-function arras_get_first_post_image_id($id = NULL) {
+function arras_get_first_post_image_id( $id = NULL ) {
 	global $post;
-	if (!$id) $id = $post->ID;
+	if ( ! $id ) $id = $post->ID;
 
-	$attachments = get_children('post_parent=' . $id . '&post_type=attachment&post_mime_type=image');
-	if (!$attachments) return false;
+	$attachments = get_children( 'post_parent=' . $id . '&post_type=attachment&post_mime_type=image' );
+	if ( ! $attachments ) return false;
 
 	$keys = array_reverse(array_keys($attachments));
 	return $keys[0];

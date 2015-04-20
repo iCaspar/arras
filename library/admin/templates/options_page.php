@@ -32,8 +32,6 @@
 <?php include 'taxonomy_page.php' ?>
 <?php include 'arras-tools.php' ?>
 
-<p class="arras-regen-thumbs-field"><?php echo arras_form_checkbox('arras-regen-thumbs', 'show', false, 'id="arras-regen-thumbs"') ?> 
-<label for="arras-regen-thumbs"><?php _e('Regenerate post thumbnails after saving.', 'arras') ?></label></p>
 <p class="final-submit">
 <input class="button-primary" type="submit" name="save" value="<?php _e('Save Changes', 'arras') ?>" />
 <input class="button-secondary" type="submit" name="reset" value="<?php _e('Reset Settings', 'arras') ?>" />

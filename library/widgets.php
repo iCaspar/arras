@@ -3,7 +3,7 @@
  * This file will eventually place the codes for theme widgets that is
  * compatible with WordPress 2.8.
  */
- 
+
 class Arras_Tabbed_Sidebar extends WP_Widget {
 	var $display_thumbs, $query_source;
 	var $commentcount, $postcount;
@@ -15,47 +15,47 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 			'description'	=> __('Sidebar containing tabs that displays posts, comments and tags.', 'arras'),
 		);
 		$this->WP_Widget('arras_tabbed_sidebar', __('Tabbed Sidebar', 'arras'), $widget_args);
-		
+
 		add_action('arras_tabbed_sidebar_tab-featured', array(&$this, 'featured_tab'));
 		add_action('arras_tabbed_sidebar_tab-latest', array(&$this, 'latest_tab'));
 		add_action('arras_tabbed_sidebar_tab-comments', array(&$this, 'comments_tab'));
 		add_action('arras_tabbed_sidebar_tab-tags', array(&$this, 'tags_tab'));
 		add_action('arras_tabbed_sidebar_tab-popular', array(&$this, 'popular_tab'));
-		
+
 		if ( is_active_widget( false, false, $this->id_base ) ) {
 			add_action( 'wp_enqueue_scripts', array( &$this, 'load_js' ) );
 		}
 	}
-	
+
 	function load_js() {
-		wp_enqueue_script( 'jquery-ui-tabs' ); 
+		wp_enqueue_script( 'jquery-ui-tabs' );
 		wp_enqueue_script( 'trigger-tabs-sidebar', get_template_directory_uri() . '/js/triggertabsidebar.js', array( 'jquery-ui-tabs'), null, true );
 	}
-		
+
 	function get_tabs() {
 		$_default_tabs = array(
-			'featured'		=> __('Featured', 'arras'), 
+			'featured'		=> __('Featured', 'arras'),
 			'latest'		=> __('Latest', 'arras'),
-			'comments'		=> __('Comments', 'arras'), 
+			'comments'		=> __('Comments', 'arras'),
 			'tags'			=> __('Tags', 'arras')
 		);
-		
+
 		if ( function_exists('WPPP_show_popular_posts') ) {
 			$_default_tabs['popular'] = __('Popular', 'arras');
 		}
-		
+
 		return apply_filters('arras_tabbed_sidebar_tabs', $_default_tabs);
 	}
-	
+
 	function widget($args, $instance) {
-		global $wpdb;		
+		global $wpdb;
 		extract($args, EXTR_SKIP);
-		
+
 		$this->query_source = $instance['query'];
 		$this->postcount = $instance['postcount'];
 		$this->commentcount = $instance['commentcount'];
 		$this->display_thumbs = $instance['display_thumbs'];
-		
+
 		if (!$instance['order']) $instance['order'] = $this->get_tabs();
 
 		if ($instance['display_home'] && !is_home()) {
@@ -77,9 +77,9 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		</div>
 		</li>
 		<?php
-		
+
 	}
-	
+
 	function featured_tab() {
 		switch ($this->query_source) {
 			case 'slideshow':
@@ -102,7 +102,7 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 				$post_type = arras_get_option('news_posttype');
 				$taxonomy = arras_get_option('news_tax');
 		}
-		
+
 		arras_widgets_post_loop('sidebar-featured', array(
 			'list'				=> $list,
 			'taxonomy'			=> $taxonomy,
@@ -114,7 +114,7 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 			)
 		) );
 	}
-	
+
 	function latest_tab() {
 		arras_widgets_post_loop('sidebar-latest', array(
 			'show_thumbs'		=> $this->display_thumbs,
@@ -124,9 +124,9 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 			)
 		) );
 	}
-	
+
 	function comments_tab() {
-		$comments = get_comments( array('status' => 'approve', 'number' => $this->commentcount) );	
+		$comments = get_comments( array('status' => 'approve', 'number' => $this->commentcount) );
 		if ($comments) {
 			echo '<ul class="sidebar-comments">';
 			foreach ($comments as $comment) {
@@ -139,7 +139,7 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 			echo '</ul>';
 		}
 	}
-	
+
 	function tags_tab() {
 		echo '<div class="tags">';
 		if (function_exists('wp_cumulus_insert')) {
@@ -153,13 +153,13 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		}
 		echo '</div>';
 	}
-	
+
 	function popular_tab() {
 		if ( function_exists('WPPP_show_popular_posts') ) {
 			WPPP_show_popular_posts( "title=&number=" . $this->postcount . "&format=<a href='%post_permalink%' title='%post_title_attribute%'>%post_title%</a><br /><span class='sub'>%post_time%</span>&time_format=d F Y g:i A" );
 		}
 	}
-	
+
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['order'] = $new_instance['order'];
@@ -168,15 +168,15 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		$instance['query'] = $new_instance['query'];
 		$instance['postcount'] = $new_instance['postcount'];
 		$instance['commentcount'] = $new_instance['commentcount'];
-		
+
 		return $instance;
 	}
-	
+
 	function form($instance) {
-		$instance = wp_parse_args( (array)$instance, array( 
-			'order' => array('featured', 'latest', 'comments', 'tags'), 
-			'display_home' => true, 
-			'display_thumbs' => true, 
+		$instance = wp_parse_args( (array)$instance, array(
+			'order' => array('featured', 'latest', 'comments', 'tags'),
+			'display_home' => true,
+			'display_thumbs' => true,
 			'query' => 'slideshow',
 			'postcount' => 8,
 			'commentcount' => 8
@@ -201,7 +201,7 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		<select style="width: 200px" name="<?php echo $this->get_field_name('order') ?>[3]"><?php $this->get_tabbed_opts( $order[3], 'tags'); ?></select>
 		</p>
 		<p style="font-size:11px"><?php _e('The popular posts option is only enabled when the plugin <a href="http://wordpress.org/extend/plugins/wordpresscom-popular-posts/">WordPress.com Popular Posts</a> is enabled.', 'arras') ?></p>
-		
+
 		<p><label for="<?php echo $this->get_field_id('postcount') ?>"><?php _e('Post Count:', 'arras') ?></label>
 		<select id="<?php echo $this->get_field_id('postcount') ?>" name="<?php echo $this->get_field_name('postcount') ?>">
 			<?php for ($i = 1; $i <= 20; $i++ ) : ?>
@@ -209,7 +209,7 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 			</option>
 			<?php endfor; ?>
 		</select><br />
-		
+
 		<label for="<?php echo $this->get_field_id('commentcount') ?>"><?php _e('Comments Count:', 'arras') ?></label>
 		<select id="<?php echo $this->get_field_id('commentcount') ?>" name="<?php echo $this->get_field_name('commentcount') ?>">
 			<?php for ($i = 1; $i <= 20; $i++ ) : ?>
@@ -218,7 +218,7 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 			<?php endfor; ?>
 		</select>
 		</p>
-		
+
 		<p>
 		<input type="checkbox" name="<?php echo $this->get_field_name('display_home') ?>" <?php checked($instance['display_home'], 1) ?> />
 		<label for="<?php echo $this->get_field_id('display_home') ?>"><?php _e('Display only in homepage', 'arras') ?></label><br />
@@ -227,35 +227,35 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 		</p>
 		<?php
 	}
-	
+
 	function get_tabbed_opts($selected, $default) {
 		$opts = $this->get_tabs();
-		
+
 		if (!$selected) $selected = $default;
-		
+
 		foreach ( $opts as $id => $val ) {
 			echo '<option value="' . $id . '" ';
 			selected($selected, $id);
 			echo '>';
-			
+
 			echo $val;
 			echo '</option>';
 		}
 	}
-	
+
 	function render_sidebar_tabs($order) {
 		$order = array_unique($order);
 		$list = $this->get_tabs();
-		
+
 		foreach ($order as $t) {
 			?><li><a href="#s-<?php echo $t ?>"><span><?php echo $list[$t] ?></span></a></li><?php
 		}
 	}
-	
+
 }
 
 class Arras_Featured_Stories extends WP_Widget {
-	
+
 	// Constructor
 	function Arras_Featured_Stories() {
 		$widget_args = array(
@@ -264,20 +264,20 @@ class Arras_Featured_Stories extends WP_Widget {
 		);
 		$this->WP_Widget('arras_featured_stories', __('Featured Stories', 'arras'), $widget_args);
 	}
-	
+
 	function widget($args, $instance) {
-		global $wpdb;		
+		global $wpdb;
 		extract($args, EXTR_SKIP);
-		
+
 		if ($instance['no_display_in_home'] && is_home()) {
 			return false;
 		}
-		
+
 		$title = apply_filters('widget_title', $instance['title']);
-		
+
 		echo $before_widget;
 		echo $before_title . $title . $after_title;
-		
+
 		arras_widgets_post_loop('featured-stories', array(
 			'list'				=> $instance['featured_cat'],
 			'show_thumbs'		=> $instance['show_thumbs'],
@@ -286,35 +286,35 @@ class Arras_Featured_Stories extends WP_Widget {
 				'posts_per_page'	=> $instance['postcount']
 			)
 		) );
-		
+
 		echo $after_widget;
 	}
-	
+
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		
+
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['featured_cat'] = $new_instance['featured_cat'];
 		$instance['postcount'] = (int)strip_tags($new_instance['postcount']);
 		$instance['no_display_in_home'] = (boolean)($new_instance['no_display_in_home']);
 		$instance['show_excerpts'] = (boolean)($new_instance['show_excerpts']);
 		$instance['show_thumbs'] = (boolean)($new_instance['show_thumbs']);
-		
+
 		return $instance;
 	}
-	
+
 	function form($instance) {
 		$instance = wp_parse_args( (array)$instance, array(
-			'title' 				=> __('Featured Stories', 'arras'), 
-			'featured_cat' 			=> 0, 
-			'postcount' 			=> 5, 
-			'no_display_in_home' 	=> true, 
+			'title' 				=> __('Featured Stories', 'arras'),
+			'featured_cat' 			=> 0,
+			'postcount' 			=> 5,
+			'no_display_in_home' 	=> true,
 			'show_excerpts' 		=> true,
 			'show_thumbs'			=> true
 		) );
-		
+
 		if (!is_array($instance['featured_cat'])) $instance['featured_cat'] = array(0);
-		
+
 		?>
 		<p><label for="<?php echo $this->get_field_id('title') ?>"><?php _e('Title:', 'arras') ?></label><br />
 		<input type="text" id="<?php echo $this->get_field_id('title') ?>" name="<?php echo $this->get_field_name('title') ?>" size="33" value="<?php echo strip_tags($instance['title']) ?>" />
@@ -331,7 +331,7 @@ class Arras_Featured_Stories extends WP_Widget {
 		?>
 		</select>
 		</p>
-		
+
 		<p><label for="<?php echo $this->get_field_id('postcount') ?>"><?php _e('How many items would you like to display?', 'arras') ?></label>
 		<select id="<?php echo $this->get_field_id('postcount') ?>" name="<?php echo $this->get_field_name('postcount') ?>">
 			<?php for ($i = 1; $i <= 20; $i++ ) : ?>
@@ -340,7 +340,7 @@ class Arras_Featured_Stories extends WP_Widget {
 			<?php endfor; ?>
 		</select>
 		</p>
-		
+
 		<p>
 		<input type="checkbox" name="<?php echo $this->get_field_name('no_display_in_home') ?>" <?php checked($instance['no_display_in_home'], 1) ?> />
 		<label for="<?php echo $this->get_field_id('no_display_in_home') ?>"><?php _e('Do not display in homepage', 'arras') ?></label>
@@ -353,17 +353,17 @@ class Arras_Featured_Stories extends WP_Widget {
 		</p>
 		<?php
 	}
-	
+
 }
 
 class Arras_Widget_Tag_Cloud extends WP_Widget_Tag_Cloud {
 	function Arras_Widget_Tag_Cloud() {
 		parent::__construct();
 	}
-	
+
 	function widget( $args, $instance ) {
 		extract($args);
-		
+
 		// for WordPress 3.0+
 		if ( function_exists('_get_current_taxonomy') ) {
 			$current_taxonomy = $this->_get_current_taxonomy($instance);
@@ -409,7 +409,7 @@ class Arras_Widget_Search extends WP_Widget {
 
 	function widget( $args, $instance ) {
 		extract($args);
-		
+
 		// Use current theme search form if it exists
 		echo '<li class="widgetcontainer clearfix"><div class="widgetcontent">';
 		get_search_form();
@@ -417,7 +417,7 @@ class Arras_Widget_Search extends WP_Widget {
 	}
 
 	function form( $instance ) {
-		
+
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -428,7 +428,7 @@ class Arras_Widget_Search extends WP_Widget {
 
 function arras_widgets_post_loop( $id, $args = array() ) {
 	global $wp_query, $post;
-	
+
 	$_defaults = array(
 		'taxonomy'			=> 'category',
 		'show_thumbs'		=> true,
@@ -440,38 +440,38 @@ function arras_widgets_post_loop( $id, $args = array() ) {
 			'order'				=> 'DESC'
 		)
 	);
-	
+
 	$args['query'] = wp_parse_args($args['query'], $_defaults['query']);
 	$args = wp_parse_args($args, $_defaults);
-	
+
 	$q = new WP_Query( arras_prep_query($args) );
-	
+
 	if ( $q->have_posts() ) {
 		echo '<ul class="' . $id . '">';
 		while( $q->have_posts() ) {
 			$q->the_post();
-			
+
 			// hack for plugin authors who love to use $post = $wp_query->post
 			$wp_query->post = $q->post;
 			setup_postdata($post);
-			
-			?> <li class="clearfix"> <?php
+
+			?> <li class="group"> <?php
 			if ($args['show_thumbs']) {
-				echo '<a rel="bookmark" href="' . get_permalink() . '" class="thumb">' . arras_get_thumbnail( 'sidebar-thumb', get_the_ID() ) . '</a>';
+				echo '<a rel="bookmark" href="' . get_permalink() . '" class="thumb">' . arras_get_thumbnail( 'post-thumbnail', get_the_ID() ) . '</a>';
 			}
 			?>
 			<a href="<?php the_permalink() ?>"><?php the_title() ?></a><br />
-			<span class="sub"><?php printf( __( 'Posted %s', 'arras' ), arras_posted_on( false ) ); ?> | 
+			<span class="sub"><?php printf( __( 'Posted %s', 'arras' ), arras_posted_on( false ) ); ?> |
 			<a href="<?php comments_link() ?>"><?php comments_number( __('No Comments', 'arras'), __('1 Comment', 'arras'), __('% Comments', 'arras') ); ?></a>
 			</span>
-			
+
 			<?php if ($args['show_excerpt']) : ?>
 			<p class="excerpt">
 			<?php echo get_the_excerpt() ?>
 			</p>
 			<a class="sidebar-read-more" href="<?php the_permalink() ?>"><?php _e('Read More', 'arras') ?></a>
 			<?php endif ?>
-			
+
 			</li>
 			<?php
 		}
@@ -479,7 +479,7 @@ function arras_widgets_post_loop( $id, $args = array() ) {
 	} else {
 		echo '<span class="textCenter sub">' . __('No posts at the moment. Check back again later!', 'arras') . '</span>';
 	}
-	
+
 	wp_reset_query();
 }
 
@@ -494,7 +494,7 @@ function arras_widgets_init() {
 	register_widget('Arras_Widget_Search');
 }
 
-add_action('widgets_init', 'arras_widgets_init', 1);	
+add_action('widgets_init', 'arras_widgets_init', 1);
 /* End of file widgets.php */
 /* Location: ./library/widgets.php */
 ?>

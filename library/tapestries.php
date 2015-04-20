@@ -274,23 +274,6 @@ if (!function_exists('arras_tapestry_quick')) {
 		'before' => '<ul class="hfeed posts-quick clearfix">',
 		'after' => '</ul><!-- .posts-quick -->'
 	) );
-
-	function arras_add_tapestry_quick_thumbs() {
-		arras_add_image_size( 'quick-preview-thumb', __('Tapestry: Quick Preview', 'arras'), 115, 115 );
-	}
-	add_action('arras_add_default_thumbnails', 'arras_add_tapestry_quick_thumbs');
-
-	function arras_style_tapestry_quick() {
-		$quick_preview_size = arras_get_image_size('quick-preview-thumb');
-		$quick_preview_w = $quick_preview_size['w'];
-		$quick_preview_h = $quick_preview_size['h'];
-
-		?>
-		.posts-quick .entry-thumbnails img { width: <?php echo $quick_preview_w ?>px; height: <?php echo $quick_preview_h ?>px; }
-		.posts-quick .entry-meta { width: <?php echo $quick_preview_w ?>px; }
-		<?php
-	}
-	add_action('arras_custom_styles', 'arras_style_tapestry_quick');
 }
 
 /**
@@ -300,9 +283,14 @@ if (!function_exists('arras_tapestry_quick')) {
 function arras_generic_postheader($tapestry, $show_meta = false) {
 	global $post;
 
+	if ( $tapestry == 'quick-preview' ) {
+		$thumbnail = 'post-thumbnail';
+	} else {
+		$thumbnail = 'wide-thumbnail';
+	}
 	$postheader = '<div class="entry-thumbnails">';
 	$postheader .= '<a class="entry-thumbnails-link" href="' . get_permalink() . '">';
-	$postheader .= arras_get_thumbnail($tapestry . '-thumb');
+	$postheader .= arras_get_thumbnail( $thumbnail );
 	$postheader .= '</a>';
 
 	if ($show_meta) {

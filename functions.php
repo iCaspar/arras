@@ -98,12 +98,6 @@ function arras_setup() {
 		'top-menu'	=> __('Top Menu', 'arras')
 	));
 
-	/* Thumbnail sizes */
-	arras_add_default_thumbnails();
-
-	/* Custom layouts & styles */
-	//	add_action( 'arras_custom_styles', 'arras_layout_styles' );
-
 
 	register_style_dir( get_template_directory() . '/css/styles/' );
 

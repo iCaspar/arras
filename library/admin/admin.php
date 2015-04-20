@@ -3,15 +3,15 @@ $notices = ''; // store notices here so that options_page.php will echo it out l
 
 function arras_addmenu() {
 	$options_page = add_theme_page( 'Arras Options', __('Arras Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin');
-	
+
 //	$posttax_page = add_theme_page( '', __('Arras Post Types & Taxonomies', 'arras'), 'edit_theme_options', 'arras-posttax', 'arras_posttax', 64 );
-	
+
 	add_action('admin_print_scripts-'. $options_page, 'arras_admin_scripts');
 	add_action('admin_print_styles-'. $options_page, 'arras_admin_styles');
-	
+
 //	add_action('admin_print_scripts-' . $posttax_page, 'arras_admin_scripts');
 //	add_action('admin_print_styles-' . $posttax_page, 'arras_admin_styles');
-	
+
 }
 
 function arras_admin() {
@@ -19,15 +19,15 @@ function arras_admin() {
 
 	if ( isset($_GET['page']) && $_GET['page'] == 'arras-options' ) {
 		//print_r($_POST);
-		
+
 		if ( isset($_REQUEST['save']) ) {
 			arras_admin_save();
 		}
-		
+
 		if ( isset($_REQUEST['reset']) ) {
 			arras_admin_reset();
 		}
-		
+
 		if ( isset( $_REQUEST['arras-regen-thumbs'] ) && is_plugin_active( 'regenerate-thumbnails/regenerate-thumbnails.php' ) ) {
 			check_admin_referer('arras-admin');
 			?>
@@ -39,9 +39,9 @@ function arras_admin() {
 			if ( !is_plugin_active( 'regenerate-thumbnails/regenerate-thumbnails.php' ) ) {
 				$notices = '<div class="error fade"><p>' . __( '<strong>Notice:</strong> Having <a href="http://wordpress.org/extend/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a> plugin installed and activated is highly recommended for Arras.', 'arras' ) . '</p></div>';
 		}
-			
+
 	$arras_image_sizes = array();
-	arras_add_default_thumbnails();
+//	arras_add_default_thumbnails();
 	include 'templates/options_page.php';
 		}
 	}
@@ -50,10 +50,10 @@ function arras_admin() {
 function arras_admin_save() {
 	global $arras_options, $arras_image_sizes, $notices;
 	check_admin_referer('arras-admin');
-	
+
 	if ( isset($_REQUEST['arras-tools-import']) && $_REQUEST['arras-tools-import'] != '' ) {
 		$new_arras_options = maybe_unserialize(json_decode($_REQUEST['arras-tools-import']));
-		
+
 		if (is_a($new_arras_options, 'Options')) {
 			$arras_options = $new_arras_options;
 			arras_update_options();
@@ -67,7 +67,7 @@ function arras_admin_save() {
 
 				if ( isset($file['error']) )
 				die( $file['error'] );
-				
+
 				$url = $file['url'];
 				$type = $file['type'];
 				$file = $file['file'];
@@ -82,7 +82,7 @@ function arras_admin_save() {
 
 				// Save the data
 				$arras_options->logo = wp_insert_attachment($object, $file);
-				
+
 				// Force generate the logo thumbnail
 				$fullsizepath = get_attached_file($arras_options->logo);
 				wp_update_attachment_metadata($arras_options->logo, wp_generate_attachment_metadata($arras_options->logo, $fullsizepath));
@@ -90,12 +90,12 @@ function arras_admin_save() {
 		} else {
 			$arras_options->logo = '';
 		}
-		
+
 		// Hack!
 		$arras_options->layout = (string)$_POST['arras-layout-col'];
 		$arras_image_sizes = array();
-		arras_add_default_thumbnails();
-		
+//		arras_add_default_thumbnails();
+
 		$arras_custom_image_sizes = array();
 		foreach ($arras_image_sizes as $id => $args) {
 			if ( isset($_POST['arras-reset-thumbs']) && $_POST['arras-reset-thumbs'] ) {
@@ -106,17 +106,17 @@ function arras_admin_save() {
 				$arras_custom_image_sizes[$id]['h'] = (int)($_POST['arras-' . $id . '-h']);
 			}
 		}
-		
+
 		$arras_options->custom_thumbs = $arras_custom_image_sizes;
 		$arras_options->save_options();
 				$arras_options->save_posttypes();
 				$arras_options->save_taxonomies();
 		arras_update_options();
-		
+
 		do_action('arras_admin_save');
 				do_action('arras_admin_posttype_save');
 				do_action('arras_admin_taxonomy_save');
-		
+
 		$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
 	}
 }
@@ -124,12 +124,12 @@ function arras_admin_save() {
 function arras_admin_reset() {
 	global $notices;
 	check_admin_referer('arras-admin');
-	
+
 	delete_option('arras_options');
 	arras_flush_options();
-	
+
 	do_action('arras_admin_reset');
-	
+
 	$notices = '<div class="updated fade"><p>' . __('Your settings have been reverted to the defaults.', 'arras') . '</p></div>';
 }
 
@@ -148,31 +148,31 @@ function arras_admin_styles() {
 }
 
 function get_remote_array($url) {
-	if ( function_exists('wp_remote_request') ) {	
+	if ( function_exists('wp_remote_request') ) {
 		$options = array();
 		$options['headers'] = array(
 			'User-Agent' => 'Arras Feed Grabber' . ARRAS_VERSION . '; (' . home_url() .')'
 		 );
-		 
+
 		$response = wp_remote_request($url, $options);
-		
+
 		if ( is_wp_error( $response ) )
 			return false;
-	
+
 		if ( 200 != $response['response']['code'] )
 			return false;
-		
+
 		$content = unserialize($response['body']);
 
-		if (is_array($content)) 
+		if (is_array($content))
 			return $content;
 	}
-	return false;	
+	return false;
 }
 
 function arras_get_contributors($arr) {
 	if ( !is_array($arr) ) return false;
-	
+
 	ksort($arr);
 	$i = count($arr);
 	foreach ($arr as $name => $url)
@@ -189,7 +189,7 @@ function arras_get_contributors($arr) {
 	}
 }
 
-function arras_right_col() {	
+function arras_right_col() {
 	?>
 	<div id="arras-right-col">
 		<div class="postbox">
@@ -200,7 +200,7 @@ function arras_right_col() {
 				<li><a href="https://github.com/icaspar/arras"><?php _e('Arras on GitHub', 'arras') ?></a></li>
 			</ul>
 		</div>
-		
+
 		<div class="postbox">
 			<h3><span><?php _e('How to Support?', 'arras') ?></span></h3>
 			<p><?php _e('There are many ways you can support this theme:', 'arras') ?></p>
@@ -211,7 +211,7 @@ function arras_right_col() {
 				<li><?php _e('Translate the theme', 'arras') ?></li>
 			</ul>
 		</div>
-		
+
 		<div class="postbox">
 			<h3><span><?php _e('Thanks!', 'arras') ?></span></h3>
 			<p>Many Thanks to Everyone who has contributed to Arras over the years.</p>
@@ -220,7 +220,7 @@ function arras_right_col() {
 			<p><strong>Arras</strong> is licensed under <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU General Public License, v.2</a>.
 
 		</div>
-		
+
 		<?php do_action('arras_admin_right_col'); ?>
 
 	</div>
