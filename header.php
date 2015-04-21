@@ -59,7 +59,7 @@
 	<div id="main-nav-section" class="nav section group">
 		<nav id="primary-nav" class="wrap">
 			<?php arras_menu( 'main-menu', true, 3, 'col span_3_of_4' ); ?>
-			<?php arras_beside_nav(); ?>
+			<?php arras_social_nav(); ?>
 		</nav>
 	</div>
 

@@ -5,10 +5,6 @@
  *
  * Arras functions and definitions.
  *
- * Defines Theme constants
- * Hooks after_setup_theme()
- * Loads all other required functions
- *
  * @author Melvin Lee (2009-2013)
  * @author Caspar Green <caspar@iCasparWebDevelopment.com>
  * @package Arras
@@ -45,7 +41,6 @@ function arras_i18n() {
 	load_theme_textdomain( 'arras', get_template_directory() . '/languages' );
 }
 
-
 add_action( 'after_setup_theme', 'arras_theme_support' );
 /**
  * Declares various theme supports for WP and plugins
@@ -59,51 +54,19 @@ function arras_theme_support() {
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets' ) );
 }
 
-
-function arras_setup() {
-
-	/* Menus locations */
+add_action( 'after_setup_theme', 'arras_menus' );
+/**
+ * Define our theme menu locations
+ * @return null
+ */
+function arras_menus() {
 	register_nav_menus(array(
 		'main-menu'	=> __('Main Menu', 'arras'),
 		'top-menu'	=> __('Top Menu', 'arras')
 	));
-
-
-	register_style_dir( get_template_directory() . '/css/styles/' );
-
-
-	/* Header actions */
-	remove_action( 'wp_head', 'pagenavi_css' );
-
-	add_action( 'wp_head', 'arras_override_styles' );
-
-	add_action( 'arras_custom_styles', 'arras_add_custom_logo' );
-	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
-
-	add_action( 'arras_beside_nav', 'arras_social_nav' );
-
-	add_action( 'wp_head', 'arras_load_styles', 1 );
-	add_action( 'wp_head', 'arras_head' );
-
-	add_action( 'wp_head', 'arras_add_facebook_share_meta' );
-
-	/* Filters */
-	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
-	add_filter( 'gallery_style', 'remove_gallery_css' );
-
-	/* Admin actions */
-	if (is_admin()) {
-		add_action( 'admin_menu', 'arras_addmenu' );
-	}
-
-
-	/* For child themes overrides */
-	do_action( 'arras_setup' );
-
-	// print_r($arras_options);
 }
-add_action( 'after_setup_theme', 'arras_setup' );
 
+add_action( 'widgets_init', 'arras_add_sidebars' );
 /**
  * Register widgetized areas and update sidebar with default widgets.
  */
@@ -166,10 +129,9 @@ function arras_add_sidebars() {
 			'after_title' => '</h5>'
 		) );
 	}
-
 } // end Sidebar Registration
-add_action( 'widgets_init', 'arras_add_sidebars' );
 
+add_action( 'wp_enqueue_scripts', 'arras_styles_and_scripts' );
 /**
  * Enqueue scripts and styles.
  */
@@ -189,7 +151,6 @@ function arras_styles_and_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 } // end styles and scripts queue
-add_action( 'wp_enqueue_scripts', 'arras_styles_and_scripts' );
 
 /* Load theme options (to be revamped) */
 require_once ARRAS_LIB . '/admin/options.php';
@@ -208,8 +169,26 @@ require_once ARRAS_LIB . '/template.php';
 require_once ARRAS_LIB . '/thumbnails.php';
 require_once ARRAS_LIB . '/widgets.php';
 
+
+/* Header actions */
+
+/* TODO: fold into arras_styles_and_scripts() */
+add_action( 'wp_head', 'arras_override_styles' );
+add_action( 'arras_custom_styles', 'arras_add_custom_logo' );
+add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
+add_action( 'wp_head', 'arras_load_styles', 1 );
+
+/* Load Admin stuff only when necessary */
 if ( is_admin() ) {
 	require_once ARRAS_LIB . '/admin/admin.php';
+	add_action( 'admin_menu', 'arras_addmenu' );
 }
 
 
+/**
+ * Arras is now loaded. If you want your child theme to override
+ * anything, hook your override functions to this 'after_setup_arras' hook.
+ * Ex. In your child theme's functions.php:
+ * 		add_action( 'after_setup_arras', 'my_overriding_function' );
+ */
+do_action( 'after_setup_arras' );
