@@ -487,13 +487,11 @@ function arras_blacklist_duplicates() {
 }
 
 function arras_constrain_footer_sidebars() {
-	$footer_sidebars = arras_get_option('footer_sidebars');
+/*	$footer_sidebars = arras_get_option('footer_sidebars');
 	if ($footer_sidebars == '') $footer_sidebars = 1;
-
-	$width = ceil(920 / $footer_sidebars);
 	?>
 	.footer-sidebar  { width: <?php echo $width ?>px; }
-	<?php
+	<?php */
 }
 
 function arras_nav_fallback_cb() {

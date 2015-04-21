@@ -3,14 +3,14 @@
 	<?php arras_before_footer() ?>
 
     <div id="footer" class="section wrap">
-		<div class="footer-sidebar-container clearfix">
+		<div class="footer-sidebar-container group">
 			<?php
 				$footer_sidebars = arras_get_option('footer_sidebars');
 				if ($footer_sidebars == '') $footer_sidebars = 1;
 
 				for ($i = 1; $i < $footer_sidebars + 1; $i++) :
 			?>
-				<ul id="footer-sidebar-<?php echo $i ?>" class="footer-sidebar clearfix xoxo">
+				<ul id="footer-sidebar-<?php echo $i ?>" class="footer-sidebar xoxo col span_1_of_<?php echo $footer_sidebars; ?>">
 					<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer Sidebar #' . $i) ) : ?>
 					<li></li>
 					<?php endif; ?>

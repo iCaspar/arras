@@ -50,14 +50,14 @@ function arras_styles_and_scripts() {
 
 
 	// Load dynamically generated css
-	wp_enqueue_style( 'arras-options-generated', admin_url( 'admin-ajax.php' ) . '?action=arras_options_css', 'arras-base', null, 'screen' );
+	// wp_enqueue_style( 'arras-options-generated', admin_url( 'admin-ajax.php' ) . '?action=arras_options_css', 'arras-base', null, 'screen' );
 
 } // end arras_styles_and_scripts()
 
 
 
-add_action( 'wp_ajax_arras_options_css', 'arras_options_css' );
-add_action( 'wp_ajax_nopriv_arras_options_css', 'arras_options_css' );
+//add_action( 'wp_ajax_arras_options_css', 'arras_options_css' );
+//add_action( 'wp_ajax_nopriv_arras_options_css', 'arras_options_css' );
 
 function arras_options_css() {
 	require get_template_directory() . '/css/options.css.php';

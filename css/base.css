@@ -110,8 +110,6 @@ th, td  { padding: 5px; }
 	padding: 10px;
 }
 
-}
-
 /* Header */
 .logo {
 	min-height: 200px;
@@ -133,7 +131,7 @@ th, td  { padding: 5px; }
 	font-weight: bold;
 	margin: 45px 0;
 }
-l
+
 .site-description {
 	font-size: 20px;
 	font-size: 2rem;
@@ -567,7 +565,10 @@ l
 #footer .footer-message p { margin: 0 0 0.5em; }
 #footer .footer-message .floatright { margin-left: 20px; }
 .footer-sidebar-container  { margin: 10px; }
-.footer-sidebar		{ overflow: hidden; float: left; margin: 0; padding: 0 0 10px; }
+.footer-sidebar	{
+	overflow: hidden;
+	padding: 0 0 10px;
+}
 
 
 /** ----- RESPONSIVE GRID ---------------------------------------------
