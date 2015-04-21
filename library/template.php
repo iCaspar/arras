@@ -47,6 +47,19 @@ function arras_favicons() {
 	}
 } // end arras_favicons()
 
+/**
+ * Generates HTML for custom logo, if one is set
+ * @return null
+ */
+function arras_add_custom_logo() {
+	$arras_logo_id = arras_get_option('logo');
+	if ($arras_logo_id != 0) {
+		$arras_logo = wp_get_attachment_image_src($arras_logo_id, 'full');
+
+		echo '<img src="' . $arras_logo[0] . '" width="' . $arras_logo[1] . '" height="' . $arras_logo[2] . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" />';
+	}
+}
+
 
 /** ===== Menu support functions ===== */
 

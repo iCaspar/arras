@@ -123,6 +123,9 @@ th, td  { padding: 5px; }
 	padding-left: 30px;
 	text-transform: uppercase;
 }
+.logo img {
+	padding-top: 20px;
+}
 
 .site-title	{
 	font-size: 35px;
