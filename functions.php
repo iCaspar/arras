@@ -1,5 +1,4 @@
 <?php
-
 /**
  * functions.php
  *
@@ -14,7 +13,7 @@
 /**
  * Setting a default content width is a WP theme requirement.
  * Some WordPress media and plugins may use it.
- * In a responsive context, the number is a bit arbitrary; we're just
+ * In a responsive context the number is a bit arbitrary; we're just
  * setting it here to be the maximum width of the main content column
  * in Arras's 2-column layouts.
  * If you need to change it, you can do so by simply defining it in the
@@ -24,11 +23,11 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 647; /* maximum content width in pixels */
 }
 
-define ( 'ARRAS_CHILD', is_child_theme() );
+/**
+ * Define theme constants
+ */
 define ( 'ARRAS_VERSION' , '3.0' );
 define ( 'ARRAS_LIB', get_template_directory() . '/library' );
-
-do_action('arras_init');
 
 add_action( 'after_setup_theme', 'arras_i18n' );
 /**
@@ -39,11 +38,11 @@ add_action( 'after_setup_theme', 'arras_i18n' );
  */
 function arras_i18n() {
 	load_theme_textdomain( 'arras', get_template_directory() . '/languages' );
-}
+} // end arras_i18n()
 
 add_action( 'after_setup_theme', 'arras_theme_support' );
 /**
- * Declares various theme supports for WP and plugins
+ * Declare various theme supports for WP and plugins
  * @return null
  */
 function arras_theme_support() {
@@ -52,7 +51,7 @@ function arras_theme_support() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'custom-background' );
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets' ) );
-}
+} // end arras_theme_support()
 
 add_action( 'after_setup_theme', 'arras_menus' );
 /**
@@ -64,14 +63,14 @@ function arras_menus() {
 		'main-menu'	=> __('Main Menu', 'arras'),
 		'top-menu'	=> __('Top Menu', 'arras')
 	));
-}
+} // end arras_menus()
 
 add_action( 'widgets_init', 'arras_add_sidebars' );
 /**
  * Register widgetized areas and update sidebar with default widgets.
+ * @return  null
  */
 function arras_add_sidebars() {
-
 	/* Default sidebars */
 	register_sidebar( array(
 		'name' => 'Primary Sidebar',
@@ -129,9 +128,9 @@ function arras_add_sidebars() {
 			'after_title' => '</h5>'
 		) );
 	}
-} // end Sidebar Registration
+} // end arras_add_sidebars()
 
-/* Load theme options (to be revamped) */
+/* Load theme options */
 require_once ARRAS_LIB . '/admin/options.php';
 require_once ARRAS_LIB . '/admin/templates/functions.php';
 arras_flush_options();
