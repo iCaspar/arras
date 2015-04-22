@@ -48,21 +48,7 @@ function arras_styles_and_scripts() {
 	// load other custom styles
 	do_action( 'arras_load_styles' );
 
-
-	// Load dynamically generated css
-	// wp_enqueue_style( 'arras-options-generated', admin_url( 'admin-ajax.php' ) . '?action=arras_options_css', 'arras-base', null, 'screen' );
-
 } // end arras_styles_and_scripts()
-
-
-
-//add_action( 'wp_ajax_arras_options_css', 'arras_options_css' );
-//add_action( 'wp_ajax_nopriv_arras_options_css', 'arras_options_css' );
-
-function arras_options_css() {
-	require get_template_directory() . '/css/options.css.php';
-	exit; // Must explicitly exit or we get an extra "0" returned into the end of our css
-}
 
 register_style_dir( get_template_directory() . '/css/styles/' );
 
