@@ -140,7 +140,36 @@ function arras_layout_columns( $coltype ) {
 	return $class;
 } // end arras_layout_columns()
 
+/**
+ * Displays html for widget area(s) below content if they're active
+ * @return null
+ */
+function arras_main_column_widgets() {
+	if ( is_active_sidebar( 'below-content-1' ) || is_active_sidebar( 'below-content-2' ) ):
+		if ( is_active_sidebar ('below-content-1' ) && is_active_sidebar( 'below-content-2' ) ) {
+			$n = '1';
+		} else {
+			$n = '2';
+		} ?>
+		<div id="below-content" class="group">
+			<?php if ( is_active_sidebar( 'below-content-1' ) ): ?>
+			<div id="bottom-content-1" class="col span_<?php echo $n;?>_of_2">
+				<ul class="group xoxo">
+					<?php dynamic_sidebar( 'below-content-1' ); ?>
+				</ul>
+			</div><!-- #bottom-content-1 -->
+			<?php endif; ?>
 
+			<?php if ( is_active_sidebar( 'below-content-2' ) ): ?>
+			<div id="bottom-content-2" class="col span_<?php echo $n;?>_of_2">
+				<ul class="group xoxo">
+					<?php dynamic_sidebar( 'below-content-2' ); ?>
+				</ul>
+			</div><!-- #bottom-content-2 -->
+			<?php endif; ?>
+		</div>
+	<?php endif;
+}
 
 function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');

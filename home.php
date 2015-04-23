@@ -100,29 +100,8 @@ if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 <?php arras_below_index_news_post() ?>
 <?php endif; ?>
 
-<?php $sidebars = wp_get_sidebars_widgets(); ?>
 
-<div id="bottom-content-1">
-	<?php if ( isset($sidebars['sidebar-4']) ) : ?>
-	<ul class="clearfix xoxo">
-    	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Bottom Content #1') ) : ?>
-		<li></li>
-        <?php endif; ?>
-	</ul>
-	<?php endif; ?>
-</div>
-
-<div id="bottom-content-2">
-	<?php if ( isset($sidebars['sidebar-5']) ) : ?>
-	<ul class="clearfix xoxo">
-    	<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Bottom Content #2') ) : ?>
-		<li></li>
-        <?php endif; ?>
-	</ul>
-	<?php endif; ?>
-</div>
-
-<?php else: ?>
+<?php arras_main_column_widgets() ?>
 
 <?php if ( arras_get_option('news_title') != '' ) : ?>
 <div class="home-title"><?php _e( arras_get_option('news_title') ) ?></div>

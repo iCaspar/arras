@@ -1,6 +1,3 @@
-<!--
-</div> #container -->
-
 
 <?php wp_reset_query() ?>
 
