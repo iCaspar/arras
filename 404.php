@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content" class="section">
+<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content() ?>
 
 <div class="single-post">
