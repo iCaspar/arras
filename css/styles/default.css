@@ -235,8 +235,21 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .pingbacks a:link, .pingbacks a:visited	{ text-decoration: none; }
 
 /* search results */
-.search-results h2      { color: #333; font-size: 12px; font-weight: 700; margin: 0 10px 0 0; padding: 6px 10px; background: url(../../images/feed-title-white.jpg) repeat-x top #EFEFEF; border: 1px solid #CCC; }
-.search-results-content { border: solid #CCC; border-width: 0 1px 1px; background: #FFF; margin: 0 10px 10px 0; padding: 10px; }
+.search-results-title {
+    border-bottom: 1px solid #CCC;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px 0;
+    padding: 6px;
+    text-transform: uppercase;
+}
+.search-results-content {
+    background: #FFF;
+    border: 1px solid #CCC;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+}
 .search-results-content .searchform, .sidebar .searchform { border: 2px solid #CCC; background: #EFEFEF; }
 
 /* author template */
