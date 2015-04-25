@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content" class="section">
+<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content() ?>
 
 <?php is_tag(); if ( have_posts() ) : ?>
@@ -23,10 +23,10 @@
     <?php else : ?>
         <h1 class="archive-title"><?php _e('Archives', 'arras') ?></h1>
     <?php endif; ?>
-    
+
 	<div id="archive-posts">
-	<?php arras_render_posts( null, arras_get_option('archive_display') ) ?>    
- 
+	<?php arras_render_posts( null, arras_get_option('archive_display') ) ?>
+
 	<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
     	<div class="navigation clearfix">
 			<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
@@ -34,7 +34,7 @@
 		</div>
     <?php } ?>
 	</div><!-- #archive-posts -->
-	
+
 <?php else : ?>
 	<?php arras_post_notfound() ?>
 <?php endif; ?>
