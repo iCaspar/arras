@@ -1,5 +1,4 @@
-
-<?php wp_reset_query() ?>
+<?php if ( '1c' !== arras_get_option( 'layout' ) ): // don't show sidebars on single column layout ?>
 
 <div id="primary" class="<?php echo arras_layout_columns( 'primary' ); ?>">
 <?php arras_above_sidebar() ?>
@@ -50,3 +49,5 @@
     </ul>
 	<?php arras_below_sidebar() ?>
 </div><!-- #secondary -->
+
+<?php endif; // end check for single column layout ?>
