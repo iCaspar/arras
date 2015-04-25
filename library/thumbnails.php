@@ -2,7 +2,7 @@
 
 add_action( 'after_setup_theme', 'arras_thumbnails' );
 function arras_thumbnails() {
-	set_post_thumbnail_size( 150, 150 );
+	add_image_size( 'square-thumbnail', 115, 115 );
 	add_image_size( 'wide-thumbnail', 890, 500 );
 }
 
@@ -11,15 +11,6 @@ function arras_thumbnails() {
  * @since 1.4.4
  */
 $arras_image_sizes = array();
-
-function arras_add_default_thumbnails() {
-
-	$single_thumbs = arras_get_single_thumbs_size();
-	arras_add_image_size( 'single-thumb', __('Single Post Thumbnail', 'arras'), $single_thumbs[0], $single_thumbs[1] );
-	arras_add_image_size( 'sidebar-thumb', __('Sidebar Widgets', 'arras'), 36, 36);
-
-	do_action('arras_add_default_thumbnails');
-}
 
 /**
  * Function to add image size into both theme system.

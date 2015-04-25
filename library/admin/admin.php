@@ -41,7 +41,6 @@ function arras_admin() {
 		}
 
 	$arras_image_sizes = array();
-//	arras_add_default_thumbnails();
 	include 'templates/options_page.php';
 		}
 	}
@@ -94,7 +93,6 @@ function arras_admin_save() {
 		// Hack!
 		$arras_options->layout = (string)$_POST['arras-layout-col'];
 		$arras_image_sizes = array();
-//		arras_add_default_thumbnails();
 
 		$arras_custom_image_sizes = array();
 		foreach ($arras_image_sizes as $id => $args) {

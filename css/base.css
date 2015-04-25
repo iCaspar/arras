@@ -502,8 +502,16 @@ th, td  { padding: 5px; }
 .single .post .entry-author address, .single-post .entry-author address	{ display: inline; }
 #main .single .post .tags, #main .single-post .tags { margin: 15px 0; padding: 15px 0 0; }
 #main .single .post .tags a, #main .single-post .tags a { padding: 0; }
-.single .post .entry-photo, .single-post .entry-photo	{ overflow: hidden; }
-.single .post .entry-photo img, .single-post .entry-photo img  { margin: 10px auto;  }
+.single .post .entry-photo,
+.single-post .entry-photo {
+	overflow: hidden;
+}
+.single .post .entry-photo img,
+.single-post .entry-photo img {
+	margin: 10px auto;
+	height: auto;
+	max-width: 100%;
+}
 
 .single-post-meta  { clear: right; float: right; margin: 1em 0 1em 1em; width: 40%; }
 
