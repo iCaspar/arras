@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content" class="section">
+<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content() ?>
 
 <div class="author-content">
@@ -21,13 +21,13 @@
 			<?php endif ?>
 		</dl>
 	</div>
-	
+
 	<h2 class="author-posts-title"><?php printf( __('Posts by %s', 'arras'), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr(get_the_author()) . '" rel="me">' . get_the_author_meta('display_name') . '</a></span>' ); ?></h2>
-	
+
 	<div id="archive-posts">
-		<?php arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option('archive_display') ) ?> 
+		<?php arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option('archive_display') ) ?>
 	</div>
-	
+
 	<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
     	<div class="navigation clearfix">
 			<div class="floatleft"><?php next_posts_link( __('&laquo; Older Entries', 'arras') ) ?></div>
