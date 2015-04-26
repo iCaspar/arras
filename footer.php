@@ -2,7 +2,7 @@
 
 	<?php arras_before_footer() ?>
 
-    <div id="footer" class="section wrap">
+    <div id="footer" class="page-footer group wrap">
 		<div class="footer-sidebar-container group">
 			<?php
 				$footer_sidebars = arras_get_option('footer_sidebars');
