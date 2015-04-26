@@ -43,7 +43,7 @@ body {
 p  { line-height: 1.5; margin: 0 0 1.25em; padding: 0; }
 
 /* HTML5 Tags for Older Browsers */
-nav, header, footer {
+nav, header, footer, figure {
 	display: block;
 }
 
@@ -504,13 +504,16 @@ th, td  { padding: 5px; }
 #main .single .post .tags a, #main .single-post .tags a { padding: 0; }
 .single .post .entry-photo,
 .single-post .entry-photo {
+	max-width: 100%;
 	overflow: hidden;
 }
 .single .post .entry-photo img,
 .single-post .entry-photo img {
-	margin: 10px auto;
 	height: auto;
+	margin: 10px auto;
+	max-height: 350px;
 	max-width: 100%;
+	width: auto;
 }
 
 .single-post-meta  { clear: right; float: right; margin: 1em 0 1em 1em; width: 40%; }
@@ -526,8 +529,19 @@ th, td  { padding: 5px; }
 
 .layout-3c-r-fixed .post .entry-photo, .layout-3c-r-fixed .single-post .entry-photo, .layout-3c-fixed .post .entry-photo, .layout-3c-fixed .single-post .entry-photo  { width: 480px; }
 
-.gallery  { clear: both; margin: 10px 0; }
-.gallery-item  { float: left; margin-right: 10px; width: 31%; text-align: center; }
+.gallery  {
+	margin: 10px 0;
+}
+.gallery:before,
+.gallery:after {
+  content: "";
+  display: table;
+}
+.gallery:after {
+  clear: both;
+}
+
+.gallery-item  { float: left; margin-right: 10px; text-align: center; }
 .gallery-icon img  { padding: 4px; }
 .gallery-caption  { font-size: 12px; }
 
