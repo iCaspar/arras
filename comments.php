@@ -9,26 +9,26 @@ if ( post_password_required() ) {
 	return;
 }
 
-$comments_by_type = separate_comments($comments);   
+$comments_by_type = separate_comments($comments);
 
 if ( have_comments() ) : ?>
 
-	<?php if ( !empty($comments_by_type['comment']) ) : ?>  
+	<?php if ( !empty($comments_by_type['comment']) ) : ?>
 	<h4 class="module-title"><?php comments_number( __('No Comments', 'arras'), __('1 Comment', 'arras'), _n('% Comment', '% Comments', get_comments_number(), 'arras') ); ?></h4>
-		<ol id="commentlist" class="clearfix">
+		<ol id="commentlist" class="comment-list group">
 			<?php wp_list_comments('type=comment&callback=arras_list_comments'); ?>
 		</ol>
 	<?php endif; ?>
-	
+
 	<div class="comments-navigation clearfix">
 		<?php paginate_comments_links() ?>
 	</div>
-	
+
 	<?php if ( !empty($comments_by_type['pings']) ) : ?>
 	<h4 class="module-title"><?php _e('Trackbacks / Pings', 'arras') ?></h4>
 	<ol class="pingbacks"><?php wp_list_comments('type=pings&callback=arras_list_trackbacks'); ?></ol>
 	<?php endif; ?>
-	
+
 <?php else: ?>
 		<?php if ('open' == $post->comment_status) : ?>
 		<h4 class="module-title"><?php _e('No Comments', 'arras') ?></h4>
@@ -45,8 +45,8 @@ if ( have_comments() ) : ?>
 	$req = get_option('require_name_email');
 	$aria_req = ( $req ? ' aria-required="true"' : '' );
 	$commenter = wp_get_current_commenter();
-	
-	comment_form( 
+
+	comment_form(
 		array(
 			'fields' => array(
 				'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'arras' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
@@ -57,8 +57,8 @@ if ( have_comments() ) : ?>
 				'<input id="url" class="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>'
 			),
 			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'arras' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>'
-		) 
-	); 
+		)
+	);
 	?>
-	
+
 <?php endif ?>

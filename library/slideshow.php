@@ -25,7 +25,7 @@ function arras_add_slideshow() {
 	<!-- Featured Slideshow -->
 	<div class="featured group">
 		<?php if ($q->post_count > 1) : ?>
-		<div id="controls">
+		<div id="controls" class="slide-controls">
 			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
 			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
 		</div>

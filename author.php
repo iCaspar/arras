@@ -6,9 +6,9 @@
 <div class="author-content">
 	<?php the_post(); // Get author information ?>
 
-	<h1 class="entry-title"><?php printf( __('About Author: %s', 'arras'), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr(get_the_author()) . '" rel="me">' . get_the_author_meta('display_name') . '</a></span>' ); ?></h1>
+	<h1 class="author-title"><?php printf( __('About Author: %s', 'arras'), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr(get_the_author()) . '" rel="me">' . get_the_author_meta('display_name') . '</a></span>' ); ?></h1>
 
-	<div class="entry-content clearfix">
+	<div class="author-entry-content group">
 		<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"><?php echo get_avatar(get_the_author_meta('ID'), 96) ?></a>
 		<dl>
 			<?php if (get_the_author_meta('user_url')) : ?>
@@ -28,12 +28,10 @@
 		<?php arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option('archive_display') ) ?>
 	</div>
 
-	<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
-    	<div class="navigation clearfix">
-			<div class="floatleft"><?php next_posts_link( __('&laquo; Older Entries', 'arras') ) ?></div>
-			<div class="floatright"><?php previous_posts_link( __('Newer Entries &raquo;', 'arras') ) ?></div>
-		</div>
-    <?php } ?>
+	<div class="navigation group">
+		<div class="floatleft"><?php next_posts_link( __('&laquo; Older Entries', 'arras') ) ?></div>
+		<div class="floatright"><?php previous_posts_link( __('Newer Entries &raquo;', 'arras') ) ?></div>
+	</div>
 
 </div>
 

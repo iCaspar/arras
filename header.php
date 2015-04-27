@@ -34,7 +34,7 @@
 
 	<?php arras_below_top_menu(); ?>
 
-	<header id="header" class="section">
+	<header id="header" class="page-header section">
 		<div id="branding" class="wrap group">
 			<div class="logo col span_2_of_3">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
@@ -65,7 +65,7 @@
 
 	<?php arras_below_nav(); ?>
 
-	<div id="body" class="section">
+	<div id="body" class="page-body">
 
 		<?php arras_above_main() ?>
 
