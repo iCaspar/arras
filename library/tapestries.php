@@ -178,7 +178,6 @@ if (!function_exists('arras_tapestry_line')) {
  * Node Based tapestry callback function.
  * @since 1.4.3
  */
-if (!function_exists('arras_tapestry_default')) {
 	function arras_tapestry_default($dep = '', $taxonomy) {
 		$tapestry_settings = get_option('arras_tapestry_default');
 		if (!is_array($tapestry_settings) ) {
@@ -195,15 +194,15 @@ if (!function_exists('arras_tapestry_default')) {
 		</div>
 		<?php
 	}
-	arras_add_tapestry( 'default', __('Node Based', 'arras'), 'arras_tapestry_default', array(
-		'before' => '<div class="hfeed posts-default group">',
-		'after' => '</div><!-- .posts-default -->'
-	) );
+arras_add_tapestry( 'default', __('Node Based', 'arras'), 'arras_tapestry_default', array(
+	'before' => '<div class="hfeed posts-default group">',
+	'after' => '</div><!-- .posts-default -->'
+) );
 
-	add_action('arras_admin_settings-layout', 'arras_admin_tapestry_default');
-	add_action('arras_admin_save', 'arras_save_tapestry_default');
-	add_action('arras_options_defaults', 'arras_defaults_tapestry_default');
-}
+add_action('arras_admin_settings-layout', 'arras_admin_tapestry_default');
+add_action('arras_admin_save', 'arras_save_tapestry_default');
+add_action('arras_options_defaults', 'arras_defaults_tapestry_default');
+
 
 function arras_admin_tapestry_default() {
 	$tapestry_settings = get_option('arras_tapestry_default');
@@ -295,7 +294,7 @@ function arras_generic_postheader($tapestry, $show_meta = false) {
 
 	if ($show_meta) {
 		$postheader .= '<span class="entry-meta"><span class="entry-comments">' . get_comments_number() . '</span>';
-		$postheader .= '<span class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</abbr></span>';
+		$postheader .= '<span class="published small" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</abbr></span>';
 	}
 
 

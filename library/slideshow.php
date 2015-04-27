@@ -37,7 +37,7 @@ function arras_add_slideshow() {
 				data-cycle-next=".cycle-next"
 				data-cycle-auto-height="16:9"
 				data-cycle-caption-plugin="caption2"
-				data-cycle-overlay-template="<div class=entry-title>{{title}}</div><div class=entry-summary>{{excerpt}}</div>">
+				data-cycle-overlay-template="<h3 class=entry-title>{{title}}</h3><div class=entry-summary>{{excerpt}}</div>">
 			<?php $count = 0; ?>
 			<div class="cycle-overlay custom"></div>
 			<?php while ($q->have_posts()) : $q->the_post(); ?>

@@ -54,21 +54,21 @@ footer, header, hgroup, menu, nav, section {
 
 /* Headings */
 h1 {
-	font-size: 25px;
-	font-size: 2.5rem;
-	margin: 10px 0;
+	font-size: 30px;
+	font-size: 3rem;
+	margin: 10px 0 0;
 }
 
 h2 {
-	font-size: 20px;
-	font-size: 2rem;
-	margin: 10px 0;
+	font-size: 22px;
+	font-size: 2.2rem;
+	margin: 10px 0 0;
 }
 
 h3 {
 	font-size: 18px;
 	font-size: 1.8rem;
-	margin: 10px 0;
+	margin: 10px 0 0;
 }
 
 h4 {
@@ -76,25 +76,27 @@ h4 {
 	font-size: 14px;
 	font-size: 1.4rem;
 	font-weight: bold;
-	margin: 10px 0 5px;
+	margin: 10px 0 0;
 }
 
 h5 {
 	font-size: 14px;
 	font-size: 1.4rem;
-	margin: 10px 0;
+	margin: 10px 0 0;
 }
 
 h6 {
 	font-size: 12px;
 	font-size: 1.2rem;
-	margin: 10px 0;
+	margin: 10px 0 0;
 }
 
 /* Paragraphs */
 p {
+	font-size: 12px;
+	font-size: 1.2rem;
 	line-height: 1.5;
-	margin: 0 0 1.25em;
+	margin: 10px 0 0;
 	padding: 0;
 }
 
@@ -102,7 +104,6 @@ code {
 	background: #EAEAEA;
 	color: #333;
 	font-family: Consolas, Monaco, Courier, monospace;
-	font-size: 11px;
 	margin: 1px 0;
 	padding: 1px 3px;
 }
@@ -136,7 +137,6 @@ a img {
 /* Lists */
 dl {
 	margin: 10px 0;
-	font-size: 14px;
 }
 
 dl dt {
@@ -200,8 +200,6 @@ table caption {
 	background: #efefef;
 	border: 1px solid #CCC;
 	color: #333;
-	font-size: 12px;
-	font-size: 1.2rem;
 	font-weight: bold;
 	margin: 0;
 	padding: 5px 9px;
@@ -218,7 +216,6 @@ input[type=submit] {
 	font-family: Helvetica, Arial, sans-serif;
 	border: 1px solid #CCC;
 	padding: 5px 10px;
-	font-size: 12px;
 	color: #000;
 	font-weight: 700;
 	-moz-border-radius: 3px;
@@ -287,8 +284,8 @@ img.alignleft {
 }
 
 .wp-caption .wp-caption-text {
-	font-size: 11px;
-	font-size: 1.1rem;
+	font-size: 10px;
+	font-size: 1rem;
 	margin: 0;
 	padding: 0 4px 4px;
 }
@@ -347,7 +344,10 @@ img.alignleft {
 
 /* common classes */
 
-
+.small {
+	font-size: 10px;
+	font-size: 1rem;
+}
 
 .tags a:link, .tags a:visited	{ text-decoration: none; font-weight: 700; padding: 0 5px 3px; line-height: 1.3em; display: inline-block; }
 .tags a:hover					{ text-decoration: underline; }
@@ -378,15 +378,11 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .site-title	{
-	font-size: 35px;
-	font-size: 3.5rem;
 	font-weight: bold;
 	margin: 45px 0;
 }
 
 .site-description {
-	font-size: 20px;
-	font-size: 2rem;
 	margin: 20px 0;
 }
 
@@ -440,8 +436,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     .top-menu a:visited {
 	    color: #aaa;
 	    display: block;
-	    font-size: 13px;
-	    font-size: 1.3rem;
 	    margin: 0 10px;
 	    text-decoration: none;
 	}
@@ -499,8 +493,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     .main-menu a:visited {
 	    color: #aaa;
 	    display: block;
-	    font-size: 18px;
-	    font-size: 1.8rem;
+	    font-size: 16px;
+	    font-size: 1.6rem;
 	    margin: 0 10px;
 	    text-decoration: none;
 	}
@@ -561,8 +555,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     clip: auto;
     color: #21759b;
     display: block;
-    font-size: 14px;
-    font-size: 1.4rem;
     font-weight: bold;
     height: auto;
     left: 5px;
@@ -593,7 +585,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 /* Common classes */
 
-.entry-content  { margin: 10px 0; font-size: 12px; line-height: 1.5em; overflow: hidden; }
+.entry-content  { margin: 10px 0; line-height: 1.5em; overflow: hidden; }
 .entry-content ul, .entry-content ol  { margin: 0 20px; padding: 0 0 1.5em; }
 .entry-content ul ul, .entry-content ol ol, .entry-content ol ul, .entry-content ul ol  { padding: 0; }
 .entry-content blockquote  { font-style: italic; }
@@ -623,11 +615,10 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .widgetcontainer		{ border: solid #CCC; border-width: 1px; background: repeat-x #FFF; line-height: 1.4em; }
 .widgetcontainer a		{ font-weight: 700; }
-.widgetcontainer .excerpt	{ font-size: 11px; margin: 5px 0; }
+.widgetcontainer .excerpt	{ margin: 5px 0; }
 
 .widgettitle {
 	color: #333;
-	font-size: 12px;
 	font-weight: 700;
 	margin: -10px -10px 10px;
 	padding: 5px 10px;
@@ -642,7 +633,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .sidebar-read-more:visited {
 	text-transform: uppercase;
 	font-weight: normal;
-	font-size: 10px;
 	padding: 2px 4px;
 	margin: 5px 0 0;
 	display: inline-block;
@@ -663,7 +653,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .multi-sidebar .widgetcontainer	{ background: #FFF; border: 1px solid #CCC; }
 
 .multi-sidebar .widgetcontainer li, .featured-stories li,  .related-posts li	{ border-bottom: 1px dotted #CCC; }
-.multi-sidebar .recentcomments .author	{ color: #666; font-size: 11px; }
+.multi-sidebar .recentcomments .author	{ color: #666; }
 
 .below-content-widgets .widgettitle {
 	background: #f0f0f0;
@@ -732,17 +722,12 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     bottom: 0;
     color: #fff;
     height: 25%;
+    line-height: 1.2;
     opacity: 0.7;
     padding: 15px;
     position: absolute;
     width: 100%;
     z-index: 600;
-}
-.cycle-overlay .entry-title {
-	font-size: 18px;
-	font-size: 1.8rem;
-	font-weight: bold;
-	padding-bottom: 10px;
 }
 
 /* Tapestries */
@@ -786,14 +771,16 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	right: 5px;
 }
 
-.posts-default .entry {
-  font-size: 12px;
-}
 .posts-default img		{ background: #111; }
-.posts-default .entry-title	{ font-weight: 700; font-size: 14px;  }
 .posts-default .entry-summary, .posts-quick .entry-summary	{ color: #333; }
 .posts-default .entry-thumbnails-link	{ border: 1px solid #E1E1E1; background: #FFF; }
-.posts-default .published { text-transform: uppercase; font-size: 10px; color: #999; border-bottom: none; }
+
+.posts-default .published {
+	text-transform: uppercase;
+	color: #999;
+	border-bottom: none;
+}
+
 .posts-default .entry-meta, .posts-quick .entry-meta	{ color: #CCC; background: #000; height: 25px; font-weight: 700; opacity: 0.7; }
 .posts-default .entry-meta a:link, .posts-default .entry-meta a:visited, .posts-quick .entry-meta a:link, .posts-quick .entry-meta a:visited	{ color: #FFF; text-decoration: none; }
 
@@ -816,6 +803,12 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	padding: 4px;
 	width: 115px;
 }
+
+.posts-quick .entry-thumbnails {
+	border: 1px solid #CCC;
+	background: #FFF;
+}
+
 .posts-quick .entry-thumbnails img {
 	display: block;
 	height: 100%;
@@ -834,17 +827,17 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	right: 5px;
 }
 
-.posts-quick .entry-title	{ font-weight: 700; font-size: 16px; }
-.posts-quick .entry-summary	{ font-size: 12px; }
-.posts-quick .entry-thumbnails	{ border: 1px solid #CCC; background: #FFF; }
-.posts-quick .entry-info { font-size: 11px; color: #666; border: none; }
+.posts-quick .entry-info {
+	color: #666;
+	border: none;
+}
+
 .posts-quick .entry-info abbr { text-decoration: none; border: none; }
 
 .posts-quick .quick-read-more a:link,
 .posts-quick .quick-read-more a:visited	{
 	padding: 5px 10px;
 	margin: 3px 0;
-	font-size: 12px;
 	background: url(../../images/feed-title-white.jpg) top repeat-x #EFEFEF;
 	color: #000; text-decoration: none;
 	border: 1px solid #CCC;
@@ -859,24 +852,39 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 /* Tapestry Line */
 
-.posts-line  { margin: 0 10px 10px 0; padding: 10px; line-height: 1.4em; }
+.posts-line {
+	margin: 0 10px 10px 0;
+	padding: 0 10px 10px;
+	line-height: 25px;
+}
+
 .posts-line	li  {
+	border-bottom: 1px solid #EEE;
 	list-style: none;
 	padding: 7px 0;
 }
-.posts-line .entry-cat  { float: left; width: 100px; overflow: hidden; }
-.posts-line .entry-title  { float: left; margin: 0; max-width: 450px; line-height: 1.4em; }
-.layout-3c-fixed .posts-line .entry-title, .layout-3c-r-fixed .posts-line .entry-title  { max-width: 300px; }
-.posts-line .entry-comments	 { float: right; }
+.posts-line .entry-cat  {
+	color: #848485;
+	float: left;
+	width: 100px;
+	overflow: hidden;
+}
 
-.posts-line				{ background: #FFF; border: 1px solid #CCC; }
-.posts-line	li			{ padding: 7px 0; border-bottom: 1px solid #EEE; }
-.posts-line .entry-cat	{ font-size: 11px; color: #848485; }
-.posts-line .entry-title	{ font-size: 12px; }
-.posts-line .entry-comments	{ font-size: 11px; color: #848485; }
+.posts-line .entry-title  {
+	float: left;
+	margin: 0;
+	max-width: 450px;
+}
 
+.posts-line .entry-comments	 {
+	color: #848485;
+	float: right;
+}
 
-
+.posts-line	{
+	background: #FFF;
+	border: 1px solid #CCC;
+}
 
 
 /** --------------------------------------------------------------------
@@ -889,12 +897,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .archive-title {
 	border-bottom: 1px solid #DDD;
 	color: #333;
-	font-size: 14px;
-	font-size: 1.4rem;
-	font-weight: bold;
 	margin: 0 15px 10px 0;
 	padding: 0 3px 8px;
-	text-transform: uppercase;
 }
 
 .author-content	{
@@ -910,11 +914,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .home-title {
     border-bottom: 1px solid #CCC;
     color: #333;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 6px;
-    text-transform: uppercase;
+    font-variant: small-caps;
+    margin: 25px 0 10px;
 }
 
 /* Search Template */
@@ -922,7 +923,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .search-results-title {
     border-bottom: 1px solid #CCC;
     color: #333;
-    font-size: 16px;
     font-weight: bold;
     margin: 10px 0;
     padding: 6px;
@@ -950,7 +950,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .searchform .s {
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 14px;
 	border: none; background: #efefef;
 	padding: 8px 5px;
 	margin: 0;
@@ -986,8 +985,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .single .post .entry-title {
-	font-size: 22px;
-	font-size: 2.2rem;
 	font-weight: bold;
 	line-height: 1.3em;
 	margin: 15px 0 5px;
@@ -997,8 +994,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .single .post .entry-info {
 	border-bottom: 1px dotted #CCC;
 	color: #848485;
-	font-size: 11px;
-	font-size: 1.1rem;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	text-transform: uppercase;
@@ -1067,7 +1062,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .single .post .tags strong {
 	text-transform: uppercase;
-	font-size: 11px;
 }
 
 .single .post .entry-photo img, .single-post .entry-photo img	{ border: 1px solid #CCC; }
@@ -1076,7 +1070,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	margin-top: 20px;
 	display: inline-block;
 	color: #FFF;
-	font-size: 14px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -1092,7 +1085,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .comment-reply-title {
 	line-height: 1em;
 	color: #333;
-	font-size: 12px;
 	font-weight: 700;
 	margin: 0 10px 0 0;
 	padding: 7px 10px;
@@ -1129,7 +1121,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .gallery-item  { float: left; margin-right: 10px; text-align: center; }
 .gallery-icon img  { padding: 4px; }
-.gallery-caption  { font-size: 12px; }
 
 .about-author  { padding: 10px; margin: 0 0 10px; line-height: 1.5em; }
 .about-author .avatar  { margin-bottom: 0; }
@@ -1171,12 +1162,11 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 
 .comment-list .avatar  { border: 1px solid #CCC; padding: 1px; float: left; margin: 0 5px 10px 0; }
-.comment-list cite  { font-weight: 700; font-style: normal; line-height: 20px; font-size: 14px; }
+.comment-list cite  { font-weight: 700; font-style: normal; line-height: 20px; }
 
 .comment-list .comment-node  { background: #FFF; border: 1px solid #CCC; }
 .comment-list .children .comment-node  { background: #F5F5F5; }
-.comment-list .comment-content  { font-size: 12px; }
-.comment-list .comment-meta, .comment-list .comment-meta abbr	{ border: none; text-decoration: none; color: #999; font-size: 11px; }
+.comment-list .comment-meta, .comment-list .comment-meta abbr	{ border: none; text-decoration: none; color: #999; }
 .comment-list .comment-controls	{ padding: 15px 10px; font-weight: 700; float: right; }
 
 .comment-list .comment-controls a:link,
@@ -1252,8 +1242,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .comment-form textarea	{ display: block; font: 14px 'Lucida Grande',Arial,Helvetica,sans-serif; width: 90%; margin-bottom: 5px; }
 
 .comment-reply-title a {
-	font-size: 11px;
-	font-size: 1.1rem;
 	padding: 0 10px;
 }
 
@@ -1294,8 +1282,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .page-footer .widgettitle {
 	background: none;
 	border: none;
-	font-size: 14px;
-	font-size: 1.4rem;
 	color: #444;
 	padding: 0 0 10px;
 	letter-spacing: -1px;
@@ -1304,14 +1290,10 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .page-footer .widgetcontent {
 	border: none;
-	font-size: 12px;
-	font-size: 1.2rem;
 	padding: 0;
 }
 
 .footer-message	{
-	font-size: 11px;
-	font-size: 1.1rem;
 	margin: 0;
 	padding: 10px 15px 0;
 }
