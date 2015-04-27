@@ -50,7 +50,7 @@
 <div id="secondary" class="<?php echo arras_layout_columns( 'secondary' ); ?>">
     <ul class="xoxo">
         <!-- Widgetized sidebar, if you have the plugin installed.  -->
-        <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Secondary Sidebar #1') ) : ?>
+        <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Secondary Sidebar') ) : ?>
 		<li></li>
         <?php endif; ?>
     </ul>
