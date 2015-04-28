@@ -54,12 +54,7 @@ echo arras_form_dropdown('arras-style', $styles, arras_get_option('style') ) ?><
 
 <tr valign="top">
 	<th scope="row"><label for "arras-header-color"><?php _e('Custom Header Color', 'arras') ?></label></th>
-	<td>
-		You can enter any hexidecimal color code: #
-		<?php echo arras_form_input(array('name' => 'arras-header-color', 'id' => 'arras-header-color', 'class' => 'code', 'size' => '8', 'value' => arras_get_option('header_color') )); ?>
-		<br><div id="colorbox" style="height: 30px; width: 80px; border: 1px solid #000; background: #<?php echo arras_get_option('header_color');?>"></div>
-		<script>jQuery('#arras-header-color').change(function(){jQuery('#colorbox').css('background-color', ('#' + jQuery('#arras-header-color').attr('value')))});</script>
-	</td>
+	<td><input name="arras-header-color" type="text" value="<?php echo arras_get_option( 'header_color' );?>" class="wp-color-picker-field" /></td>
 </tr>
 
 </table>

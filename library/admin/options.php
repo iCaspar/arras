@@ -207,7 +207,7 @@ class ArrasOptions {
 			$this->style = (string)$_POST['arras-style'];
 		}
 
-		$this->header_color = ($_POST['arras-header-color']);
+		$this->header_color = arras_check_color( $_POST['arras-header-color'] );
 
 		$this->auto_thumbs = isset($_POST['arras-thumbs-auto']);
 	}
@@ -312,5 +312,14 @@ function arras_get_default_option( $name ) {
 	$arras_options->default_options();
 	if ( isset( $arras_options->defaults[$name] ) ) return $arras_options->defaults[$name];
 }
-/* End of file options.php */
-/* Location: ./admin/options.php */
+
+function arras_check_color( $color ) {
+	if ( '' === $color )
+		return '';
+
+	// 3 or 6 hex digits, or the empty string.
+	if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) )
+		return $color;
+
+	return null;
+}

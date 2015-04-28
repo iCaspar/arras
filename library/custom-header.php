@@ -98,7 +98,7 @@ function arras_header_style() {
     $header_color = arras_get_option( 'header_color' );
     ?>
     #header {
-      background-color: #<?php echo esc_attr( $header_color ); ?>;
+      background-color: <?php echo esc_attr( $header_color ); ?>;
     }
   <?php } ?>
   </style>
