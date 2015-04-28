@@ -301,6 +301,36 @@ img.alignleft {
 	background: #efefef;
 }
 
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
+    background-color: #f1f1f1;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto;
+    color: #21759b;
+    display: block;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
 
 /*  Alignments
  * ------------------------------------------------------------------ */
@@ -533,38 +563,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .quick-nav .youtube		{ background: url(../images/social/youtube.png) no-repeat center center; }
 
 
-/*--------------------------------------------------------------
-  Accessibility (Required for WordPress.org theme repository)
---------------------------------------------------------------*/
-/* Text meant only for screen readers */
-.screen-reader-text {
-	clip: rect(1px, 1px, 1px, 1px);
-	position: absolute;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-}
-
-.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
-    background-color: #f1f1f1;
-    background-clip: padding-box;
-    /* stops bg color from leaking outside the border: */
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-    clip: auto;
-    color: #21759b;
-    display: block;
-    font-weight: bold;
-    height: auto;
-    left: 5px;
-    line-height: normal;
-    padding: 15px 23px 14px;
-    text-decoration: none;
-    top: 5px;
-    width: auto;
-    z-index: 100000;
-}
 
 /* Header Widgets */
 .headerwidgets {
@@ -725,7 +723,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     background: #000;
     bottom: 0;
     color: #fff;
-    height: 25%;
     line-height: 1.2;
     opacity: 0.7;
     padding: 15px;
@@ -739,6 +736,9 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	left: 0;
 	right: 0;
 	top: 0;
+}
+.cycle-overlay .entry-title {
+	margin: 0;
 }
 
 /* Tapestries */
