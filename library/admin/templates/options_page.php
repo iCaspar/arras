@@ -27,7 +27,6 @@
 <?php include 'arras-home.php' ?>
 <?php include 'arras-layout.php' ?>
 <?php include 'arras-design.php' ?>
-<?php include 'arras-thumbnails.php' ?>
 <?php include 'posttype_page.php' ?>
 <?php include 'taxonomy_page.php' ?>
 <?php include 'arras-tools.php' ?>
