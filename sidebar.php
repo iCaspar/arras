@@ -47,7 +47,7 @@
 		</ul>
 	</div><!-- #primary -->
 
-	<?php if ( strpos( arras_get_option( 'layout' ), '2c' ) ): ?>
+	<?php if ( false !== strpos( arras_get_option( 'layout' ), '3c' ) ): ?>
 		<div id="secondary" class="<?php echo arras_layout_columns( 'secondary' ); ?>">
 		    <ul class="xoxo">
 		        <!-- Widgetized sidebar, if you have the plugin installed.  -->
