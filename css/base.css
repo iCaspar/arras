@@ -616,10 +616,10 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 		width: 98%;
 		border-radius: 4px 0 4px 4px;
 	}
-	.nav ul ul {
+	.nav ul ul,
+	.nav ul ul ul {
 		background: #f5f5f5;
 		width: 75%;
-		float: left;
 	}
 	.nav .main-menu a,
 	.nav .main-menu a:link,
@@ -637,6 +637,10 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 	.nav:hover ul {
 		display: block;
+	}
+
+	.nav ul ul li:hover > ul {
+    	left: auto;
 	}
 }
 
