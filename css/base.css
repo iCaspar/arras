@@ -422,7 +422,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 --------------------------------------------------------------*/
 
 .top-menu {
-	border-bottom: 1px solid #333;
 	clear: both;
 	line-height: 2;
 	height: 33px;
@@ -477,7 +476,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .nav {
 	background-color: #322c2c;
-	height: 40px;
 	font-variant: small-caps;
 }
 
