@@ -38,7 +38,7 @@
 #arras-logo-field		{ margin: 0 0 1em; }
 
 #regenthumbsbar			{ border: 1px solid #CCC; }
-.ui-progressbar-value   { height: 23px; } 
+.ui-progressbar-value   { height: 23px; }
 
 .arras-options-tabcover	{ background: #8a8a8a; height: 5px; }
 .arras-options-wrapper  { padding: 0 10px; }
@@ -81,7 +81,8 @@ html[xmlns] .clearfix, html[xmlns] .ui-helper-clearfix  { display: block; }
 .ui-multiselect-header .ui-icon { float:left }
 .ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
 
-.ui-multiselect-options { display:none; padding:3px; position:relative; z-index:10000 }
+.ui-multiselect { background: #fff; }
+.ui-multiselect-options { background: #fff; display:none; padding:3px; position:relative; z-index:10000 }
 .ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:scroll }
 .ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:3px }
 .ui-multiselect-checkboxes label input { position:relative; top:-1px; margin-right:5px; }
