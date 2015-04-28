@@ -349,6 +349,9 @@ img.alignleft {
 
 .clearfix:after  { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
 
+.site {
+	position: relative;
+}
 
 .wrap {
 	margin: auto;
@@ -479,14 +482,26 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	font-variant: small-caps;
 }
 
+.menu-icon {
+	display: none;
+	width: 30px;
+	height: 30px;
+	background: #efefef url(../images/mobile-menu-icon.png) center;
+	background-size: 95%;
+	border-radius: 4px;
+	margin: 5px;
+}
+
+
 .main-menu {
-  clear: both;
-  line-height: 2;
+	clear: both;
+	line-height: 2;
 }
 	.main-menu ul {
 	    list-style: none;
 	    margin: 0;
 	    padding-left: 0;
+		z-index: 99999;
 	}
     .main-menu ul ul {
 		background-color: #322c2c;
@@ -495,7 +510,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 		position: absolute;
 		top: 99%;
 		left: -999em;
-		z-index: 99999;
 	}
 	.main-menu ul ul ul {
 		background-color: #383838;
@@ -531,8 +545,13 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 		text-shadow: 1px 1px #999999;
 	}
 
-.navigation  { margin: 0 10px 20px 0; text-align: center; }
+/* post and comment navigation */
+.navigation  {
+	margin: 0 10px 20px 0;
+	text-align: center;
+}
 
+/* Quick Nav (Social Media) */
 .quick-nav li {
 	list-style: none;
 	float: left;
@@ -560,7 +579,66 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .quick-nav .flickr		{ background: url(../images/social/flickr.png) no-repeat center center; }
 .quick-nav .youtube		{ background: url(../images/social/youtube.png) no-repeat center center; }
 
+/* Main Nav on small screens */
+@media only screen and (max-width : 768px) {
 
+	.top-menu {
+		display: none;
+	}
+
+	.top-banner {
+		margin-top: 40px;
+	}
+
+	.nav {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+	.quick-nav {
+		display: none !important;
+	}
+
+	.menu-icon {
+		display: block;
+	}
+
+	.nav ul, .nav:active ul {
+		display: none;
+		position: absolute;
+		padding: 20px;
+		background: #f5f5f5;
+		border: 1px solid #ccc;
+		left: 5px;
+		right: 5px;
+		top: 0;
+		width: 98%;
+		border-radius: 4px 0 4px 4px;
+	}
+	.nav ul ul {
+		background: #f5f5f5;
+		width: 75%;
+		float: left;
+	}
+	.nav .main-menu a,
+	.nav .main-menu a:link,
+	.nav .main-menu a:hover,
+	.nav .main-menu a:visited {
+		color: #333;
+	}
+
+	.nav li {
+		text-align: left;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+	}
+
+	.nav:hover ul {
+		display: block;
+	}
+}
 
 /* Header Widgets */
 .headerwidgets {

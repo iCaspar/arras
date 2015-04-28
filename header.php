@@ -35,7 +35,7 @@
 	<?php arras_below_top_menu(); ?>
 
 	<header id="header" class="page-header section">
-		<div id="branding" class="wrap group">
+		<div id="branding" class="top-banner wrap group">
 			<div class="logo col span_2_of_3">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 				<?php if (arras_get_option( 'logo' ) != 0 ) :
@@ -57,9 +57,10 @@
 	<?php arras_above_nav(); ?>
 
 	<div id="main-nav-section" class="nav section group">
-		<nav id="primary-nav" class="wrap">
+		<nav id="primary-nav" class="main-nav wrap">
 			<?php arras_menu( 'main-menu', true, 3, 'col span_3_of_4' ); ?>
 			<?php arras_social_nav(); ?>
+			<a href="#" class="menu-icon"></a>
 		</nav>
 	</div>
 
