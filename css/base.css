@@ -709,6 +709,10 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	z-index: 0;
 }
 .cycle-slideshow .cycle-slide {
+	bottom: 0;
+	right: 0;
+}
+.cycle-slideshow .cycle-slide img {
 	height: 100%;
 	width: 100%;
 }
@@ -728,6 +732,13 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     position: absolute;
     width: 100%;
     z-index: 600;
+}
+.cycle-overlay a {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
 }
 
 /* Tapestries */

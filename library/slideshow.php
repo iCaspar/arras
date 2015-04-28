@@ -29,7 +29,8 @@ function arras_add_slideshow() {
 			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
 			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
 		</div>
-		<div class="cycle-slideshow"
+		<div id="featured-slideshow" class="cycle-slideshow"
+				data-cycle-slides='> a'
 				data-cycle-swipe=true
 				data-cycle-swipe-fx=scrollHorz
 				data-cycle-speed=1000
@@ -37,11 +38,11 @@ function arras_add_slideshow() {
 				data-cycle-next=".cycle-next"
 				data-cycle-auto-height="16:9"
 				data-cycle-caption-plugin="caption2"
-				data-cycle-overlay-template="<h3 class=entry-title>{{title}}</h3><div class=entry-summary>{{excerpt}}</div>">
+				data-cycle-overlay-template="<a href={{link}}><h3 class=entry-title>{{title}}</h3><div class=entry-summary>{{excerpt}}</div>">
 			<?php $count = 0; ?>
 			<div class="cycle-overlay custom"></div>
 			<?php while ($q->have_posts()) : $q->the_post(); ?>
-				<?php echo arras_make_slide('featured-slideshow-thumb'); ?>
+				<?php echo arras_make_slide(); ?>
 			<?php arras_blacklist_duplicates(); // required for duplicate posts function to work. ?>
 			<?php $count++; endwhile; ?>
 		</div>
@@ -53,8 +54,14 @@ add_action('arras_above_content', 'arras_add_slideshow');
 
 function arras_make_slide() {
 	global $post;
-	$slide = arras_get_thumbnail('featured-slideshow-thumb');
-	$slide_data = ' data-title="' . get_the_title() . '" data-cycle-excerpt="' . get_the_excerpt() . '"';
-	$slide = substr_replace( $slide, $slide_data, strpos( $slide, ' />' ), 0 );
+
+	$slide_data = ' data-title="' . get_the_title() .
+				  '" data-cycle-excerpt="' . get_the_excerpt() .
+				  '" data-cycle-link="' . get_the_permalink() . '"';
+
+	$slide = '<a href="' . get_the_permalink() . '" ' . $slide_data . '>'; // link tag with slide data
+	$slide .= arras_get_thumbnail( 'wide-thumbnail' ); // image
+	$slide .= '</a>'; // close link tag
+
 	return $slide;
 }
