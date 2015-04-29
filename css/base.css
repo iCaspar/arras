@@ -54,46 +54,39 @@ footer, header, hgroup, menu, nav, section {
 
 /* Headings */
 h1 {
-	font-size: 30px;
 	font-size: 3rem;
 	margin: 10px 0 0;
 }
 
 h2 {
-	font-size: 22px;
 	font-size: 2.2rem;
 	margin: 10px 0 0;
 }
 
 h3 {
-	font-size: 18px;
 	font-size: 1.8rem;
 	margin: 10px 0 0;
 }
 
 h4 {
 	color: #333;
-	font-size: 14px;
 	font-size: 1.4rem;
 	font-weight: bold;
 	margin: 10px 0 0;
 }
 
 h5 {
-	font-size: 14px;
 	font-size: 1.4rem;
 	margin: 10px 0 0;
 }
 
 h6 {
-	font-size: 12px;
 	font-size: 1.2rem;
 	margin: 10px 0 0;
 }
 
 /* Paragraphs */
 p {
-	font-size: 12px;
 	font-size: 1.2rem;
 	line-height: 1.5;
 	margin: 10px 0 0;
@@ -284,7 +277,6 @@ img.alignleft {
 }
 
 .wp-caption .wp-caption-text {
-	font-size: 10px;
 	font-size: 1rem;
 	margin: 0;
 	padding: 0 4px 4px;
@@ -378,7 +370,6 @@ img.alignleft {
 /* common classes */
 
 .small {
-	font-size: 10px;
 	font-size: 1rem;
 }
 
@@ -535,7 +526,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     .main-menu a:visited {
 	    color: #aaa;
 	    display: block;
-	    font-size: 16px;
 	    font-size: 1.6rem;
 	    margin: 0 10px;
 	    text-decoration: none;
@@ -1337,7 +1327,13 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 
-.nocomments				{ background: #FFF; border: solid #CCC; border-width: 0 1px 1px; padding: 15px 10px; margin: 0 10px 10px 0; font-size: 12px; }
+.nocomments	{
+	background: #FFF;
+	border: solid #CCC;
+	border-width: 0 1px 1px;
+	padding: 15px 10px;
+	margin: 0 10px 10px 0;
+}
 
 
 
