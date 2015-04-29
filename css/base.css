@@ -1352,9 +1352,19 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 
 /* Widgets */
-.ui-tabs-hide, .hide  { display: none; }
 .xoxo  { padding: 0; }
 
+/* Featured Articles Widget */
+.widget-thumb {
+	float: left;
+	margin: 4px 4px 4px 0;
+	max-width: 115px;
+	width: 30%;
+}
+
+.widget-thumb a {
+	width: 100%;
+}
 
 /* Footer */
 
