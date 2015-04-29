@@ -1,16 +1,10 @@
-<?php if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); } ?>
-<?php global $arras_layouts, $arras_registered_style_dirs; ?>
-
 <?php
-$styles = array();
-foreach ($arras_registered_style_dirs as $style_dir) {
-	$style_dir = dir($style_dir);
-	if ($style_dir) {
-		while(($file = $style_dir->read()) !== false) {
-			if(is_valid_arras_style($file)) $styles[substr($file, 0, -4)] = $file;
-		}
-	}
-}
+/**
+ * Desplays Arras Options Page's Design tab
+ * (Slated for removal)
+ */
+if ( ! defined( 'ABSPATH' ) ) die( 'No, Thank you!' ); // Exit if accessed directly
+global $arras_color_schemes;
 ?>
 
 <div id="design" class="padding-content">
@@ -19,18 +13,10 @@ foreach ($arras_registered_style_dirs as $style_dir) {
 <table class="form-table">
 
 <tr valign="top">
-<th scope="row"><label for="arras-layout-col"><?php _e('Overall Layout', 'arras') ?></label></th>
-<td><?php echo arras_form_dropdown('arras-layout-col', $arras_layouts, arras_get_option('layout')) ?><br />
-<?php echo arras_form_checkbox('arras-reset-thumbs', 'show', false, 'id="arras-reset-thumbs"') . ' ';
-	_e('Reset thumbnail sizes accordingly based on selected layout.', 'arras');
-?></td>
-</tr>
-
-<tr valign="top">
 <th scope="row"><label for="arras-style"><?php _e('Default Style', 'arras') ?></label></th>
 <td>
 <?php if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
-echo arras_form_dropdown('arras-style', $styles, arras_get_option('style') ) ?><br />
+echo arras_form_dropdown('arras-style', $arras_color_schemes, arras_get_option('style') ) ?><br />
 <?php printf( __('Alternate stylesheets can be placed in %s.', 'arras'), '<code>wp-content/themes/' .get_stylesheet(). '/css/styles/</code>' );
 } else {
 	echo '<span class="grey">' . __('The developer of the child theme has disabled alternate stylesheets.', 'arras') . '</span>';

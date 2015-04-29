@@ -14,9 +14,8 @@
 	<li><a href="#home"><?php _e('Home', 'arras') ?></a></li>
 	<li><a href="#layout"><?php _e('Layout', 'arras') ?></a></li>
 	<li><a href="#design"><?php _e('Design', 'arras') ?></a></li>
-	<li><a href="#thumbnails"><?php _e('Thumbnails', 'arras') ?></a></li>
-  <li><a href="#posttype"><?php _e('Post Types', 'arras') ?></a></li>
-  <li><a href="#taxonomies"><?php _e('Taxonomies', 'arras') ?></a></li>
+	<li><a href="#posttype"><?php _e('Post Types', 'arras') ?></a></li>
+	<li><a href="#taxonomies"><?php _e('Taxonomies', 'arras') ?></a></li>
 	<li><a href="#tools"><?php _e('Tools', 'arras') ?></a></li>
 </ul>
 

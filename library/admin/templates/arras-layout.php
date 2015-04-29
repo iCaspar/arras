@@ -1,5 +1,12 @@
-<?php if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); } ?>
 <?php
+/**
+ * Desplays Arras Options Page's Layout tab
+ * (Slated for removal)
+ */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+global $arras_layouts;
+
 $cats = array('0' => __('All Categories', 'arras') );
 foreach( get_categories('hide_empty=0') as $c ) {
 	$cats[(string)$c->cat_ID] = $c->cat_name;
@@ -10,6 +17,14 @@ foreach( get_categories('hide_empty=0') as $c ) {
 
 <h3><?php _e('Excerpts', 'arras') ?></h3>
 <table class="form-table">
+
+<tr valign="top">
+<th scope="row"><label for="arras-layout-col"><?php _e('Overall Layout', 'arras') ?></label></th>
+<td><?php echo arras_form_dropdown('arras-layout-col', $arras_layouts, arras_get_option('layout')) ?><br />
+<?php echo arras_form_checkbox('arras-reset-thumbs', 'show', false, 'id="arras-reset-thumbs"') . ' ';
+	_e('Reset thumbnail sizes accordingly based on selected layout.', 'arras');
+?></td>
+</tr>
 
 <tr valign="top">
 <th scope="row"><label for="arras-layout-limit-words"><?php _e('Excerpt Limit', 'arras') ?></label></th>

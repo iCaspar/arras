@@ -141,6 +141,7 @@ require_once ARRAS_LIB . '/custom-header.php';
 require_once ARRAS_LIB . '/deprecated.php';
 require_once ARRAS_LIB . '/filters.php';
 require_once ARRAS_LIB . '/slideshow.php';
+require_once ARRAS_LIB . '/scripts.php';
 require_once ARRAS_LIB . '/styles.php';
 require_once ARRAS_LIB . '/tapestries.php';
 require_once ARRAS_LIB . '/template.php';
