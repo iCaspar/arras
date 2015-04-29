@@ -15,13 +15,8 @@ global $arras_color_schemes;
 <tr valign="top">
 <th scope="row"><label for="arras-style"><?php _e('Default Style', 'arras') ?></label></th>
 <td>
-<?php if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
-echo arras_form_dropdown('arras-style', $arras_color_schemes, arras_get_option('style') ) ?><br />
-<?php printf( __('Alternate stylesheets can be placed in %s.', 'arras'), '<code>wp-content/themes/' .get_stylesheet(). '/css/styles/</code>' );
-} else {
-	echo '<span class="grey">' . __('The developer of the child theme has disabled alternate stylesheets.', 'arras') . '</span>';
-}
-?>
+	<?php echo arras_form_dropdown('arras-style', $arras_color_schemes, arras_get_option('style') ) ?><br />
+	<?php _e( 'If you need additional styles, please use a child theme.' ); ?>
 </td>
 </tr>
 

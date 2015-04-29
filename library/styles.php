@@ -17,6 +17,10 @@ function arras_styles() {
 
 	wp_enqueue_style( 'arras-base', get_template_directory_uri() . '/css/base.css', false, '3.0', 'all' );
 
+	if ( is_child_theme() ) {
+		wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), false, 'all' );
+	}
+
 } // end arras_styles_and_scripts()
 
 // register_style_dir( get_template_directory() . '/css/styles/' );
