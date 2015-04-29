@@ -54,7 +54,7 @@ echo arras_form_dropdown('arras-style', $styles, arras_get_option('style') ) ?><
 
 <tr valign="top">
 	<th scope="row"><label for "arras-header-color"><?php _e('Custom Header Color', 'arras') ?></label></th>
-	<td><input name="arras-header-color" type="text" value="<?php echo arras_get_option( 'header_color' );?>" class="wp-color-picker-field" /></td>
+	<td><input name="arras-header-color" type="text" value="<?php echo esc_attr( arras_get_option( 'header_color' ) );?>" class="wp-color-picker-field" /></td>
 </tr>
 
 </table>
