@@ -408,11 +408,13 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .site-title	{
+	color: #ffffff;
 	font-weight: bold;
 	margin: 45px 0;
 }
 
 .site-description {
+	color: #ffffff;
 	margin: 20px 0;
 }
 
@@ -420,6 +422,11 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /*--------------------------------------------------------------
   Menus
 --------------------------------------------------------------*/
+
+.primary-utility {
+	background: #111;
+	color: #aaa;
+}
 
 .top-menu {
 	clear: both;
@@ -456,7 +463,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 		float: left;
     	position: relative;
     }
-    	.top-menu li:last-child {
+    .top-menu li:last-child,
+    .top-menu li li {
     		border: none;
     	}
     .top-menu a,
@@ -652,12 +660,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
   margin-bottom: 0;
 }
 
-/* Utility Areas */
-.primary-utility {
-	background: #111;
-	color: #aaa;
-}
-
 /* Common classes */
 
 .entry-content  { margin: 10px 0; line-height: 1.5em; overflow: hidden; }
@@ -693,14 +695,14 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .widgetcontainer .excerpt	{ margin: 5px 0; }
 
 .widgettitle {
-	color: #333;
+	color: #aaa;
 	font-weight: 700;
 	margin: -10px -10px 10px;
 	padding: 5px 10px;
-	background: url(../images/feed-title-white.jpg) repeat-x top #EFEFEF; border-bottom: 1px solid #CCC;
+	background: #efefef; border-bottom: 1px solid #CCC;
 }
 
-.widgettitle a			{ color: #333; }
+.widgettitle a			{ color: #fff; }
 
 .multi-sidebar .thumb, .multi-sidebar .recentcomments .avatar, .featured-stories .thumb	{ float: left; border: 1px solid #CCC; margin: 0 10px 0 0; background: #FFF; padding: 2px; }
 
@@ -720,15 +722,6 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 .sidebar-read-more:hover  { background: #CC0000; }
 
-.multi-sidebar .tabs li	{ background: #383332; border: 1px solid #CCC; }
-.multi-sidebar .tabs a:link, .multi-sidebar .tabs a:visited	{ text-decoration: none; font-weight: 700; color: #FFF; }
-.multi-sidebar .tabs a:hover	{ border-bottom: 1px dotted #FFF; }
-.multi-sidebar .tabs .ui-tabs-selected	{ background: #FFF; }
-.multi-sidebar .tabs .ui-tabs-selected a:link, .multi-sidebar .tabs .ui-tabs-selected a:visited	{ color: #37322F; }
-.multi-sidebar .widgetcontainer	{ background: #FFF; border: 1px solid #CCC; }
-
-.multi-sidebar .widgetcontainer li, .featured-stories li,  .related-posts li	{ border-bottom: 1px dotted #CCC; }
-.multi-sidebar .recentcomments .author	{ color: #666; }
 
 .below-content-widgets .widgettitle {
 	background: #f0f0f0;

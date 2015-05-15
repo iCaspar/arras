@@ -138,6 +138,7 @@ arras_flush_options();
 /* Load theme library files */
 require_once ARRAS_LIB . '/actions.php';
 require_once ARRAS_LIB . '/custom-header.php';
+require_once ARRAS_LIB . '/customizer.php';
 require_once ARRAS_LIB . '/deprecated.php';
 require_once ARRAS_LIB . '/filters.php';
 require_once ARRAS_LIB . '/slideshow.php';

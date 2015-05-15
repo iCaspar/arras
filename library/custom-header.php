@@ -23,7 +23,7 @@
  */
 function arras_custom_header_setup() {
   $args = array(
-    'default-text-color'      =>  '000',
+    'default-text-color'      =>  'ffffff',
     'default-image'           =>  '',
     'flex-width'              =>  true,
     'width'                   =>  980,
