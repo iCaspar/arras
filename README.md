@@ -9,11 +9,31 @@ Arras is a sophisticated, yet simple and clean WordPress theme for magazine/news
 * WordPress 4.2-ready with two menu locations, custom post types and custom taxonomies support.
 * Child theme ready with numerous action and filter hooks available for use.
 
-## Version 3. (Alpha-01)
+## Version 3. (Alpha-02)
 
 Version 3 brings Arras up-to-date with WordPress 4.2 and adds a responsive framework. Arras 3 *requires WordPress 4.1 or higher*.
 
 Because of the major changes in this version, it is not backwards compatibile with version Arras version 1.x.
+
+### User Notes for this Release:
+
+* Color schemes are now located in the "Colors" section of the Customizer: Appearance > Customize > Colors
+* The use of custom thumbnail sizing for various theme locations in a responsive grid system is of no use. Everything resizes dynamically. Setting of custom thumbnail sizes has been discontinued in favor of using the native WP thumbnail sizes, plus a small-square thumbnail, and a wide-screen thumbnail size that sets the thumnail ratio for the slideshow and node tapestry to a 16:9 ratio (the same ratio your wide-screen TV uses).
+* The Secondary Sidebar Widget area will appear only on 3-column layouts. Neither sidebar will appear on single-column layouts. Below-content widget areas appear only on the home page.
+
+### Power User Notes for this Release:
+
+* **Color Schemes:** You can add/modify/remove color schemes from a child theme via the new 'arras_color_schemes' filter. See notes in library/styles.php for instructions.
+
+### Change Log - Arras 3.0 Alpha-02
+
+* Complete removal of duplicate styles from base.css
+* Refactor color schemes
+* Add Base Color Schemes to Customizer
+* Remove Color Scheme option from Arras Options page Design Tab
+* Add new color scheme functions to style.php
+* Remove css/styles/$color.css files
+* Remove minimum logo height
 
 ### Change Log (Arras 1.6.2 -- Arras 3.0 Alpha-01)
 
@@ -58,20 +78,8 @@ Because of the major changes in this version, it is not backwards compatibile wi
 	* Remove all instances of !important
 * Update Theme Tags
 
-**NOTE:**
-
-* The design tab on the options page still allows you to choose from the various color schemes, but the CSS for implementing those color schemes has not yet been adapted for the new responsive grid, so in Alpha-01 you can select an alternate style, but the selection will be ignored.
-* The use of custom thumbnail sizing for various theme locations in a responsive grid system is of no use. Everything resizes dynamically. Setting of custom thumbnail sizes has been discontinued in favor of using the native WP thumbnail sizes, plus a small-square thumbnail, and a wide-screen thumbnail size that sets the thumnail ratio for the slideshow and node tapestry to a 16:9 ratio (the same ratio your wide-screen TV uses).
-* The Secondary Sidebar Widget area will appear only on 3-column layouts. Neither sidebar will appear on single-column layouts. Below-content widget areas appear only on the home page.
-*
 
 ### Roadmap (Will change as work progresses)
-
-**Alpha-02**
-
-* Complete removal of duplicate styles from base.css
-* Refactor color scheme CSS and re-enable use of color-scheme selection
-* Triage reported bugs from Alpha-01
 
 **Alpha-03**
 
