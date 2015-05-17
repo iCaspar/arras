@@ -50,73 +50,64 @@ function arras_admin_save() {
 	global $arras_options, $arras_image_sizes, $notices;
 	check_admin_referer('arras-admin');
 
-	if ( isset($_REQUEST['arras-tools-import']) && $_REQUEST['arras-tools-import'] != '' ) {
-		$new_arras_options = maybe_unserialize(json_decode($_REQUEST['arras-tools-import']));
+	if (!isset($_POST['arras-delete-logo'])) {
+		if ($_FILES['arras-logo']['error'] != 4) {
+			$overrides = array('test_form' => false);
+			$file = wp_handle_upload($_FILES['arras-logo'], $overrides);
 
-		if (is_a($new_arras_options, 'Options')) {
-			$arras_options = $new_arras_options;
-			arras_update_options();
-			$notices = '<div class="updated fade"><p>' . __('Your settings have been successfully imported.', 'arras') . '</p></div>';
+			if ( isset($file['error']) )
+			die( $file['error'] );
+
+			$url = $file['url'];
+			$type = $file['type'];
+			$file = $file['file'];
+			$filename = basename($file);
+
+			// Construct the object array
+			$object = array(
+			'post_title' => $filename,
+			'post_content' => $url,
+			'post_mime_type' => $type,
+			'guid' => $url);
+
+			// Save the data
+			$arras_options->logo = wp_insert_attachment($object, $file);
+
+			// Force generate the logo thumbnail
+			$fullsizepath = get_attached_file($arras_options->logo);
+			wp_update_attachment_metadata($arras_options->logo, wp_generate_attachment_metadata($arras_options->logo, $fullsizepath));
 		}
 	} else {
-		if (!isset($_POST['arras-delete-logo'])) {
-			if ($_FILES['arras-logo']['error'] != 4) {
-				$overrides = array('test_form' => false);
-				$file = wp_handle_upload($_FILES['arras-logo'], $overrides);
-
-				if ( isset($file['error']) )
-				die( $file['error'] );
-
-				$url = $file['url'];
-				$type = $file['type'];
-				$file = $file['file'];
-				$filename = basename($file);
-
-				// Construct the object array
-				$object = array(
-				'post_title' => $filename,
-				'post_content' => $url,
-				'post_mime_type' => $type,
-				'guid' => $url);
-
-				// Save the data
-				$arras_options->logo = wp_insert_attachment($object, $file);
-
-				// Force generate the logo thumbnail
-				$fullsizepath = get_attached_file($arras_options->logo);
-				wp_update_attachment_metadata($arras_options->logo, wp_generate_attachment_metadata($arras_options->logo, $fullsizepath));
-			}
-		} else {
-			$arras_options->logo = '';
-		}
-
-		// Hack!
-		$arras_options->layout = (string)$_POST['arras-layout-col'];
-		$arras_image_sizes = array();
-
-		$arras_custom_image_sizes = array();
-		foreach ($arras_image_sizes as $id => $args) {
-			if ( isset($_POST['arras-reset-thumbs']) && $_POST['arras-reset-thumbs'] ) {
-				$arras_custom_image_sizes[$id]['w'] = $arras_image_sizes[$id]['dw'];
-				$arras_custom_image_sizes[$id]['h'] = $arras_image_sizes[$id]['dh'];
-			} else {
-				$arras_custom_image_sizes[$id]['w'] = (int)($_POST['arras-' . $id . '-w']);
-				$arras_custom_image_sizes[$id]['h'] = (int)($_POST['arras-' . $id . '-h']);
-			}
-		}
-
-		$arras_options->custom_thumbs = $arras_custom_image_sizes;
-		$arras_options->save_options();
-				$arras_options->save_posttypes();
-				$arras_options->save_taxonomies();
-		arras_update_options();
-
-		do_action('arras_admin_save');
-				do_action('arras_admin_posttype_save');
-				do_action('arras_admin_taxonomy_save');
-
-		$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
+		$arras_options->logo = '';
 	}
+
+	// Hack!
+	$arras_options->layout = (string)$_POST['arras-layout-col'];
+	$arras_image_sizes = array();
+
+	$arras_custom_image_sizes = array();
+	foreach ($arras_image_sizes as $id => $args) {
+		if ( isset($_POST['arras-reset-thumbs']) && $_POST['arras-reset-thumbs'] ) {
+			$arras_custom_image_sizes[$id]['w'] = $arras_image_sizes[$id]['dw'];
+			$arras_custom_image_sizes[$id]['h'] = $arras_image_sizes[$id]['dh'];
+		} else {
+			$arras_custom_image_sizes[$id]['w'] = (int)($_POST['arras-' . $id . '-w']);
+			$arras_custom_image_sizes[$id]['h'] = (int)($_POST['arras-' . $id . '-h']);
+		}
+	}
+
+	$arras_options->custom_thumbs = $arras_custom_image_sizes;
+	$arras_options->save_options();
+			$arras_options->save_posttypes();
+			$arras_options->save_taxonomies();
+	arras_update_options();
+
+	do_action('arras_admin_save');
+			do_action('arras_admin_posttype_save');
+			do_action('arras_admin_taxonomy_save');
+
+	$notices = '<div class="updated fade"><p>' . __('Your settings have been saved to the database.', 'arras') . '</p></div>';
+
 }
 
 function arras_admin_reset() {
