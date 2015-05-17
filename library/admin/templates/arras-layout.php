@@ -18,13 +18,6 @@ foreach( get_categories('hide_empty=0') as $c ) {
 <h3><?php _e('Excerpts', 'arras') ?></h3>
 <table class="form-table">
 
-<tr valign="top">
-<th scope="row"><label for="arras-layout-col"><?php _e('Overall Layout', 'arras') ?></label></th>
-<td><?php echo arras_form_dropdown('arras-layout-col', $arras_layouts, arras_get_option('layout')) ?><br />
-<?php echo arras_form_checkbox('arras-reset-thumbs', 'show', false, 'id="arras-reset-thumbs"') . ' ';
-	_e('Reset thumbnail sizes accordingly based on selected layout.', 'arras');
-?></td>
-</tr>
 
 <tr valign="top">
 <th scope="row"><label for="arras-layout-limit-words"><?php _e('Excerpt Limit', 'arras') ?></label></th>

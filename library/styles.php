@@ -220,11 +220,31 @@ CSS;
 	wp_add_inline_style( 'arras-base', $color_scheme_css );
 }
 
+/**
+ * Returns an array of valid layouts
+ *
+ * Can be filtered with {@see 'arras_layouts'}.
+ * @return array filtered layout options
+ */
+function arras_get_layouts() {
+	$arras_layouts = array(
+		'1c'	=> __('1 Column - No Sidebars', 'arras'),
+		'2c-r'	=> __('2 Columns - Sidebar on Right', 'arras'),
+		'2c-l'	=> __('2 Columns - Sidebar on Left', 'arras'),
+		'3c-lr'	=> __('3 Columns - Left / Right Sidebars', 'arras'),
+		'3c-2r'	=> __('3 Columns - 2 Right Sidebars', 'arras'),
+	);
 
-$arras_layouts = array(
-	'1c'	=> __('1 Column Layout (No Sidebars)', 'arras'),
-	'2c-r'	=> __('2 Column Layout (Right Sidebar)', 'arras'),
-	'2c-l'	=> __('2 Column Layout (Left Sidebar)', 'arras'),
-	'3c-lr'	=> __('3 Column Layout (Left & Right Sidebars)', 'arras'),
-	'3c-2r'	=> __('3 Column Layout (2 Right Sidebars)', 'arras'),
-);
+	return apply_filters( 'arras_layouts', $arras_layouts );
+}
+
+
+function arras_sanitize_layouts( $value ) {
+	$layouts = arras_get_layouts();
+
+	if ( ! array_key_exists( $value, $layouts ) ) {
+		$value = '2c-r';
+	}
+
+	return $value;
+}

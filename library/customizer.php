@@ -73,4 +73,29 @@ function arras_customizer( $wp_customize ) {
 			)
 		)
 	);
+
+	// Add Layout Section
+	$wp_customize->add_section( 'layout',
+	array(
+		'title'		=> 'Layout',
+		'priority'	=> 100,
+	) );
+
+	// Add Layout Settings
+	$wp_customize->add_setting(
+		'arras-options[layout]',
+		array(
+			'default'			=> '2c-r',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_layouts',
+	) );
+	$wp_customize->add_control( 'layout', array(
+		'label'		=> __( 'Sidebar Arrangement', 'arras' ),
+		'section'	=> 'layout',
+		'settings'	=> 'arras-options[layout]',
+		'type'		=> 'select',
+		'choices'	=> arras_get_layouts(),
+		'priority'	=> 1,
+	) );
+
 } // end arras_customizer()
