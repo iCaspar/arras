@@ -73,5 +73,4 @@ function arras_customizer( $wp_customize ) {
 			)
 		)
 	);
-
 } // end arras_customizer()
