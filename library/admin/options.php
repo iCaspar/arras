@@ -2,8 +2,6 @@
 
 class ArrasOptions {
 
-	private $Validator;
-
 	var $defaults;
 
 	// General Settings
@@ -294,6 +292,13 @@ function arras_upgrade_options() {
 function arras_get_option($name) {
 	global $arras_options;
 
+	// We're going to return options from the new option set if we have one.
+	$options = get_option( 'arras-options' );
+	if ( $options && isset( $options[$name] ) ) {
+		return $options[$name];
+	}
+
+	// Otherwise, see if there's an old option for it.
 	if (!is_object($arras_options) )
 		arras_flush_options();
 
@@ -311,15 +316,4 @@ function arras_get_default_option( $name ) {
 	// and reloaded with each page load.
 	$arras_options->default_options();
 	if ( isset( $arras_options->defaults[$name] ) ) return $arras_options->defaults[$name];
-}
-
-function arras_check_color( $color ) {
-	if ( '' === $color )
-		return '';
-
-	// 3 or 6 hex digits, or the empty string.
-	if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) )
-		return $color;
-
-	return null;
 }

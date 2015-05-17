@@ -52,11 +52,11 @@ function arras_favicons() {
  * @return null
  */
 function arras_add_custom_logo() {
-	$arras_logo_id = arras_get_option('logo');
-	if ($arras_logo_id != 0) {
-		$arras_logo = wp_get_attachment_image_src($arras_logo_id, 'full');
-
-		echo '<img src="' . $arras_logo[0] . '" width="' . $arras_logo[1] . '" height="' . $arras_logo[2] . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" />';
+	$arras_logo = arras_get_option( 'site_logo' );
+	if ( $arras_logo ) {
+		echo '<img src="' . esc_url( $arras_logo ) .
+			'" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) .
+			' - ' . esc_attr( get_bloginfo( 'description', 'display' ) ) . '" />';
 	}
 }
 

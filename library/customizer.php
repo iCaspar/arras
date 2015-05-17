@@ -52,4 +52,26 @@ function arras_customizer( $wp_customize ) {
 		)
 	);
 
+	// Add Logo Uploader
+	$wp_customize->get_section( 'header_image' )->title = __( 'Header Image and Logo', 'arras' );
+	$wp_customize->add_setting(
+		'arras-options[site_logo]',
+		array(
+			'default'			=> esc_url( get_option( 'arras-options[site_logo]' ) ),
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'esc_url_raw',
+	) );
+	$wp_customize->add_control(
+		new WP_Customize_Upload_Control(
+			$wp_customize,
+			'site_logo',
+			array(
+				'label'		=> __( 'Site Logo', 'arras' ),
+				'section'	=> 'header_image',
+				'settings'	=> 'arras-options[site_logo]',
+				'priority'	=> 1,
+			)
+		)
+	);
+
 } // end arras_customizer()
