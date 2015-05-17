@@ -110,7 +110,7 @@ $post_blacklist = array();
 	<?php endif ?>
 
 	<div id="archive-posts">
-		<?php arras_render_posts(null, arras_get_option('archive_display')) ?>
+<?php arras_render_posts( null, ( arras_get_option( 'default_tapestry' ) ) ? arras_get_option( 'default_tapestry' ) : 'quick' ); ?>
 
 	    	<div class="navigation clearfix">
 				<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>

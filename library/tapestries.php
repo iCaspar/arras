@@ -305,5 +305,33 @@ function arras_generic_postheader($tapestry, $show_meta = false) {
 	return $postheader;
 }
 
-/* End of file tapestries.php */
-/* Location: ./library/tapestries.php */
+/**
+ * Returns an array of valid tapestry types
+ *
+ * Can be filtered with {@see 'arras_tapestries'}.
+ * @return array valid tapestry types in the format value => name
+ */
+function arras_get_tapestry_choices() {
+	global $arras_tapestries;
+
+	foreach ( $arras_tapestries as $key => $tapestry ) {
+		$tapestry_choices[$key] = $tapestry->name;
+	}
+
+	return apply_filters( 'arras_tapestries', $tapestry_choices );
+}
+
+/**
+ * Sanitizes tapestry option input
+ * @param  string $value raw input
+ * @return string        sanitized input
+ */
+function arras_sanitize_tapestries( $value ) {
+	global $arras_tapestries;
+
+	if ( ! array_key_exists( $value, $arras_tapestries ) ) {
+		$value = 'default';
+	}
+
+	return $value;
+}

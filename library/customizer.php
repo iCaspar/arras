@@ -98,4 +98,20 @@ function arras_customizer( $wp_customize ) {
 		'priority'	=> 1,
 	) );
 
+	// Add Default Tapestry
+	$wp_customize->add_setting(
+		'arras-options[default_tapestry]',
+		array(
+			'default'			=> 'quick',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_tapestries',
+	) );
+	$wp_customize->add_control( 'default-tapestry', array(
+		'label'		=> __( 'Default Tapestry', 'arras' ),
+		'section'	=> 'layout',
+		'settings'	=> 'arras-options[default_tapestry]',
+		'type'		=> 'select',
+		'choices'	=> arras_get_tapestry_choices(),
+		'priority'	=> 2,
+	) );
 } // end arras_customizer()

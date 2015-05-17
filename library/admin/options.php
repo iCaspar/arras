@@ -307,6 +307,8 @@ function arras_get_option($name) {
 	} elseif (isset($arras_options->defaults[$name])) {
 		return $arras_options->defaults[$name];
 	}
+
+	return null; // if we haven't found anything, fail quietly
 }
 
 function arras_get_default_option( $name ) {
