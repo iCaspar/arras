@@ -23,11 +23,6 @@ global $arras_color_schemes;
 	<p id="arras-logo-field"><input type="file" id="arras-logo" name="arras-logo" size="35" /></p>
 	</td>
 	</tr>
-
-	<tr valign="top">
-		<th scope="row"><label for "arras-header-color"><?php _e('Custom Header Color', 'arras') ?></label></th>
-		<td><input name="arras-header-color" type="text" value="<?php echo esc_attr( arras_get_option( 'header_color' ) );?>" class="wp-color-picker-field" /></td>
-	</tr>
 </table>
 
 <?php do_action('arras_admin_settings-design'); ?>

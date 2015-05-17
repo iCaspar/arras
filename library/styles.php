@@ -156,6 +156,9 @@ function arras_color_scheme_css() {
 
 	$color_scheme = arras_get_current_color_scheme();
 
+	// Replace header background with custom color if user has set one
+	if ( get_theme_mod( 'header_background_color' ) ) $color_scheme[0] = get_theme_mod( 'header_background_color' );
+
 	$colors = array(
 		'header_background_color'     => $color_scheme[0],
 		'main_nav_link_color'         => $color_scheme[1],

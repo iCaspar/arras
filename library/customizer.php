@@ -19,7 +19,7 @@ function arras_customizer( $wp_customize ) {
 	$wp_customize->add_setting(
 		'color_scheme',
 		array(
-			'default'           => 'default',
+			'default'			=> 'default',
 			'sanitize_callback' => 'arras_sanitize_color_scheme',
 	) );
 
@@ -30,4 +30,26 @@ function arras_customizer( $wp_customize ) {
 		'choices'  => arras_get_color_scheme_choices(),
 		'priority' => 1,
 	) );
+
+	// Add custom header color (this is the background color for the entire header area)
+	$wp_customize->add_setting(
+		'header_background_color',
+		array(
+			'default'			=> $color_scheme[0],
+			'sanitize_callback'	=> 'sanitize_hex_color',
+	) );
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'header_background_color',
+			array(
+				'label'		=> __( 'Header Background Color', 'arras' ),
+				'section'	=> 'colors',
+				'settings'	=> 'header_background_color',
+				'priority'	=> 3,
+			)
+		)
+	);
+
 } // end arras_customizer()

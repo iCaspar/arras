@@ -94,13 +94,6 @@ function arras_header_style() {
       color: #<?php echo esc_attr( $text_color ); ?>;
     }
   <?php endif; ?>
-  <?php if ( arras_get_option( 'header_color' ) ) {
-    $header_color = arras_get_option( 'header_color' );
-    ?>
-    #header {
-      background-color: <?php echo esc_attr( $header_color ); ?>;
-    }
-  <?php } ?>
   </style>
   <?php
 }
