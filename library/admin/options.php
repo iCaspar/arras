@@ -193,12 +193,12 @@ class ArrasOptions {
 		$this->single_thumbs = isset($_POST['arras-layout-single-thumbs']);
 		$this->relative_postdates = isset($_POST['arras-layout-single-postdates']);
 
-		$this->single_custom_taxonomies = (string)$_POST['arras-single-custom-taxonomies'];
-
+		//$this->single_custom_taxonomies = (string)$_POST['arras-single-custom-taxonomies'];
+/*
 		if ( defined('ARRAS_CUSTOM_FIELDS') && ARRAS_CUSTOM_FIELDS == true) {
 			$this->single_custom_fields = (string)$_POST['arras-single-custom-fields'];
 		}
-
+*/
 		//$this->layout = (string)( $_POST['arras-layout-col'] );
 /*
 		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
