@@ -180,7 +180,7 @@ class ArrasOptions {
 		$this->news_display = (string)$_POST['arras-layout-index-newsdisplay'];
 		$this->index_count = (int)stripslashes($_POST['arras-layout-index-count']);
 
-		$this->excerpt_limit = (int)$_POST['arras-layout-limit-words'];
+		//$this->excerpt_limit = (int)$_POST['arras-layout-limit-words'];
 
 		//$this->archive_display = (string)$_POST['arras-layout-archive-newsdisplay'];
 

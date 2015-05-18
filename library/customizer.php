@@ -164,7 +164,21 @@ function arras_customizer( $wp_customize ) {
 		'priority'		=> 5,
 	) );
 
-
+	// Add Excerpt Limit option
+	$wp_customize->add_setting(
+		'arras-options[excerpt_limit]',
+		array(
+			'default'			=> 30,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_excerpt_limit',
+	) );
+	$wp_customize->add_control( 'excerpt-limit', array(
+		'label'			=> __( 'Excerpt Limit', 'arras' ),
+		'description'	=> __( 'Number of words to trim excerpts. Trims only if no excerpt is specified for a post. Maximum 300 words.', 'arras' ),
+		'section'		=> 'layout',
+		'settings'		=> 'arras-options[excerpt_limit]',
+		'priority'		=> 6,
+	) );
 } // end arras_customizer()
 
 /**
@@ -184,10 +198,19 @@ function arras_sanitize_boolian( $value ) {
  */
 function arras_get_numerical_choice_array( $max ) {
 	$max = absint( $max );
-
 	for ( $i = 1; $i <= $max; $i++ ) {
 		$choices[$i] = $i;
 	}
-
 	return $choices;
+}
+
+/**
+ * Makes sure an entered excerpt limit is a whole number <= 300
+ * @param  int $value number of words for excerpt length
+ * @return int        verified number of words for excerpt
+ */
+function arras_sanitize_excerpt_limit( $value ) {
+	$value = absint( intval( $value ) );
+	if ( $value > 300 ) $value = 300;
+	return $value;
 }
