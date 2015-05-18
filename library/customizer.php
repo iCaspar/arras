@@ -192,11 +192,112 @@ function arras_customizer( $wp_customize ) {
 		)
 	);
 
-	// Add Layout Section
+	// Add Social Links Section, Settings and Controls
+	// -- Section --
+	$wp_customize->add_section( 'social',
+	array(
+		'title'		=> __( 'Social Media Links', 'arras' ),
+		'priority'	=> 100,
+	) );
+
+	// -- Settings --
+	$wp_customize->add_setting(
+		'arras-options[show_rss]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[twitter]',
+		array(
+			'default'			=> '',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'esc_url_raw',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[facebook]',
+		array(
+			'default'			=> '',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'esc_url_raw',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[google]',
+		array(
+			'default'			=> '',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'esc_url_raw',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[flickr]',
+		array(
+			'default'			=> '',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'esc_url_raw',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[youtube]',
+		array(
+			'default'			=> '',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'esc_url_raw',
+	) );
+
+	// -- Controls --
+	$wp_customize->add_control( 'show-rss', array(
+		'label'			=> __( 'Show RSS Feed Icon', 'arras' ),
+		'description'	=> __( 'Your RSS feed URL is: ', 'arras' ) . '<br />' . get_bloginfo( 'rss2_url' ),
+		'section'		=> 'social',
+		'settings'		=> 'arras-options[show_rss]',
+		'type'			=> 'checkbox',
+		'priority'		=> 1,
+	) );
+	$wp_customize->add_control( 'twitter', array(
+		'label'			=> __( 'Twitter URL', 'arras' ),
+		'section'		=> 'social',
+		'settings'		=> 'arras-options[twitter]',
+		'type'			=> 'url',
+		'priority'		=> 2,
+	) );
+	$wp_customize->add_control( 'facebook', array(
+		'label'			=> __( 'Facebook URL', 'arras' ),
+		'section'		=> 'social',
+		'settings'		=> 'arras-options[facebook]',
+		'type'			=> 'url',
+		'priority'		=> 3,
+	) );
+	$wp_customize->add_control( 'google', array(
+		'label'			=> __( 'Google+ URL', 'arras' ),
+		'section'		=> 'social',
+		'settings'		=> 'arras-options[google]',
+		'type'			=> 'url',
+		'priority'		=> 4,
+	) );
+	$wp_customize->add_control( 'youtube', array(
+		'label'			=> __( 'YouTube URL', 'arras' ),
+		'section'		=> 'social',
+		'settings'		=> 'arras-options[youtube]',
+		'type'			=> 'url',
+		'priority'		=> 5,
+	) );
+	$wp_customize->add_control( 'flickr', array(
+		'label'			=> __( 'Flickr URL', 'arras' ),
+		'section'		=> 'social',
+		'settings'		=> 'arras-options[flickr]',
+		'type'			=> 'url',
+		'priority'		=> 6,
+	) );
+
+
+
+
+
+	// Add Layout Section, Settings and Controls
 	$wp_customize->add_section( 'layout',
 	array(
 		'title'		=> __( 'Layout', 'arras' ),
-		'priority'	=> 100,
+		'priority'	=> 110,
 	) );
 
 	// Add Layout Settings
@@ -292,9 +393,10 @@ function arras_customizer( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'excerpt-limit', array(
 		'label'			=> __( 'Excerpt Limit', 'arras' ),
-		'description'	=> __( 'Number of words to trim excerpts. Trims only if no excerpt is specified for a post. Maximum 300 words.', 'arras' ),
+		'description'	=> __( 'Number of words to trim excerpts. Trims only if no excerpt is specified for a post. Maximum 300 words. Enter 0 for no trim.', 'arras' ),
 		'section'		=> 'layout',
 		'settings'		=> 'arras-options[excerpt_limit]',
+		'type'			=> 'number',
 		'priority'		=> 6,
 	) );
 
