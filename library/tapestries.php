@@ -76,7 +76,7 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 		for ( $c; $query->have_posts(); $c++ ) {
 			$query->the_post();
 			if ( $c % $nodes == 0 )
-				echo '<div class="group">';
+				echo '<div class="group node-group">';
 
 			// hack for plugin authors who love to use $post = $wp_query->post
 			$wp_query->post = $query->post;
@@ -108,13 +108,9 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 	echo $tapestry->after;
 }
 
+
 function arras_get_nodes() {
-	$tapestry_settings = get_option( 'arras_tapestry_default' );
-
-	if ( !isset( $tapestry_settings['nodes'] ) || $tapestry_settings['nodes'] <= 0 )
-		$tapestry_settings['nodes'] = 3;
-
-	return $tapestry_settings['nodes'];
+	return ( arras_get_option( 'nodes_per_row' ) ) ? arras_get_option( 'nodes_per_row' ) : 3;
 }
 
 function arras_add_node_width_class( $class ) {
@@ -179,14 +175,14 @@ if (!function_exists('arras_tapestry_line')) {
  * @since 1.4.3
  */
 	function arras_tapestry_default($dep = '', $taxonomy) {
-		$tapestry_settings = get_option('arras_tapestry_default');
+		$tapestry_settings = arras_get_option( 'arras_tapestry_default');
 		if (!is_array($tapestry_settings) ) {
 			$tapestry_settings = arras_defaults_tapestry_default();
 		}
 		?>
 		<div <?php arras_post_class( array( 'entry', 'col' ) ) ?>>
 			<?php echo apply_filters('arras_tapestry_default_postheader', arras_generic_postheader('node-based', true) ) ?>
-			<?php if ( isset($tapestry_settings['excerpt']) && $tapestry_settings['excerpt'] ) : ?>
+			<?php if ( arras_get_option( 'nodes_excerpt' ) ): ?>
 			<div class="entry-summary">
 				<?php the_excerpt() ?>
 			</div>
@@ -199,9 +195,9 @@ arras_add_tapestry( 'default', __('Node Based', 'arras'), 'arras_tapestry_defaul
 	'after' => '</div><!-- .posts-default -->'
 ) );
 
-add_action('arras_admin_settings-layout', 'arras_admin_tapestry_default');
-add_action('arras_admin_save', 'arras_save_tapestry_default');
-add_action('arras_options_defaults', 'arras_defaults_tapestry_default');
+//add_action('arras_admin_settings-layout', 'arras_admin_tapestry_default');
+//add_action('arras_admin_save', 'arras_save_tapestry_default');
+//add_action('arras_options_defaults', 'arras_defaults_tapestry_default');
 
 
 function arras_admin_tapestry_default() {
@@ -332,6 +328,15 @@ function arras_sanitize_tapestries( $value ) {
 	if ( ! array_key_exists( $value, $arras_tapestries ) ) {
 		$value = 'default';
 	}
+
+	return $value;
+}
+
+
+function arras_sanitize_nodes_per_row( $value ) {
+	$value = absint( intval( $value ) );
+	if ( $value > 12 ) $value = 12;
+	if ( $value < 1 ) $value = 1;
 
 	return $value;
 }

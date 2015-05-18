@@ -107,12 +107,12 @@ function arras_customizer( $wp_customize ) {
 			'sanitize_callback'	=> 'arras_sanitize_tapestries',
 	) );
 	$wp_customize->add_control( 'default-tapestry', array(
-		'label'		=> __( 'Default Tapestry', 'arras' ),
+		'label'		=> __( 'Default Display Mode', 'arras' ),
 		'section'	=> 'layout',
 		'settings'	=> 'arras-options[default_tapestry]',
 		'type'		=> 'select',
 		'choices'	=> arras_get_tapestry_choices(),
-		'priority'	=> 2,
+		'priority'	=> 3,
 	) );
 
 	// Add Auto Thumbnail Option
@@ -124,13 +124,47 @@ function arras_customizer( $wp_customize ) {
 			'sanitize_callback'	=> 'arras_sanitize_boolian',
 	) );
 	$wp_customize->add_control( 'auto-thumbs', array(
-		'label'		=> __( 'Auto-Thumbnail', 'arras' ),
+		'label'			=> __( 'Auto-Thumbnail', 'arras' ),
 		'description'	=> __( 'Automatically retrieve the first attached image from the post as featured image when no image is specified.', 'arras' ),
-		'section'	=> 'layout',
-		'settings'	=> 'arras-options[auto_thumbs]',
-		'type'		=> 'checkbox',
-		'priority'	=> 3,
+		'section'		=> 'layout',
+		'settings'		=> 'arras-options[auto_thumbs]',
+		'type'			=> 'checkbox',
+		'priority'		=> 2,
 	) );
+
+	// Add Node-based options
+	$wp_customize->add_setting(
+		'arras-options[nodes_per_row]',
+		array(
+			'default'			=> 3,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_nodes_per_row',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[nodes_excerpt]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+		) );
+	$wp_customize->add_control( 'nodes-per-row', array(
+		'label'			=> __( 'Nodes per Row', 'arras' ),
+		'description'	=> __( 'For Node-based Display Mode.', 'arras' ),
+		'section'		=> 'layout',
+		'settings'		=> 'arras-options[nodes_per_row]',
+		'type'			=> 'select',
+		'choices'		=> arras_get_numerical_choice_array( 12 ),
+		'priority'		=> 4,
+	) );
+	$wp_customize->add_control( 'nodes-excerpt', array(
+		'label'			=> __( 'Show Excerpts with Nodes', 'arras' ),
+		'section'		=> 'layout',
+		'settings'		=> 'arras-options[nodes_excerpt]',
+		'type'			=> 'checkbox',
+		'priority'		=> 5,
+	) );
+
+
 } // end arras_customizer()
 
 /**
@@ -141,4 +175,19 @@ function arras_customizer( $wp_customize ) {
 function arras_sanitize_boolian( $value ) {
 	$value = ( $value ) ? true : false;
 	return $value;
+}
+
+/**
+ * Generates an array of numerical choices from 1 to $max for display on radio or select control
+ * @param  int $max maximum number for choices
+ * @return array      choices in format: value => label
+ */
+function arras_get_numerical_choice_array( $max ) {
+	$max = absint( $max );
+
+	for ( $i = 1; $i <= $max; $i++ ) {
+		$choices[$i] = $i;
+	}
+
+	return $choices;
 }
