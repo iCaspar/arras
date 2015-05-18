@@ -80,32 +80,6 @@
 	<?php _e( 'Google+ Icon from <a href="http://themedy.com/free-google-icons">Themedy</a>. Other social icons from <a href="http://19eighty7.com/icons">19eighty7</a>.', 'arras' ) ?>
 </p>
 
-<h3><?php _e('Footer Information', 'arras') ?></h3>
-<table class="form-table">
-
-<tr valign="top">
-<th scope="row"><label for="arras-footer-sidebars"><?php _e('No. of Columns', 'arras') ?></label></th>
-<td>
-<?php echo arras_form_dropdown( 'arras-footer-sidebars', array(1 => 1, 2, 3, 4), arras_get_option('footer_sidebars') ); ?>
-<?php echo '<br />' . __('Footer sidebars will be labelled respectively (eg. Footer Sidebar #1, etc.)', 'arras') ?>
-</td>
-</tr>
-
-<tr valign="top">
-<th scope="row"><label for="arras-footer-title"><?php _e('Footer Title', 'arras') ?></label></th>
-<td>
-<?php echo arras_form_input(array('name' => 'arras-footer-title', 'id' => 'arras-footer-title', 'style' => 'width:40%', 'value' => arras_get_option('footer_title') )) ?>
-</td>
-</tr>
-
-<tr valign="top">
-<th scope="row"><label for="arras-footer-message">Footer Message</label></th>
-<td>
-<?php echo arras_form_textarea( 'arras-footer-message', arras_get_option('footer_message'), 'style="width: 70%; height: 100px;" class="code"' ) ?><br />
-<?php _e('Usually your website\'s copyright information would go here.<br /> It would be great if you could include a link to WordPress and even greater if you could include a link to the theme website. :)', 'arras') ?>
-</td>
-</tr>
-
 </table>
 
 <?php do_action('arras_admin_settings-general'); ?>
