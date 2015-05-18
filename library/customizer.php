@@ -15,6 +15,9 @@ add_action( 'customize_register', 'arras_customizer' );
 function arras_customizer( $wp_customize ) {
 	$color_scheme = arras_get_current_color_scheme();
 
+	// Rename the Title/Tagline section
+	$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Tagline & Footer Message', 'arras' );
+
 	// Add color scheme setting and control.
 	$wp_customize->add_setting(
 		'color_scheme',
@@ -179,6 +182,39 @@ function arras_customizer( $wp_customize ) {
 		'settings'		=> 'arras-options[excerpt_limit]',
 		'priority'		=> 6,
 	) );
+
+	// Add Footer Options
+	$wp_customize->add_setting(
+		'arras-options[footer_columns]',
+		array(
+			'default'			=> 3,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_footer_cols',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[footer_message]',
+		array(
+			'default'			=> __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ),
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'wp_kses_post',
+	) );
+	$wp_customize->add_control( 'footer-columns', array(
+		'label'			=> __( 'Footer Columns', 'arras' ),
+		'description'	=> __( 'Each footer column gets its own widget area.', 'arras' ),
+		'section'		=> 'layout',
+		'settings'		=> 'arras-options[footer_columns]',
+		'type'			=> 'select',
+		'choices'		=> arras_get_numerical_choice_array( 4 ),
+		'priority'		=> 7,
+	) );
+	$wp_customize->add_control( 'footer-message', array(
+		'label'			=> __( 'Footer Message', 'arras' ),
+		'description'	=> __( 'You may use some limited html here (for links, etc).', 'arras' ),
+		'section'		=> 'title_tagline',
+		'settings'		=> 'arras-options[footer_message]',
+		'type'			=> 'textarea',
+		'priority'		=> 35
+	) );
 } // end arras_customizer()
 
 /**
@@ -212,5 +248,11 @@ function arras_get_numerical_choice_array( $max ) {
 function arras_sanitize_excerpt_limit( $value ) {
 	$value = absint( intval( $value ) );
 	if ( $value > 300 ) $value = 300;
+	return $value;
+}
+
+
+function arras_sanitize_footer_cols ( $value ) {
+	if ( ( 1 || 2 || 3 || 4 ) != $value ) $value = 3;
 	return $value;
 }
