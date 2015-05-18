@@ -114,4 +114,31 @@ function arras_customizer( $wp_customize ) {
 		'choices'	=> arras_get_tapestry_choices(),
 		'priority'	=> 2,
 	) );
+
+	// Add Auto Thumbnail Option
+	$wp_customize->add_setting(
+		'arras-options[auto_thumbs]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_control( 'auto-thumbs', array(
+		'label'		=> __( 'Auto-Thumbnail', 'arras' ),
+		'description'	=> __( 'Automatically retrieve the first attached image from the post as featured image when no image is specified.', 'arras' ),
+		'section'	=> 'layout',
+		'settings'	=> 'arras-options[auto_thumbs]',
+		'type'		=> 'checkbox',
+		'priority'	=> 3,
+	) );
 } // end arras_customizer()
+
+/**
+ * Makes sure a boolian input resolves to true or false
+ * @param  mixed $value raw input
+ * @return boolian        0 or 1
+ */
+function arras_sanitize_boolian( $value ) {
+	$value = ( $value ) ? true : false;
+	return $value;
+}

@@ -182,7 +182,7 @@ class ArrasOptions {
 
 		$this->excerpt_limit = (int)$_POST['arras-layout-limit-words'];
 
-		$this->archive_display = (string)$_POST['arras-layout-archive-newsdisplay'];
+		//$this->archive_display = (string)$_POST['arras-layout-archive-newsdisplay'];
 
 		$this->display_author = isset($_POST['arras-layout-single-author']);
 
@@ -199,15 +199,15 @@ class ArrasOptions {
 			$this->single_custom_fields = (string)$_POST['arras-single-custom-fields'];
 		}
 
-		$this->layout = (string)( $_POST['arras-layout-col'] );
-
+		//$this->layout = (string)( $_POST['arras-layout-col'] );
+/*
 		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 			$this->style = (string)$_POST['arras-style'];
 		}
+*/
+		//$this->header_color = arras_check_color( $_POST['arras-header-color'] );
 
-		$this->header_color = arras_check_color( $_POST['arras-header-color'] );
-
-		$this->auto_thumbs = isset($_POST['arras-thumbs-auto']);
+		//$this->auto_thumbs = isset($_POST['arras-thumbs-auto']);
 	}
 
 	function save_posttypes() {
