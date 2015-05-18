@@ -18,6 +18,121 @@ function arras_customizer( $wp_customize ) {
 	// Rename the Title/Tagline section
 	$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Tagline & Footer Message', 'arras' );
 
+	// Add Footer Message
+	$wp_customize->add_setting(
+		'arras-options[footer_message]',
+		array(
+			'default'			=> __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ),
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'wp_kses_post',
+	) );
+	$wp_customize->add_control( 'footer-message', array(
+		'label'			=> __( 'Footer Message', 'arras' ),
+		'description'	=> __( 'You may use some limited html here (for links, etc).', 'arras' ),
+		'section'		=> 'title_tagline',
+		'settings'		=> 'arras-options[footer_message]',
+		'type'			=> 'textarea',
+		'priority'		=> 35
+	) );
+
+	// Add Post Meta Section, Settings & Controls
+	// -- Section --
+	$wp_customize->add_section( 'post-meta',
+	array(
+		'title'			=> __( 'Post Meta Display', 'arras' ),
+		'description'	=> __( 'Options for displaying meta-data on single posts.', 'arras' ),
+		'priority'		=> 35,
+	) );
+
+	// -- Settings --
+	$wp_customize->add_setting(
+		'arras-options[post_author]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[post_date]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[post_cats]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[post_tags]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[single_thumbs]',
+		array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[relative_postdates]',
+		array(
+			'default'			=> false,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+
+	// -- Controls --
+	$wp_customize->add_control( 'post-author', array(
+		'label'			=> __( 'Post Author', 'arras' ),
+		'section'		=> 'post-meta',
+		'settings'		=> 'arras-options[post_author]',
+		'type'			=> 'checkbox',
+		'priority'		=> 1
+	) );
+	$wp_customize->add_control( 'post-date', array(
+		'label'			=> __( 'Post Date', 'arras' ),
+		'section'		=> 'post-meta',
+		'settings'		=> 'arras-options[post_date]',
+		'type'			=> 'checkbox',
+		'priority'		=> 2
+	) );
+	$wp_customize->add_control( 'post-categories', array(
+		'label'			=> __( 'Post Categories', 'arras' ),
+		'section'		=> 'post-meta',
+		'settings'		=> 'arras-options[post_cats]',
+		'type'			=> 'checkbox',
+		'priority'		=> 3
+	) );
+	$wp_customize->add_control( 'post-tags', array(
+		'label'			=> __( 'Post Tags', 'arras' ),
+		'section'		=> 'post-meta',
+		'settings'		=> 'arras-options[post_tags]',
+		'type'			=> 'checkbox',
+		'priority'		=> 4
+	) );
+	$wp_customize->add_control( 'single-thumbnail', array(
+		'label'			=> __( 'Post Featured Image', 'arras' ),
+		'section'		=> 'post-meta',
+		'settings'		=> 'arras-options[single_thumbs]',
+		'type'			=> 'checkbox',
+		'priority'		=> 5
+	) );
+	$wp_customize->add_control( 'relative-postdates', array(
+		'label'			=> __( 'Use Relative Postdates', 'arras' ),
+		'description'	=> __( 'Display post dates relative to current time, eg. 2 days ago. (Note: Posts over a month old will always show with the regular date format.) ', 'arras' ),
+		'section'		=> 'post-meta',
+		'settings'		=> 'arras-options[relative_postdates]',
+		'type'			=> 'checkbox',
+		'priority'		=> 6
+	) );
+
 	// Add color scheme setting and control.
 	$wp_customize->add_setting(
 		'color_scheme',
@@ -183,20 +298,13 @@ function arras_customizer( $wp_customize ) {
 		'priority'		=> 6,
 	) );
 
-	// Add Footer Options
+	// Add Footer Columns Option
 	$wp_customize->add_setting(
 		'arras-options[footer_columns]',
 		array(
 			'default'			=> 3,
 			'type'				=> 'option',
 			'sanitize_callback'	=> 'arras_sanitize_footer_cols',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[footer_message]',
-		array(
-			'default'			=> __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ),
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'wp_kses_post',
 	) );
 	$wp_customize->add_control( 'footer-columns', array(
 		'label'			=> __( 'Footer Columns', 'arras' ),
@@ -206,112 +314,6 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'select',
 		'choices'		=> arras_get_numerical_choice_array( 4 ),
 		'priority'		=> 7,
-	) );
-	$wp_customize->add_control( 'footer-message', array(
-		'label'			=> __( 'Footer Message', 'arras' ),
-		'description'	=> __( 'You may use some limited html here (for links, etc).', 'arras' ),
-		'section'		=> 'title_tagline',
-		'settings'		=> 'arras-options[footer_message]',
-		'type'			=> 'textarea',
-		'priority'		=> 35
-	) );
-
-	// Add Post Meta Section, Settings & Controls
-	// -- Section --
-	$wp_customize->add_section( 'post-meta',
-	array(
-		'title'			=> __( 'Post Meta Display', 'arras' ),
-		'description'	=> __( 'Options for displaying meta-data on single posts.', 'arras' ),
-		'priority'		=> 35,
-	) );
-
-	// -- Settings --
-	$wp_customize->add_setting(
-		'arras-options[post_author]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[post_date]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[post_cats]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[post_tags]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[single_thumbs]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[relative_postdates]',
-		array(
-			'default'			=> false,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-
-	// -- Controls --
-	$wp_customize->add_control( 'post-author', array(
-		'label'			=> __( 'Post Author', 'arras' ),
-		'section'		=> 'post-meta',
-		'settings'		=> 'arras-options[post_author]',
-		'type'			=> 'checkbox',
-		'priority'		=> 1
-	) );
-	$wp_customize->add_control( 'post-date', array(
-		'label'			=> __( 'Post Date', 'arras' ),
-		'section'		=> 'post-meta',
-		'settings'		=> 'arras-options[post_date]',
-		'type'			=> 'checkbox',
-		'priority'		=> 2
-	) );
-	$wp_customize->add_control( 'post-categories', array(
-		'label'			=> __( 'Post Categories', 'arras' ),
-		'section'		=> 'post-meta',
-		'settings'		=> 'arras-options[post_cats]',
-		'type'			=> 'checkbox',
-		'priority'		=> 3
-	) );
-	$wp_customize->add_control( 'post-tags', array(
-		'label'			=> __( 'Post Tags', 'arras' ),
-		'section'		=> 'post-meta',
-		'settings'		=> 'arras-options[post_tags]',
-		'type'			=> 'checkbox',
-		'priority'		=> 4
-	) );
-	$wp_customize->add_control( 'single-thumbnail', array(
-		'label'			=> __( 'Post Featured Image', 'arras' ),
-		'section'		=> 'post-meta',
-		'settings'		=> 'arras-options[single_thumbs]',
-		'type'			=> 'checkbox',
-		'priority'		=> 5
-	) );
-	$wp_customize->add_control( 'relative-postdates', array(
-		'label'			=> __( 'Use Relative Postdates', 'arras' ),
-		'description'	=> __( 'Display post dates relative to current time, eg. 2 days ago. (Note: Posts over a month old will always show with the regular date format.) ', 'arras' ),
-		'section'		=> 'post-meta',
-		'settings'		=> 'arras-options[relative_postdates]',
-		'type'			=> 'checkbox',
-		'priority'		=> 6
 	) );
 
 

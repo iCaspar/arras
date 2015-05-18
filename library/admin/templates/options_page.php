@@ -18,9 +18,7 @@
 <div class="clearfix arras-options-wrapper">
 
 <?php include 'arras-general.php' ?>
-<?php if (!function_exists('wp_nav_menu')) include 'arras-navigation.php' ?>
 <?php include 'arras-home.php' ?>
-<?php include 'arras-layout.php' ?>
 <?php include 'posttype_page.php' ?>
 <?php include 'taxonomy_page.php' ?>
 
