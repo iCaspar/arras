@@ -184,14 +184,14 @@ class ArrasOptions {
 
 		//$this->archive_display = (string)$_POST['arras-layout-archive-newsdisplay'];
 
-		$this->display_author = isset($_POST['arras-layout-single-author']);
+		//$this->display_author = isset($_POST['arras-layout-single-author']);
 
-		$this->post_author = isset($_POST['arras-layout-post-author']);
-		$this->post_date = isset($_POST['arras-layout-post-date']);
-		$this->post_cats = isset($_POST['arras-layout-post-cats']);
-		$this->post_tags = isset($_POST['arras-layout-post-tags']);
-		$this->single_thumbs = isset($_POST['arras-layout-single-thumbs']);
-		$this->relative_postdates = isset($_POST['arras-layout-single-postdates']);
+		//$this->post_author = isset($_POST['arras-layout-post-author']);
+		//$this->post_date = isset($_POST['arras-layout-post-date']);
+		//$this->post_cats = isset($_POST['arras-layout-post-cats']);
+		//$this->post_tags = isset($_POST['arras-layout-post-tags']);
+		//$this->single_thumbs = isset($_POST['arras-layout-single-thumbs']);
+		//$this->relative_postdates = isset($_POST['arras-layout-single-postdates']);
 
 		//$this->single_custom_taxonomies = (string)$_POST['arras-single-custom-taxonomies'];
 /*
@@ -289,7 +289,7 @@ function arras_upgrade_options() {
 	arras_update_options();
 }
 
-function arras_get_option($name) {
+function arras_get_option( $name ) {
 	global $arras_options;
 
 	// We're going to return options from the new option set if we have one.

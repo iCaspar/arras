@@ -407,9 +407,7 @@ add_filter('excerpt_length', 'arras_excerpt_length');
  * @since 1.6
  */
 function arras_posted_on( $echo = 1 ) {
-	$result = '';
-
-	if ( !arras_get_option( 'relative_postdates' ) ) {
+	if ( ! arras_get_option( 'relative_postdates' ) ) {
 		$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
 	} else {
 		$diff = current_time( 'timestamp' ) - get_the_time( 'U' );
