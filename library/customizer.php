@@ -35,6 +35,60 @@ function arras_customizer( $wp_customize ) {
 		'priority'		=> 35
 	) );
 
+	// Add Homepage Panel, Sections and Settings
+	// -- Panel --
+	$wp_customize->add_panel( 'homepage', array(
+		'title' 		=> __( 'Homepage Settings', 'arras' ),
+		'priority'		=> 30
+	) );
+
+	// -- Sections --
+	$wp_customize->add_section( 'duplicate-posts', array(
+	    'panel' 		=> 'homepage',
+	    'title' 		=> __( 'Duplicate Posts', 'arras' ),
+	    'priority' 		=> 10,
+	    ) );
+	$wp_customize->add_section( 'slideshow', array(
+	    'panel' 		=> 'homepage',
+	    'title' 		=> __( 'Slideshow', 'arras' ),
+	    'priority' 		=> 20,
+	    ) );
+	$wp_customize->add_section( 'featured-1', array(
+	    'panel' 		=> 'homepage',
+	    'title' 		=> __( 'First Featured Posts Section', 'arras' ),
+	    'priority' 		=> 30,
+	    ) );
+	$wp_customize->add_section( 'featured-2', array(
+	    'panel' 		=> 'homepage',
+	    'title' 		=> __( 'Second Featured Posts Section', 'arras' ),
+	    'priority' 		=> 40,
+	    ) );
+	$wp_customize->add_section( 'news', array(
+	    'panel' 		=> 'homepage',
+	    'title' 		=> __( 'News Posts', 'arras' ),
+	    'priority' 		=> 10,
+	    ) );
+
+	// -- Settings --
+	$wp_customize->add_setting(
+		'arras-options[hide_duplicates]', array(
+			'default' 			=> true,
+			'type' 				=> 'option',
+			'sanitize_callback' => 'arras_sanitize_boolian',
+	) );
+
+	// -- Controls --
+	$wp_customize->add_control( 'hide-duplicates', array(
+	    'label' 		=> __( 'Hide Duplicate Posts', 'arras' ),
+	    'description' 	=> __( 'Prevents duplicate posts from displaying in both the slideshow the featured posts. May cause slowdown, depending on post count.', 'arras' ),
+	    'section' 		=> 'duplicate-posts',
+	    'settings'		=> 'arras-options[hide_duplicates]',
+	    'type'			=> 'checkbox',
+	    'priority' 		=> 5,
+	) );
+
+
+
 	// Add Post Meta Section, Settings & Controls
 	// -- Section --
 	$wp_customize->add_section( 'post-meta',
@@ -289,10 +343,6 @@ function arras_customizer( $wp_customize ) {
 		'priority'		=> 6,
 	) );
 
-
-
-
-
 	// Add Layout Section, Settings and Controls
 	$wp_customize->add_section( 'layout',
 	array(
@@ -419,7 +469,6 @@ function arras_customizer( $wp_customize ) {
 	) );
 
 
-	// Add Homepage Panel, Sections and Settings
 
 } // end arras_customizer()
 

@@ -132,7 +132,7 @@ class ArrasOptions {
 			$this->topnav_linkcat = (int)$_POST['arras-nav-linkcat'];
 		}
 
-		$this->hide_duplicates = isset($_POST['arras-hide-duplicates']);
+		//$this->hide_duplicates = isset($_POST['arras-hide-duplicates']);
 
 		$this->enable_slideshow = isset($_POST['arras-enable-slideshow']);
 
