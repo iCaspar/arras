@@ -13,6 +13,47 @@ add_action( 'customize_register', 'arras_customizer' );
  * @return null
  */
 function arras_customizer( $wp_customize ) {
+
+/**
+ * We need to roll our own multiple select customize control class
+ * (as of 4.2 it's not in core, but we can hope ... someday)
+ */
+class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
+    /**
+     * The type of customize control being rendered.
+     */
+    public $type = 'multiple-select';
+
+    public function enqueue()
+    {
+    	wp_enqueue_script( 'arras-multi-select', get_template_directory_uri() . '/js/jquery.multiple.select.js', array( 'jquery' ), '1.1.0', true );
+    	wp_enqueue_style( 'arras-multi-select', get_template_directory_uri() . '/css/multiple-select.css', array(), '1.1.0', 'all' );
+    }
+
+    /**
+     * Displays the multiple select on the customize screen.
+     */
+    public function render_content()
+    {
+	    if ( empty( $this->choices ) ) return;
+	    ?>
+	    <label>
+            <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+            <?php if ( ! empty( $this->description ) ): ?>
+            	<span class="description customize-control-description"><?php echo $this->description; ?></span>
+            <?php endif; ?>
+            <select <?php $this->link(); ?> multiple="multiple" class="multi-select">
+                <?php
+                foreach ( $this->choices as $value => $label ) {
+                    $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
+                    echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
+                    }
+                ?>
+            </select>
+        </label>
+    <?php } // end render_content()
+} // end class Arras_Customize_Control_Multiple_Select
+
 	$color_scheme = arras_get_current_color_scheme();
 
 	// Rename the Title/Tagline section
@@ -77,6 +118,19 @@ function arras_customizer( $wp_customize ) {
 			'sanitize_callback' => 'arras_sanitize_boolian',
 	) );
 
+	$wp_customize->add_setting(
+		'arras-options[enable_slideshow]', array(
+			'default'			=> true,
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_boolian',
+	) );
+	$wp_customize->add_setting(
+		'arras-options[slideshow_cat]', array(
+			'default'			=> arras_get_cats( 'slideshow_cat' ),
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_category_array',
+	) );
+
 	// -- Controls --
 	$wp_customize->add_control( 'hide-duplicates', array(
 	    'label' 		=> __( 'Hide Duplicate Posts', 'arras' ),
@@ -86,7 +140,26 @@ function arras_customizer( $wp_customize ) {
 	    'type'			=> 'checkbox',
 	    'priority' 		=> 5,
 	) );
-
+	$wp_customize->add_control( 'enable-slideshow', array(
+		'label'			=> __( 'Enable Slideshow', 'arras' ),
+		'section'		=> 'slideshow',
+		'settings'		=> 'arras-options[enable_slideshow]',
+		'type'			=> 'checkbox',
+		'priority'		=> 5,
+	) );
+	$wp_customize->add_control(
+		new Arras_Checkbox_Multi_Select(
+			$wp_customize,
+			'slideshow-cat',
+			array(
+				'label'			=> __( 'Slideshow Categories', 'arras' ),
+				'description'	=> __( 'Shift-click to select multiple categories.', 'arras' ),
+				'section'		=> 'slideshow',
+				'settings'		=> 'arras-options[slideshow_cat]',
+				'type'			=> 'multiple-select',
+				'choices'		=> arras_get_multi_cat_choices_array(),
+				'priority'		=> 10,
+		) ) );
 
 
 	// Add Post Meta Section, Settings & Controls
@@ -468,7 +541,7 @@ function arras_customizer( $wp_customize ) {
 		'priority'		=> 7,
 	) );
 
-
+	return $wp_customize;
 
 } // end arras_customizer()
 
@@ -510,4 +583,20 @@ function arras_sanitize_excerpt_limit( $value ) {
 function arras_sanitize_footer_cols ( $value ) {
 	if ( ( 1 || 2 || 3 || 4 ) != $value ) $value = 3;
 	return $value;
+}
+
+function arras_sanitize_category_array( $input ) {
+	// print_r( $input );
+	return $input;
+}
+
+function arras_get_cats( $setting ) {
+	$raw = arras_get_option( $setting );
+
+	if ( is_array( $raw ) ) return $raw;
+
+	if (is_numeric( $raw ) ) return array( $raw );
+
+	return false;
+
 }

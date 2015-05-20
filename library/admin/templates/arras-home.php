@@ -2,9 +2,6 @@
 
 <div id="home" class="padding-content">
 
-<h3><?php _e('Post Options', 'arras') ?></h3>
-
-
 <h3><?php _e('Slideshow', 'arras') ?> <span class="enabler"><?php echo arras_form_checkbox('arras-enable-slideshow', 'show', arras_get_option('enable_slideshow'), 'id="arras-enable-slideshow"') ?><label for="arras-enable-slideshow"><?php _e('Show/Hide', 'arras') ?></label></span></h3>
 <table class="form-table">
 

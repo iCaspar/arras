@@ -1,4 +1,16 @@
 <?php
+
+function arras_get_multi_cat_choices_array( $taxonomy = 'category' ) {
+	$categories = get_categories( array( 'taxonomy' => $taxonomy ) );
+	$choices = array( '-5' => __( 'Use Sticky Posts', 'arras' ) );
+
+	foreach ( $categories as $category ) {
+		$choices[$category->term_id] = $category->name;
+	}
+	return $choices;
+}
+
+
 /* Functions based on Codeigniter's Form Helper Class (http://www.codeigniter.com) */
 
 function arras_form_input($data = '', $value = '', $extra = '') {
