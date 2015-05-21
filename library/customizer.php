@@ -42,7 +42,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
             <?php if ( ! empty( $this->description ) ): ?>
             	<span class="description customize-control-description"><?php echo $this->description; ?></span>
             <?php endif; ?>
-            <select <?php $this->link(); ?> multiple="multiple" class="multi-select">
+            <select name="<?php echo $this->id; ?>" <?php $this->link(); ?> multiple="multiple" class="multi-select">
                 <?php
                 foreach ( $this->choices as $value => $label ) {
                     $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
@@ -128,7 +128,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		'arras-options[slideshow_cat]', array(
 			'default'			=> arras_get_cats( 'slideshow_cat' ),
 			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_category_array',
+			'sanitize_callback'	=> 'arras_sanitize_test',
 	) );
 
 	// -- Controls --
@@ -585,8 +585,8 @@ function arras_sanitize_footer_cols ( $value ) {
 	return $value;
 }
 
-function arras_sanitize_category_array( $input ) {
-	// print_r( $input );
+function arras_sanitize_test( $input ) {
+
 	return $input;
 }
 

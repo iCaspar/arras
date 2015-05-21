@@ -32,7 +32,7 @@
             width: options.width || elWidth + 'px'
         });
         this.$drop.css({
-            width: (options.width || elWidth) + 'px'
+            width: options.width || elWidth + 'px'
         });
 
         if (!this.options.keepOpen) {
@@ -178,6 +178,7 @@
                     $items.prop('checked', checked);
                     that.options[checked ? 'onCheckAll' : 'onUncheckAll']();
                     that.update();
+                    that.updateCustomizer();
                 }
             });
             this.$selectGroups.off('click').on('click', function() {
@@ -188,6 +189,7 @@
                 $children.prop('checked', checked);
                 that.updateSelectAll();
                 that.update();
+                that.updateCustomizer();
                 that.options.onOptgroupClick({
                     label: $(this).parent().text(),
                     checked: checked,
@@ -197,6 +199,7 @@
             this.$selectItems.off('click').on('click', function() {
                 that.updateSelectAll();
                 that.update();
+                that.updateCustomizer();
                 that.updateOptGroupSelect();
                 that.options.onClick({
                     label: $(this).parent().text(),
@@ -254,7 +257,8 @@
                 $span.addClass('placeholder').html(this.options.placeholder);
             }
             // set selects to select
-            this.$el.val(this.getSelects()).trigger('change'); // add trigger to activate customizer save button
+            this.$el.val(this.getSelects());
+            //this.updateCustomizer();
         },
 
         updateSelectAll: function() {
@@ -275,6 +279,11 @@
                     $children.length === $children.filter(':checked').length);
             });
         },
+
+        updateCustomizer: function() {
+            var key = this.$el.attr('data-customize-setting-link');
+            wp.customize.instance(key).set(this.getSelects());
+       },
 
         //value or text, default: 'value'
         getSelects: function(type) {
@@ -324,6 +333,7 @@
             this.$selectAll.prop('checked', this.$selectItems.length ===
                 this.$selectItems.filter(':checked').length);
             this.update();
+            this.updateCustomizer();
         },
 
         enable: function() {
@@ -339,6 +349,7 @@
             this.$selectGroups.prop('checked', true);
             this.$selectAll.prop('checked', true);
             this.update();
+            this.updateCustomizer();
             this.options.onCheckAll();
         },
 
@@ -347,6 +358,7 @@
             this.$selectGroups.prop('checked', false);
             this.$selectAll.prop('checked', false);
             this.update();
+            this.updateCustomizer();
             this.options.onUncheckAll();
         },
 
