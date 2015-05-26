@@ -295,6 +295,7 @@ function arras_prep_query( $args = array() ) {
 		}
 
 		$key = array_search('-5', $args['list']);
+		if ( $args['list'][0] == null ) array_shift( $args['list'] );
 		unset($args['list'][$key]);
 	}
 
@@ -329,6 +330,7 @@ function arras_prep_query( $args = array() ) {
 	}
 
 	//arras_debug($args['query']);
+	echo '<pre>';print_r($args['query']);echo '</pre>';
 	return $args['query'];
 }
 
