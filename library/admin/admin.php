@@ -189,7 +189,7 @@ function arras_right_col() {
 }
 
 function arras_posttype_blacklist() {
-	$_default = array('revision', 'nav_menu_item');
+	$_default = array( 'revision', 'nav_menu_item' );
 	return apply_filters('arras_posttype_blacklist', $_default);
 }
 

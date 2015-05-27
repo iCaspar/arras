@@ -125,10 +125,28 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 			'sanitize_callback'	=> 'arras_sanitize_boolian',
 	) );
 	$wp_customize->add_setting(
+			'arras-options[slideshow_count]', array(
+			'default'			=> get_option( 'posts_per_page' ),
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_positive_integer',
+) );
+	$wp_customize->add_setting(
+			'arras-options[slideshow_posttype]', array(
+			'default'			=> 'post',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_post_type',
+) );
+	$wp_customize->add_setting(
+			'arras-options[slideshow_tax]', array(
+			'default'			=> 'category',
+			'type'				=> 'option',
+			'sanitize_callback'	=> 'arras_sanitize_taxonomy',
+) );
+	$wp_customize->add_setting(
 		'arras-options[slideshow_cat]', array(
 			'default'			=> arras_get_cats( 'slideshow_cat' ),
 			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_test',
+			'sanitize_callback'	=> 'arras_sanitize_',
 	) );
 
 	// -- Controls --
@@ -145,7 +163,30 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		'section'		=> 'slideshow',
 		'settings'		=> 'arras-options[enable_slideshow]',
 		'type'			=> 'checkbox',
+		'priority'		=> 1,
+	) );
+	$wp_customize->add_control( 'slideshow-count', array(
+		'label'			=> __( 'Maximum Posts in Slideshow', 'arras' ),
+		'section'		=> 'slideshow',
+		'settings'		=> 'arras-options[slideshow_count]',
+		'type'			=> 'number',
+		'priority'		=> 3,
+	) );
+	$wp_customize->add_control( 'slideshow-posttype', array(
+		'label'			=> __( 'Slideshow Post Type', 'arras' ),
+		'section'		=> 'slideshow',
+		'settings'		=> 'arras-options[slideshow_posttype]',
+		'type'			=> 'select',
+		'choices'		=> arras_get_posttypes(),
 		'priority'		=> 5,
+	) );
+/*	$wp_customize->add_control( 'slideshow-taxonomy', array(
+		'label'			=> __( 'Slideshow Taxonomy', 'arras' ),
+		'section'		=> 'slideshow',
+		'settings'		=> 'arras-options[slideshow_tax]',
+		'type'			=> 'select',
+		'choices'		=> arras_get_taxonomies(),
+		'priority'		=> 7,
 	) );
 	$wp_customize->add_control(
 		new Arras_Checkbox_Multi_Select(
@@ -159,8 +200,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 				'type'			=> 'multiple-select',
 				'choices'		=> arras_get_multi_cat_choices_array(),
 				'priority'		=> 10,
-		) ) );
-
+		) ) ); */
 
 	// Add Post Meta Section, Settings & Controls
 	// -- Section --
@@ -590,6 +630,19 @@ function arras_sanitize_test( $input ) {
 	return $input;
 }
 
+function arras_sanitize_positive_integer( $value ) {
+	return absint( intval( $value ) );
+}
+
+function arras_sanitize_post_type ( $input ) {
+	$posttypes = get_post_types( array( 'public' => true ), 'objects' );
+
+	foreach ( $posttypes as $posttype => $obj ) {
+			$valid_posttypes[] = $posttype;
+	}
+	return ( in_array( $input, $valid_posttypes ) ? $input : 'post' );
+}
+
 function arras_get_cats( $setting ) {
 	$raw = arras_get_option( $setting );
 
@@ -599,4 +652,25 @@ function arras_get_cats( $setting ) {
 
 	return false;
 
+}
+
+function arras_get_posttypes() {
+	$posttypes = get_post_types( array( 'public' => true ), 'objects' );
+	$posttypes_opt = array();
+
+	foreach( $posttypes as $id => $obj ) {
+			$posttypes_opt[$id] = $obj->labels->name;
+	}
+	return $posttypes_opt;
+}
+
+
+
+
+add_action( 'customize_controls_print_styles', 'arras_customizer_styles' );
+/**
+ * Enqueue custom styles for customizer
+ */
+function arras_customizer_styles() {
+	wp_enqueue_style( 'arras-customizer', get_template_directory_uri() . '/css/customizer.css', null, null, 'screen' );
 }

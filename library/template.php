@@ -270,7 +270,7 @@ function arras_prep_query( $args = array() ) {
 		'query'				=> array(
 			'exclude'			=> array(),
 			'post_type'			=> 'post',
-			'posts_per_page'	=> 10,
+			'posts_per_page'	=> get_option( 'posts_per_page' ),
 			'orderby'			=> 'date',
 			'order'				=> 'DESC'
 		)
@@ -329,8 +329,7 @@ function arras_prep_query( $args = array() ) {
 		$args['query']['post_status'] = 'inherit';
 	}
 
-	//arras_debug($args['query']);
-	echo '<pre>';print_r($args['query']);echo '</pre>';
+	arras_debug($args['query']);
 	return $args['query'];
 }
 

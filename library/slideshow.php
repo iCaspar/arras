@@ -24,7 +24,6 @@ function arras_add_slideshow() {
 	?>
 	<!-- Featured Slideshow -->
 	<div class="featured group">
-		<?php if ($q->post_count > 1) : ?>
 		<div id="controls" class="slide-controls">
 			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
 			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
@@ -46,7 +45,6 @@ function arras_add_slideshow() {
 			<?php arras_blacklist_duplicates(); // required for duplicate posts function to work. ?>
 			<?php $count++; endwhile; ?>
 		</div>
-		<?php endif ?>
 	</div>
 	<?php endif;
 }
