@@ -79,8 +79,9 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	// Add Homepage Panel, Sections and Settings
 	// -- Panel --
 	$wp_customize->add_panel( 'homepage', array(
-		'title' 		=> __( 'Homepage Settings', 'arras' ),
-		'priority'		=> 30
+		'title' 			=> __( 'Homepage Settings', 'arras' ),
+		'active_callback'	=> 'is_front_page',
+		'priority'			=> 30,
 	) );
 
 	// -- Sections --
@@ -146,7 +147,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		'arras-options[slideshow_cat]', array(
 			'default'			=> arras_get_cats( 'slideshow_cat' ),
 			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_',
+			'sanitize_callback'	=> 'arras_sanitize_terms',
 	) );
 
 	// -- Controls --
@@ -174,18 +175,20 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 	$wp_customize->add_control( 'slideshow-posttype', array(
 		'label'			=> __( 'Slideshow Post Type', 'arras' ),
+		'description'	=> __( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
 		'section'		=> 'slideshow',
 		'settings'		=> 'arras-options[slideshow_posttype]',
 		'type'			=> 'select',
 		'choices'		=> arras_get_posttypes(),
 		'priority'		=> 5,
 	) );
-/*	$wp_customize->add_control( 'slideshow-taxonomy', array(
+	$wp_customize->add_control( 'slideshow-taxonomy', array(
 		'label'			=> __( 'Slideshow Taxonomy', 'arras' ),
+		'description'	=> __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
 		'section'		=> 'slideshow',
 		'settings'		=> 'arras-options[slideshow_tax]',
 		'type'			=> 'select',
-		'choices'		=> arras_get_taxonomies(),
+		'choices'		=> arras_get_taxonomies( arras_get_option( 'slideshow_posttype' ) ),
 		'priority'		=> 7,
 	) );
 	$wp_customize->add_control(
@@ -193,14 +196,13 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 			$wp_customize,
 			'slideshow-cat',
 			array(
-				'label'			=> __( 'Slideshow Categories', 'arras' ),
-				'description'	=> __( 'Shift-click to select multiple categories.', 'arras' ),
+				'label'			=> __( 'Slideshow Categories (or Terms)', 'arras' ),
 				'section'		=> 'slideshow',
 				'settings'		=> 'arras-options[slideshow_cat]',
 				'type'			=> 'multiple-select',
-				'choices'		=> arras_get_multi_cat_choices_array(),
+				'choices'		=> arras_get_terms( arras_get_option( 'slideshow_tax' ), arras_get_option( 'slideshow_posttype' ) ),
 				'priority'		=> 10,
-		) ) ); */
+		) ) );
 
 	// Add Post Meta Section, Settings & Controls
 	// -- Section --
@@ -643,6 +645,16 @@ function arras_sanitize_post_type ( $input ) {
 	return ( in_array( $input, $valid_posttypes ) ? $input : 'post' );
 }
 
+function arras_sanitize_taxonomy( $input ) {
+	// TODO: Put a real validator in here
+	return $input;
+}
+
+function arras_sanitize_terms( $input ) {
+	// TODO: Put a real validator in here
+	return $input;
+}
+
 function arras_get_cats( $setting ) {
 	$raw = arras_get_option( $setting );
 
@@ -661,9 +673,41 @@ function arras_get_posttypes() {
 	foreach( $posttypes as $id => $obj ) {
 			$posttypes_opt[$id] = $obj->labels->name;
 	}
+
 	return $posttypes_opt;
 }
 
+function arras_get_taxonomies( $posttype ) {
+	$taxonomies = get_object_taxonomies( $posttype, 'objects');
+	$taxonomy_opts = array();
+
+	foreach( $taxonomies as $id => $object ) {
+		if ( isset( $object->query_var ) ) {
+			$taxonomy_opts[$id] = $object->labels->name;
+		}
+	}
+
+	return $taxonomy_opts;
+}
+
+function arras_get_terms( $taxonomy = 'category', $posttype = 'post' ) {
+	$terms = get_terms( $taxonomy, array( 'hide_empty' => false ) );
+	if ( empty( $terms ) || is_WP_Error( $terms ) ) return null;
+
+	$terms_options = array();
+
+	if ( $taxonomy == 'category' && $posttype == 'post' ) {
+		$terms_options[] = array( '-5' => __( 'Use Sticky Posts', 'arras' ) );
+	}
+
+	foreach ($terms as $term) {
+		if ($taxonomy == 'category' || $taxonomy == 'post_tag') {
+			$terms_options[$term->term_id] = $term->name;
+		}
+	}
+
+	return $terms_options;
+}
 
 
 
@@ -674,3 +718,15 @@ add_action( 'customize_controls_print_styles', 'arras_customizer_styles' );
 function arras_customizer_styles() {
 	wp_enqueue_style( 'arras-customizer', get_template_directory_uri() . '/css/customizer.css', null, null, 'screen' );
 }
+/**
+ * For future use if nessary
+ */
+/*
+add_action( 'customize_controls_enqueue_scripts', 'arras_customizer_scripts' );
+/**
+ * Enqueue custom scripts for customizer
+
+function arras_customizer_scripts() {
+	wp_enqueue_script( 'arras-customizer-customize', get_template_directory_uri() . '/js/customizer.js',array( 'jquery', 'customize-controls' ), false, true );
+}
+*/

@@ -183,11 +183,11 @@ function arras_get_terms_list($taxonomy) {
 
 function arras_get_taxonomy_list($object) {
 	$taxonomies = get_object_taxonomies($object, 'objects');
-
+	arras_debug($taxonomies);
 	$opt = array();
 
 	foreach( $taxonomies as $id => $obj ) {
-		if ( !in_array($id, arras_taxonomy_blacklist()) ) {
+		if ( ! in_array($id, arras_taxonomy_blacklist()) ) {
 			if ( $id == 'category' || $id == 'post_tag' || isset($obj->query_var) ) {
 				$opt[$id] = $obj->labels->name;
 			}

@@ -329,7 +329,7 @@ function arras_prep_query( $args = array() ) {
 		$args['query']['post_status'] = 'inherit';
 	}
 
-	arras_debug($args['query']);
+	//arras_debug($args['query']);
 	return $args['query'];
 }
 
