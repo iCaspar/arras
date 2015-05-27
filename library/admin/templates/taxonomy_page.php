@@ -7,20 +7,6 @@
 <table class="form-table">
 
 <tr valign="top">
-<th scope="row"><label for="arras-taxonomy-slideshow"><?php _e('Slideshow', 'arras') ?></label></th>
-<td>
-<?php
-  $slideshow_tax_input = arras_form_dropdown( 'arras-taxonomy-slideshow', arras_get_taxonomy_list(arras_get_option('slideshow_posttype')), arras_get_option('slideshow_tax') );
-  if ( $slideshow_tax_input != '' ) {
-    echo $slideshow_tax_input;
-  } else {
-    echo 'No Taxonomies available for selected Post Type.';
-  }
-?>
-</td>
-</tr>
-
-<tr valign="top">
 <th scope="row"><label for="arras-taxonomy-featured1"><?php _e('Featured Post #1', 'arras') ?></label></th>
 <td>
 <?php

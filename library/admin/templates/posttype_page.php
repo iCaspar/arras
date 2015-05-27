@@ -18,13 +18,6 @@ foreach( $posttypes as $id => $obj ) {
 <table class="form-table">
 
 <tr valign="top">
-<th scope="row"><label for="arras-posttype-slideshow"><?php _e('Slideshow', 'arras') ?></label></th>
-<td>
-<?php echo arras_form_dropdown( 'arras-posttype-slideshow', $posttypes_opt, arras_get_option('slideshow_posttype') ); ?>
-</td>
-</tr>
-
-<tr valign="top">
 <th scope="row"><label for="arras-posttype-featured1"><?php _e('Featured Post #1', 'arras') ?></label></th>
 <td>
 <?php echo arras_form_dropdown( 'arras-posttype-featured1', $posttypes_opt, arras_get_option('featured1_posttype') ); ?>

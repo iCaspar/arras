@@ -13,60 +13,195 @@ add_action( 'customize_register', 'arras_customizer' );
  * @return null
  */
 function arras_customizer( $wp_customize ) {
+	/**
+	 * We need to roll our own multiple select customize control class
+	 * (as of 4.2 it's not in core, but we can hope ... someday)
+	 */
+	class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
+	    /**
+	     * The type of customize control being rendered.
+	     */
+	    public $type = 'multiple-select';
 
-/**
- * We need to roll our own multiple select customize control class
- * (as of 4.2 it's not in core, but we can hope ... someday)
- */
-class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
-    /**
-     * The type of customize control being rendered.
-     */
-    public $type = 'multiple-select';
+	    public function enqueue()
+	    {
+	    	wp_enqueue_script( 'arras-multi-select', get_template_directory_uri() . '/js/jquery.multiple.select.js', array( 'jquery' ), '1.1.0', true );
+	    	wp_enqueue_style( 'arras-multi-select', get_template_directory_uri() . '/css/multiple-select.css', array(), '1.1.0', 'all' );
+	    }
 
-    public function enqueue()
-    {
-    	wp_enqueue_script( 'arras-multi-select', get_template_directory_uri() . '/js/jquery.multiple.select.js', array( 'jquery' ), '1.1.0', true );
-    	wp_enqueue_style( 'arras-multi-select', get_template_directory_uri() . '/css/multiple-select.css', array(), '1.1.0', 'all' );
-    }
+	    /**
+	     * Displays the multiple select on the customize screen.
+	     */
+	    public function render_content()
+	    {
+		    if ( empty( $this->choices ) ) return;
+		    ?>
+		    <label>
+	            <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+	            <?php if ( ! empty( $this->description ) ): ?>
+	            	<span class="description customize-control-description"><?php echo $this->description; ?></span>
+	            <?php endif; ?>
+	            <select name="<?php echo $this->id; ?>" <?php $this->link(); ?> multiple="multiple" class="multi-select">
+	                <?php
+	                foreach ( $this->choices as $value => $label ) {
+	                    $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
+	                    echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
+	                    }
+	                ?>
+	            </select>
+	        </label>
+	    <?php } // end render_content()
+	} // end class Arras_Customize_Control_Multiple_Select
 
-    /**
-     * Displays the multiple select on the customize screen.
-     */
-    public function render_content()
-    {
-	    if ( empty( $this->choices ) ) return;
-	    ?>
-	    <label>
-            <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-            <?php if ( ! empty( $this->description ) ): ?>
-            	<span class="description customize-control-description"><?php echo $this->description; ?></span>
-            <?php endif; ?>
-            <select name="<?php echo $this->id; ?>" <?php $this->link(); ?> multiple="multiple" class="multi-select">
-                <?php
-                foreach ( $this->choices as $value => $label ) {
-                    $selected = ( in_array( $value, $this->value() ) ) ? selected( 1, 1, false ) : '';
-                    echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
-                    }
-                ?>
-            </select>
-        </label>
-    <?php } // end render_content()
-} // end class Arras_Customize_Control_Multiple_Select
 
 	$color_scheme = arras_get_current_color_scheme();
 
-	// Rename the Title/Tagline section
+	// Tweak a couple of the built-in sections
 	$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Tagline & Footer Message', 'arras' );
+	$wp_customize->get_section( 'header_image' )->title = __( 'Header Image and Logo', 'arras' );
 
-	// Add Footer Message
-	$wp_customize->add_setting(
-		'arras-options[footer_message]',
-		array(
-			'default'			=> __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ),
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'wp_kses_post',
-	) );
+
+	/**
+	 * Array for adding custom panels.
+	 * 'panel-id' => array( 'title', 'description', 'active_callback', priority )
+	 */
+	$panels = array(
+		'homepage'		=> array( __( 'Homepage Settings', 'arras'), '', 'is_front_page', 30 ),
+	);
+	$panels = apply_filters( 'arras_customizer_panels', $panels );
+	foreach ( $panels as $id => $args ) {
+		$wp_customize->add_panel( $id, array(
+			'title' 			=> $args[0],
+			'description'		=> $args[1],
+			'active_callback'	=> $args[2],
+			'priority'			=> $args[3],
+		) );
+	}
+
+
+	/**
+	 * Array for adding custom sections.
+	 * 'section-id' => array( 'panel-id', 'title', 'description', 'active_callback', priority )
+	 * @var array
+	 */
+	$sections = array(
+		// Sections on the Builtin Panel
+		'post-meta'			=> array( '', __( 'Post Display', 'arras' ), __( 'Options for displaying meta-data on single posts.', 'arras' ), 35 ),
+		'social'			=> array( '', __( 'Social Media Links', 'arras' ), '', 100 ),
+
+		// Sections on the Homepage Panel
+		'duplicate-posts'	=> array( 'homepage', __( 'Duplicate Posts', 'arras' ), '', 10 ),
+		'slideshow'			=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
+		'featured-1'		=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
+		'featured-2'		=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
+		'news'				=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
+
+	);
+	$sections = apply_filters( 'arras_customizer_sections', $sections );
+	foreach ( $sections as $id => $args ) {
+		$wp_customize->add_section( $id, array(
+		    'panel' 		=> $args[0],
+		    'title' 		=> $args[1],
+		    'description'	=> $args[2],
+		    'priority' 		=> $args[3],
+		    ) );
+	}
+
+
+	/**
+	 * Array for adding custom settings.
+	 * 'setting-id' => array( 'default', 'type', 'sanitize_callback' )
+	 * @var array
+	 */
+	$settings = array(
+		// Site Title & Tagline Section
+		'arras-options[footer_message]' 	=> array( __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ), 'option', 'wp_kses_post' ),
+
+		// Duplicate Posts Section
+		'arras-options[hide_duplicates]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+
+		// Slideshow Section
+		'arras-options[enable_slideshow]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[slideshow_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[slideshow_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[slideshow_cat]'		=> array( arras_get_cats( 'slideshow_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[slideshow_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// Featured #1 Section
+		'arras-options[enable_featured1]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[featured1_title]'	=> array( __( 'Featured Stories', 'arras' ), 'option', 'sanitize_text_field' ),
+		'arras-options[featured1_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[featured1_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[featured1_cat]'		=> array( arras_get_cats( 'featured1_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[featured1_display]'	=> array( 'default', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[featured1_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// Featured #2 Section
+		'arras-options[enable_featured2]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[featured2_title]'	=> array( __( 'Editor\'s Picks', 'arras' ), 'option', 'sanitize_text_field' ),
+		'arras-options[featured2_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[featured2_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[featured2_cat]'		=> array( arras_get_cats( 'featured2_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[featured2_display]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[featured2_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// News Section
+		'arras-options[enable_news]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[news_title]'			=> array( __( 'News', 'arras' ), 'option', 'sanitize_text_field' ),
+		'arras-options[news_posttype]'		=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[news_tax]'			=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[news_cat]'			=> array( arras_get_cats( 'news_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[news_display]'		=> array( 'line', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[news_count]'			=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// Post Display Section
+		'arras-options[post_author]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[post_date]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[post_cats]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[post_tags]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[single_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[relative_postdates]'	=> array( false, 'option', 'arras_sanitize_boolian' ),
+
+		// Colors Section
+		'color_scheme'						=> array( 'default', 'theme_mod', 'arras_sanitize_color_scheme' ),
+		'header_background_color'			=> array( $color_scheme[0], 'theme_mod', 'sanitize_hex_color' ),
+
+		// Header Image and Logo Section
+		'arras-options[site_logo]'			=> array( esc_url( get_option( 'arras-options[site_logo]' ) ), 'option', 'esc_url_raw' ),
+
+		// Social Media Section
+		'arras-options[show_rss]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[twitter]'			=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[facebook]'			=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[google]'				=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[flickr]'				=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[youtube]'			=> array( '', 'option', 'esc_url_raw' ),
+
+		// Layout Section
+		'arras-options[layout]'				=> array( '2c-r', 'option', 'arras_sanitize_layouts' ),
+		'arras-options[auto_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[default_tapestry]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[nodes_per_row]'		=> array( 3, 'option', 'arras_sanitize_nodes_per_row' ),
+		'arras-options[nodes_excerpt]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[excerpt_limit]'		=> array( 30, 'option', 'arras_sanitize_excerpt_limit' ),
+		'arras-options[footer_columns]'		=> array( 3, 'option', 'arras_sanitize_footer_cols' ),
+	);
+	$settings = apply_filters( 'arras_customizer_settings', $settings );
+	foreach ( $settings as $id => $args ) {
+		$wp_customize->add_setting( $id, array(
+			'default'			=> $args[0],
+			'type'				=> $args[1],
+			'sanitize_callback'	=> $args[2],
+		) );
+	}
+
+
+	/**
+	 * Array for custom controls using defailt control class.
+	 * 'control-id' =>
+	 * 		array( 'label', 'description', 'section', 'settings', 'type', 'choices', priority )
+	 * @var array
+	 */
 	$wp_customize->add_control( 'footer-message', array(
 		'label'			=> __( 'Footer Message', 'arras' ),
 		'description'	=> __( 'You may use some limited html here (for links, etc).', 'arras' ),
@@ -76,81 +211,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		'priority'		=> 35
 	) );
 
-	// Add Homepage Panel, Sections and Settings
-	// -- Panel --
-	$wp_customize->add_panel( 'homepage', array(
-		'title' 			=> __( 'Homepage Settings', 'arras' ),
-		'active_callback'	=> 'is_front_page',
-		'priority'			=> 30,
-	) );
 
-	// -- Sections --
-	$wp_customize->add_section( 'duplicate-posts', array(
-	    'panel' 		=> 'homepage',
-	    'title' 		=> __( 'Duplicate Posts', 'arras' ),
-	    'priority' 		=> 10,
-	    ) );
-	$wp_customize->add_section( 'slideshow', array(
-	    'panel' 		=> 'homepage',
-	    'title' 		=> __( 'Slideshow', 'arras' ),
-	    'priority' 		=> 20,
-	    ) );
-	$wp_customize->add_section( 'featured-1', array(
-	    'panel' 		=> 'homepage',
-	    'title' 		=> __( 'First Featured Posts Section', 'arras' ),
-	    'priority' 		=> 30,
-	    ) );
-	$wp_customize->add_section( 'featured-2', array(
-	    'panel' 		=> 'homepage',
-	    'title' 		=> __( 'Second Featured Posts Section', 'arras' ),
-	    'priority' 		=> 40,
-	    ) );
-	$wp_customize->add_section( 'news', array(
-	    'panel' 		=> 'homepage',
-	    'title' 		=> __( 'News Posts', 'arras' ),
-	    'priority' 		=> 10,
-	    ) );
-
-	// -- Settings --
-	$wp_customize->add_setting(
-		'arras-options[hide_duplicates]', array(
-			'default' 			=> true,
-			'type' 				=> 'option',
-			'sanitize_callback' => 'arras_sanitize_boolian',
-	) );
-
-	$wp_customize->add_setting(
-		'arras-options[enable_slideshow]', array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-			'arras-options[slideshow_count]', array(
-			'default'			=> get_option( 'posts_per_page' ),
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_positive_integer',
-) );
-	$wp_customize->add_setting(
-			'arras-options[slideshow_posttype]', array(
-			'default'			=> 'post',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_post_type',
-) );
-	$wp_customize->add_setting(
-			'arras-options[slideshow_tax]', array(
-			'default'			=> 'category',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_taxonomy',
-) );
-	$wp_customize->add_setting(
-		'arras-options[slideshow_cat]', array(
-			'default'			=> arras_get_cats( 'slideshow_cat' ),
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_terms',
-	) );
-
-	// -- Controls --
 	$wp_customize->add_control( 'hide-duplicates', array(
 	    'label' 		=> __( 'Hide Duplicate Posts', 'arras' ),
 	    'description' 	=> __( 'Prevents duplicate posts from displaying in both the slideshow the featured posts. May cause slowdown, depending on post count.', 'arras' ),
@@ -205,57 +266,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		) ) );
 
 	// Add Post Meta Section, Settings & Controls
-	// -- Section --
-	$wp_customize->add_section( 'post-meta',
-	array(
-		'title'			=> __( 'Post Meta Display', 'arras' ),
-		'description'	=> __( 'Options for displaying meta-data on single posts.', 'arras' ),
-		'priority'		=> 35,
-	) );
 
-	// -- Settings --
-	$wp_customize->add_setting(
-		'arras-options[post_author]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[post_date]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[post_cats]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[post_tags]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[single_thumbs]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[relative_postdates]',
-		array(
-			'default'			=> false,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
 
 	// -- Controls --
 	$wp_customize->add_control( 'post-author', array(
@@ -302,13 +313,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		'priority'		=> 6
 	) );
 
-	// Add color scheme setting and control.
-	$wp_customize->add_setting(
-		'color_scheme',
-		array(
-			'default'			=> 'default',
-			'sanitize_callback' => 'arras_sanitize_color_scheme',
-	) );
 
 	$wp_customize->add_control( 'color_scheme', array(
 		'label'    => __( 'Base Color Scheme', 'arras' ),
@@ -318,13 +322,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 		'priority' => 1,
 	) );
 
-	// Add custom header color (this is the background color for the entire header area)
-	$wp_customize->add_setting(
-		'header_background_color',
-		array(
-			'default'			=> $color_scheme[0],
-			'sanitize_callback'	=> 'sanitize_hex_color',
-	) );
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
@@ -340,14 +337,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	);
 
 	// Add Logo Uploader
-	$wp_customize->get_section( 'header_image' )->title = __( 'Header Image and Logo', 'arras' );
-	$wp_customize->add_setting(
-		'arras-options[site_logo]',
-		array(
-			'default'			=> esc_url( get_option( 'arras-options[site_logo]' ) ),
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'esc_url_raw',
-	) );
 	$wp_customize->add_control(
 		new WP_Customize_Upload_Control(
 			$wp_customize,
@@ -362,56 +351,7 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	);
 
 	// Add Social Links Section, Settings and Controls
-	// -- Section --
-	$wp_customize->add_section( 'social',
-	array(
-		'title'		=> __( 'Social Media Links', 'arras' ),
-		'priority'	=> 100,
-	) );
 
-	// -- Settings --
-	$wp_customize->add_setting(
-		'arras-options[show_rss]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[twitter]',
-		array(
-			'default'			=> '',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'esc_url_raw',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[facebook]',
-		array(
-			'default'			=> '',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'esc_url_raw',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[google]',
-		array(
-			'default'			=> '',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'esc_url_raw',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[flickr]',
-		array(
-			'default'			=> '',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'esc_url_raw',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[youtube]',
-		array(
-			'default'			=> '',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'esc_url_raw',
-	) );
 
 	// -- Controls --
 	$wp_customize->add_control( 'show-rss', array(
@@ -466,13 +406,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 
 	// Add Layout Settings
-	$wp_customize->add_setting(
-		'arras-options[layout]',
-		array(
-			'default'			=> '2c-r',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_layouts',
-	) );
 	$wp_customize->add_control( 'layout', array(
 		'label'		=> __( 'Sidebar Arrangement', 'arras' ),
 		'section'	=> 'layout',
@@ -483,13 +416,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 
 	// Add Default Tapestry
-	$wp_customize->add_setting(
-		'arras-options[default_tapestry]',
-		array(
-			'default'			=> 'quick',
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_tapestries',
-	) );
 	$wp_customize->add_control( 'default-tapestry', array(
 		'label'		=> __( 'Default Display Mode', 'arras' ),
 		'section'	=> 'layout',
@@ -500,13 +426,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 
 	// Add Auto Thumbnail Option
-	$wp_customize->add_setting(
-		'arras-options[auto_thumbs]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-	) );
 	$wp_customize->add_control( 'auto-thumbs', array(
 		'label'			=> __( 'Auto-Thumbnail', 'arras' ),
 		'description'	=> __( 'Automatically retrieve the first attached image from the post as featured image when no image is specified.', 'arras' ),
@@ -517,20 +436,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 
 	// Add Node-based options
-	$wp_customize->add_setting(
-		'arras-options[nodes_per_row]',
-		array(
-			'default'			=> 3,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_nodes_per_row',
-	) );
-	$wp_customize->add_setting(
-		'arras-options[nodes_excerpt]',
-		array(
-			'default'			=> true,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_boolian',
-		) );
 	$wp_customize->add_control( 'nodes-per-row', array(
 		'label'			=> __( 'Nodes per Row', 'arras' ),
 		'description'	=> __( 'For Node-based Display Mode.', 'arras' ),
@@ -549,13 +454,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 
 	// Add Excerpt Limit option
-	$wp_customize->add_setting(
-		'arras-options[excerpt_limit]',
-		array(
-			'default'			=> 30,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_excerpt_limit',
-	) );
 	$wp_customize->add_control( 'excerpt-limit', array(
 		'label'			=> __( 'Excerpt Limit', 'arras' ),
 		'description'	=> __( 'Number of words to trim excerpts. Trims only if no excerpt is specified for a post. Maximum 300 words. Enter 0 for no trim.', 'arras' ),
@@ -566,13 +464,6 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	) );
 
 	// Add Footer Columns Option
-	$wp_customize->add_setting(
-		'arras-options[footer_columns]',
-		array(
-			'default'			=> 3,
-			'type'				=> 'option',
-			'sanitize_callback'	=> 'arras_sanitize_footer_cols',
-	) );
 	$wp_customize->add_control( 'footer-columns', array(
 		'label'			=> __( 'Footer Columns', 'arras' ),
 		'description'	=> __( 'Each footer column gets its own widget area.', 'arras' ),
@@ -586,6 +477,9 @@ class Arras_Checkbox_Multi_Select extends WP_Customize_Control {
 	return $wp_customize;
 
 } // end arras_customizer()
+
+
+
 
 /**
  * Makes sure a boolian input resolves to true or false
@@ -708,6 +602,7 @@ function arras_get_terms( $taxonomy = 'category', $posttype = 'post' ) {
 
 	return $terms_options;
 }
+
 
 
 

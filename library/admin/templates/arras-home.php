@@ -2,34 +2,6 @@
 
 <div id="home" class="padding-content">
 
-<h3><?php _e('Slideshow', 'arras') ?> <span class="enabler"><?php echo arras_form_checkbox('arras-enable-slideshow', 'show', arras_get_option('enable_slideshow'), 'id="arras-enable-slideshow"') ?><label for="arras-enable-slideshow"><?php _e('Show/Hide', 'arras') ?></label></span></h3>
-<table class="form-table">
-
-<tr valign="top">
-<th scope="row"><?php _e('Selected Post Type', 'arras') ?></th>
-<td>
-<strong><?php echo arras_get_posttype_name(arras_get_option('slideshow_posttype')) ?></strong>
-</td>
-</tr>
-
-<tr valign="top">
-<th scope="row"><label for="arras-cat-slideshow"><?php printf( __('Stickied Posts / %s', 'arras'), arras_get_taxonomy_name(arras_get_option('slideshow_tax')) ) ?></label></th>
-<td>
-<?php echo arras_form_dropdown('arras-cat-slideshow[]', arras_get_terms_list(arras_get_option('slideshow_tax')), arras_get_option('slideshow_cat'), 'class="multiple" multiple="multiple"' ); ?>
-<br /><?php _e('Selected categories will be shown on the featured slideshow of the index page.', 'arras') ?>
-</td>
-</tr>
-
-<tr valign="top">
-<th scope="row"><label for="arras-layout-slideshow-count"><?php _e('Show Posts', 'arras') ?></label></th>
-<td>
-<?php echo arras_form_input(array('name' => 'arras-layout-slideshow-count', 'id' => 'arras-layout-slideshow-count', 'size' => '5', 'value' => arras_get_option('slideshow_count'), 'maxlength' => 2 )) ?>
- <?php ' ' . _e('posts', 'arras') ?>
-</td>
-</tr>
-
-</table>
-
 <h3><?php _e('Featured Posts #1', 'arras') ?>  <span class="enabler"><?php echo arras_form_checkbox('arras-enable-featured1', 'show', arras_get_option('enable_featured1'), 'id="arras-enable-featured1"') ?><label for="arras-enable-featured1"><?php _e('Show/Hide', 'arras') ?></label></span></h3>
 <table class="form-table">
 
