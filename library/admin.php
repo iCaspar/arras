@@ -15,7 +15,8 @@ function render_arras_info_page() {
 	<p>(<strong>Please note:</strong> This is a beta version. Some things may not work as expected.<br />
 		Please help make Arras better by reporting issues on <a href="http://github.com/iCaspar/arras">Github</a>.)</p>
 	<ul>
-		<li><strong>Responsive!</strong> Column widths and image sizes adjust to fit smaller screens.</li>
+		<li><strong>Responsive!</strong> Column widths and image sizes adjust to fit smaller screens.<br />
+		With the responsive grid in place, thumbnails also resize automatically. If your images look strange, please regenerate your thumbnails!</li>
 		<li><strong>Color Scheme Update.</strong> Same base color options as in 1.x versions, but simplified.
 		And you can change background colors for the header and page to whatever you like.</li>
 		<li>All Theme Options are now in the customizer.</li>
