@@ -130,17 +130,13 @@ function arras_add_sidebars() {
 	}
 } // end arras_add_sidebars()
 
-/* Load theme options */
-require_once ARRAS_LIB . '/admin/options.php';
-require_once ARRAS_LIB . '/admin/templates/functions.php';
-arras_flush_options();
-
 /* Load theme library files */
 require_once ARRAS_LIB . '/actions.php';
 require_once ARRAS_LIB . '/custom-header.php';
 require_once ARRAS_LIB . '/customizer.php';
 require_once ARRAS_LIB . '/deprecated.php';
 require_once ARRAS_LIB . '/filters.php';
+require_once ARRAS_LIB . '/functions.php';
 require_once ARRAS_LIB . '/slideshow.php';
 require_once ARRAS_LIB . '/scripts.php';
 require_once ARRAS_LIB . '/styles.php';
