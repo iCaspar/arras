@@ -393,6 +393,9 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	border-bottom: 5px solid #383332;
 }
 
+.logo {
+	min-height: 1px;
+}
 .logo .site-title,
 .logo .site-description {
 	padding-left: 30px;
