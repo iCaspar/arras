@@ -124,7 +124,7 @@ function arras_customizer( $wp_customize ) {
 		'arras-options[enable_slideshow]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
 		'arras-options[slideshow_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
 		'arras-options[slideshow_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[slideshow_cat]'		=> array( arras_get_cats( 'slideshow_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[slideshow_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
 		'arras-options[slideshow_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
 
 		// Featured #1 Section
@@ -132,7 +132,7 @@ function arras_customizer( $wp_customize ) {
 		'arras-options[featured1_title]'	=> array( __( 'Featured Stories', 'arras' ), 'option', 'sanitize_text_field' ),
 		'arras-options[featured1_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
 		'arras-options[featured1_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[featured1_cat]'		=> array( arras_get_cats( 'featured1_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[featured1_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
 		'arras-options[featured1_display]'	=> array( 'default', 'option', 'arras_sanitize_tapestries' ),
 		'arras-options[featured1_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
 
@@ -141,7 +141,7 @@ function arras_customizer( $wp_customize ) {
 		'arras-options[featured2_title]'	=> array( __( 'Editor\'s Picks', 'arras' ), 'option', 'sanitize_text_field' ),
 		'arras-options[featured2_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
 		'arras-options[featured2_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[featured2_cat]'		=> array( arras_get_cats( 'featured2_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[featured2_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
 		'arras-options[featured2_display]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
 		'arras-options[featured2_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
 
@@ -150,7 +150,7 @@ function arras_customizer( $wp_customize ) {
 		'arras-options[news_title]'			=> array( __( 'News', 'arras' ), 'option', 'sanitize_text_field' ),
 		'arras-options[news_posttype]'		=> array( 'post', 'option', 'arras_sanitize_post_type' ),
 		'arras-options[news_tax]'			=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[news_cat]'			=> array( arras_get_cats( 'news_cat' ), 'option', 'arras_sanitize_terms' ),
+		'arras-options[news_cat]'			=> array( '', 'option', 'arras_sanitize_terms' ),
 		'arras-options[news_display]'		=> array( 'line', 'option', 'arras_sanitize_tapestries' ),
 		'arras-options[news_count]'			=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
 
@@ -282,9 +282,8 @@ function arras_customizer( $wp_customize ) {
 
 
 	);
-
+	$controls = apply_filters( 'arras_customizer_controls', $controls );
 	foreach ( $controls as $id => $args ) {
-
 		$wp_customize->add_control( $id, array(
 			'label'			=> $args[0],
 			'description'	=> $args[1],
@@ -314,6 +313,42 @@ function arras_customizer( $wp_customize ) {
 				'settings'		=> 'arras-options[slideshow_cat]',
 				'type'			=> 'multiple-select',
 				'choices'		=> arras_get_terms( arras_get_option( 'slideshow_tax' ), arras_get_option( 'slideshow_posttype' ) ),
+				'priority'		=> 10,
+		) ) );
+	$wp_customize->add_control(
+		new Arras_Checkbox_Multi_Select(
+			$wp_customize,
+			'featured1-cat',
+			array(
+				'label'			=> __( 'Featured #1 Categories (or Terms)', 'arras' ),
+				'section'		=> 'featured-1',
+				'settings'		=> 'arras-options[featured1_cat]',
+				'type'			=> 'multiple-select',
+				'choices'		=> arras_get_terms( arras_get_option( 'featured1_tax' ), arras_get_option( 'featured1_posttype' ) ),
+				'priority'		=> 10,
+		) ) );
+	$wp_customize->add_control(
+		new Arras_Checkbox_Multi_Select(
+			$wp_customize,
+			'featured2-cat',
+			array(
+				'label'			=> __( 'Featured #2 Categories (or Terms)', 'arras' ),
+				'section'		=> 'featured-2',
+				'settings'		=> 'arras-options[featured2_cat]',
+				'type'			=> 'multiple-select',
+				'choices'		=> arras_get_terms( arras_get_option( 'featured2_tax' ), arras_get_option( 'featured2_posttype' ) ),
+				'priority'		=> 10,
+		) ) );
+	$wp_customize->add_control(
+		new Arras_Checkbox_Multi_Select(
+			$wp_customize,
+			'news-cat',
+			array(
+				'label'			=> __( 'News Categories (or Terms)', 'arras' ),
+				'section'		=> 'news',
+				'settings'		=> 'arras-options[news_cat]',
+				'type'			=> 'multiple-select',
+				'choices'		=> arras_get_terms( arras_get_option( 'news_tax' ), arras_get_option( 'news_posttype' ) ),
 				'priority'		=> 10,
 		) ) );
 	$wp_customize->add_control( 'post-author', array(
