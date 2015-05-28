@@ -263,6 +263,8 @@ function arras_featured_loop( $display_type = 'default', $arras_args = array(), 
  * This function replaces arras_parse_query() starting from 1.5.1.
  */
 function arras_prep_query( $args = array() ) {
+	global $post;
+	$ignore_taxonomy = false;
 	$_defaults = array(
 		'list'				=> array(),
 		'taxonomy'			=> 'category',
@@ -279,7 +281,11 @@ function arras_prep_query( $args = array() ) {
 	$args['query'] = wp_parse_args($args['query'], $_defaults['query']);
 	$args = wp_parse_args($args, $_defaults);
 
-	if ( !is_array($args['list']) ) {
+	// Check whether we have categories/terms specified, and if so make sure they're in an array
+	if ( ! $args['list'] ) {
+		$ignore_taxonomy = true;
+	}
+	if ( ! is_array( $args['list'] ) ) {
 		$args['list'] = array($args['list']);
 	}
 
@@ -299,25 +305,29 @@ function arras_prep_query( $args = array() ) {
 		unset($args['list'][$key]);
 	}
 
-	// taxonomies
-	switch( $args['taxonomy'] ) {
-		case 'category':
+	// Check whether our current post type has taxonomies
+	if ( ! $taxonomies = get_object_taxonomies( $args['query']['post_type'], 'objects' ) ) $ignore_taxonomy = true;
 
-			$zero_key = array_search('0', $args['list']);
-			if (is_numeric($zero_key)) unset($args['list'][$zero_key]);
+	if ( ! $ignore_taxonomy ) {
+		switch( $args['taxonomy'] ) {
+			case 'category':
 
-			$args['query']['category__in'] = $args['list'];
-			break;
+				$zero_key = array_search('0', $args['list']);
+				if (is_numeric($zero_key)) unset($args['list'][$zero_key]);
 
-		case 'post_tag':
-			$args['query']['tag__in'] = $args['list'];
-			break;
+				$args['query']['category__in'] = $args['list'];
+				break;
 
-		default:
-			$taxonomy_obj = get_taxonomy($args['taxonomy']);
+			case 'post_tag':
+				$args['query']['tag__in'] = $args['list'];
+				break;
 
-			$args['list'] = implode($args['list'], ',');
-			$args['query'][$taxonomy_obj->query_var] = $args['list'];
+			default:
+				$taxonomy_obj = get_taxonomy($args['taxonomy']);
+
+				$args['list'] = implode($args['list'], ',');
+				$args['query'][$taxonomy_obj->query_var] = $args['list'];
+		}
 	}
 
 

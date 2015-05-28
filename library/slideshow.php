@@ -6,15 +6,15 @@ function arras_add_slideshow() {
 	if ( !is_home() || $paged ) return false; // if we're not on the first page of the homepage, quit
 	if ( arras_get_option( 'enable_slideshow' ) == false ) return false; // if the slideshow option is disabled, quit
 
-	$slideshow_cat = arras_get_option('slideshow_cat');
+	$slideshow_cat = arras_get_option( 'slideshow_cat' );
 
 	$query = arras_prep_query( array(
 		'list'				=> $slideshow_cat,
-		'taxonomy'			=> arras_get_option('slideshow_tax'),
+		'taxonomy'			=> arras_get_option( 'slideshow_tax' ),
 		'query'				=> array(
-			'posts_per_page'	=> arras_get_option('slideshow_count'),
+			'posts_per_page'	=> arras_get_option( 'slideshow_count' ),
 			'exclude'			=> $post_blacklist,
-			'post_type'			=> arras_get_option('slideshow_posttype'),
+			'post_type'			=> arras_get_option( 'slideshow_posttype' ),
 			'paged'				=> $paged
 		)
 	) );

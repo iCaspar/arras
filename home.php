@@ -21,7 +21,7 @@ $post_blacklist = array();
 
 <?php if (!$paged) : ?>
 
-	<?php if ( $featured1_cat !== '' && arras_get_option('enable_featured1') ) : ?>
+	<?php if ( arras_get_option('enable_featured1') ) : ?>
 	<?php arras_above_index_featured1_post() ?>
 	<!-- Featured Articles #1 -->
 
@@ -43,7 +43,7 @@ $post_blacklist = array();
 	</div><!-- #index-featured1 -->
 	<?php endif ?>
 
-	<?php if ( $featured2_cat !== '' && arras_get_option('enable_featured2') ) : ?>
+	<?php if ( arras_get_option('enable_featured2') ) : ?>
 	<?php arras_above_index_featured2_post() ?>
 	<!-- Featured Articles #2 -->
 	<div id="index-featured2">
