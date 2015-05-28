@@ -682,3 +682,22 @@ function arras_customizer_scripts() {
 	wp_enqueue_script( 'arras-customizer-customize', get_template_directory_uri() . '/js/customizer.js',array( 'jquery', 'customize-controls' ), false, true );
 }
 */
+
+function arras_get_option( $name ) {
+	global $arras_options;
+
+	// We're going to return options from the new option set if we have one.
+	$options = get_option( 'arras-options' );
+	if ( $options && isset( $options[$name] ) ) {
+		return $options[$name];
+	}
+
+	// Otherwise, see if there's an old option for it.
+	if (isset($arras_options->$name)) {
+		return $arras_options->$name;
+	} elseif (isset($arras_options->defaults[$name])) {
+		return $arras_options->defaults[$name];
+	}
+
+	return null; // if we haven't found anything, fail quietly
+}

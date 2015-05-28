@@ -147,7 +147,7 @@ require_once ARRAS_LIB . '/widgets.php';
 
 /* Load Admin stuff only when necessary */
 if ( is_admin() ) {
-	require_once ARRAS_LIB . '/admin/admin.php';
+	require_once ARRAS_LIB . '/admin.php';
 	add_action( 'admin_menu', 'arras_addmenu' );
 }
 
