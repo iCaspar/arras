@@ -107,86 +107,8 @@ function arras_customizer( $wp_customize ) {
 		    ) );
 	}
 
-
-	/**
-	 * Array for adding custom settings.
-	 * 'setting-id' => array( 'default', 'type', 'sanitize_callback' )
-	 * @var array
-	 */
-	$settings = array(
-		// Site Title & Tagline Section
-		'arras-options[footer_message]' 	=> array( __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ), 'option', 'wp_kses_post' ),
-
-		// Duplicate Posts Section
-		'arras-options[hide_duplicates]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-
-		// Slideshow Section
-		'arras-options[enable_slideshow]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[slideshow_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[slideshow_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[slideshow_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[slideshow_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
-
-		// Featured #1 Section
-		'arras-options[enable_featured1]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[featured1_title]'	=> array( __( 'Featured Stories', 'arras' ), 'option', 'sanitize_text_field' ),
-		'arras-options[featured1_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[featured1_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[featured1_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[featured1_display]'	=> array( 'default', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[featured1_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
-
-		// Featured #2 Section
-		'arras-options[enable_featured2]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[featured2_title]'	=> array( __( 'Editor\'s Picks', 'arras' ), 'option', 'sanitize_text_field' ),
-		'arras-options[featured2_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[featured2_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[featured2_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[featured2_display]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[featured2_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
-
-		// News Section
-		'arras-options[enable_news]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[news_title]'			=> array( __( 'News', 'arras' ), 'option', 'sanitize_text_field' ),
-		'arras-options[news_posttype]'		=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[news_tax]'			=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[news_cat]'			=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[news_display]'		=> array( 'line', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[news_count]'			=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
-
-		// Post Display Section
-		'arras-options[post_author]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[post_date]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[post_cats]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[post_tags]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[single_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[relative_postdates]'	=> array( false, 'option', 'arras_sanitize_boolian' ),
-
-		// Colors Section
-		'color_scheme'						=> array( 'default', 'theme_mod', 'arras_sanitize_color_scheme' ),
-		'header_background_color'			=> array( $color_scheme[0], 'theme_mod', 'sanitize_hex_color' ),
-
-		// Header Image and Logo Section
-		'arras-options[site_logo]'			=> array( esc_url( get_option( 'arras-options[site_logo]' ) ), 'option', 'esc_url_raw' ),
-
-		// Social Media Section
-		'arras-options[show_rss]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[twitter]'			=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[facebook]'			=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[google]'				=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[flickr]'				=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[youtube]'			=> array( '', 'option', 'esc_url_raw' ),
-
-		// Layout Section
-		'arras-options[layout]'				=> array( '2c-r', 'option', 'arras_sanitize_layouts' ),
-		'arras-options[auto_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[default_tapestry]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[nodes_per_row]'		=> array( 3, 'option', 'arras_sanitize_nodes_per_row' ),
-		'arras-options[nodes_excerpt]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[excerpt_limit]'		=> array( 30, 'option', 'arras_sanitize_excerpt_limit' ),
-		'arras-options[footer_columns]'		=> array( 3, 'option', 'arras_sanitize_footer_cols' ),
-	);
-	$settings = apply_filters( 'arras_customizer_settings', $settings );
+	// Generate Settings Objects
+	$settings = arras_get_settings_data();
 	foreach ( $settings as $id => $args ) {
 		$wp_customize->add_setting( $id, array(
 			'default'			=> $args[0],
@@ -263,7 +185,7 @@ function arras_customizer( $wp_customize ) {
 		'news-title'	=> array(
 			__( 'Header for News Section', 'arras'), '', 'news', 'arras-options[news_title]', 'text', '', 3),
 		'news-posttype'	=> array(
-			__( 'news Post Type', 'arras' ),
+			__( 'News Post Type', 'arras' ),
 			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
 			'news', 'arras-options[news_posttype]', 'select', arras_get_posttypes(), 5 ),
 		'news-taxonomy'	=> array(
@@ -536,6 +458,89 @@ function arras_customizer( $wp_customize ) {
 } // end arras_customizer()
 
 
+function arras_get_settings_data() {
+	$color_scheme = arras_get_current_color_scheme();
+
+	/**
+	 * Settings data array
+	 * 'setting-id' => array( 'default', 'type', 'sanitize_callback' )
+	 * @var array
+	 */
+	$settings = array(
+		// Site Title & Tagline Section
+		'arras-options[footer_message]' 	=> array( __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ), 'option', 'wp_kses_post' ),
+
+		// Duplicate Posts Section
+		'arras-options[hide_duplicates]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+
+		// Slideshow Section
+		'arras-options[enable_slideshow]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[slideshow_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[slideshow_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[slideshow_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
+		'arras-options[slideshow_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// Featured #1 Section
+		'arras-options[enable_featured1]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[featured1_title]'	=> array( __( 'Featured Stories', 'arras' ), 'option', 'sanitize_text_field' ),
+		'arras-options[featured1_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[featured1_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[featured1_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
+		'arras-options[featured1_display]'	=> array( 'default', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[featured1_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// Featured #2 Section
+		'arras-options[enable_featured2]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[featured2_title]'	=> array( __( 'Editor\'s Picks', 'arras' ), 'option', 'sanitize_text_field' ),
+		'arras-options[featured2_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[featured2_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[featured2_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
+		'arras-options[featured2_display]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[featured2_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// News Section
+		'arras-options[enable_news]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[news_title]'			=> array( __( 'News', 'arras' ), 'option', 'sanitize_text_field' ),
+		'arras-options[news_posttype]'		=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'arras-options[news_tax]'			=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'arras-options[news_cat]'			=> array( '', 'option', 'arras_sanitize_terms' ),
+		'arras-options[news_display]'		=> array( 'line', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[news_count]'			=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+
+		// Post Display Section
+		'arras-options[post_author]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[post_date]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[post_cats]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[post_tags]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[single_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[relative_postdates]'	=> array( false, 'option', 'arras_sanitize_boolian' ),
+
+		// Colors Section
+		'color_scheme'						=> array( 'default', 'theme_mod', 'arras_sanitize_color_scheme' ),
+		'header_background_color'			=> array( $color_scheme[0], 'theme_mod', 'sanitize_hex_color' ),
+
+		// Header Image and Logo Section
+		'arras-options[site_logo]'			=> array( esc_url( get_option( 'arras-options[site_logo]' ) ), 'option', 'esc_url_raw' ),
+
+		// Social Media Section
+		'arras-options[show_rss]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[twitter]'			=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[facebook]'			=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[google]'				=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[flickr]'				=> array( '', 'option', 'esc_url_raw' ),
+		'arras-options[youtube]'			=> array( '', 'option', 'esc_url_raw' ),
+
+		// Layout Section
+		'arras-options[layout]'				=> array( '2c-r', 'option', 'arras_sanitize_layouts' ),
+		'arras-options[auto_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[default_tapestry]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
+		'arras-options[nodes_per_row]'		=> array( 3, 'option', 'arras_sanitize_nodes_per_row' ),
+		'arras-options[nodes_excerpt]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'arras-options[excerpt_limit]'		=> array( 30, 'option', 'arras_sanitize_excerpt_limit' ),
+		'arras-options[footer_columns]'		=> array( 3, 'option', 'arras_sanitize_footer_cols' ),
+	);
+	return apply_filters( 'arras_customizer_settings', $settings );
+}
 
 
 /**
@@ -698,65 +703,4 @@ function arras_get_option( $name ) {
 	}
 
 	return null; // if we haven't found anything, fail quietly
-}
-
-// Caution! Values must be sanitized or otherwise known to be safe before using this!
-function arras_set_option( $name, $value ) {
-	$options = get_option( 'arras-options' );
-	$options[$name] = $value;
-	update_option( 'arras-options', $options );
-}
-
-add_action( 'switch_theme', 'arras_options_upgrade' );
-
-function arras_option_upgrade() {
-	// If we've already done this, bail
-	if ( arras_get_option( 'updated' ) ) return;
-	// If we don't have old options, bail
-	$old_options = get_option( 'arras_options' );
-	if ( ! $old_options ) return;
-
-	// And if they aren't options we recognize, bail
-	$old_options = maybe_unserialize( $old_options );
-	if ( ! ( $old_options instanceof ArrasOptions ) ) return;
-
-	// Arras 1.x stored tapestry info in a second place in the options table
-	$old_tapestry_default = maybe_unserialize( get_option( 'arras_tapestry_default' ) );
-
-	// Retrieve the old defaults into an array
-	$new_options = array();
-
-	foreach ( $old_options->defaults as $key => $value ) {
-		$new_options[$key] = $value;
-	}
-
-	// Now get the non-default settings (and overwrite the defaults for those that have been set)
-	unset( $old_options->defaults ); // we're done with those
-	foreach ( $old_options as $key => $value ) {
-		$new_options[$key] = $value;
-	}
-	// Add the loose settings, too!
-	if ( is_array( $old_tapestry_default ) ) {
-		$new_options['nodes_per_row'] = $old_tapestry_default['nodes'];
-		$new_options['nodes_excerpt'] = $old_tapestry_default['excerpt'];
-	}
-
-	// Check for renamed settings
-	$new_names = array(
-		'logo' => 'site_logo',
-		'facebook_profile' => 'facebook',
-		'twitter_username' => 'twitter' );
-	foreach ( $new_names as $old_name => $new_name ) {
-		if ( array_key_exists( $old_name, $new_options ) )
-			$new_options[$new_name] = $new_options[$old_name];
-	}
-
-	// Clean out options Arras 3 doesn't use
-	foreach ( $new_options as $setting ) {
-		if ( ! array_key_exists( $setting, $settings ) ) unset( $new_options[$setting] );
-	}
-
-	// Write the translated options back to the database as Arras 3 options
-	update_option( 'arras-options', $new_options );
-	arras_set_option( 'updated', true ); // make a note that we've done this.
 }

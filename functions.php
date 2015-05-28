@@ -143,6 +143,7 @@ require_once ARRAS_LIB . '/styles.php';
 require_once ARRAS_LIB . '/tapestries.php';
 require_once ARRAS_LIB . '/template.php';
 require_once ARRAS_LIB . '/thumbnails.php';
+require_once ARRAS_LIB . '/update.php';
 require_once ARRAS_LIB . '/widgets.php';
 
 /* Load Admin stuff only when necessary */
