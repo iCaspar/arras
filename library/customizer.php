@@ -92,9 +92,9 @@ function arras_customizer( $wp_customize ) {
 		// Sections on the Homepage Panel
 		'duplicate-posts'	=> array( 'homepage', __( 'Duplicate Posts', 'arras' ), '', 10 ),
 		'slideshow'			=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
-		'featured-1'		=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
-		'featured-2'		=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
-		'news'				=> array( 'homepage', __( 'Slideshow', 'arras'), '', 20 ),
+		'featured-1'		=> array( 'homepage', __( 'Featured #1', 'arras'), '', 20 ),
+		'featured-2'		=> array( 'homepage', __( 'Featured #2', 'arras'), '', 20 ),
+		'news'				=> array( 'homepage', __( 'News', 'arras'), '', 20 ),
 
 	);
 	$sections = apply_filters( 'arras_customizer_sections', $sections );
@@ -202,15 +202,99 @@ function arras_customizer( $wp_customize ) {
 	 * 		array( 'label', 'description', 'section', 'settings', 'type', 'choices', priority )
 	 * @var array
 	 */
-	$wp_customize->add_control( 'footer-message', array(
-		'label'			=> __( 'Footer Message', 'arras' ),
-		'description'	=> __( 'You may use some limited html here (for links, etc).', 'arras' ),
-		'section'		=> 'title_tagline',
-		'settings'		=> 'arras-options[footer_message]',
-		'type'			=> 'textarea',
-		'priority'		=> 35
-	) );
+	$controls = array(
+		// Site Title & Tagline Section
+		'footer-message'	=> array(
+			__( 'Footer Message', 'arras' ),
+			__( 'You may use some limited html here (for links, etc).', 'arras' ),
+			'title_tagline', 'arras-options[footer_message]', 'textarea', '', 35 ),
 
+		// Duplicate Posts Section
+		// Slideshow Section
+		'enable-slideshow'	=> array(
+			__( 'Enable Slideshow', 'arras' ), '', 'slideshow', 'arras-options[enable_slideshow]', 'checkbox', '', 1 ),
+		'slideshow-posttype'	=> array(
+			__( 'Slideshow Post Type', 'arras' ),
+			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
+			'slideshow', 'arras-options[slideshow_posttype]', 'select', arras_get_posttypes(), 5 ),
+		'slideshow-taxonomy'	=> array(
+			__( 'Slideshow Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
+			'slideshow', 'arras-options[slideshow_tax]', 'select', arras_get_taxonomies( arras_get_option( 'slideshow_posttype' ) ), 7 ),
+		'slideshow-count'	=> array(
+			__( 'Maximum Posts in Slideshow', 'arras' ), '', 'slideshow', 'arras-options[slideshow_count]', 'number', '', 13 ),
+
+		// Featured #1 Section
+		'enable-featured1'	=> array(
+			__( 'Enable Featured #1', 'arras' ), '', 'featured-1', 'arras-options[enable_featured1]', 'checkbox', '', 1 ),
+		'featured1-title'	=> array(
+			__( 'Header for Featured #1 Section', 'arras'), '', 'featured-1', 'arras-options[featured1_title]', 'text', '', 3),
+		'featured1-posttype'	=> array(
+			__( 'Featured #1 Post Type', 'arras' ),
+			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
+			'featured-1', 'arras-options[featured1_posttype]', 'select', arras_get_posttypes(), 5 ),
+		'featured1-taxonomy'	=> array(
+			__( 'Featured #1 Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
+			'featured-1', 'arras-options[featured1_tax]', 'select', arras_get_taxonomies( arras_get_option( 'featured1_posttype' ) ), 7 ),
+		'featured1-display'	=> array(
+			__( 'Display Mode for Featured #1', 'arras' ), '', 'featured-1', 'arras-options[featured1_display]', 'select', arras_get_tapestry_choices(), 11 ),
+		'featured1-count'	=> array(
+			__( 'Maximum Posts in Featured #1', 'arras' ), '', 'featured-1', 'arras-options[featured1_count]', 'number', '', 13 ),
+
+		// Featured #2 Section
+		'enable-featured2'	=> array(
+			__( 'Enable Featured #2', 'arras' ), '', 'featured-2', 'arras-options[enable_featured2]', 'checkbox', '', 1 ),
+		'featured2-title'	=> array(
+			__( 'Header for Featured #2 Section', 'arras'), '', 'featured-2', 'arras-options[featured2_title]', 'text', '', 3),
+		'featured2-posttype'	=> array(
+			__( 'Featured #2 Post Type', 'arras' ),
+			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
+			'featured-2', 'arras-options[featured2_posttype]', 'select', arras_get_posttypes(), 5 ),
+		'featured2-taxonomy'	=> array(
+			__( 'Featured #2 Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
+			'featured-2', 'arras-options[featured2_tax]', 'select', arras_get_taxonomies( arras_get_option( 'featured2_posttype' ) ), 7 ),
+		'featured2-display'	=> array(
+			__( 'Display Mode for Featured #2', 'arras' ), '', 'featured-2', 'arras-options[featured2_display]', 'select', arras_get_tapestry_choices(), 11 ),
+		'featured2-count'	=> array(
+			__( 'Maximum Posts in Featured #2', 'arras' ), '', 'featured-2', 'arras-options[featured2_count]', 'number', '', 13 ),
+
+		// News Section
+		'enable-news'		=> array(
+			__( 'Enable News', 'arras' ), '', 'news', 'arras-options[enable_news]', 'checkbox', '', 1 ),
+		'news-title'	=> array(
+			__( 'Header for News Section', 'arras'), '', 'news', 'arras-options[news_title]', 'text', '', 3),
+		'news-posttype'	=> array(
+			__( 'news Post Type', 'arras' ),
+			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
+			'news', 'arras-options[news_posttype]', 'select', arras_get_posttypes(), 5 ),
+		'news-taxonomy'	=> array(
+			__( 'News Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
+			'news', 'arras-options[news_tax]', 'select', arras_get_taxonomies( arras_get_option( 'news_posttype' ) ), 7 ),
+		'news-display'	=> array(
+			__( 'Display Mode for News', 'arras' ), '', 'news', 'arras-options[news_display]', 'select', arras_get_tapestry_choices(), 11 ),
+		'news-count'	=> array(
+			__( 'Maximum Posts in News', 'arras' ), '', 'news', 'arras-options[news_count]', 'number', '', 13 ),
+
+		// Post Display Section
+		// Colors Section
+		// Header Image and Logo Section
+		// Social Media Section
+		// Layout Section
+
+
+	);
+
+	foreach ( $controls as $id => $args ) {
+
+		$wp_customize->add_control( $id, array(
+			'label'			=> $args[0],
+			'description'	=> $args[1],
+			'section'		=> $args[2],
+			'settings'		=> $args[3],
+			'type'			=> $args[4],
+			'choices'		=> $args[5],
+			'priority'		=> $args[6],
+		) );
+	}
 
 	$wp_customize->add_control( 'hide-duplicates', array(
 	    'label' 		=> __( 'Hide Duplicate Posts', 'arras' ),
@@ -219,38 +303,6 @@ function arras_customizer( $wp_customize ) {
 	    'settings'		=> 'arras-options[hide_duplicates]',
 	    'type'			=> 'checkbox',
 	    'priority' 		=> 5,
-	) );
-	$wp_customize->add_control( 'enable-slideshow', array(
-		'label'			=> __( 'Enable Slideshow', 'arras' ),
-		'section'		=> 'slideshow',
-		'settings'		=> 'arras-options[enable_slideshow]',
-		'type'			=> 'checkbox',
-		'priority'		=> 1,
-	) );
-	$wp_customize->add_control( 'slideshow-count', array(
-		'label'			=> __( 'Maximum Posts in Slideshow', 'arras' ),
-		'section'		=> 'slideshow',
-		'settings'		=> 'arras-options[slideshow_count]',
-		'type'			=> 'number',
-		'priority'		=> 3,
-	) );
-	$wp_customize->add_control( 'slideshow-posttype', array(
-		'label'			=> __( 'Slideshow Post Type', 'arras' ),
-		'description'	=> __( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
-		'section'		=> 'slideshow',
-		'settings'		=> 'arras-options[slideshow_posttype]',
-		'type'			=> 'select',
-		'choices'		=> arras_get_posttypes(),
-		'priority'		=> 5,
-	) );
-	$wp_customize->add_control( 'slideshow-taxonomy', array(
-		'label'			=> __( 'Slideshow Taxonomy', 'arras' ),
-		'description'	=> __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
-		'section'		=> 'slideshow',
-		'settings'		=> 'arras-options[slideshow_tax]',
-		'type'			=> 'select',
-		'choices'		=> arras_get_taxonomies( arras_get_option( 'slideshow_posttype' ) ),
-		'priority'		=> 7,
 	) );
 	$wp_customize->add_control(
 		new Arras_Checkbox_Multi_Select(
@@ -264,11 +316,6 @@ function arras_customizer( $wp_customize ) {
 				'choices'		=> arras_get_terms( arras_get_option( 'slideshow_tax' ), arras_get_option( 'slideshow_posttype' ) ),
 				'priority'		=> 10,
 		) ) );
-
-	// Add Post Meta Section, Settings & Controls
-
-
-	// -- Controls --
 	$wp_customize->add_control( 'post-author', array(
 		'label'			=> __( 'Post Author', 'arras' ),
 		'section'		=> 'post-meta',
@@ -312,8 +359,6 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'checkbox',
 		'priority'		=> 6
 	) );
-
-
 	$wp_customize->add_control( 'color_scheme', array(
 		'label'    => __( 'Base Color Scheme', 'arras' ),
 		'section'  => 'colors',
@@ -321,8 +366,6 @@ function arras_customizer( $wp_customize ) {
 		'choices'  => arras_get_color_scheme_choices(),
 		'priority' => 1,
 	) );
-
-
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
 			$wp_customize,
@@ -335,8 +378,6 @@ function arras_customizer( $wp_customize ) {
 			)
 		)
 	);
-
-	// Add Logo Uploader
 	$wp_customize->add_control(
 		new WP_Customize_Upload_Control(
 			$wp_customize,
@@ -349,11 +390,6 @@ function arras_customizer( $wp_customize ) {
 			)
 		)
 	);
-
-	// Add Social Links Section, Settings and Controls
-
-
-	// -- Controls --
 	$wp_customize->add_control( 'show-rss', array(
 		'label'			=> __( 'Show RSS Feed Icon', 'arras' ),
 		'description'	=> __( 'Your RSS feed URL is: ', 'arras' ) . '<br />' . get_bloginfo( 'rss2_url' ),
@@ -397,15 +433,11 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'url',
 		'priority'		=> 6,
 	) );
-
-	// Add Layout Section, Settings and Controls
 	$wp_customize->add_section( 'layout',
 	array(
 		'title'		=> __( 'Layout', 'arras' ),
 		'priority'	=> 110,
 	) );
-
-	// Add Layout Settings
 	$wp_customize->add_control( 'layout', array(
 		'label'		=> __( 'Sidebar Arrangement', 'arras' ),
 		'section'	=> 'layout',
@@ -414,8 +446,6 @@ function arras_customizer( $wp_customize ) {
 		'choices'	=> arras_get_layouts(),
 		'priority'	=> 1,
 	) );
-
-	// Add Default Tapestry
 	$wp_customize->add_control( 'default-tapestry', array(
 		'label'		=> __( 'Default Display Mode', 'arras' ),
 		'section'	=> 'layout',
@@ -424,8 +454,6 @@ function arras_customizer( $wp_customize ) {
 		'choices'	=> arras_get_tapestry_choices(),
 		'priority'	=> 3,
 	) );
-
-	// Add Auto Thumbnail Option
 	$wp_customize->add_control( 'auto-thumbs', array(
 		'label'			=> __( 'Auto-Thumbnail', 'arras' ),
 		'description'	=> __( 'Automatically retrieve the first attached image from the post as featured image when no image is specified.', 'arras' ),
@@ -434,8 +462,6 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'checkbox',
 		'priority'		=> 2,
 	) );
-
-	// Add Node-based options
 	$wp_customize->add_control( 'nodes-per-row', array(
 		'label'			=> __( 'Nodes per Row', 'arras' ),
 		'description'	=> __( 'For Node-based Display Mode.', 'arras' ),
@@ -452,8 +478,6 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'checkbox',
 		'priority'		=> 5,
 	) );
-
-	// Add Excerpt Limit option
 	$wp_customize->add_control( 'excerpt-limit', array(
 		'label'			=> __( 'Excerpt Limit', 'arras' ),
 		'description'	=> __( 'Number of words to trim excerpts. Trims only if no excerpt is specified for a post. Maximum 300 words. Enter 0 for no trim.', 'arras' ),
@@ -462,8 +486,6 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'number',
 		'priority'		=> 6,
 	) );
-
-	// Add Footer Columns Option
 	$wp_customize->add_control( 'footer-columns', array(
 		'label'			=> __( 'Footer Columns', 'arras' ),
 		'description'	=> __( 'Each footer column gets its own widget area.', 'arras' ),
