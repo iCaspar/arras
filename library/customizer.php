@@ -661,8 +661,6 @@ function arras_get_terms( $taxonomy = 'category', $posttype = 'post' ) {
 }
 
 
-
-
 add_action( 'customize_controls_print_styles', 'arras_customizer_styles' );
 /**
  * Enqueue custom styles for customizer
@@ -679,7 +677,7 @@ add_action( 'customize_controls_enqueue_scripts', 'arras_customizer_scripts' );
  * Enqueue custom scripts for customizer
 
 function arras_customizer_scripts() {
-	wp_enqueue_script( 'arras-customizer-customize', get_template_directory_uri() . '/js/customizer.js',array( 'jquery', 'customize-controls' ), false, true );
+	wp_enqueue_script( 'arras-customizer-customize', get_template_directory_uri() . '/js/script.js',array( 'jquery', 'customize-controls' ), false, true );
 }
 */
 
@@ -700,4 +698,65 @@ function arras_get_option( $name ) {
 	}
 
 	return null; // if we haven't found anything, fail quietly
+}
+
+// Caution! Values must be sanitized or otherwise known to be safe before using this!
+function arras_set_option( $name, $value ) {
+	$options = get_option( 'arras-options' );
+	$options[$name] = $value;
+	update_option( 'arras-options', $options );
+}
+
+add_action( 'switch_theme', 'arras_options_upgrade' );
+
+function arras_option_upgrade() {
+	// If we've already done this, bail
+	if ( arras_get_option( 'updated' ) ) return;
+	// If we don't have old options, bail
+	$old_options = get_option( 'arras_options' );
+	if ( ! $old_options ) return;
+
+	// And if they aren't options we recognize, bail
+	$old_options = maybe_unserialize( $old_options );
+	if ( ! ( $old_options instanceof ArrasOptions ) ) return;
+
+	// Arras 1.x stored tapestry info in a second place in the options table
+	$old_tapestry_default = maybe_unserialize( get_option( 'arras_tapestry_default' ) );
+
+	// Retrieve the old defaults into an array
+	$new_options = array();
+
+	foreach ( $old_options->defaults as $key => $value ) {
+		$new_options[$key] = $value;
+	}
+
+	// Now get the non-default settings (and overwrite the defaults for those that have been set)
+	unset( $old_options->defaults ); // we're done with those
+	foreach ( $old_options as $key => $value ) {
+		$new_options[$key] = $value;
+	}
+	// Add the loose settings, too!
+	if ( is_array( $old_tapestry_default ) ) {
+		$new_options['nodes_per_row'] = $old_tapestry_default['nodes'];
+		$new_options['nodes_excerpt'] = $old_tapestry_default['excerpt'];
+	}
+
+	// Check for renamed settings
+	$new_names = array(
+		'logo' => 'site_logo',
+		'facebook_profile' => 'facebook',
+		'twitter_username' => 'twitter' );
+	foreach ( $new_names as $old_name => $new_name ) {
+		if ( array_key_exists( $old_name, $new_options ) )
+			$new_options[$new_name] = $new_options[$old_name];
+	}
+
+	// Clean out options Arras 3 doesn't use
+	foreach ( $new_options as $setting ) {
+		if ( ! array_key_exists( $setting, $settings ) ) unset( $new_options[$setting] );
+	}
+
+	// Write the translated options back to the database as Arras 3 options
+	update_option( 'arras-options', $new_options );
+	arras_set_option( 'updated', true ); // make a note that we've done this.
 }
