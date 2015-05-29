@@ -459,7 +459,7 @@ function arras_customizer( $wp_customize ) {
 
 
 function arras_get_settings_data() {
-	$color_scheme = arras_get_current_color_scheme();
+	$color_scheme = arras_get_current_color_scheme( true );
 
 	/**
 	 * Settings data array
