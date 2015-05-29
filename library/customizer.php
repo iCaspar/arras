@@ -66,7 +66,7 @@ function arras_customizer( $wp_customize ) {
 	 * 'panel-id' => array( 'title', 'description', 'active_callback', priority )
 	 */
 	$panels = array(
-		'homepage'		=> array( __( 'Homepage Settings', 'arras'), '', 'is_front_page', 30 ),
+		'homepage'		=> array( __( 'Homepage Settings', 'arras'), '', 'is_home', 30 ),
 	);
 	$panels = apply_filters( 'arras_customizer_panels', $panels );
 	foreach ( $panels as $id => $args ) {
