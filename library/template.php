@@ -52,11 +52,11 @@ function arras_favicons() {
  * @return null
  */
 function arras_add_custom_logo() {
-	$arras_logo_id = arras_get_option('logo');
-	if ($arras_logo_id != 0) {
-		$arras_logo = wp_get_attachment_image_src($arras_logo_id, 'full');
-
-		echo '<img src="' . $arras_logo[0] . '" width="' . $arras_logo[1] . '" height="' . $arras_logo[2] . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" />';
+	$arras_logo = arras_get_option( 'site_logo' );
+	if ( $arras_logo ) {
+		echo '<img src="' . esc_url( $arras_logo ) .
+			'" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) .
+			' - ' . esc_attr( get_bloginfo( 'description', 'display' ) ) . '" />';
 	}
 }
 
@@ -263,6 +263,8 @@ function arras_featured_loop( $display_type = 'default', $arras_args = array(), 
  * This function replaces arras_parse_query() starting from 1.5.1.
  */
 function arras_prep_query( $args = array() ) {
+	global $post;
+	$ignore_taxonomy = false;
 	$_defaults = array(
 		'list'				=> array(),
 		'taxonomy'			=> 'category',
@@ -270,7 +272,7 @@ function arras_prep_query( $args = array() ) {
 		'query'				=> array(
 			'exclude'			=> array(),
 			'post_type'			=> 'post',
-			'posts_per_page'	=> 10,
+			'posts_per_page'	=> get_option( 'posts_per_page' ),
 			'orderby'			=> 'date',
 			'order'				=> 'DESC'
 		)
@@ -279,7 +281,11 @@ function arras_prep_query( $args = array() ) {
 	$args['query'] = wp_parse_args($args['query'], $_defaults['query']);
 	$args = wp_parse_args($args, $_defaults);
 
-	if ( !is_array($args['list']) ) {
+	// Check whether we have categories/terms specified, and if so make sure they're in an array
+	if ( ! $args['list'] ) {
+		$ignore_taxonomy = true;
+	}
+	if ( ! is_array( $args['list'] ) ) {
 		$args['list'] = array($args['list']);
 	}
 
@@ -295,28 +301,33 @@ function arras_prep_query( $args = array() ) {
 		}
 
 		$key = array_search('-5', $args['list']);
+		if ( $args['list'][0] == null ) array_shift( $args['list'] );
 		unset($args['list'][$key]);
 	}
 
-	// taxonomies
-	switch( $args['taxonomy'] ) {
-		case 'category':
+	// Check whether our current post type has taxonomies
+	if ( ! $taxonomies = get_object_taxonomies( $args['query']['post_type'], 'objects' ) ) $ignore_taxonomy = true;
 
-			$zero_key = array_search('0', $args['list']);
-			if (is_numeric($zero_key)) unset($args['list'][$zero_key]);
+	if ( ! $ignore_taxonomy ) {
+		switch( $args['taxonomy'] ) {
+			case 'category':
 
-			$args['query']['category__in'] = $args['list'];
-			break;
+				$zero_key = array_search('0', $args['list']);
+				if (is_numeric($zero_key)) unset($args['list'][$zero_key]);
 
-		case 'post_tag':
-			$args['query']['tag__in'] = $args['list'];
-			break;
+				$args['query']['category__in'] = $args['list'];
+				break;
 
-		default:
-			$taxonomy_obj = get_taxonomy($args['taxonomy']);
+			case 'post_tag':
+				$args['query']['tag__in'] = $args['list'];
+				break;
 
-			$args['list'] = implode($args['list'], ',');
-			$args['query'][$taxonomy_obj->query_var] = $args['list'];
+			default:
+				$taxonomy_obj = get_taxonomy($args['taxonomy']);
+
+				$args['list'] = implode($args['list'], ',');
+				$args['query'][$taxonomy_obj->query_var] = $args['list'];
+		}
 	}
 
 
@@ -407,9 +418,7 @@ add_filter('excerpt_length', 'arras_excerpt_length');
  * @since 1.6
  */
 function arras_posted_on( $echo = 1 ) {
-	$result = '';
-
-	if ( !arras_get_option( 'relative_postdates' ) ) {
+	if ( ! arras_get_option( 'relative_postdates' ) ) {
 		$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
 	} else {
 		$diff = current_time( 'timestamp' ) - get_the_time( 'U' );
@@ -472,29 +481,30 @@ function arras_posted_on( $echo = 1 ) {
 function arras_social_nav() {
 ?>
 	<ul class="quick-nav col span_1_of_4">
-		<li><a class="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
-
-		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>
+		<?php if ( arras_get_option( 'show_rss' ) ): ?>
+			<li><a class="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
+		<?php endif; ?>
+		<?php $facebook_profile = arras_get_option( 'facebook' ); ?>
 		<?php if ($facebook_profile != '') : ?>
 			<li><a class="facebook" title="<?php printf( __( '%s Facebook', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $facebook_profile ?>" target="_blank"><?php _e('Facebook', 'arras') ?></a></li>
 		<?php endif ?>
 
-		<?php $flickr_profile = arras_get_option('flickr_profile'); ?>
+		<?php $flickr_profile = arras_get_option('flickr'); ?>
 		<?php if ($flickr_profile != '') : ?>
 			<li><a class="flickr" title="<?php printf( __( '%s Flickr', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $flickr_profile ?>" target="_blank"><?php _e('Flickr', 'arras') ?></a></li>
 		<?php endif ?>
 
-		<?php $gplus_profile = arras_get_option('gplus_profile'); ?>
+		<?php $gplus_profile = arras_get_option('google'); ?>
 		<?php if ($gplus_profile != '') : ?>
 			<li><a class="gplus" title="<?php printf( __( '%s Google+', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $gplus_profile ?>" target="_blank"><?php _e('Google+', 'arras') ?></a></li>
 		<?php endif ?>
 
-		<?php $twitter_username = arras_get_option('twitter_username'); ?>
+		<?php $twitter_username = arras_get_option('twitter'); ?>
 		<?php if ($twitter_username != '') : ?>
-			<li><a class="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="http://www.twitter.com/<?php echo $twitter_username ?>/" target="_blank"><?php _e('Twitter', 'arras') ?></a></li>
+			<li><a class="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $twitter_username ?>/" target="_blank"><?php _e('Twitter', 'arras') ?></a></li>
 		<?php endif ?>
 
-		<?php $youtube_profile = arras_get_option('youtube_profile'); ?>
+		<?php $youtube_profile = arras_get_option('youtube'); ?>
 		<?php if ($youtube_profile != '') : ?>
 			<li><a class="youtube" title="<?php printf( __( '%s YouTube', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $youtube_profile ?>" target="_blank"><?php _e('YouTube', 'arras') ?></a></li>
 		<?php endif ?>

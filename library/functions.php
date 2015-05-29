@@ -1,4 +1,16 @@
 <?php
+
+function arras_get_multi_cat_choices_array( $taxonomy = 'category' ) {
+	$categories = get_categories( array( 'taxonomy' => $taxonomy ) );
+	$choices = array( '-5' => __( 'Use Sticky Posts', 'arras' ) );
+
+	foreach ( $categories as $category ) {
+		$choices[$category->term_id] = $category->name;
+	}
+	return $choices;
+}
+
+
 /* Functions based on Codeigniter's Form Helper Class (http://www.codeigniter.com) */
 
 function arras_form_input($data = '', $value = '', $extra = '') {
@@ -171,11 +183,11 @@ function arras_get_terms_list($taxonomy) {
 
 function arras_get_taxonomy_list($object) {
 	$taxonomies = get_object_taxonomies($object, 'objects');
-
+	arras_debug($taxonomies);
 	$opt = array();
 
 	foreach( $taxonomies as $id => $obj ) {
-		if ( !in_array($id, arras_taxonomy_blacklist()) ) {
+		if ( ! in_array($id, arras_taxonomy_blacklist()) ) {
 			if ( $id == 'category' || $id == 'post_tag' || isset($obj->query_var) ) {
 				$opt[$id] = $obj->labels->name;
 			}

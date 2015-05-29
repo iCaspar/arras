@@ -49,7 +49,7 @@ function arras_theme_support() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
-	add_theme_support( 'custom-background' );
+	add_theme_support( 'custom-background', array( 'default-color' => 'f0f0f0' ) );
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets' ) );
 } // end arras_theme_support()
 
@@ -130,28 +130,25 @@ function arras_add_sidebars() {
 	}
 } // end arras_add_sidebars()
 
-/* Load theme options */
-require_once ARRAS_LIB . '/admin/options.php';
-require_once ARRAS_LIB . '/admin/templates/functions.php';
-arras_flush_options();
-
 /* Load theme library files */
 require_once ARRAS_LIB . '/actions.php';
 require_once ARRAS_LIB . '/custom-header.php';
 require_once ARRAS_LIB . '/customizer.php';
 require_once ARRAS_LIB . '/deprecated.php';
 require_once ARRAS_LIB . '/filters.php';
+require_once ARRAS_LIB . '/functions.php';
 require_once ARRAS_LIB . '/slideshow.php';
 require_once ARRAS_LIB . '/scripts.php';
 require_once ARRAS_LIB . '/styles.php';
 require_once ARRAS_LIB . '/tapestries.php';
 require_once ARRAS_LIB . '/template.php';
 require_once ARRAS_LIB . '/thumbnails.php';
+require_once ARRAS_LIB . '/update.php';
 require_once ARRAS_LIB . '/widgets.php';
 
 /* Load Admin stuff only when necessary */
 if ( is_admin() ) {
-	require_once ARRAS_LIB . '/admin/admin.php';
+	require_once ARRAS_LIB . '/admin.php';
 	add_action( 'admin_menu', 'arras_addmenu' );
 }
 

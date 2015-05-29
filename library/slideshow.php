@@ -4,17 +4,17 @@ function arras_add_slideshow() {
 	global $post_blacklist, $paged;
 
 	if ( !is_home() || $paged ) return false; // if we're not on the first page of the homepage, quit
-	if ( arras_get_option( 'enable_slideshow' ) == false ) return false; // if the slideshow option is disabled, quit
+	if ( false === arras_get_option( 'enable_slideshow' ) ) return false; // if the slideshow option is disabled, quit
 
-	$slideshow_cat = arras_get_option('slideshow_cat');
+	$slideshow_cat = arras_get_option( 'slideshow_cat' );
 
 	$query = arras_prep_query( array(
 		'list'				=> $slideshow_cat,
-		'taxonomy'			=> arras_get_option('slideshow_tax'),
+		'taxonomy'			=> arras_get_option( 'slideshow_tax' ),
 		'query'				=> array(
-			'posts_per_page'	=> arras_get_option('slideshow_count'),
+			'posts_per_page'	=> arras_get_option( 'slideshow_count' ),
 			'exclude'			=> $post_blacklist,
-			'post_type'			=> arras_get_option('slideshow_posttype'),
+			'post_type'			=> arras_get_option( 'slideshow_posttype' ),
 			'paged'				=> $paged
 		)
 	) );
@@ -24,7 +24,6 @@ function arras_add_slideshow() {
 	?>
 	<!-- Featured Slideshow -->
 	<div class="featured group">
-		<?php if ($q->post_count > 1) : ?>
 		<div id="controls" class="slide-controls">
 			<div class="cycle-prev"><?php _e('Prev', 'arras') ?></div>
 			<div class="cycle-next"><?php _e('Next', 'arras') ?></div>
@@ -46,7 +45,6 @@ function arras_add_slideshow() {
 			<?php arras_blacklist_duplicates(); // required for duplicate posts function to work. ?>
 			<?php $count++; endwhile; ?>
 		</div>
-		<?php endif ?>
 	</div>
 	<?php endif;
 }
