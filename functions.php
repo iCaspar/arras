@@ -115,7 +115,7 @@ function arras_add_sidebars() {
 	) );
 
 	/* Footer sidebars (Up to 4 sidebars based on user preference) */
-	$footer_sidebars = arras_get_option('footer_sidebars');
+	$footer_sidebars = arras_get_option('footer_columns');
 	if ($footer_sidebars == '') $footer_sidebars = 1;
 
 	for( $i = 1; $i < $footer_sidebars + 1; $i++ ) {
