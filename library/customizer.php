@@ -110,7 +110,7 @@ function arras_customizer( $wp_customize ) {
 	// Generate Settings Objects
 	$settings = arras_get_settings_data();
 	foreach ( $settings as $id => $args ) {
-		$wp_customize->add_setting( $id, array(
+		$wp_customize->add_setting( 'arras-options[' . $id . ']', array(
 			'default'			=> $args[0],
 			'type'				=> $args[1],
 			'sanitize_callback'	=> $args[2],
@@ -468,76 +468,76 @@ function arras_get_settings_data() {
 	 */
 	$settings = array(
 		// Site Title & Tagline Section
-		'arras-options[footer_message]' 	=> array( __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ), 'option', 'wp_kses_post' ),
+		'footer_message' 	=> array( __( 'Copyright ', 'arras' ) . date( 'Y' ) . '. ' . get_bloginfo( 'name' ), 'option', 'wp_kses_post' ),
 
 		// Duplicate Posts Section
-		'arras-options[hide_duplicates]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'hide_duplicates'	=> array( true, 'option', 'arras_sanitize_boolian' ),
 
 		// Slideshow Section
-		'arras-options[enable_slideshow]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[slideshow_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[slideshow_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[slideshow_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[slideshow_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+		'enable_slideshow'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'slideshow_posttype'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'slideshow_tax'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'slideshow_cat'		=> array( '', 'option', 'arras_sanitize_terms' ),
+		'slideshow_count'	=> array( 4, 'option', 'arras_sanitize_positive_integer' ),
 
 		// Featured #1 Section
-		'arras-options[enable_featured1]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[featured1_title]'	=> array( __( 'Featured Stories', 'arras' ), 'option', 'sanitize_text_field' ),
-		'arras-options[featured1_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[featured1_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[featured1_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[featured1_display]'	=> array( 'default', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[featured1_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+		'enable_featured1'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'featured1_title'	=> array( __( 'Featured Stories', 'arras' ), 'option', 'sanitize_text_field' ),
+		'featured1_posttype'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'featured1_tax'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'featured1_cat'		=> array( '', 'option', 'arras_sanitize_terms' ),
+		'featured1_display'	=> array( 'default', 'option', 'arras_sanitize_tapestries' ),
+		'featured1_count'	=> array( 4, 'option', 'arras_sanitize_positive_integer' ),
 
 		// Featured #2 Section
-		'arras-options[enable_featured2]'	=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[featured2_title]'	=> array( __( 'Editor\'s Picks', 'arras' ), 'option', 'sanitize_text_field' ),
-		'arras-options[featured2_posttype]'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[featured2_tax]'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[featured2_cat]'		=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[featured2_display]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[featured2_count]'	=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+		'enable_featured2'	=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'featured2_title'	=> array( __( 'Editor\'s Picks', 'arras' ), 'option', 'sanitize_text_field' ),
+		'featured2_posttype'	=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'featured2_tax'		=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'featured2_cat'		=> array( '', 'option', 'arras_sanitize_terms' ),
+		'featured2_display'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
+		'featured2_count'	=> array( 4, 'option', 'arras_sanitize_positive_integer' ),
 
 		// News Section
-		'arras-options[enable_news]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[news_title]'			=> array( __( 'News', 'arras' ), 'option', 'sanitize_text_field' ),
-		'arras-options[news_posttype]'		=> array( 'post', 'option', 'arras_sanitize_post_type' ),
-		'arras-options[news_tax]'			=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
-		'arras-options[news_cat]'			=> array( '', 'option', 'arras_sanitize_terms' ),
-		'arras-options[news_display]'		=> array( 'line', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[news_count]'			=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
+		'enable_news'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'news_title'		=> array( __( 'News', 'arras' ), 'option', 'sanitize_text_field' ),
+		'news_posttype'		=> array( 'post', 'option', 'arras_sanitize_post_type' ),
+		'news_tax'			=> array( 'category', 'option', 'arras_sanitize_taxonomy' ),
+		'news_cat'			=> array( '', 'option', 'arras_sanitize_terms' ),
+		'news_display'		=> array( 'line', 'option', 'arras_sanitize_tapestries' ),
+		'news_count'		=> array( get_option( 'posts_per_page' ), 'option', 'arras_sanitize_positive_integer' ),
 
 		// Post Display Section
-		'arras-options[post_author]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[post_date]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[post_cats]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[post_tags]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[single_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[relative_postdates]'	=> array( false, 'option', 'arras_sanitize_boolian' ),
+		'post_author'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'post_date'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'post_cats'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'post_tags'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'single_thumbs'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'relative_postdates'	=> array( false, 'option', 'arras_sanitize_boolian' ),
 
 		// Colors Section
-		'color_scheme'						=> array( 'default', 'theme_mod', 'arras_sanitize_color_scheme' ),
-		'header_background_color'			=> array( $color_scheme[0], 'theme_mod', 'sanitize_hex_color' ),
+		'color_scheme'						=> array( 'default', 'option', 'arras_sanitize_color_scheme' ),
+		'header_background_color'			=> array( $color_scheme[0], 'option', 'sanitize_hex_color' ),
 
 		// Header Image and Logo Section
-		'arras-options[site_logo]'			=> array( esc_url( get_option( 'arras-options[site_logo]' ) ), 'option', 'esc_url_raw' ),
+		'site_logo'			=> array( '', 'option', 'esc_url_raw' ),
 
 		// Social Media Section
-		'arras-options[show_rss]'			=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[twitter]'			=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[facebook]'			=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[google]'				=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[flickr]'				=> array( '', 'option', 'esc_url_raw' ),
-		'arras-options[youtube]'			=> array( '', 'option', 'esc_url_raw' ),
+		'show_rss'			=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'twitter'			=> array( '', 'option', 'esc_url_raw' ),
+		'facebook'			=> array( '', 'option', 'esc_url_raw' ),
+		'google'				=> array( '', 'option', 'esc_url_raw' ),
+		'flickr'				=> array( '', 'option', 'esc_url_raw' ),
+		'youtube'			=> array( '', 'option', 'esc_url_raw' ),
 
 		// Layout Section
-		'arras-options[layout]'				=> array( '2c-r', 'option', 'arras_sanitize_layouts' ),
-		'arras-options[auto_thumbs]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[default_tapestry]'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
-		'arras-options[nodes_per_row]'		=> array( 3, 'option', 'arras_sanitize_nodes_per_row' ),
-		'arras-options[nodes_excerpt]'		=> array( true, 'option', 'arras_sanitize_boolian' ),
-		'arras-options[excerpt_limit]'		=> array( 30, 'option', 'arras_sanitize_excerpt_limit' ),
-		'arras-options[footer_columns]'		=> array( 3, 'option', 'arras_sanitize_footer_cols' ),
+		'layout'				=> array( '2c-r', 'option', 'arras_sanitize_layouts' ),
+		'auto_thumbs'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'default_tapestry'	=> array( 'quick', 'option', 'arras_sanitize_tapestries' ),
+		'nodes_per_row'		=> array( 3, 'option', 'arras_sanitize_nodes_per_row' ),
+		'nodes_excerpt'		=> array( true, 'option', 'arras_sanitize_boolian' ),
+		'excerpt_limit'		=> array( 30, 'option', 'arras_sanitize_excerpt_limit' ),
+		'footer_columns'		=> array( 3, 'option', 'arras_sanitize_footer_cols' ),
 	);
 	return apply_filters( 'arras_customizer_settings', $settings );
 }
