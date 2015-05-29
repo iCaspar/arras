@@ -602,13 +602,26 @@ function arras_sanitize_post_type ( $input ) {
 }
 
 function arras_sanitize_taxonomy( $input ) {
-	// TODO: Put a real validator in here
-	return $input;
+	$valid_taxonomies = get_taxonomies( array( 'public' => true ), 'objects' );
+	return ( array_key_exists( $input, $valid_taxonomies ) ? $input : 'category' );
 }
 
-function arras_sanitize_terms( $input ) {
-	// TODO: Put a real validator in here
-	return $input;
+function arras_sanitize_terms( $input, $setting ) {
+	if ( ! is_array( $input ) ) return array();
+	$valid_terms = array();
+	$setting_id = trim( str_replace( 'arras-options', '', $setting->id ), '[]' );
+	$token = strtok( $setting_id, '_' );
+	$taxonomy = arras_get_option( $token . '_tax' );
+	$terms = get_terms( $taxonomy, array( 'hide_empty' => false ) );
+	if ( empty( $terms ) || is_WP_Error( $terms ) ) return 'terms are empty';
+	foreach ( $terms as $term ) {
+			$valid_terms[] = $term->term_id;
+	}
+	foreach ( $input as $key => $value ) {
+		$input[$key] = ( in_array( $value, $valid_terms ) ? $value : '' );
+		if ( empty( $input[$key] ) ) unset( $input[$key] );
+	}
+	return array_values( $input ); // reindex the array in case any items had to be removed
 }
 
 function arras_get_cats( $setting ) {
@@ -657,9 +670,9 @@ function arras_get_terms( $taxonomy = 'category', $posttype = 'post' ) {
 	}
 
 	foreach ($terms as $term) {
-		if ($taxonomy == 'category' || $taxonomy == 'post_tag') {
+		//if ($taxonomy == 'category' || $taxonomy == 'post_tag') {
 			$terms_options[$term->term_id] = $term->name;
-		}
+		//}
 	}
 
 	return $terms_options;
