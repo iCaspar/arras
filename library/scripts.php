@@ -14,7 +14,7 @@ function arras_scripts() {
 	global $paged;
 
 	// Slideshow scripts - only on first page of homepage and only if slideshow is enabled
-	if ( is_home() && ! $paged && arras_get_option( 'enable_slideshow' ) == true ) {
+	if ( is_home() && ! $paged && arras_get_option( 'enable_slideshow' ) !== false ) {
 		wp_enqueue_script( 'jquery-cycle', get_template_directory_uri() . '/js/jquery.cycle2-min.js', array( 'jquery' ), null, true );
 		wp_enqueue_script( 'slideshow-settings', get_template_directory_uri() . '/js/slideshowsettings.js', array( 'jquery-cycle' ), null, true );
 		wp_enqueue_script( 'jquery-cycle-caption', get_template_directory_uri() . '/js/jquery.cycle2.caption2.min.js', array( 'slideshow-settings' ), null, true );

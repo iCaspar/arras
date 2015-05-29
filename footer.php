@@ -5,7 +5,7 @@
     <div id="footer" class="page-footer group wrap">
 		<div class="footer-sidebar-container group">
 			<?php
-				$footer_sidebars = arras_get_option('footer_sidebars');
+				$footer_sidebars = arras_get_option( 'footer_columns' );
 				if ($footer_sidebars == '') $footer_sidebars = 1;
 
 				for ($i = 1; $i < $footer_sidebars + 1; $i++) :
@@ -20,7 +20,7 @@
 
 		<div class="footer-message">
 		<p class="floatright"><a class="arras" href="http://arrastheme.net/"><strong><?php _e('About Arras WordPress Theme', 'arras') ?></strong></a></p>
-		<?php echo stripslashes(arras_get_option('footer_message')); ?>
+		<?php echo stripslashes( arras_get_option( 'footer_message' ) ); ?>
 		</div><!-- .footer-message -->
     </div>
 </div><!-- #wrapper -->

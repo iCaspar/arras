@@ -1,0 +1,6 @@
+/**
+ * Arras custom styles for customizer
+ */
+.customize-control input[type="number"] {
+	max-width: 50%;
+}

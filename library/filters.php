@@ -24,12 +24,12 @@ function arras_postheader() {
 		if ( is_attachment() ) {
 			$postheader .= '<h2 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink($post->post_parent) . '" rev="attachment">' . get_the_title($post->post_parent) . '</a>]</h2>';
 		} else {
-			if (!is_page()) $postheader .= '<a class="entry-comments" href="' . get_comments_link() . '">' . get_comments_number() . '</a>';
+			if ( ! is_page() && ! is_front_page() ) $postheader .= '<a class="entry-comments" href="' . get_comments_link() . '">' . get_comments_number() . '</a>';
 			$postheader .= '<h2 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h2>';
 		}
 	}
 
-	if ( !is_page() ) {
+	if ( ! is_page() ) {
 		$postheader .= '<div class="entry-info">';
 
 		if ( arras_get_option('post_author') ) {

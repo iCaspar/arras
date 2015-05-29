@@ -878,6 +878,14 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /* Tapestries */
 
 /* Tapestry Node (Default) */
+
+.node-group {
+	margin-top: 20px;
+}
+	.node-group:first-child {
+		margin-top: 0;
+	}
+
 .posts-default .entry-thumbnails {
 	width: 100%;
 	display: inline-block;
