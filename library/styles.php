@@ -27,15 +27,19 @@ function arras_styles() {
  * Returns the current color scheme colors array, or default color array
  * @return array color scheme array of colors
  */
-function arras_get_current_color_scheme() {
-	$color_scheme_option = get_theme_mod( 'color_scheme', 'default' );
+function arras_get_current_color_scheme( $original = false ) {
+	$color_scheme_option = arras_get_option( 'color_scheme' );
 	$available_color_schemes = arras_color_schemes();
 
 	if ( array_key_exists( $color_scheme_option, $available_color_schemes ) ) {
-		return $available_color_schemes[ $color_scheme_option ]['colors'];
+		$current_scheme = $available_color_schemes[ $color_scheme_option ]['colors'];
+	} else {
+		$current_scheme = $available_color_schemes['default']['colors'];
 	}
 
-	return $available_color_schemes['default']['colors'];
+	if ( ! $original ) $current_scheme[0] = arras_get_option( 'header_background_color' );
+
+	return $current_scheme;
 }
 
 /**
@@ -147,7 +151,7 @@ function arras_color_schemes() {
  * @since 3.0
  */
 function arras_color_scheme_css() {
-	$color_scheme_option = get_theme_mod( 'color_scheme', 'default' );
+	$color_scheme_option = arras_get_option( 'color_scheme' );
 
 	// Don't do anything if the default color scheme is selected.
 	if ( 'default' === $color_scheme_option ) {
@@ -155,9 +159,6 @@ function arras_color_scheme_css() {
 	}
 
 	$color_scheme = arras_get_current_color_scheme();
-
-	// Replace header background with custom color if user has set one
-	if ( get_theme_mod( 'header_background_color' ) ) $color_scheme[0] = get_theme_mod( 'header_background_color' );
 
 	$colors = array(
 		'header_background_color'     => $color_scheme[0],
