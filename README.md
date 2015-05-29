@@ -9,7 +9,7 @@ Arras is a sophisticated, yet simple and clean WordPress theme for magazine/news
 * WordPress 4.2-ready with two menu locations, custom post types and custom taxonomies support.
 * Child theme ready with numerous action and filter hooks available for use.
 
-## Version 3. (Alpha-02)
+## Version 3.0-beta1
 
 Version 3 brings Arras up-to-date with WordPress 4.2 and adds a responsive framework. Arras 3 *requires WordPress 4.1 or higher*.
 
@@ -17,13 +17,26 @@ Because of the major changes in this version, it is not backwards compatibile wi
 
 ### User Notes for this Release:
 
-* Color schemes are now located in the "Colors" section of the Customizer: Appearance > Customize > Colors
-* The use of custom thumbnail sizing for various theme locations in a responsive grid system is of no use. Everything resizes dynamically. Setting of custom thumbnail sizes has been discontinued in favor of using the native WP thumbnail sizes, plus a small-square thumbnail, and a wide-screen thumbnail size that sets the thumnail ratio for the slideshow and node tapestry to a 16:9 ratio (the same ratio your wide-screen TV uses).
+* All theme settings and options are now in the customizer. The Arras Options page has been discontinued.
+* The use of custom thumbnail sizing for various theme locations in a responsive grid system is of no use. Everything resizes dynamically. Setting of custom thumbnail sizes has been discontinued in favor of using the native WP thumbnail sizes, plus a small-square thumbnail and a wide-screen thumbnail size that sets the thumnail ratio for the slideshow and node tapestry to a 16:9 ratio (the same ratio your wide-screen TV uses).
 * The Secondary Sidebar Widget area will appear only on 3-column layouts. Neither sidebar will appear on single-column layouts. Below-content widget areas appear only on the home page.
+* Upon activation, Arras 3 will look for Arras 1.x options and attempt to import as many as possible. However, due to the substantial differences between Arras 3 and Arras 1.x, not all settings are able to be imported. Also, because of different handling of widget areas, your widgets will be reset to default locations upon activation. You *should* be able to find your old widgets in the "Inactive Widgets" section of the Appearance > Widgets screen, where you can drag them back into position.
+* Setting taxonomies and terms/categories in the customizer requires having the appropriate post type already saved. When you update your post type, click the customizer "save and publish" button, then reload the whole page to get the customizer to reload with the correct taxonomies. When you select a new taxonomy, do the same to reload with the correct terms. It works, but I know it's inconvenient. I'm working on getting a "chain update" working in the customizer, but didn't want to delay the beta release any longer.
 
 ### Power User Notes for this Release:
 
 * **Color Schemes:** You can add/modify/remove color schemes from a child theme via the new 'arras_color_schemes' filter. See notes in library/styles.php for instructions.
+
+### Change Log - Arras 3.0-beta1
+
+* Move all settings and options to customizer
+* Discontinue Arras Options admin page with Arras Info page
+* Add default background color
+* Add spacing between lines of nodes in node-based display mode
+* Add custom customizer styles
+* Fix site logo area collapse when neither header text nor logo image is displayed
+* Fix home page sections not rendering when setting is left blank
+* Add settings importer to regenerate Arras 1.x options on first activation
 
 ### Change Log - Arras 3.0 Alpha-02
 

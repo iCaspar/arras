@@ -66,7 +66,7 @@ function arras_customizer( $wp_customize ) {
 	 * 'panel-id' => array( 'title', 'description', 'active_callback', priority )
 	 */
 	$panels = array(
-		'homepage'		=> array( __( 'Homepage Settings', 'arras'), '', 'is_front_page', 30 ),
+		'homepage'		=> array( __( 'Homepage Settings', 'arras'), '', 'is_home', 30 ),
 	);
 	$panels = apply_filters( 'arras_customizer_panels', $panels );
 	foreach ( $panels as $id => $args ) {
@@ -119,7 +119,7 @@ function arras_customizer( $wp_customize ) {
 
 
 	/**
-	 * Array for custom controls using defailt control class.
+	 * Array for custom controls using default control class.
 	 * 'control-id' =>
 	 * 		array( 'label', 'description', 'section', 'settings', 'type', 'choices', priority )
 	 * @var array
@@ -129,72 +129,72 @@ function arras_customizer( $wp_customize ) {
 		'footer-message'	=> array(
 			__( 'Footer Message', 'arras' ),
 			__( 'You may use some limited html here (for links, etc).', 'arras' ),
-			'title_tagline', 'arras-options[footer_message]', 'textarea', '', 35 ),
+			'title_tagline', 'footer_message', 'textarea', '', 35 ),
 
 		// Duplicate Posts Section
 		// Slideshow Section
 		'enable-slideshow'	=> array(
-			__( 'Enable Slideshow', 'arras' ), '', 'slideshow', 'arras-options[enable_slideshow]', 'checkbox', '', 1 ),
+			__( 'Enable Slideshow', 'arras' ), '', 'slideshow', 'enable_slideshow', 'checkbox', '', 1 ),
 		'slideshow-posttype'	=> array(
 			__( 'Slideshow Post Type', 'arras' ),
 			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
-			'slideshow', 'arras-options[slideshow_posttype]', 'select', arras_get_posttypes(), 5 ),
+			'slideshow', 'slideshow_posttype', 'select', arras_get_posttypes(), 5 ),
 		'slideshow-taxonomy'	=> array(
 			__( 'Slideshow Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
-			'slideshow', 'arras-options[slideshow_tax]', 'select', arras_get_taxonomies( arras_get_option( 'slideshow_posttype' ) ), 7 ),
+			'slideshow', 'slideshow_tax', 'select', arras_get_taxonomies( arras_get_option( 'slideshow_posttype' ) ), 7 ),
 		'slideshow-count'	=> array(
-			__( 'Maximum Posts in Slideshow', 'arras' ), '', 'slideshow', 'arras-options[slideshow_count]', 'number', '', 13 ),
+			__( 'Maximum Posts in Slideshow', 'arras' ), '', 'slideshow', 'slideshow_count', 'number', '', 13 ),
 
 		// Featured #1 Section
 		'enable-featured1'	=> array(
-			__( 'Enable Featured #1', 'arras' ), '', 'featured-1', 'arras-options[enable_featured1]', 'checkbox', '', 1 ),
+			__( 'Enable Featured #1', 'arras' ), '', 'featured-1', 'enable_featured1', 'checkbox', '', 1 ),
 		'featured1-title'	=> array(
-			__( 'Header for Featured #1 Section', 'arras'), '', 'featured-1', 'arras-options[featured1_title]', 'text', '', 3),
+			__( 'Header for Featured #1 Section', 'arras'), '', 'featured-1', 'featured1_title', 'text', '', 3),
 		'featured1-posttype'	=> array(
 			__( 'Featured #1 Post Type', 'arras' ),
 			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
-			'featured-1', 'arras-options[featured1_posttype]', 'select', arras_get_posttypes(), 5 ),
+			'featured-1', 'featured1_posttype', 'select', arras_get_posttypes(), 5 ),
 		'featured1-taxonomy'	=> array(
 			__( 'Featured #1 Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
-			'featured-1', 'arras-options[featured1_tax]', 'select', arras_get_taxonomies( arras_get_option( 'featured1_posttype' ) ), 7 ),
+			'featured-1', 'featured1_tax', 'select', arras_get_taxonomies( arras_get_option( 'featured1_posttype' ) ), 7 ),
 		'featured1-display'	=> array(
-			__( 'Display Mode for Featured #1', 'arras' ), '', 'featured-1', 'arras-options[featured1_display]', 'select', arras_get_tapestry_choices(), 11 ),
+			__( 'Display Mode for Featured #1', 'arras' ), '', 'featured-1', 'featured1_display', 'select', arras_get_tapestry_choices(), 11 ),
 		'featured1-count'	=> array(
-			__( 'Maximum Posts in Featured #1', 'arras' ), '', 'featured-1', 'arras-options[featured1_count]', 'number', '', 13 ),
+			__( 'Maximum Posts in Featured #1', 'arras' ), '', 'featured-1', 'featured1_count', 'number', '', 13 ),
 
 		// Featured #2 Section
 		'enable-featured2'	=> array(
-			__( 'Enable Featured #2', 'arras' ), '', 'featured-2', 'arras-options[enable_featured2]', 'checkbox', '', 1 ),
+			__( 'Enable Featured #2', 'arras' ), '', 'featured-2', 'enable_featured2', 'checkbox', '', 1 ),
 		'featured2-title'	=> array(
-			__( 'Header for Featured #2 Section', 'arras'), '', 'featured-2', 'arras-options[featured2_title]', 'text', '', 3),
+			__( 'Header for Featured #2 Section', 'arras'), '', 'featured-2', 'featured2_title', 'text', '', 3),
 		'featured2-posttype'	=> array(
 			__( 'Featured #2 Post Type', 'arras' ),
 			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
-			'featured-2', 'arras-options[featured2_posttype]', 'select', arras_get_posttypes(), 5 ),
+			'featured-2', 'featured2_posttype', 'select', arras_get_posttypes(), 5 ),
 		'featured2-taxonomy'	=> array(
 			__( 'Featured #2 Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
-			'featured-2', 'arras-options[featured2_tax]', 'select', arras_get_taxonomies( arras_get_option( 'featured2_posttype' ) ), 7 ),
+			'featured-2', 'featured2_tax', 'select', arras_get_taxonomies( arras_get_option( 'featured2_posttype' ) ), 7 ),
 		'featured2-display'	=> array(
-			__( 'Display Mode for Featured #2', 'arras' ), '', 'featured-2', 'arras-options[featured2_display]', 'select', arras_get_tapestry_choices(), 11 ),
+			__( 'Display Mode for Featured #2', 'arras' ), '', 'featured-2', 'featured2_display', 'select', arras_get_tapestry_choices(), 11 ),
 		'featured2-count'	=> array(
-			__( 'Maximum Posts in Featured #2', 'arras' ), '', 'featured-2', 'arras-options[featured2_count]', 'number', '', 13 ),
+			__( 'Maximum Posts in Featured #2', 'arras' ), '', 'featured-2', 'featured2_count', 'number', '', 13 ),
 
 		// News Section
 		'enable-news'		=> array(
-			__( 'Enable News', 'arras' ), '', 'news', 'arras-options[enable_news]', 'checkbox', '', 1 ),
+			__( 'Enable News', 'arras' ), '', 'news', 'enable_news', 'checkbox', '', 1 ),
 		'news-title'	=> array(
-			__( 'Header for News Section', 'arras'), '', 'news', 'arras-options[news_title]', 'text', '', 3),
+			__( 'Header for News Section', 'arras'), '', 'news', 'news_title', 'text', '', 3),
 		'news-posttype'	=> array(
 			__( 'News Post Type', 'arras' ),
 			__( 'If you change this, please save and then refresh the page to get updated taxonomy and term choices.', 'arras' ),
-			'news', 'arras-options[news_posttype]', 'select', arras_get_posttypes(), 5 ),
+			'news', 'news_posttype', 'select', arras_get_posttypes(), 5 ),
 		'news-taxonomy'	=> array(
 			__( 'News Taxonomy', 'arras' ), __( 'If you change this, please save and then refresh the page to get updated term choices.', 'arras' ),
-			'news', 'arras-options[news_tax]', 'select', arras_get_taxonomies( arras_get_option( 'news_posttype' ) ), 7 ),
+			'news', 'news_tax', 'select', arras_get_taxonomies( arras_get_option( 'news_posttype' ) ), 7 ),
 		'news-display'	=> array(
-			__( 'Display Mode for News', 'arras' ), '', 'news', 'arras-options[news_display]', 'select', arras_get_tapestry_choices(), 11 ),
+			__( 'Display Mode for News', 'arras' ), '', 'news', 'news_display', 'select', arras_get_tapestry_choices(), 11 ),
 		'news-count'	=> array(
-			__( 'Maximum Posts in News', 'arras' ), '', 'news', 'arras-options[news_count]', 'number', '', 13 ),
+			__( 'Maximum Posts in News', 'arras' ), '', 'news', 'news_count', 'number', '', 13 ),
 
 		// Post Display Section
 		// Colors Section
@@ -210,7 +210,7 @@ function arras_customizer( $wp_customize ) {
 			'label'			=> $args[0],
 			'description'	=> $args[1],
 			'section'		=> $args[2],
-			'settings'		=> $args[3],
+			'settings'		=> 'arras-options[' . $args[3] . ']',
 			'type'			=> $args[4],
 			'choices'		=> $args[5],
 			'priority'		=> $args[6],
@@ -316,7 +316,7 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'checkbox',
 		'priority'		=> 6
 	) );
-	$wp_customize->add_control( 'color_scheme', array(
+	$wp_customize->add_control( 'arras-options[color_scheme]', array(
 		'label'    => __( 'Base Color Scheme', 'arras' ),
 		'section'  => 'colors',
 		'type'     => 'select',
@@ -330,7 +330,7 @@ function arras_customizer( $wp_customize ) {
 			array(
 				'label'		=> __( 'Header Background Color', 'arras' ),
 				'section'	=> 'colors',
-				'settings'	=> 'header_background_color',
+				'settings'	=> 'arras-options[header_background_color]',
 				'priority'	=> 3,
 			)
 		)
@@ -602,13 +602,26 @@ function arras_sanitize_post_type ( $input ) {
 }
 
 function arras_sanitize_taxonomy( $input ) {
-	// TODO: Put a real validator in here
-	return $input;
+	$valid_taxonomies = get_taxonomies( array( 'public' => true ), 'objects' );
+	return ( array_key_exists( $input, $valid_taxonomies ) ? $input : 'category' );
 }
 
-function arras_sanitize_terms( $input ) {
-	// TODO: Put a real validator in here
-	return $input;
+function arras_sanitize_terms( $input, $setting ) {
+	if ( ! is_array( $input ) ) return array();
+	$valid_terms = array();
+	$setting_id = trim( str_replace( 'arras-options', '', $setting->id ), '[]' );
+	$token = strtok( $setting_id, '_' );
+	$taxonomy = arras_get_option( $token . '_tax' );
+	$terms = get_terms( $taxonomy, array( 'hide_empty' => false ) );
+	if ( empty( $terms ) || is_WP_Error( $terms ) ) return 'terms are empty';
+	foreach ( $terms as $term ) {
+			$valid_terms[] = $term->term_id;
+	}
+	foreach ( $input as $key => $value ) {
+		$input[$key] = ( in_array( $value, $valid_terms ) ? $value : '' );
+		if ( empty( $input[$key] ) ) unset( $input[$key] );
+	}
+	return array_values( $input ); // reindex the array in case any items had to be removed
 }
 
 function arras_get_cats( $setting ) {
@@ -657,9 +670,9 @@ function arras_get_terms( $taxonomy = 'category', $posttype = 'post' ) {
 	}
 
 	foreach ($terms as $term) {
-		if ($taxonomy == 'category' || $taxonomy == 'post_tag') {
+		//if ($taxonomy == 'category' || $taxonomy == 'post_tag') {
 			$terms_options[$term->term_id] = $term->name;
-		}
+		//}
 	}
 
 	return $terms_options;
