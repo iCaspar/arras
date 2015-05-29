@@ -4,7 +4,7 @@ function arras_add_slideshow() {
 	global $post_blacklist, $paged;
 
 	if ( !is_home() || $paged ) return false; // if we're not on the first page of the homepage, quit
-	if ( arras_get_option( 'enable_slideshow' ) == false ) return false; // if the slideshow option is disabled, quit
+	if ( false === arras_get_option( 'enable_slideshow' ) ) return false; // if the slideshow option is disabled, quit
 
 	$slideshow_cat = arras_get_option( 'slideshow_cat' );
 

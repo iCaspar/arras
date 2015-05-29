@@ -21,7 +21,7 @@ $post_blacklist = array();
 
 <?php if (!$paged) : ?>
 
-	<?php if ( arras_get_option('enable_featured1') ) : ?>
+	<?php if ( false !== arras_get_option( 'enable_featured1' ) ) : ?>
 	<?php arras_above_index_featured1_post() ?>
 	<!-- Featured Articles #1 -->
 
@@ -29,7 +29,6 @@ $post_blacklist = array();
 	<?php if ( arras_get_option('featured1_title') != '' ) : ?>
 		<h2 class="home-title"><?php _e( arras_get_option('featured1_title'), 'arras' ) ?></h2>
 	<?php endif;
-
 	arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras_featured1_query', array(
 		'list' 				=> $featured1_cat,
 		'taxonomy'			=> arras_get_option('featured1_tax'),
@@ -43,14 +42,13 @@ $post_blacklist = array();
 	</div><!-- #index-featured1 -->
 	<?php endif ?>
 
-	<?php if ( arras_get_option('enable_featured2') ) : ?>
+	<?php if ( false !== arras_get_option( 'enable_featured2' ) ) : ?>
 	<?php arras_above_index_featured2_post() ?>
 	<!-- Featured Articles #2 -->
 	<div id="index-featured2">
 	<?php if ( arras_get_option('featured2_title') != '' ) : ?>
 		<h2 class="home-title"><?php _e( arras_get_option('featured2_title'), 'arras' ) ?></h2>
 	<?php endif;
-
 	arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras_featured2_query', array(
 		'list' 				=> $featured2_cat,
 		'taxonomy'			=> arras_get_option('featured2_tax'),
@@ -65,7 +63,7 @@ $post_blacklist = array();
 	</div><!-- #index-featured2 -->
 	<?php endif; ?>
 
-	<?php if ( arras_get_option('enable_news') ) : ?>
+	<?php if ( false !== arras_get_option( 'enable_news' ) ) : ?>
 	<?php arras_above_index_news_post() ?>
 	<!-- News Articles -->
 	<div id="index-news">
@@ -87,7 +85,9 @@ $post_blacklist = array();
 	$news_query = arras_prep_query($news_query_args);
 
 	query_posts($news_query);
-	arras_featured_loop( arras_get_option('news_display'), $news_query_args, true );
+	$news_display = ( arras_get_option('news_display') ? arras_get_option('news_display') : 'default' );
+
+	arras_featured_loop( $news_display, $news_query_args, true );
 
 	if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 		<div class="navigation clearfix">
