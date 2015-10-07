@@ -4,21 +4,11 @@
  *
  * Arras functions and definitions.
  *
- * @author Melvin Lee (2009-2013)
- * @author Caspar Green <caspar@iCasparWebDevelopment.com>
+ * @author Caspar Green <https://caspar.green>
  * @package Arras
- *
+ * @version: 3.0.0
  */
 
-/**
- * Setting a default content width is a WP theme requirement.
- * Some WordPress media and plugins may use it.
- * In a responsive context the number is a bit arbitrary; we're just
- * setting it here to be the maximum width of the main content column
- * in Arras's 2-column layouts.
- * If you need to change it, you can do so by simply defining it in the
- * functions.php of your child theme.
- */
 if ( ! isset( $content_width ) ) {
 	$content_width = 647; /* maximum content width in pixels */
 }
