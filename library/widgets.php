@@ -7,27 +7,39 @@
 
 class Arras_Featured_Stories extends WP_Widget {
 
-	// Constructor
-	function Arras_Featured_Stories() {
-		$widget_args = array(
-			'classname'		=> 'arras_featured_stories',
-			'description'	=> __('Featured stories containing post thumbnails and the excerpt based on categories.', 'arras'),
+	/**
+	 * Constructor
+	 * Registers the widget with WP
+     */
+	public function __construct() {
+		parent::__construct(
+			'arras_featured_stories',
+			__( 'Arras Featured Stories', 'arras' ),
+			array( 'description' => __('Featured stories containing post thumbnails and the excerpt based on categories.', 'arras')
+			)
 		);
-		$this->WP_Widget('arras_featured_stories', __('Featured Stories', 'arras'), $widget_args);
 	}
 
-	function widget($args, $instance) {
-		global $wpdb;
-		extract($args, EXTR_SKIP);
+	/**
+	 * Front end display of widget
+	 *
+	 * @see WP_Widget::widget()
+	 *
+	 * @param array $args Widget arguments
+	 * @param array $instance Saved values from database
+	 * @return null
+     */
+	function widget( $args, $instance ) {
 
-		if ($instance['no_display_in_home'] && is_home()) {
+		if ( $instance['no_display_in_home'] && is_home() ) {
 			return false;
 		}
 
-		$title = apply_filters('widget_title', $instance['title']);
+		echo $args['before_widget'];
 
-		echo $before_widget;
-		echo $before_title . $title . $after_title;
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+		}
 
 		arras_widgets_post_loop('featured-stories', array(
 			'list'				=> $instance['featured_cat'],
@@ -38,7 +50,67 @@ class Arras_Featured_Stories extends WP_Widget {
 			)
 		) );
 
-		echo $after_widget;
+		echo $args['after_widget'];
+	}
+
+
+	/**
+	 * Back end widget form
+	 *
+	 * @see WP_Widget::form()
+	 *
+	 * @param array $instance Saved values from database
+	 * @return null
+     */
+	function form( $instance ) {
+		$instance = wp_parse_args( (array)$instance, array(
+			'title' 				=> __('Featured Stories', 'arras'),
+			'featured_cat' 			=> 0,
+			'postcount' 			=> 5,
+			'no_display_in_home' 	=> true,
+			'show_excerpts' 		=> true,
+			'show_thumbs'			=> true
+		) );
+
+		if (!is_array($instance['featured_cat'])) $instance['featured_cat'] = array(0);
+
+		?>
+		<p><label for="<?php echo $this->get_field_id('title') ?>"><?php _e('Title:', 'arras') ?></label><br />
+			<input type="text" id="<?php echo $this->get_field_id('title') ?>" name="<?php echo $this->get_field_name('title') ?>" size="33" value="<?php echo strip_tags($instance['title']) ?>" />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('featured_cat') ?>"><?php _e('Featured Categories:', 'arras') ?></label><br />
+			<select multiple="multiple" style="width: 200px; height: 75px" name="<?php echo $this->get_field_name('featured_cat') ?>[]">
+				<option<?php selected( in_array( 0, $instance['featured_cat'] ), true ) ?> value="0"><?php _e('All Categories', 'arras') ?></option>
+				<?php
+				foreach( get_categories('hide_empty=0') as $c ) {
+					$selected = '';
+					echo '<option' . selected( in_array($c->cat_ID, $instance['featured_cat']), true ) . ' value="' . $c->cat_ID . '">' . $c->cat_name . '</option>';
+				}
+				?>
+			</select>
+		</p>
+
+		<p><label for="<?php echo $this->get_field_id('postcount') ?>"><?php _e('How many items would you like to display?', 'arras') ?></label>
+			<select id="<?php echo $this->get_field_id('postcount') ?>" name="<?php echo $this->get_field_name('postcount') ?>">
+				<?php for ($i = 1; $i <= 20; $i++ ) : ?>
+					<option value="<?php echo $i ?>"<?php selected($i, $instance['postcount']) ?>><?php echo $i ?>
+					</option>
+				<?php endfor; ?>
+			</select>
+		</p>
+
+		<p>
+			<input type="checkbox" name="<?php echo $this->get_field_name('no_display_in_home') ?>" <?php checked($instance['no_display_in_home'], 1) ?> />
+			<label for="<?php echo $this->get_field_id('no_display_in_home') ?>"><?php _e('Do not display in homepage', 'arras') ?></label>
+			<br />
+			<input type="checkbox" name="<?php echo $this->get_field_name('show_excerpts') ?>" <?php checked($instance['show_excerpts'], 1) ?> />
+			<label for="<?php echo $this->get_field_id('show_excerpts') ?>"><?php _e('Show post excerpts', 'arras') ?></label>
+			<br />
+			<input type="checkbox" name="<?php echo $this->get_field_name('show_thumbs') ?>" <?php checked($instance['show_thumbs'], 1) ?> />
+			<label for="<?php echo $this->get_field_id('show_thumbs') ?>"><?php _e('Show thumbnails', 'arras') ?></label>
+		</p>
+		<?php
 	}
 
 	function update($new_instance, $old_instance) {
@@ -54,65 +126,23 @@ class Arras_Featured_Stories extends WP_Widget {
 		return $instance;
 	}
 
-	function form($instance) {
-		$instance = wp_parse_args( (array)$instance, array(
-			'title' 				=> __('Featured Stories', 'arras'),
-			'featured_cat' 			=> 0,
-			'postcount' 			=> 5,
-			'no_display_in_home' 	=> true,
-			'show_excerpts' 		=> true,
-			'show_thumbs'			=> true
-		) );
-
-		if (!is_array($instance['featured_cat'])) $instance['featured_cat'] = array(0);
-
-		?>
-		<p><label for="<?php echo $this->get_field_id('title') ?>"><?php _e('Title:', 'arras') ?></label><br />
-		<input type="text" id="<?php echo $this->get_field_id('title') ?>" name="<?php echo $this->get_field_name('title') ?>" size="33" value="<?php echo strip_tags($instance['title']) ?>" />
-		</p>
-		<p>
-		<label for="<?php echo $this->get_field_id('featured_cat') ?>"><?php _e('Featured Categories:', 'arras') ?></label><br />
-		<select multiple="multiple" style="width: 200px; height: 75px" name="<?php echo $this->get_field_name('featured_cat') ?>[]">
-			<option<?php selected( in_array( 0, $instance['featured_cat'] ), true ) ?> value="0"><?php _e('All Categories', 'arras') ?></option>
-		<?php
-		foreach( get_categories('hide_empty=0') as $c ) {
-			$selected = '';
-			echo '<option' . selected( in_array($c->cat_ID, $instance['featured_cat']), true ) . ' value="' . $c->cat_ID . '">' . $c->cat_name . '</option>';
-		}
-		?>
-		</select>
-		</p>
-
-		<p><label for="<?php echo $this->get_field_id('postcount') ?>"><?php _e('How many items would you like to display?', 'arras') ?></label>
-		<select id="<?php echo $this->get_field_id('postcount') ?>" name="<?php echo $this->get_field_name('postcount') ?>">
-			<?php for ($i = 1; $i <= 20; $i++ ) : ?>
-			<option value="<?php echo $i ?>"<?php selected($i, $instance['postcount']) ?>><?php echo $i ?>
-			</option>
-			<?php endfor; ?>
-		</select>
-		</p>
-
-		<p>
-		<input type="checkbox" name="<?php echo $this->get_field_name('no_display_in_home') ?>" <?php checked($instance['no_display_in_home'], 1) ?> />
-		<label for="<?php echo $this->get_field_id('no_display_in_home') ?>"><?php _e('Do not display in homepage', 'arras') ?></label>
-		<br />
-		<input type="checkbox" name="<?php echo $this->get_field_name('show_excerpts') ?>" <?php checked($instance['show_excerpts'], 1) ?> />
-		<label for="<?php echo $this->get_field_id('show_excerpts') ?>"><?php _e('Show post excerpts', 'arras') ?></label>
-		<br />
-		<input type="checkbox" name="<?php echo $this->get_field_name('show_thumbs') ?>" <?php checked($instance['show_thumbs'], 1) ?> />
-		<label for="<?php echo $this->get_field_id('show_thumbs') ?>"><?php _e('Show thumbnails', 'arras') ?></label>
-		</p>
-		<?php
-	}
 
 }
 
 
 class Arras_Widget_Search extends WP_Widget {
 
-	function Arras_Widget_Search() {
-		$widget_ops = array('classname' => 'widget_search', 'description' => __( "A search form for your site", 'arras' ) );
-		$this->WP_Widget('search', __('Search', 'arras'), $widget_ops);
+	/**
+	 * Constructor
+	 * Registers the widget with WP
+     */
+	public function __construct() {
+		parent::__construct(
+			'arras_widget_search',
+			__( 'Arras Search', 'arras'),
+			array( 'description' => __( "A search form for your site", 'arras' )
+			)
+		);
 	}
 
 	function widget( $args, $instance ) {
