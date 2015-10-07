@@ -991,7 +991,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .posts-quick .quick-read-more a:visited	{
 	padding: 5px 10px;
 	margin: 3px 0;
-	background: url(../../images/feed-title-white.jpg) top repeat-x #EFEFEF;
+	background: url(../images/feed-title-white.jpg) top repeat-x #EFEFEF;
 	color: #000; text-decoration: none;
 	border: 1px solid #CCC;
 	font-weight: 700;
