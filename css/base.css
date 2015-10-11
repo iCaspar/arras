@@ -1013,6 +1013,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /* Tapestry Line */
 
 .posts-line {
+	background: #FFF;
+	border: 1px solid #CCC;
 	margin: 0 10px 10px 0;
 	padding: 0 10px 10px;
 	line-height: 25px;
@@ -1041,11 +1043,11 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	float: right;
 }
 
-.posts-line	{
-	background: #FFF;
-	border: 1px solid #CCC;
+.posts-line .sticky {
+    background-color: #f0f0f0;
+    margin: 3px -5px;
+    padding: 5px;
 }
-
 
 /** --------------------------------------------------------------------
  * Template-specific styles
