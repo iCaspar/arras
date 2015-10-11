@@ -162,7 +162,6 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
-	content: none;
 }
 
 /* Images */
@@ -584,7 +583,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /* Main Nav on small screens */
 @media only screen and (max-width : 768px) {
 
-	.top-menu {
+	.primary-utility {
+        position: absolute;
 		display: none;
 	}
 
@@ -594,7 +594,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 	.nav {
 		position: absolute;
-		top: 0;
+		top: -40px;
 		left: 0;
 		right: 0;
 	}
