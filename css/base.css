@@ -1139,21 +1139,24 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 
 /* Single Template */
-.single .post {
+.single .post,
+.single-post {
 	background: #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 15px 0;
 	padding: 0 15px;
 }
 
-.single .post .entry-title {
+.single .post .entry-title,
+.single-post .entry-title {
 	font-weight: bold;
 	line-height: 1.3em;
 	margin: 15px 0 5px;
 	padding: 0;
 }
 
-.single .post .entry-info {
+.single .post .entry-info,
+.single-post .entry-info {
 	border-bottom: 1px dotted #CCC;
 	color: #848485;
 	margin-bottom: 10px;
@@ -1169,29 +1172,34 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 
-.single .post .entry-author {
+.single .post .entry-author,
+.single-post .entry-author {
 	color: #848485;
 	display: inline;
 	font-weight: bold;
 }
 
-.single .post .entry-author address	{
+.single .post .entry-author address,
+.single-post .entry-author address {
 	display: inline;
 	font-style: normal;
 }
 
-.single .post .entry-info .published {
+.single .post .entry-info .published,
+.post .post .entry-info .published {
 	border: none;
 }
 
-.single .post .entry-cat {
+.single .post .entry-cat,
+.post .post .entry-cat {
 	color: #848485;
 	display: block;
 	line-height: 1.5em;
 	margin: 5px 0 0;
 }
 
-.single .post .tags {
+.single .post .tags,
+.post .post .tags {
 	margin: 15px 0;
 	padding: 15px 0 0;
 	color: #848485;
@@ -1199,7 +1207,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	line-height: 1.5em;
 }
 
-.single .post .tags a {
+.single .post .tags a,
+.single-post .tags a {
 	padding: 0;
 }
 
@@ -1222,12 +1231,18 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .single-post .entry-info a:link, .single-post .entry-info a:visited	{ color: #666; text-decoration: none; }
 .single-post .entry-info a:hover	{ color: #333; }
 
-.single .post .tags strong {
+.single .post .tags strong,
+.single-post .tags strong {
 	text-transform: uppercase;
 }
 
-.single .post .entry-photo img, .single-post .entry-photo img	{ border: 1px solid #CCC; }
-.single .post .entry-comments {
+.single .post .entry-photo img,
+.single-post .entry-photo img {
+    border: 1px solid #CCC;
+}
+
+.single .post .entry-comments,
+.single-post .entry-comments {
 	padding: 3px 3px 3px 17px;
 	margin-top: 20px;
 	display: inline-block;
