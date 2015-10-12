@@ -279,10 +279,11 @@ function arras_generic_postheader($tapestry, $show_meta = false) {
 	global $post;
 
 	if ( $tapestry == 'quick-preview' ) {
-		$thumbnail = 'post-thumbnail';
+		$thumbnail = 'square-thumbnail';
 	} else {
 		$thumbnail = 'wide-thumbnail';
 	}
+
 	$postheader = '<div class="entry-thumbnails">';
 	$postheader .= '<a class="entry-thumbnails-link" href="' . get_permalink() . '">';
 	$postheader .= arras_get_thumbnail( $thumbnail );
