@@ -136,10 +136,18 @@ require_once ARRAS_LIB . '/thumbnails.php';
 require_once ARRAS_LIB . '/update.php';
 require_once ARRAS_LIB . '/widgets.php';
 
+/* Load and instantiate color scheme controller class */
+require_once get_template_directory() . '/inc/color-schemes.php';
+$arras_colors = new Arras\Inc\Color_Schemes;
+add_action( 'customize_controls_enqueue_scripts', array( $arras_colors, 'enqueue_color_scheme_control_js' ) );
+add_action( 'customize_controls_print_footer_scripts', array( $arras_colors, 'color_scheme_css_template' ) );
+
+
 /* Load Admin stuff only when necessary */
 if ( is_admin() ) {
 	require_once ARRAS_LIB . '/admin.php';
 	add_action( 'admin_menu', 'arras_addmenu' );
+
 }
 
 

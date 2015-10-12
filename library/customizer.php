@@ -13,6 +13,8 @@ add_action( 'customize_register', 'arras_customizer' );
  * @return null
  */
 function arras_customizer( $wp_customize ) {
+	global $arras_colors;
+
 	/**
 	 * We need to roll our own multiple select customize control class
 	 * (as of 4.2 it's not in core, but we can hope ... someday)
@@ -54,7 +56,7 @@ function arras_customizer( $wp_customize ) {
 	} // end class Arras_Customize_Control_Multiple_Select
 
 
-	$color_scheme = arras_get_current_color_scheme();
+	$color_scheme = $arras_colors->get_color_scheme_colors_array();
 
 	// Tweak a couple of the built-in sections
 	$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Tagline & Footer Message', 'arras' );
@@ -116,6 +118,31 @@ function arras_customizer( $wp_customize ) {
 			'sanitize_callback'	=> $args[2],
 		) );
 	}
+
+	// Colors Settings & Controls
+	$wp_customize->add_setting( 'color_scheme', array(
+		'default'           => 'default',
+		'sanitize_callback' => array( $arras_colors, 'sanitize_color_scheme' ),
+		'transport'         => 'postMessage',
+	) );
+	$wp_customize->add_control( 'color_scheme', array(
+		'label'    => __( 'Base Color Scheme', 'arras' ),
+		'section'  => 'colors',
+		'type'     => 'select',
+		'choices'  => $arras_colors->get_color_scheme_names(),
+		'priority' => 1,
+	) );
+
+	$wp_customize->add_setting( 'header_background_color', array(
+		'default'           => $color_scheme[0],
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'postMessage'
+	) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+		'label'		=> __( 'Header Background Color', 'arras' ),
+		'section'	=> 'colors',
+		'priority'	=> 3,
+	) ) );
 
 
 	/**
@@ -316,25 +343,7 @@ function arras_customizer( $wp_customize ) {
 		'type'			=> 'checkbox',
 		'priority'		=> 6
 	) );
-	$wp_customize->add_control( 'arras-options[color_scheme]', array(
-		'label'    => __( 'Base Color Scheme', 'arras' ),
-		'section'  => 'colors',
-		'type'     => 'select',
-		'choices'  => arras_get_color_scheme_choices(),
-		'priority' => 1,
-	) );
-	$wp_customize->add_control(
-		new WP_Customize_Color_Control(
-			$wp_customize,
-			'header_background_color',
-			array(
-				'label'		=> __( 'Header Background Color', 'arras' ),
-				'section'	=> 'colors',
-				'settings'	=> 'arras-options[header_background_color]',
-				'priority'	=> 3,
-			)
-		)
-	);
+
 	$wp_customize->add_control(
 		new WP_Customize_Upload_Control(
 			$wp_customize,
@@ -459,8 +468,8 @@ function arras_customizer( $wp_customize ) {
 
 
 function arras_get_settings_data() {
-	$color_scheme = arras_get_current_color_scheme( true );
-
+	global $arras_colors;
+	$color_scheme = $arras_colors->get_color_scheme_colors_array();
 	/**
 	 * Settings data array
 	 * 'setting-id' => array( 'default', 'type', 'sanitize_callback' )
@@ -514,10 +523,6 @@ function arras_get_settings_data() {
 		'post_tags'			=> array( true, 'option', 'arras_sanitize_boolian' ),
 		'single_thumbs'		=> array( true, 'option', 'arras_sanitize_boolian' ),
 		'relative_postdates'	=> array( false, 'option', 'arras_sanitize_boolian' ),
-
-		// Colors Section
-		'color_scheme'						=> array( 'default', 'option', 'arras_sanitize_color_scheme' ),
-		'header_background_color'			=> array( $color_scheme[0], 'option', 'sanitize_hex_color' ),
 
 		// Header Image and Logo Section
 		'site_logo'			=> array( '', 'option', 'esc_url_raw' ),
@@ -717,3 +722,8 @@ function arras_get_option( $name ) {
 
 	return null; // if we haven't found anything, fail quietly
 }
+
+function arras_load_customize_preview_js() {
+	wp_enqueue_script( 'theme-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), 3.0, true );
+}
+add_action( 'customize_preview_init', 'arras_load_customize_preview_js' );
