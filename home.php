@@ -35,6 +35,7 @@ $post_blacklist = array();
 		'query'				=> array(
 			'posts_per_page' 	=> $featured1_count,
 			'exclude'			=> $post_blacklist,
+			'ignore_sticky_posts'   => true,
 			'post_type'			=> arras_get_option('featured1_posttype')
 		)
 	) ) );
@@ -55,6 +56,7 @@ $post_blacklist = array();
 		'query'				=> array(
 			'posts_per_page' 	=> $featured2_count,
 			'exclude'			=> $post_blacklist,
+			'ignore_sticky_posts'   => true,
 			'post_type'			=> arras_get_option('featured2_posttype')
 		)
 	) ) );
@@ -75,7 +77,7 @@ $post_blacklist = array();
 		'list' 				=> $news_cat,
 		'taxonomy'			=> arras_get_option('news_tax'),
 		'query'				=> array(
-			'posts_per_page' 	=> arras_get_option('index_count'),
+			'posts_per_page' 	=> arras_get_option('news_count'),
 			'exclude'			=> $post_blacklist,
 			'post_type'			=> arras_get_option('news_posttype'),
 			'paged'				=> $paged
