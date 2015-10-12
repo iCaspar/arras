@@ -4,8 +4,6 @@ add_action( 'after_setup_theme', 'arras_thumbnails' );
 function arras_thumbnails() {
 	add_image_size( 'square-thumbnail', 115, 115 );
 	add_image_size( 'wide-thumbnail', 890, 500 );
-
-	var_dump( get_intermediate_image_sizes() );
 }
 
 /**
