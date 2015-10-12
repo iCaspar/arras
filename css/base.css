@@ -162,7 +162,6 @@ blockquote, q {
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
-	content: none;
 }
 
 /* Images */
@@ -584,7 +583,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /* Main Nav on small screens */
 @media only screen and (max-width : 768px) {
 
-	.top-menu {
+	.primary-utility {
+        position: absolute;
 		display: none;
 	}
 
@@ -594,7 +594,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 	.nav {
 		position: absolute;
-		top: 0;
+		top: -40px;
 		left: 0;
 		right: 0;
 	}
@@ -846,13 +846,20 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	z-index: 0;
 }
 .cycle-slideshow .cycle-slide {
+    display: none;
 	bottom: 0;
 	right: 0;
 }
+
+.cycle-slideshow .cycle-slide:first-child {
+    display: block;
+}
+
 .cycle-slideshow .cycle-slide img {
 	height: 100%;
 	width: 100%;
 }
+
 .cycle-overlay {
     background: #000;
     bottom: 0;
@@ -1006,6 +1013,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /* Tapestry Line */
 
 .posts-line {
+	background: #FFF;
+	border: 1px solid #CCC;
 	margin: 0 10px 10px 0;
 	padding: 0 10px 10px;
 	line-height: 25px;
@@ -1034,11 +1043,11 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	float: right;
 }
 
-.posts-line	{
-	background: #FFF;
-	border: 1px solid #CCC;
+.posts-line .sticky {
+    background-color: #f0f0f0;
+    margin: 3px -5px;
+    padding: 5px;
 }
-
 
 /** --------------------------------------------------------------------
  * Template-specific styles
@@ -1130,21 +1139,24 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 
 /* Single Template */
-.single .post {
+.single .post,
+.single-post {
 	background: #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 15px 0;
 	padding: 0 15px;
 }
 
-.single .post .entry-title {
+.single .post .entry-title,
+.single-post .entry-title {
 	font-weight: bold;
 	line-height: 1.3em;
 	margin: 15px 0 5px;
 	padding: 0;
 }
 
-.single .post .entry-info {
+.single .post .entry-info,
+.single-post .entry-info {
 	border-bottom: 1px dotted #CCC;
 	color: #848485;
 	margin-bottom: 10px;
@@ -1160,29 +1172,34 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 
-.single .post .entry-author {
+.single .post .entry-author,
+.single-post .entry-author {
 	color: #848485;
 	display: inline;
 	font-weight: bold;
 }
 
-.single .post .entry-author address	{
+.single .post .entry-author address,
+.single-post .entry-author address {
 	display: inline;
 	font-style: normal;
 }
 
-.single .post .entry-info .published {
+.single .post .entry-info .published,
+.post .post .entry-info .published {
 	border: none;
 }
 
-.single .post .entry-cat {
+.single .post .entry-cat,
+.post .post .entry-cat {
 	color: #848485;
 	display: block;
 	line-height: 1.5em;
 	margin: 5px 0 0;
 }
 
-.single .post .tags {
+.single .post .tags,
+.post .post .tags {
 	margin: 15px 0;
 	padding: 15px 0 0;
 	color: #848485;
@@ -1190,7 +1207,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	line-height: 1.5em;
 }
 
-.single .post .tags a {
+.single .post .tags a,
+.single-post .tags a {
 	padding: 0;
 }
 
@@ -1213,12 +1231,18 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .single-post .entry-info a:link, .single-post .entry-info a:visited	{ color: #666; text-decoration: none; }
 .single-post .entry-info a:hover	{ color: #333; }
 
-.single .post .tags strong {
+.single .post .tags strong,
+.single-post .tags strong {
 	text-transform: uppercase;
 }
 
-.single .post .entry-photo img, .single-post .entry-photo img	{ border: 1px solid #CCC; }
-.single .post .entry-comments {
+.single .post .entry-photo img,
+.single-post .entry-photo img {
+    border: 1px solid #CCC;
+}
+
+.single .post .entry-comments,
+.single-post .entry-comments {
 	padding: 3px 3px 3px 17px;
 	margin-top: 20px;
 	display: inline-block;
