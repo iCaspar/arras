@@ -1139,24 +1139,24 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 
 /* Single Template */
-.single .post,
-.single-post {
+.single .single-post,
+.page .single-post {
 	background: #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 15px 0;
 	padding: 0 15px;
 }
 
-.single .post .entry-title,
-.single-post .entry-title {
+.single .entry-title,
+.page .entry-title {
 	font-weight: bold;
 	line-height: 1.3em;
 	margin: 15px 0 5px;
 	padding: 0;
 }
 
-.single .post .entry-info,
-.single-post .entry-info {
+.single .entry-info,
+.page .entry-info {
 	border-bottom: 1px dotted #CCC;
 	color: #848485;
 	margin-bottom: 10px;
@@ -1172,34 +1172,34 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 
-.single .post .entry-author,
-.single-post .entry-author {
+.single .entry-author,
+.page .entry-author {
 	color: #848485;
 	display: inline;
 	font-weight: bold;
 }
 
-.single .post .entry-author address,
-.single-post .entry-author address {
+.single .entry-author address,
+.page .entry-author address {
 	display: inline;
 	font-style: normal;
 }
 
-.single .post .entry-info .published,
-.post .post .entry-info .published {
+.single .entry-info .published,
+.page .entry-info .published {
 	border: none;
 }
 
-.single .post .entry-cat,
-.post .post .entry-cat {
+.single .entry-cat,
+.page .entry-cat {
 	color: #848485;
 	display: block;
 	line-height: 1.5em;
 	margin: 5px 0 0;
 }
 
-.single .post .tags,
-.post .post .tags {
+.single .tags,
+.page .tags {
 	margin: 15px 0;
 	padding: 15px 0 0;
 	color: #848485;
@@ -1207,8 +1207,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	line-height: 1.5em;
 }
 
-.single .post .tags a,
-.single-post .tags a {
+.single .tags a,
+.page .tags a {
 	padding: 0;
 }
 
@@ -1218,8 +1218,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	overflow: hidden;
 }
 
-.single .post .entry-photo img,
-.single-post .entry-photo img {
+.single .entry-photo img,
+.page .entry-photo img {
 	height: auto;
 	margin: 10px auto;
 	max-height: 350px;
@@ -1241,8 +1241,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
     border: 1px solid #CCC;
 }
 
-.single .post .entry-comments,
-.single-post .entry-comments {
+.single .entry-comments,
+.page .entry-comments {
 	padding: 3px 3px 3px 17px;
 	margin-top: 20px;
 	display: inline-block;
