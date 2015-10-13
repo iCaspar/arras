@@ -4,21 +4,11 @@
  *
  * Arras functions and definitions.
  *
- * @author Melvin Lee (2009-2013)
- * @author Caspar Green <caspar@iCasparWebDevelopment.com>
+ * @author Caspar Green <https://caspar.green>
  * @package Arras
- *
+ * @version: 3.0
  */
 
-/**
- * Setting a default content width is a WP theme requirement.
- * Some WordPress media and plugins may use it.
- * In a responsive context the number is a bit arbitrary; we're just
- * setting it here to be the maximum width of the main content column
- * in Arras's 2-column layouts.
- * If you need to change it, you can do so by simply defining it in the
- * functions.php of your child theme.
- */
 if ( ! isset( $content_width ) ) {
 	$content_width = 647; /* maximum content width in pixels */
 }
@@ -134,7 +124,6 @@ function arras_add_sidebars() {
 require_once ARRAS_LIB . '/actions.php';
 require_once ARRAS_LIB . '/custom-header.php';
 require_once ARRAS_LIB . '/customizer.php';
-require_once ARRAS_LIB . '/deprecated.php';
 require_once ARRAS_LIB . '/filters.php';
 require_once ARRAS_LIB . '/functions.php';
 require_once ARRAS_LIB . '/slideshow.php';
@@ -146,10 +135,18 @@ require_once ARRAS_LIB . '/thumbnails.php';
 require_once ARRAS_LIB . '/update.php';
 require_once ARRAS_LIB . '/widgets.php';
 
+/* Load and instantiate color scheme controller class */
+require_once get_template_directory() . '/inc/color-schemes.php';
+$arras_colors = new Arras\Inc\Color_Schemes;
+add_action( 'customize_controls_enqueue_scripts', array( $arras_colors, 'enqueue_color_scheme_control_js' ) );
+add_action( 'customize_controls_print_footer_scripts', array( $arras_colors, 'color_scheme_css_template' ) );
+
+
 /* Load Admin stuff only when necessary */
 if ( is_admin() ) {
 	require_once ARRAS_LIB . '/admin.php';
 	add_action( 'admin_menu', 'arras_addmenu' );
+
 }
 
 

@@ -2,8 +2,8 @@
 
 add_action( 'after_setup_theme', 'arras_thumbnails' );
 function arras_thumbnails() {
-	add_image_size( 'square-thumbnail', 115, 115 );
-	add_image_size( 'wide-thumbnail', 890, 500 );
+	add_image_size( 'square-thumbnail', 115, 115, true );
+	add_image_size( 'wide-thumbnail', 890, 500, true );
 }
 
 /**
@@ -74,7 +74,6 @@ function arras_get_thumbnail( $size = 'post-thumbnail', $id = NULL ) {
 											. '" title="' . get_the_title() . '" />';
 
 	if ($post) $id = $post->ID;
-
 	if ( has_post_thumbnail( $id ) ) {
 		return get_the_post_thumbnail( $id, $size, array(
 			'alt' 	=> get_the_excerpt(),
