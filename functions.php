@@ -6,7 +6,7 @@
  *
  * @author Caspar Green <https://caspar.green>
  * @package Arras
- * @version: 3.0.0
+ * @version: 3.0
  */
 
 if ( ! isset( $content_width ) ) {
@@ -124,7 +124,6 @@ function arras_add_sidebars() {
 require_once ARRAS_LIB . '/actions.php';
 require_once ARRAS_LIB . '/custom-header.php';
 require_once ARRAS_LIB . '/customizer.php';
-require_once ARRAS_LIB . '/deprecated.php';
 require_once ARRAS_LIB . '/filters.php';
 require_once ARRAS_LIB . '/functions.php';
 require_once ARRAS_LIB . '/slideshow.php';
