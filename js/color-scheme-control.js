@@ -10,10 +10,10 @@
             'header_background_color',
             'main_nav_link_color',
             'hover_color',
-            'supplemental_color',
+            'supplemental_color'
         ],
         colorSettings = [
-            'header_background_color',
+            'header_background_color'
         ];
 
     api.controlConstructor.select = api.Control.extend( {

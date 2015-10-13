@@ -19,6 +19,11 @@ namespace Arras\Inc;
 class Color_Schemes {
 
 	/**
+	 * Constructor does nothing.
+	 */
+	public function __construct() {}
+
+	/**
 	 * Enqueue front-end CSS for color scheme.
 	 *
 	 * @return null
@@ -33,12 +38,13 @@ class Color_Schemes {
 		$color_scheme = $this->get_color_scheme_colors_array();
 
 		$colors = array(
-			'header_background_color'     => $color_scheme[0],
+			'header_background_color'     => get_theme_mod( 'header_background_color', '#1e1b1a' ),
 			'main_nav_link_color'         => $color_scheme[1],
 			'hover_color'                 => $color_scheme[2],
 			'supplemental_color'          => $color_scheme[3],
 		);
 
+//d($colors);
 		$color_scheme_css = $this->create_color_scheme_css( $colors );
 
 		wp_add_inline_style( 'arras-base', $color_scheme_css );
@@ -58,6 +64,7 @@ class Color_Schemes {
 		if ( array_key_exists( $current_color_scheme, $registered_color_schemes ) ) {
 			return $registered_color_schemes[ $current_color_scheme ]['colors'];
 		}
+
 		return $registered_color_schemes['default']['colors'];
 	}
 
@@ -115,6 +122,11 @@ class Color_Schemes {
 	}
 
 
+	/**
+	 * Enqueue JS event listener to update customizer on coler scheme control change.
+	 *
+	 * Pass color scheme data as colorScheme global.
+	 */
 	public function enqueue_color_scheme_control_js() {
 		wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '3.0', true );
 		wp_localize_script( 'color-scheme-control', 'colorScheme', $this->register_color_schemes() );

@@ -3,12 +3,12 @@
  */
 
 ( function( $ ) {
-    var $style = $( '#color-scheme-css' ),
+    var $style = $( '#theme-color-scheme-css' ),
         api = wp.customize;
 
     if ( ! $style.length ) {
-        $style = $( 'head' ).append( '<style type="text/css" id="color-scheme-css" />' )
-            .find( '#color-scheme-css' );
+        $style = $( 'head' ).append( '<style type="text/css" id="theme-color-scheme-css" />' )
+            .find( '#theme-color-scheme-css' );
     }
 
     // Color Scheme CSS.
