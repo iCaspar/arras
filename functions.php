@@ -6,7 +6,7 @@
  *
  * @author Caspar Green <https://caspar.green>
  * @package Arras
- * @version: 3.0
+ * @version: 3.0.2
  */
 
 if ( ! isset( $content_width ) ) {
