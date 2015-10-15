@@ -1140,7 +1140,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 /* Single Template */
 .single .single-post,
-.page .single-post {
+.page .single-post,
+.traditional .single-post {
 	background: #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 15px 0;
@@ -1148,7 +1149,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .single .entry-title,
-.page .entry-title {
+.page .entry-title,
+.traditional .entry-title {
 	font-weight: bold;
 	line-height: 1.3em;
 	margin: 15px 0 5px;
@@ -1156,7 +1158,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .single .entry-info,
-.page .entry-info {
+.page .entry-info,
+.traditional .entry-info {
 	border-bottom: 1px dotted #CCC;
 	color: #848485;
 	margin-bottom: 10px;
@@ -1173,25 +1176,29 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 
 
 .single .entry-author,
-.page .entry-author {
+.page .entry-author,
+.traditional .entry-author {
 	color: #848485;
 	display: inline;
 	font-weight: bold;
 }
 
 .single .entry-author address,
-.page .entry-author address {
+.page .entry-author address
+.traditional .entry-author address {
 	display: inline;
 	font-style: normal;
 }
 
 .single .entry-info .published,
-.page .entry-info .published {
+.page .entry-info .published,
+.traditional .entry-info .published {
 	border: none;
 }
 
 .single .entry-cat,
-.page .entry-cat {
+.page .entry-cat,
+.traditional .entry-cat {
 	color: #848485;
 	display: block;
 	line-height: 1.5em;
@@ -1199,7 +1206,8 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .single .tags,
-.page .tags {
+.page .tags,
+.traditional .tags {
 	margin: 15px 0;
 	padding: 15px 0 0;
 	color: #848485;
@@ -1208,18 +1216,21 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 }
 
 .single .tags a,
-.page .tags a {
+.page .tags a,
+.traditional .tags a {
 	padding: 0;
 }
 
 .single .post .entry-photo,
-.single-post .entry-photo {
+.page .post .entry-photo,
+.traditional .entry-photo {
 	max-width: 100%;
 	overflow: hidden;
 }
 
 .single .entry-photo img,
-.page .entry-photo img {
+.page .entry-photo img,
+.traditional .entry-photo img {
 	height: auto;
 	margin: 10px auto;
 	max-height: 350px;
@@ -1232,12 +1243,14 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .single-post .entry-info a:hover	{ color: #333; }
 
 .single .post .tags strong,
-.single-post .tags strong {
+.page .post .tags strong,
+.traditional .post .tags strong {
 	text-transform: uppercase;
 }
 
 .single .post .entry-photo img,
-.single-post .entry-photo img {
+.page .post .entry-photo img,
+.traditional .post .entry-photo {
     border: 1px solid #CCC;
 }
 
