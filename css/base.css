@@ -687,8 +687,15 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 	margin: 1em 0;
 }
 
-.entry-comments {
-	background: url(../images/comments.gif) no-repeat left center;
+.traditional .entry-comments {
+	background: rgba(50, 50, 50, 0.7) url("../images/comments.gif") no-repeat scroll 2px center;
+	border-radius: 7px;
+	float: right;
+	margin: 15px;
+	padding: 3px 5px 3px 15px;
+}
+.traditional .entry-comments a {
+	color: #fff;
 }
 
 .post-edit-link:link, .post-edit-link:visited  { padding: 0 0 0 14px; }
