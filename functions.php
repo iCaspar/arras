@@ -16,7 +16,7 @@ if ( ! isset( $content_width ) ) {
 /**
  * Define theme constants
  */
-define ( 'ARRAS_VERSION' , '3.0' );
+define ( 'ARRAS_VERSION' , '3.0.3' );
 define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
 add_action( 'after_setup_theme', 'arras_i18n' );
