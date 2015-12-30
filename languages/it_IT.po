@@ -1,0 +1,981 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Arras\n"
+"POT-Creation-Date: 2015-12-30 17:54+0100\n"
+"PO-Revision-Date: 2015-12-30 19:22+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: LightDestory <apb231@gmail.com>\n"
+"Language: it_IT\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:7
+msgid "Error 404 - Not Found"
+msgstr "Errore 404 - Pagina Non Trovata :-("
+
+#: 404.php:9
+msgid "We're very sorry, but that page doesn't exist or has been moved."
+msgstr ""
+"Siamo molto spiacenti, ma la pagina che sta cercando non esiste o è stata "
+"spostata."
+
+#: 404.php:10
+msgid "Please make sure you have the right URL."
+msgstr "Si prega di assicurarsi di avere un indirizzo corretto."
+
+#: 404.php:12
+msgid ""
+"If you still can't find what you're looking for, try using the search form "
+"below."
+msgstr ""
+"Se non riesci ancora a trovare quello che stai cercando, prova utilizzando "
+"il modulo di ricerca qui sotto."
+
+#: archive.php:10 archive.php:12 archive.php:14
+#, php-format
+msgid "%s Archive"
+msgstr "Archivio %s"
+
+#: archive.php:16 archive.php:18 archive.php:20
+#, php-format
+msgid "Archive for %s"
+msgstr "Archivia per %s"
+
+#: archive.php:16
+msgid "F jS, Y"
+msgstr "F jS, Y"
+
+#: archive.php:18
+msgid "F, Y"
+msgstr "F, Y"
+
+#: archive.php:20
+msgid "Y"
+msgstr "Y"
+
+#: archive.php:22
+msgid "Author Archive"
+msgstr "Autore dell'Archivio"
+
+#: archive.php:24
+msgid "Archives"
+msgstr "Archivi"
+
+#: archive.php:32 home.php:96 home.php:118
+msgid "Older Entries"
+msgstr "Vecchi Post"
+
+#: archive.php:33 home.php:97 home.php:119
+msgid "Newer Entries"
+msgstr "Nuovi Post"
+
+#: archives-page.php:19 sidebar.php:16
+msgid "Recent Posts"
+msgstr "Post Recenti"
+
+#: archives-page.php:22
+msgid "Monthly Archives"
+msgstr "Archivi Mensili"
+
+#: archives-page.php:25
+msgid "Pages"
+msgstr "Pagine"
+
+#: archives-page.php:28
+msgid "Categories"
+msgstr "Categorie"
+
+#: archives-page.php:31
+msgid "Authors"
+msgstr "Autori"
+
+#: attachment.php:13 library/deprecated.php:103 no-sidebars-page.php:18
+#: page.php:12 single.php:13
+msgid "<p>Read the rest of this entry &raquo;</p>"
+msgstr "<p>Leggi il continuo di questo post &raquo;</p>"
+
+#: attachment.php:15 no-sidebars-page.php:19 page.php:13 single.php:14
+msgid "<p><strong>Pages:</strong> "
+msgstr "<p><strong>Pagine:</strong> "
+
+#: author.php:9
+#, php-format
+msgid "About Author: %s"
+msgstr "Info sull'Autore: %s"
+
+#: author.php:15 comments.php:56
+msgid "Website"
+msgstr "Sito Web"
+
+#: author.php:19
+msgid "Description"
+msgstr "Descrizione"
+
+#: author.php:25
+#, php-format
+msgid "Posts by %s"
+msgstr "Scritto da: %s"
+
+#: author.php:32 search.php:21 search.php:42
+msgid "&laquo; Older Entries"
+msgstr "&laquo; Vecchi Post"
+
+#: author.php:33 search.php:22 search.php:43
+msgid "Newer Entries &raquo;"
+msgstr "Nuovi Post &raquo;"
+
+#: comments.php:3
+msgid "Please do not load this page directly. Thanks!"
+msgstr ""
+"Non caricare la pagina direttamente!\n"
+"Grazie! :-)"
+
+#: comments.php:7
+msgid "Password Required"
+msgstr "Password Richiesta"
+
+#: comments.php:8
+msgid ""
+"<p class=\"nocomments\">This post is password protected. Enter the password "
+"to view comments.</p>"
+msgstr ""
+"<p class=\"nocomments\">Questo post è protetta da una password. Inseriscila "
+"per poter vedere i commenti.</p>"
+
+#: comments.php:17 comments.php:34 library/widgets.php:203
+msgid "No Comments"
+msgstr "Nessun Commento"
+
+#: comments.php:17 library/widgets.php:203
+msgid "1 Comment"
+msgstr "1 Commento"
+
+#: comments.php:17
+msgid "% Comment"
+msgid_plural "% Comments"
+msgstr[0] "% Commento"
+msgstr[1] "% Commenti"
+
+#: comments.php:28
+msgid "Trackbacks / Pings"
+msgstr "Trackbacks / Pings"
+
+#: comments.php:35
+msgid "Start the ball rolling by posting a comment on this article!"
+msgstr "Inizia la discussione postando un commento in questo articolo!"
+
+#: comments.php:40
+msgid "Comments Closed"
+msgstr "Commenti Disabilitati"
+
+#: comments.php:41
+msgid ""
+"Comments are closed. You will not be able to post a comment in this post."
+msgstr ""
+"I commenti sono disabilitati. Non sarà possibile postare commenti in questo "
+"articolo"
+
+#: comments.php:52
+msgid "Name"
+msgstr "Nome"
+
+#: comments.php:54
+msgid "Email"
+msgstr "Email"
+
+#: comments.php:59
+msgctxt "noun"
+msgid "Comment"
+msgstr "Commento"
+
+#: footer.php:22
+msgid "About Arras WordPress Theme"
+msgstr "Informazioni sul Tema Arras"
+
+#: functions.php:53
+msgid "Main Menu"
+msgstr "Menu Principale"
+
+#: functions.php:54
+msgid "Top Menu"
+msgstr "Menu Superiore"
+
+#: header.php:25
+msgid "Skip to content"
+msgstr "Salta al contenuto"
+
+#: inc/color-schemes.php:149
+msgid "Default"
+msgstr "Predefinito"
+
+#: inc/color-schemes.php:158
+msgid "Blue"
+msgstr "Blu"
+
+#: inc/color-schemes.php:167
+msgid "Green"
+msgstr "Verde"
+
+#: inc/color-schemes.php:176
+msgid "Rust"
+msgstr "Color Ruggine"
+
+#: inc/color-schemes.php:185
+msgid "Wine"
+msgstr "Color Vino"
+
+#: inc/color-schemes.php:194
+msgid "Violet"
+msgstr "Violetto"
+
+#: library/admin.php:4
+msgid "Arras Info"
+msgstr "Info su Arras"
+
+#: library/customizer.php:62
+msgid "Site Title, Tagline & Footer Message"
+msgstr "Titolo Sito, Tagline & Messaggio Footer"
+
+#: library/customizer.php:63
+msgid "Header Image and Logo"
+msgstr "Immagine della Testata e Logo"
+
+#: library/customizer.php:71
+msgid "Homepage Settings"
+msgstr "Impostazione Homepage"
+
+#: library/customizer.php:91
+msgid "Post Display"
+msgstr "Visualizzazione Post"
+
+#: library/customizer.php:91
+msgid "Options for displaying meta-data on single posts."
+msgstr "Impostazione per visualizzare meta-data in post singoli."
+
+#: library/customizer.php:92
+msgid "Social Media Links"
+msgstr "Link dei Social Media"
+
+#: library/customizer.php:95
+msgid "Duplicate Posts"
+msgstr "Post Duplici"
+
+#: library/customizer.php:96
+msgid "Slideshow"
+msgstr "Slideshow"
+
+#: library/customizer.php:97
+msgid "Featured #1"
+msgstr "Motivo #1"
+
+#: library/customizer.php:98
+msgid "Featured #2"
+msgstr "Motivo #2"
+
+#: library/customizer.php:99 library/customizer.php:512
+msgid "News"
+msgstr "News"
+
+#: library/customizer.php:129
+msgid "Base Color Scheme"
+msgstr "Colore base dello Schema"
+
+#: library/customizer.php:142
+msgid "Header Background Color"
+msgstr "Colore di fondo della Testata"
+
+#: library/customizer.php:157
+msgid "Footer Message"
+msgstr "Messaggio Footer"
+
+#: library/customizer.php:158
+msgid "You may use some limited html here (for links, etc)."
+msgstr "Puoi utilizzare qualche html qui (per link, ect...)."
+
+#: library/customizer.php:164
+msgid "Enable Slideshow"
+msgstr "Attiva Slideshow"
+
+#: library/customizer.php:166
+msgid "Slideshow Post Type"
+msgstr "Tipologia di Post in Slideshow"
+
+#: library/customizer.php:167 library/customizer.php:182
+#: library/customizer.php:199 library/customizer.php:216
+msgid ""
+"If you change this, please save and then refresh the page to get updated "
+"taxonomy and term choices."
+msgstr ""
+"Se cambi questo, salva e ricarica la pagina per avere la tassonomia e le "
+"opzioni disponibili aggiornate."
+
+#: library/customizer.php:170
+msgid "Slideshow Taxonomy"
+msgstr "Tassonomia della Slideshow"
+
+#: library/customizer.php:170 library/customizer.php:185
+#: library/customizer.php:202 library/customizer.php:219
+msgid ""
+"If you change this, please save and then refresh the page to get updated "
+"term choices."
+msgstr ""
+"Se cambi questo, salva e ricarica la pagina per avere le opzioni "
+"disponibili aggiornate"
+
+#: library/customizer.php:173
+msgid "Maximum Posts in Slideshow"
+msgstr "Post massimi nella Slideshow"
+
+#: library/customizer.php:177
+msgid "Enable Featured #1"
+msgstr "Attiva Motivo #1"
+
+#: library/customizer.php:179
+msgid "Header for Featured #1 Section"
+msgstr "Titolo per la sezione Motivo #1"
+
+#: library/customizer.php:181
+msgid "Featured #1 Post Type"
+msgstr "Tipologia di Post in Motivo #1"
+
+#: library/customizer.php:185
+msgid "Featured #1 Taxonomy"
+msgstr "Tassonomia in Motivo #1"
+
+#: library/customizer.php:188
+msgid "Display Mode for Featured #1"
+msgstr "Modalità di visualizzazione in Motivo #1"
+
+#: library/customizer.php:190
+msgid "Maximum Posts in Featured #1"
+msgstr "Post massimi in Motivo #1"
+
+#: library/customizer.php:194
+msgid "Enable Featured #2"
+msgstr "Attiva Motivo #2"
+
+#: library/customizer.php:196
+msgid "Header for Featured #2 Section"
+msgstr "Titolo per la sezione Motivo #2"
+
+#: library/customizer.php:198
+msgid "Featured #2 Post Type"
+msgstr "Tipologia di Post in Motivo #2"
+
+#: library/customizer.php:202
+msgid "Featured #2 Taxonomy"
+msgstr "Tassonomia in Motivo #2"
+
+#: library/customizer.php:205
+msgid "Display Mode for Featured #2"
+msgstr "Modalità di visualizzazione in Motivo #2"
+
+#: library/customizer.php:207
+msgid "Maximum Posts in Featured #2"
+msgstr "Post massimi in Motivo #2"
+
+#: library/customizer.php:211
+msgid "Enable News"
+msgstr "Attiva News"
+
+#: library/customizer.php:213
+msgid "Header for News Section"
+msgstr "Titolo per la sezione News"
+
+#: library/customizer.php:215
+msgid "News Post Type"
+msgstr "Tipologia di Post in News"
+
+#: library/customizer.php:219
+msgid "News Taxonomy"
+msgstr "Tassonomia in News"
+
+#: library/customizer.php:222
+msgid "Display Mode for News"
+msgstr "Modalità di visualizzazione in News"
+
+#: library/customizer.php:224
+msgid "Maximum Posts in News"
+msgstr "Post massimi in News"
+
+#: library/customizer.php:248
+msgid "Hide Duplicate Posts"
+msgstr "Nascondi Post duplici"
+
+#: library/customizer.php:249
+msgid ""
+"Prevents duplicate posts from displaying in both the slideshow the featured "
+"posts. May cause slowdown, depending on post count."
+msgstr ""
+"Previene la duplice visualizzazione dei post sia nella Slideshow sia nelle "
+"sezioni Motivo. Può causare un rallentamento, dipende dal numero di post."
+
+#: library/customizer.php:260
+msgid "Slideshow Categories (or Terms)"
+msgstr "Categorie (o Opzioni) Slideshow"
+
+#: library/customizer.php:272
+msgid "Featured #1 Categories (or Terms)"
+msgstr "Categorie (o Opzioni) Motivo #1"
+
+#: library/customizer.php:284
+msgid "Featured #2 Categories (or Terms)"
+msgstr "Categorie (o Opzioni) Motivo #2"
+
+#: library/customizer.php:296
+msgid "News Categories (or Terms)"
+msgstr "Categorie (o Opzioni) News"
+
+#: library/customizer.php:304
+msgid "Post Author"
+msgstr "Autore del Post"
+
+#: library/customizer.php:311
+msgid "Post Date"
+msgstr "Data del Post"
+
+#: library/customizer.php:318
+msgid "Post Categories"
+msgstr "Categorie del Post"
+
+#: library/customizer.php:325
+msgid "Post Tags"
+msgstr "Tag del Post"
+
+#: library/customizer.php:332
+msgid "Post Featured Image"
+msgstr "Immagine in evidenza del Post"
+
+#: library/customizer.php:339
+msgid "Use Relative Postdates"
+msgstr "Usa Date del Post relative"
+
+#: library/customizer.php:340
+msgid ""
+"Display post dates relative to current time, eg. 2 days ago. (Note: Posts "
+"over a month old will always show with the regular date format.) "
+msgstr ""
+"Visualizza le date dei post in relazione alla data attuale, es. 2 giorni "
+"fa. (Nota: Post vecchi di un mese saranno visualizzati con il formato "
+"regolare.)"
+
+#: library/customizer.php:352
+msgid "Site Logo"
+msgstr "Logo del Sito"
+
+#: library/customizer.php:360
+msgid "Show RSS Feed Icon"
+msgstr "Mostra icona RSS Feed"
+
+#: library/customizer.php:361
+msgid "Your RSS feed URL is: "
+msgstr "Il tuo RSS Feed Url:"
+
+#: library/customizer.php:368
+msgid "Twitter URL"
+msgstr "Twitter URL"
+
+#: library/customizer.php:375
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: library/customizer.php:382
+msgid "Google+ URL"
+msgstr "Google+ URL"
+
+#: library/customizer.php:389
+msgid "YouTube URL"
+msgstr "YouTube URL"
+
+#: library/customizer.php:396
+msgid "Flickr URL"
+msgstr "Flickr URL"
+
+#: library/customizer.php:404
+msgid "Layout"
+msgstr "Layout"
+
+#: library/customizer.php:408
+msgid "Sidebar Arrangement"
+msgstr "Disposizione Barra Laterale"
+
+#: library/customizer.php:416
+msgid "Default Display Mode"
+msgstr "Modalità di visualizzazione predefinito"
+
+#: library/customizer.php:424
+msgid "Auto-Thumbnail"
+msgstr "Auto-Thumbnail"
+
+#: library/customizer.php:425
+msgid ""
+"Automatically retrieve the first attached image from the post as featured "
+"image when no image is specified."
+msgstr ""
+"Automatically retrieve the first attached image from the post as featured "
+"image when no image is specified."
+
+#: library/customizer.php:432 library/tapestries.php:219
+msgid "Nodes per Row"
+msgstr "Riquadri per riga"
+
+#: library/customizer.php:433
+msgid "For Node-based Display Mode."
+msgstr "For Node-based Display Mode."
+
+#: library/customizer.php:441
+msgid "Show Excerpts with Nodes"
+msgstr "Mostra riassunto nei Riquadri"
+
+#: library/customizer.php:448
+msgid "Excerpt Limit"
+msgstr "Limite Riassunto"
+
+#: library/customizer.php:449
+msgid ""
+"Number of words to trim excerpts. Trims only if no excerpt is specified for "
+"a post. Maximum 300 words. Enter 0 for no trim."
+msgstr ""
+"Numero di parola da visualizzare come riassunto. Massimo 300. Inserire 0 "
+"per nessun riassunto."
+
+#: library/customizer.php:456
+msgid "Footer Columns"
+msgstr "Colonne Footer"
+
+#: library/customizer.php:457
+msgid "Each footer column gets its own widget area."
+msgstr "Each footer column gets its own widget area."
+
+#: library/customizer.php:480
+msgid "Copyright "
+msgstr "Copyright "
+
+#: library/customizer.php:494 library/widgets.php:67
+msgid "Featured Stories"
+msgstr "Featured Stories"
+
+#: library/customizer.php:503
+msgid "Editor's Picks"
+msgstr "Editor's Picks"
+
+#: library/customizer.php:674 library/functions.php:5
+msgid "Use Sticky Posts"
+msgstr "Usa Post in Evidenza"
+
+#: library/deprecated.php:121 library/deprecated.php:140
+#: library/tapestries.php:162 library/tapestries.php:261
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink a %s"
+
+#: library/deprecated.php:141 library/widgets.php:210
+msgid "Read More"
+msgstr "Continua..."
+
+#: library/filters.php:36
+#, php-format
+msgid "<div class=\"entry-author\">By %s</div>"
+msgstr "<div class=\"entry-author\">Da %s</div>"
+
+#: library/filters.php:40 library/tapestries.php:258 library/widgets.php:202
+#, php-format
+msgid "Posted %s"
+msgstr "Il %s"
+
+#: library/filters.php:44
+msgid "Edit Post"
+msgstr "Modifica"
+
+#: library/filters.php:44
+msgid "(Edit Post)"
+msgstr "(Modifica)"
+
+#: library/filters.php:52
+#, php-format
+msgid "<span class=\"entry-cat\"><strong>Posted in: </strong>%s</span>"
+msgstr "<span class=\"entry-cat\"><strong>Postato in: </strong>%s</span>"
+
+#: library/filters.php:132
+msgid "Tags:"
+msgstr "Tag:"
+
+#: library/filters.php:143
+msgid "That 'something' you are looking for isn't here!"
+msgstr "Quel 'qualcosa' che stai cercando non è qui!"
+
+#: library/filters.php:144
+msgid ""
+"<strong>We're very sorry, but the page that you are looking for doesn't "
+"exist or has been moved.</strong>"
+msgstr ""
+"<strong>Siamo molto spiacenti, ma la pagina che sta cercando non esiste o è "
+"stata spostata.</strong>"
+
+#: library/filters.php:148
+msgid "Perhaps searching for it might help?"
+msgstr "Forse cercarlo potrebbe aiutare?"
+
+#: library/filters.php:150 searchform.php:3
+msgid "Search"
+msgstr "Cerca"
+
+#: library/filters.php:150 searchform.php:3
+#, php-format
+msgid "Search %s"
+msgstr "Cerca %s"
+
+#: library/filters.php:153
+msgid "Latest Posts"
+msgstr "Ultimi Post"
+
+#: library/filters.php:173
+#, php-format
+msgid "About %s"
+msgstr "Info su %s"
+
+#: library/functions.php:181
+msgid "Stickied Posts"
+msgstr "Post in Evidenza"
+
+#: library/functions.php:214
+msgid "Taxonomy"
+msgstr "Tassonomia"
+
+#: library/slideshow.php:28
+msgid "Prev"
+msgstr "Prec."
+
+#: library/slideshow.php:29
+msgid "Next"
+msgstr "Suc."
+
+#: library/styles.php:37
+msgid "1 Column - No Sidebars"
+msgstr "1 Colonna - No SideBars"
+
+#: library/styles.php:38
+msgid "2 Columns - Sidebar on Right"
+msgstr "2 Colonne - Sidebar on Right"
+
+#: library/styles.php:39
+msgid "2 Columns - Sidebar on Left"
+msgstr "2 Colonne - Sidebar on Left"
+
+#: library/styles.php:40
+msgid "3 Columns - Left / Right Sidebars"
+msgstr "3 Colonne - Left / Right Sidebars"
+
+#: library/styles.php:41
+msgid "3 Columns - 2 Right Sidebars"
+msgstr "3 Colonne - 2 Right Sidebars"
+
+#: library/tapestries.php:131
+msgid "Read the rest of this entry &raquo;"
+msgstr "Continua a leggere... &raquo;"
+
+#: library/tapestries.php:136
+msgid "Traditional"
+msgstr "Tradizionale"
+
+#: library/tapestries.php:167
+msgid "Per Line"
+msgstr "Per linea"
+
+#: library/tapestries.php:193
+msgid "Node Based"
+msgstr "Riquadri"
+
+#: library/tapestries.php:209
+msgid "Tapestry: Node Based"
+msgstr "Tapestry: Node Based"
+
+#: library/tapestries.php:213
+msgid "Show Excerpt?"
+msgstr "Mostra Riassunto?"
+
+#: library/tapestries.php:262
+msgid "Continue Reading..."
+msgstr "Continua a leggere..."
+
+#: library/tapestries.php:268
+msgid "Quick Preview"
+msgstr "Anteprima Veloce"
+
+#: library/template.php:369
+msgid "Your comment is awaiting moderation."
+msgstr "Il tuo commento è in attesa di moderazione"
+
+#: library/template.php:372
+#, php-format
+msgid "Posted %1$s at %2$s"
+msgstr "Postato %1$s at %2$s"
+
+#: library/template.php:372
+msgid "c"
+msgstr "c"
+
+#: library/template.php:372
+msgid "F j, Y"
+msgstr "F j, Y"
+
+#: library/template.php:372
+msgid "g:i A"
+msgstr "g:i A"
+
+#: library/template.php:422 library/template.php:443
+#, php-format
+msgid "on %s"
+msgstr "%s"
+
+#: library/template.php:448
+#, php-format
+msgid "%s weeks ago"
+msgstr "%s settimane fa"
+
+#: library/template.php:450
+msgid "1 week ago"
+msgstr "1 settimana fa"
+
+#: library/template.php:454
+#, php-format
+msgid "%s days ago"
+msgstr "%s giorni fa"
+
+#: library/template.php:456
+msgid "1 day ago"
+msgstr "1 giorno fa"
+
+#: library/template.php:460
+#, php-format
+msgid "%s hours ago"
+msgstr "%s ore fa"
+
+#: library/template.php:462
+msgid "1 hour ago"
+msgstr "1 ora fa"
+
+#: library/template.php:466
+#, php-format
+msgid "%s minutes ago"
+msgstr "%s minuti fa"
+
+#: library/template.php:468
+msgid "1 minute ago"
+msgstr "1 minuto fa"
+
+#: library/template.php:471
+msgid "less than a minute ago"
+msgstr "meno di un minuto fa"
+
+#: library/template.php:485
+#, php-format
+msgid "%s RSS Feed"
+msgstr "%s RSS Feed"
+
+#: library/template.php:485
+msgid "RSS Feed"
+msgstr "RSS Feed"
+
+#: library/template.php:489
+#, php-format
+msgid "%s Facebook"
+msgstr "%s Facebook"
+
+#: library/template.php:489
+msgid "Facebook"
+msgstr "Facebook"
+
+#: library/template.php:494
+#, php-format
+msgid "%s Flickr"
+msgstr "%s Flickr"
+
+#: library/template.php:494
+msgid "Flickr"
+msgstr "Flickr"
+
+#: library/template.php:499
+#, php-format
+msgid "%s Google+"
+msgstr "%s Google+"
+
+#: library/template.php:499
+msgid "Google+"
+msgstr "Google+"
+
+#: library/template.php:504
+#, php-format
+msgid "%s Twitter"
+msgstr "%s Twitter"
+
+#: library/template.php:504
+msgid "Twitter"
+msgstr "Twitter"
+
+#: library/template.php:509
+#, php-format
+msgid "%s YouTube"
+msgstr "%s YouTube"
+
+#: library/template.php:509
+msgid "YouTube"
+msgstr "YouTube"
+
+#: library/template.php:567
+msgctxt "Previous post link"
+msgid "<span class=\"meta-nav\">&larr;</span> %title"
+msgstr ""
+
+#: library/template.php:570
+msgctxt "Next post link"
+msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: library/widgets.php:17
+msgid "Arras Featured Stories"
+msgstr "Arras Featured Stories"
+
+#: library/widgets.php:18
+msgid ""
+"Featured stories containing post thumbnails and the excerpt based on "
+"categories."
+msgstr ""
+"Featured stories containing post thumbnails and the excerpt based on "
+"categories."
+
+#: library/widgets.php:78
+msgid "Title:"
+msgstr "Titolo:"
+
+#: library/widgets.php:82
+msgid "Featured Categories:"
+msgstr "Categorie Motivo:"
+
+#: library/widgets.php:84
+msgid "All Categories"
+msgstr "Tutte le Categorie"
+
+#: library/widgets.php:94
+msgid "How many items would you like to display?"
+msgstr "Quanti oggetti vorresti visualizzare?"
+
+#: library/widgets.php:105
+msgid "Do not display in homepage"
+msgstr "Non mostrare in Homepage"
+
+#: library/widgets.php:108
+msgid "Show post excerpts"
+msgstr "Mostra riassunto Post"
+
+#: library/widgets.php:111
+msgid "Show thumbnails"
+msgstr "Mostra thumbnails"
+
+#: library/widgets.php:142
+msgid "Arras Search"
+msgstr "Ricerca Arras"
+
+#: library/widgets.php:143
+msgid "A search form for your site"
+msgstr "Un modulo di ricerca per il tuo sito"
+
+#: library/widgets.php:203
+msgid "% Comments"
+msgstr "% Commenti"
+
+#: library/widgets.php:218
+msgid "No posts at the moment. Check back again later!"
+msgstr "Nessun post al momento. Controlla più tardi!"
+
+#: no-sidebars-page.php:27 page.php:21
+msgid "About the Author"
+msgstr "Info sull'Autore"
+
+#: search.php:8
+msgid "Search Results"
+msgstr "Risultati della Ricerca"
+
+#: search.php:10
+#, php-format
+msgid "Search Results for <strong>&#8216;%s&#8217;</strong></p>"
+msgstr "Risultati della Ricerca per <strong>&#8216;%s&#8217;</strong></p>"
+
+#: search.php:31
+msgid ""
+"<strong>Sorry, we couldn't find any results based on your search query.</"
+"strong>"
+msgstr ""
+"<strong>Ci dispiace, non abbiamo trovato nulla in base ai tuoi criteri di "
+"ricerca.</strong>"
+
+#: search.php:36
+msgid "Blog Archive"
+msgstr "Archivi del Blog"
+
+#: searchform.php:2
+msgid "Search this site"
+msgstr "Cerca nel sito"
+
+#: sidebar.php:8
+msgid "Welcome to Arras!"
+msgstr "Benvenuto in Arras"
+
+#: sidebar.php:11
+msgid ""
+"Arras is a WordPress theme designed for news or review sites with lots of "
+"customisable features."
+msgstr ""
+"Arras è un tema di WordPress adatto a siti di news e recensioni con tante "
+"personalizzazioni."
+
+#: sidebar.php:41
+msgid "Tag Cloud"
+msgstr "Tag Cloud"
+
+#. Theme Name of the plugin/theme
+msgid "Arras"
+msgstr "Arras"
+
+#. Theme URI of the plugin/theme
+msgid "http://www.iCasparWebDevelopment.com/"
+msgstr "http://www.iCasparWebDevelopment.com/"
+
+#. Description of the plugin/theme
+msgid ""
+"A sophisticated, yet simple and clean WordPress theme for magazine/news "
+"blogs. Homepage comes with a featured slideshow and 3 featured post areas "
+"with 4 different customisable layouts. Comes with in one, two and three "
+"column layouts and 7 different alternate styles. WordPress 3.0-ready with "
+"two menu locations, custom post types and custom taxonomies support. Child "
+"theme ready with numerous action and filter hooks available for use. "
+"Community support available at <a href=\"http://www.arrastheme.com/forums/"
+"\">theme forums</a>."
+msgstr ""
+"A sophisticated, yet simple and clean WordPress theme for magazine/news "
+"blogs. Homepage comes with a featured slideshow and 3 featured post areas "
+"with 4 different customisable layouts. Comes with in one, two and three "
+"column layouts and 7 different alternate styles. WordPress 3.0-ready with "
+"two menu locations, custom post types and custom taxonomies support. Child "
+"theme ready with numerous action and filter hooks available for use. "
+"Community support available at <a href=\"http://www.arrastheme.com/forums/"
+"\">theme forums</a>."
+
+#. Author of the plugin/theme
+msgid "Caspar Green"
+msgstr "Caspar Green"
+
+#. Author URI of the plugin/theme
+msgid "http://iCasparWebDevelopment.com/"
+msgstr "http://iCasparWebDevelopment.com/"
