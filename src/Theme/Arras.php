@@ -3,7 +3,7 @@
  * Where Arras begins.
  *
  * @author: Caspar Green <https://caspar.green/>
- * @package: public
+ * @package: Arras
  * @version: 1.0.0
  */
 
