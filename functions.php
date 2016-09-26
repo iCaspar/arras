@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ARRAS_VERSION' ) ) {
-	define( 'ARRAS_VERSION', '3.0.3' );
+	define( 'ARRAS_VERSION', '4.0.0' );
 }
 
 if ( ! defined( 'ARRAS_THEME_DIR' ) ) {
