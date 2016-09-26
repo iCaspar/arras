@@ -1,0 +1,4 @@
+suites:
+    arras_suite:
+        namespace: ICaspar\Arras
+        psr4_prefix: ICaspar\Arras
