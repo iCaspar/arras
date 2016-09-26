@@ -1,159 +1,57 @@
 <?php
 /**
- * functions.php
- *
- * Arras functions and definitions.
+ * Define theme constants and launch.
  *
  * @author Caspar Green <https://caspar.green>
  * @package Arras
- * @version: 3.0.2
+ * @version: 4.0.0
  */
 
-if ( ! isset( $content_width ) ) {
-	$content_width = 647; /* maximum content width in pixels */
+namespace ICaspar\Arras;
+
+use ICaspar\Arras\Theme\Arras;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Sorry. This address is not accessible on this route.' );
+}
+
+if ( ! defined( 'ARRAS_VERSION' ) ) {
+	define( 'ARRAS_VERSION', '3.0.3' );
+}
+
+if ( ! defined( 'ARRAS_THEME_DIR' ) ) {
+	define( 'ARRAS_THEME_DIR', get_template_directory() );
+}
+
+if ( ! defined( 'ARRAS_CONFIG_DIR' ) ) {
+	define( 'ARRAS_CONFIG_DIR', ARRAS_THEME_DIR . '/config/' );
+}
+
+if ( ! defined( 'ARRAS_THEME_URL' ) ) {
+	define( 'ARRAS_THEME_URL', get_template_directory_uri() );
+}
+
+if ( ! defined( 'ARRAS_ASSETS_URL' ) ) {
+	define( 'ARRAS_ASSETS_URL', ARRAS_THEME_URL . '/assets/' );
+}
+
+if ( version_compare( $GLOBALS['wp_version'], '4.6', '>' ) ) {
+	launch();
 }
 
 /**
- * Define theme constants
+ * Launch the Theme.
+ *
+ * @since 1.0.0
+ *
+ * @return void
  */
-define ( 'ARRAS_VERSION' , '3.0.3' );
-define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
-add_action( 'after_setup_theme', 'arras_i18n' );
-/**
- * Make Arras Translatable
- * For how to translate Arras, see the Codex:
- * https://codex.wordpress.org/I18n_for_WordPress_Developers
- * @return null
- */
-function arras_i18n() {
-	load_theme_textdomain( 'arras', get_template_directory() . '/languages' );
-} // end arras_i18n()
+function launch() {
+	require_once( __DIR__ . '/vendor/autoload.php' );
 
-add_action( 'after_setup_theme', 'arras_theme_support' );
-/**
- * Declare various theme supports for WP and plugins
- * @return null
- */
-function arras_theme_support() {
-	add_theme_support( 'title-tag' );
-	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'automatic-feed-links' );
-	add_theme_support( 'custom-background', array( 'default-color' => 'f0f0f0' ) );
-	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'widgets' ) );
-} // end arras_theme_support()
+	$config = include ARRAS_CONFIG_DIR . 'main-config.php';
 
-add_action( 'after_setup_theme', 'arras_menus' );
-/**
- * Define our theme menu locations
- * @return null
- */
-function arras_menus() {
-	register_nav_menus(array(
-		'main-menu'	=> __('Main Menu', 'arras'),
-		'top-menu'	=> __('Top Menu', 'arras')
-	));
-} // end arras_menus()
-
-add_action( 'widgets_init', 'arras_add_sidebars' );
-/**
- * Register widgetized areas and update sidebar with default widgets.
- * @return  null
- */
-function arras_add_sidebars() {
-	/* Default sidebars */
-	register_sidebar( array(
-		'name' => 'Primary Sidebar',
-		'id'	=> 'primary',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
-		'after_widget' => '</li>',
-		'before_title' => '<h5 class="widgettitle">',
-		'after_title' => '</h5>'
-	) );
-	register_sidebar( array(
-		'name' => 'Secondary Sidebar',
-		'id'	=> 'secondary',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
-		'after_widget' => '</li>',
-		'before_title' => '<h5 class="widgettitle">',
-		'after_title' => '</h5>'
-	) );
-	register_sidebar( array(
-		'name' => 'Bottom Content #1',
-		'id'	=> 'below-content-1',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
-		'after_widget' => '</li>',
-		'before_title' => '<h5 class="widgettitle">',
-		'after_title' => '</h5>'
-	) );
-	register_sidebar( array(
-		'name' => 'Bottom Content #2',
-		'id'	=> 'below-content-2',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
-		'after_widget' => '</li>',
-		'before_title' => '<h5 class="widgettitle">',
-		'after_title' => '</h5>'
-	) );
-	register_sidebar( array(
-		'name' => 'Header Widgets',
-		'id'	=> 'header-widgets',
-		'description' => 'A small widget area in the header. Use for small widgets',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
-		'after_widget' => '</li>',
-		'before_title' => '<h5 class="widgettitle">',
-		'after_title' => '</h5>'
-	) );
-
-	/* Footer sidebars (Up to 4 sidebars based on user preference) */
-	$footer_sidebars = arras_get_option('footer_columns');
-	if ($footer_sidebars == '') $footer_sidebars = 1;
-
-	for( $i = 1; $i < $footer_sidebars + 1; $i++ ) {
-		register_sidebar( array(
-			'name' => 'Footer Sidebar #' . $i,
-			'id'	=> 'footer-sidebar-' . $i,
-			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-			'after_widget' => '</li>',
-			'before_title' => '<h5 class="widgettitle">',
-			'after_title' => '</h5>'
-		) );
-	}
-} // end arras_add_sidebars()
-
-/* Load theme library files */
-require_once ARRAS_LIB . '/actions.php';
-require_once ARRAS_LIB . '/custom-header.php';
-require_once ARRAS_LIB . '/customizer.php';
-require_once ARRAS_LIB . '/filters.php';
-require_once ARRAS_LIB . '/functions.php';
-require_once ARRAS_LIB . '/slideshow.php';
-require_once ARRAS_LIB . '/scripts.php';
-require_once ARRAS_LIB . '/styles.php';
-require_once ARRAS_LIB . '/tapestries.php';
-require_once ARRAS_LIB . '/template.php';
-require_once ARRAS_LIB . '/thumbnails.php';
-require_once ARRAS_LIB . '/update.php';
-require_once ARRAS_LIB . '/widgets.php';
-
-/* Load and instantiate color scheme controller class */
-require_once get_template_directory() . '/inc/color-schemes.php';
-$arras_colors = new Arras\Inc\Color_Schemes;
-add_action( 'customize_controls_enqueue_scripts', array( $arras_colors, 'enqueue_color_scheme_control_js' ) );
-add_action( 'customize_controls_print_footer_scripts', array( $arras_colors, 'color_scheme_css_template' ) );
-
-
-/* Load Admin stuff only when necessary */
-if ( is_admin() ) {
-	require_once ARRAS_LIB . '/admin.php';
-	add_action( 'admin_menu', 'arras_addmenu' );
-
+	$arras = new Arras();
+	$arras->init( $config );
 }
-
-
-/**
- * Arras is now loaded. If you want your child theme to override
- * anything, hook your override functions to this 'after_setup_arras' hook.
- * Ex. In your child theme's functions.php:
- * 		add_action( 'after_setup_arras', 'my_overriding_function' );
- */
-do_action( 'after_setup_arras' );
