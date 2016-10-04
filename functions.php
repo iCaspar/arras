@@ -9,10 +9,12 @@
 
 namespace ICaspar\Arras;
 
-use ICaspar\Arras\Theme\Arras;
+
+use ICaspar\Arras\Model\Arras;
+use ICaspar\Arras\Model\Options;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Sorry. This address is not accessible on this route.' );
+	exit( 'Sorry. This address is not accessible.' );
 }
 
 if ( ! defined( 'ARRAS_VERSION' ) ) {
@@ -25,6 +27,10 @@ if ( ! defined( 'ARRAS_THEME_DIR' ) ) {
 
 if ( ! defined( 'ARRAS_CONFIG_DIR' ) ) {
 	define( 'ARRAS_CONFIG_DIR', ARRAS_THEME_DIR . '/config/' );
+}
+
+if ( ! defined( 'ARRAS_TEMPLATE_DIR' ) ) {
+	define( 'ARRAS_TEMPLATE_DIR', ARRAS_THEME_DIR . '/templates/' );
 }
 
 if ( ! defined( 'ARRAS_THEME_URL' ) ) {
@@ -40,7 +46,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.6', '>' ) ) {
 }
 
 /**
- * Launch the Theme.
+ * Launch the theme.
  *
  * @since 1.0.0
  *
@@ -50,8 +56,12 @@ if ( version_compare( $GLOBALS['wp_version'], '4.6', '>' ) ) {
 function launch() {
 	require_once( __DIR__ . '/vendor/autoload.php' );
 
-	$config = include ARRAS_CONFIG_DIR . 'main-config.php';
+	$config = apply_filters( 'arras_settings', include ARRAS_CONFIG_DIR . 'main-config.php' );
 
-	$arras = new Arras();
-	$arras->init( $config );
+	try {
+		$arras = new Arras( new Options( ( $config ) ) );
+		$arras->init();
+	} catch ( \Exception $e ) {
+		die( $e->getMessage() );
+	}
 }

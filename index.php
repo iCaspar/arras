@@ -1,6 +1,10 @@
 <?php
 /**
- *	This is an empty index page. 
- *	If you wish to edit the contents of the home page, please refer to home.php. 
-*/
-?>
+ *	The Arras theme index.
+ *	(Where the wild things are.)
+ */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+do_action( 'arras_template' );

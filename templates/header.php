@@ -17,7 +17,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>"/>
 
-	<?php wp_head(); // loads all the other <head> stuff ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -40,7 +40,7 @@
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"
 				   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 					<?php if ( arras_get_option( 'site_logo' ) ) :
-						arras_add_custom_logo();
+//						arras_add_custom_logo();
 					else: ?>
 						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 					<?php endif; ?>
@@ -61,8 +61,8 @@
 
 	<div id="main-nav-section" class="nav section group">
 		<nav id="primary-nav" class="main-nav wrap">
-			<?php arras_menu( 'main-menu', true, 3, 'col span_3_of_4' ); ?>
-			<?php arras_social_nav(); ?>
+			<?php //arras_menu( 'main-menu', true, 3, 'col span_3_of_4' ); ?>
+			<?php //arras_social_nav(); ?>
 			<a href="#" class="menu-icon"></a>
 		</nav>
 	</div>

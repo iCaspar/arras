@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Arras template actions.
+ *
+ * These are provided for backward compatibility and for child themes.
+ *
+ * @author: Caspar Green <https://caspar.green/>
+ * @package: Arras
+ * @version: 4.0.0
+ */
 
 /**
  * Called after the <body> tag is declared
  * @since 1.2.2
- * Unused as of v1.6 (possible deprecation)
  */
 function arras_body() {
 	do_action('arras_body');
