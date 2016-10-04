@@ -88,7 +88,7 @@ function arras_customizer( $wp_customize ) {
 	 */
 	$sections = array(
 		// Sections on the Builtin Panel
-		'post-meta'			=> array( '', __( 'Post Display', 'arras' ), __( 'Options for displaying meta-data on single posts.', 'arras' ), 35 ),
+		'post-meta'			=> array( '', __( 'Post Display', 'arras' ), __( 'Config for displaying meta-data on single posts.', 'arras' ), 35 ),
 		'social'			=> array( '', __( 'Social Media Links', 'arras' ), '', 100 ),
 
 		// Sections on the Homepage Panel

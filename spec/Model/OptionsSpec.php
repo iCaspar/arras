@@ -2,13 +2,28 @@
 
 namespace spec\ICaspar\Arras\Model;
 
-use ICaspar\Arras\Model\Options;
+use ICaspar\Arras\Model\Config;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class OptionsSpec extends ObjectBehavior {
 	function let() {
 		\WP_Mock::setUp();
+
+		$sample = [
+			'settings' => [
+				'theme-supports' => 'some supports',
+				'menus'          => 'some menus',
+				'sidebars'       => 'some sidebars',
+			],
+			'options'  => [
+				'footer-sidebars' => 3,
+				'some-option'     => 'option value',
+				'another-option'  => 'another option value',
+			]
+		];
+
+		$this->beConstructedWith( $sample );
 	}
 
 	function letGo() {
@@ -22,7 +37,7 @@ class OptionsSpec extends ObjectBehavior {
 			'times'   => 1
 		) );
 
-		$this->shouldHaveType( Options::class );
+		$this->shouldHaveType( Config::class );
 	}
 
 	function it_throws_exception_if_options_are_not_array() {
@@ -35,20 +50,20 @@ class OptionsSpec extends ObjectBehavior {
 	}
 
 	function it_returns_the_right_options() {
-		$sample = [
+		$options = [
 			'footer-sidebars' => 3,
 			'some-option'     => 'option value',
 			'another-option'  => 'another option value',
 		];
 
 		// Test for returning the whole option set.
-		$this->get_options( null, $sample )->shouldBe( $sample );
+		$this->get_options( null )->shouldBe( $options );
 
 		// Test for returning an array of requested options, all present.
 		$this->get_options( [
 			'footer-sidebars',
 			'some-option',
-		], $sample )->shouldBe( [
+		] )->shouldBe( [
 			'footer-sidebars' => 3,
 			'some-option'     => 'option value',
 		] );
@@ -57,18 +72,18 @@ class OptionsSpec extends ObjectBehavior {
 		$this->get_options( [
 			'footer-sidebars',
 			'some-opt',
-		], $sample )->shouldBe( [
+		] )->shouldBe( [
 			'footer-sidebars' => 3,
-			'some-opt'     => null,
+			'some-opt'        => null,
 		] );
 
 		// Test for returning a single option when matched.
-		$this->get_options( 'another-option', $sample )->shouldBe( 'another option value' );
+		$this->get_options( 'another-option' )->shouldBe( 'another option value' );
 
 		// Test for returning null for single option unmatched.
-		$this->get_options( 'bogus', $sample )->shouldBe( null );
+		$this->get_options( 'bogus' )->shouldBe( null );
 
 		// Test for returning null for something screwy.
-		$this->get_options( new \stdClass(), $sample )->shouldBe( null );
+		$this->get_options( new \stdClass() )->shouldBe( null );
 	}
 }

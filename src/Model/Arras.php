@@ -20,17 +20,17 @@ use ICaspar\Arras\Views\View;
 class Arras {
 
 	/**
-	 * @var Options The options object.
+	 * @var Config The options object.
 	 */
-	protected $options;
+	protected $config;
 
 	/**
 	 * Arras constructor.
 	 *
-	 * @param Options $options Theme options.
+	 * @param Config $options Theme options.
 	 */
-	public function __construct( Options $options ) {
-		$this->options = $options;
+	public function __construct( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Arras {
 	 * @return null
 	 */
 	public function theme_support() {
-		$supports = $this->options->get( 'theme-support' );
+		$supports = $this->config->getSetting( 'theme-support' );
 
 		foreach ( $supports as $support => $value) {
 			if ( is_array( $value ) ) {
@@ -82,7 +82,7 @@ class Arras {
 	 * @return null
 	 */
 	public function menus() {
-		$menus = $this->options->get( 'menus' );
+		$menus = $this->config->getSetting( 'menus' );
 
 		register_nav_menus( $menus );
 	}
@@ -92,7 +92,7 @@ class Arras {
 	 * @return  null
 	 */
 	public function sidebars() {
-		$sidebars = $this->options->get( 'sidebars' );
+		$sidebars = $this->config->getSetting( 'sidebars' );
 		$sidebar_defaults = [
 			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 			'after_widget'  => '</li>',
@@ -100,7 +100,7 @@ class Arras {
 			'after_title'   => '</h5>'
 		];
 
-		$footer_sidebars = $this->options->get_options( 'footer-sidebars' ) ?: 1;
+		$footer_sidebars = $this->config->get_options( 'footer-sidebars' ) ?: 1;
 
 		for ( $i = 1; $i <= $footer_sidebars; $i ++ ) {
 			$sidebars[] = [
@@ -127,10 +127,10 @@ class Arras {
 	 * @return void
 	 */
 	public function render() {
-		$controller = new Controller( $this->options );
+		$controller = new Controller( $this->config );
 		$request = $controller->parse_request();
 
-		$view = new View( $this->options );
+		$view = new View( $this->config );
 		$view->render( $request );
 	}
 

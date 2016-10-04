@@ -8,7 +8,7 @@
  */
 
 namespace ICaspar\Arras\Views;
-use ICaspar\Arras\Model\Options;
+use ICaspar\Arras\Model\Config;
 
 /**
  * Class View
@@ -19,7 +19,7 @@ class View {
 	protected $options;
 	protected $request;
 
-	public function __construct( Options $options ) {
+	public function __construct( Config $options ) {
 		$this->options = $options;
 	}
 

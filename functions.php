@@ -10,7 +10,7 @@
 namespace ICaspar\Arras;
 
 use ICaspar\Arras\Model\Arras;
-use ICaspar\Arras\Model\Options;
+use ICaspar\Arras\Model\Config;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Sorry. This address is not accessible.' );
@@ -58,7 +58,7 @@ function launch() {
 	$config = apply_filters( 'arras_settings', include ARRAS_CONFIG_DIR . 'main-config.php' );
 
 	try {
-		$arras = new Arras( new Options( ( $config ) ) );
+		$arras = new Arras( new Config( ( $config ) ) );
 		$arras->init();
 	} catch ( \Exception $e ) {
 		die( $e->getMessage() );

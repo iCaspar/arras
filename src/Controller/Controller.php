@@ -10,7 +10,7 @@
 
 namespace ICaspar\Arras\Controller;
 
-use ICaspar\Arras\Model\Options;
+use ICaspar\Arras\Model\Config;
 use ICaspar\Arras\Views\View;
 
 /**
@@ -23,16 +23,16 @@ use ICaspar\Arras\Views\View;
 class Controller {
 
 	/**
-	 * @var Options Theme Options.
+	 * @var Config Theme Config.
 	 */
 	protected $options;
 
 	/**
 	 * Controller constructor.
 	 *
-	 * @param Options $options
+	 * @param Config $options
 	 */
-	public function __construct( Options $options ) {
+	public function __construct( Config $options ) {
 		$this->options = $options;
 	}
 

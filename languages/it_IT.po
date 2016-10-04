@@ -260,7 +260,7 @@ msgid "Post Display"
 msgstr "Visualizzazione Post"
 
 #: library/customizer.php:91
-msgid "Options for displaying meta-data on single posts."
+msgid "Config for displaying meta-data on single posts."
 msgstr "Impostazioni per visualizzare meta-data in post singoli."
 
 #: library/customizer.php:92

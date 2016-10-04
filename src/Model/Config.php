@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Theme Options Model.
+ * Theme Config Model.
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
@@ -11,55 +11,62 @@
 namespace ICaspar\Arras\Model;
 
 /**
- * Class Options
+ * Class Config
  * @package ICaspar\Arras\Model
  */
-class Options {
+class Config {
 
 	/**
-	 * @var array All the currently active settings and options.
+	 * @var array Theme default settings.
 	 */
-	protected $config;
+	protected $settings;
 
 	/**
-	 * Options constructor.
+	 * @var array Theme options.
+	 */
+	protected $options;
+
+	/**
+	 * Config constructor.
 	 *
 	 * @param array $config Default configuration.
 	 *
 	 * @throws \Exception
 	 */
 	public function __construct( array $config = [ ] ) {
+		if ( isset( $config['settings'] ) && is_array( $config['settings'] ) ) {
+			$this->settings = $config['settings'];
+		} else {
+			throw new \Exception( 'Arras Settings are unusable.' );
+		}
 
 		$options = get_option( 'arras-options' ) ?: [ ];
 
 		if ( ! is_array( $options ) ) {
 			// Todo: Offer an attempted fix. (For now just throw an exception.)
-
-			throw new \Exception( 'Arras Options are unusable.' );
+			throw new \Exception( 'Arras Config are unusable.' );
 		}
 
 		if ( isset( $config['options'] ) && is_array( $config['options'] ) ) {
-			$config['options'] = array_merge_recursive( $config['options'], $options );
+			$this->options = array_merge_recursive( $config['options'], $options );
 		} else {
-			$config['options'] = $options;
+			$this->options = $options;
 		}
-
-		$this->config = $config;
 	}
 
 	/**
-	 * A generic getter.
+	 * Get a theme setting.
 	 *
 	 * @param $item
 	 *
 	 * @return mixed
 	 */
-	public function get( $item ) {
-		return $this->config[ $item ];
+	public function getSetting( $item ) {
+		return $this->settings[ $item ];
 	}
 
 	/**
-	 * Get the requested option(s).
+	 * Get theme option(s).
 	 *
 	 * @param string|array|null $requested_options
 	 *          String to request a single option value,
@@ -74,25 +81,21 @@ class Options {
 	 *          Request for multiple values returns an array: [ 'option' => value ], where value will be null
 	 *              for unset options,
 	 */
-	public function get_options( $requested_options = null, $options = null ) {
-		if ( ! $options ) {
-			$options = $this->config['options'];
-		}
-
+	public function get_options( $requested_options = null ) {
 		if ( ! isset( $requested_options ) ) {
-			return $options;
+			return $this->options;
 		}
 
 		if ( is_array( $requested_options ) ) {
 			foreach ( $requested_options as $option ) {
-				$options_array[ $option ] = array_key_exists( $option, $options ) ? $options[ $option ] : null;
+				$options_array[ $option ] = array_key_exists( $option, $this->options ) ? $this->options[ $option ] : null;
 			}
 
 			return $options_array;
 		}
 
 		if ( is_string( $requested_options ) ) {
-			return array_key_exists( $requested_options, $options ) ? $options[ $requested_options ] : null;
+			return array_key_exists( $requested_options, $this->options ) ? $this->options[ $requested_options ] : null;
 		}
 
 		return null;
