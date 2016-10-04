@@ -31,8 +31,7 @@
   },
   "autoload-dev": {
     "files": [
-      "inc/actions.php",
-      "inc/filters.php"
+      "inc/actions.php"
     ]
   },
   "extra": {

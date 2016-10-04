@@ -15,13 +15,14 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>"/>
-
+	<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<?php endif; ?>
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
+<div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'arras' ); ?></a>
 
 	<?php arras_above_top_menu();
@@ -39,7 +40,7 @@
 			<div class="logo col span_2_of_3">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"
 				   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-					<?php if ( arras_get_option( 'site_logo' ) ) :
+					<?php if ( $this->get_option( 'site_logo' ) ) :
 //						arras_add_custom_logo();
 					else: ?>
 						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>

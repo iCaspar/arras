@@ -9,7 +9,6 @@
 
 namespace ICaspar\Arras;
 
-
 use ICaspar\Arras\Model\Arras;
 use ICaspar\Arras\Model\Options;
 

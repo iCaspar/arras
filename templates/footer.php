@@ -5,7 +5,7 @@
 <div id="footer" class="page-footer group wrap">
 	<div class="footer-sidebar-container group">
 		<?php
-		$footer_sidebars = arras_get_option( 'footer_columns' );
+		$footer_sidebars = $this->get_option( 'footer-sidebars' );
 		if ( $footer_sidebars == '' ) {
 			$footer_sidebars = 1;
 		}

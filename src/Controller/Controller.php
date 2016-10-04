@@ -36,14 +36,7 @@ class Controller {
 		$this->options = $options;
 	}
 
-	public function init() {
-		$request = $this->parse_request();
-
-		$view = new View( $request );
-		$view->render();
-	}
-
-	protected function parse_request() {
+	public function parse_request() {
 		return 'index';
 	}
 }

@@ -8,6 +8,7 @@
  */
 
 namespace ICaspar\Arras\Views;
+use ICaspar\Arras\Model\Options;
 
 /**
  * Class View
@@ -15,13 +16,19 @@ namespace ICaspar\Arras\Views;
  */
 class View {
 
+	protected $options;
 	protected $request;
 
-	public function __construct( $request ) {
-		$this->request = $request;
+	public function __construct( Options $options ) {
+		$this->options = $options;
 	}
 
-	public function render() {
-		include ARRAS_TEMPLATE_DIR . $this->request . '.php';
+	public function render( $request ) {
+		include ARRAS_TEMPLATE_DIR . $request . '.php';
 	}
+
+	protected function get_option( $option ) {
+		return $this->options->get_options( $option );
+	}
+
 }

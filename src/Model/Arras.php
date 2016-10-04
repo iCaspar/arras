@@ -10,6 +10,7 @@
 namespace ICaspar\Arras\Model;
 
 use ICaspar\Arras\Controller\Controller;
+use ICaspar\Arras\Views\View;
 
 /**
  * Class Arras
@@ -127,7 +128,10 @@ class Arras {
 	 */
 	public function render() {
 		$controller = new Controller( $this->options );
-		$controller->init();
+		$request = $controller->parse_request();
+
+		$view = new View( $this->options );
+		$view->render( $request );
 	}
 
 
