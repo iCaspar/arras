@@ -1,6 +1,6 @@
 <?php if ( '1c' !== $arras->get_option( 'layout' ) ): // don't show sidebars on single column layout ?>
 
-	<div id="primary" class="<?php // echo arras_layout_columns( 'primary' ); ?>">
+	<div id="primary" class="<?php echo $arras->layout_columns( 'primary' ); ?>">
 	<?php arras_above_sidebar() ?>
 		<ul class="xoxo">
 			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Primary Sidebar') ) : ?>

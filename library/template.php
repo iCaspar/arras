@@ -90,55 +90,6 @@ function arras_menu( $location, $fallback, $depth = 0, $class = '' ) {
 /** ===== Page Structure support functions ===== */
 
 
-function arras_layout_columns( $coltype ) {
-	$coltypes = array( 'content', 'primary', 'secondary', 'wrap' );
-	if ( ! in_array( $coltype, $coltypes ) ) return; // if we haven't got a column type we know about, bail
-
-	$layout = arras_get_option( 'layout' );
-
-	switch ( $layout ) {
-		case '1c':
-			if ( $coltype == 'content' ) {
-				$class = 'group';
-			} else {
-				$class = 'group sidebar';
-			}
-			break;
-		case '2c-l':
-			if ( $coltype == 'content' ) {
-				$class = 'col-alt span_2_of_3';
-			} else {
-				$class = 'col-alt span_1_of_3 sidebar';
-			}
-			break;
-		case '3c-2r':
-			if ( $coltype == 'content' ) {
-				$class = 'col span_1_of_2';
-			} else {
-				$class = 'col span_1_of_4 sidebar';
-			}
-			break;
-		case '3c-lr':
-			if ( $coltype == 'content' ) {
-				$class = 'col-split-center';
-			} elseif ( $coltype == 'primary' ) {
-				$class = 'col-split-left sidebar';
-			} else {
-				$class = 'col-split-right sidebar';
-			}
-			break;
-		default:
-			if ( $coltype == 'content' ) {
-				$class = 'col span_2_of_3';
-			} else {
-				$class = 'col span_1_of_3 sidebar';
-			}
-			break;
-
-	} // end switch
-
-	return $class;
-} // end arras_layout_columns()
 
 /**
  * Displays html for widget area(s) below content if they're active

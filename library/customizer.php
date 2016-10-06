@@ -727,3 +727,13 @@ function arras_load_customize_preview_js() {
 	wp_enqueue_script( 'theme-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), 3.0, true );
 }
 add_action( 'customize_preview_init', 'arras_load_customize_preview_js' );
+
+function arras_sanitize_layouts( $value ) {
+	$layouts = arras_get_layouts();
+
+	if ( ! array_key_exists( $value, $layouts ) ) {
+		$value = '2c-r';
+	}
+
+	return $value;
+}

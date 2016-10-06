@@ -46,6 +46,8 @@ class Arras {
 		add_action( 'after_setup_theme', array( $this, 'theme_support' ) );
 		add_action( 'after_setup_theme', array( $this, 'menus' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
 
 		add_filter( 'arras_template', array( $this, 'render' ) );
 	}
@@ -114,6 +116,22 @@ class Arras {
 			$args = array_merge( $sidebar_defaults, $args );
 
 			register_sidebar( $args );
+		}
+	}
+
+	/**
+	 * Enqueue theme scripts.
+	 * @return void
+	 */
+	public function load_scripts() {
+
+	}
+
+	public function load_styles() {
+		wp_enqueue_style( 'arras-base', ARRAS_ASSETS_URL . '/styles/base.css', false, ARRAS_VERSION, 'all' );
+
+		if ( is_child_theme() ) {
+			wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), false, 'all' );
 		}
 	}
 
