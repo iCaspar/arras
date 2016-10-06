@@ -1,6 +1,6 @@
-<?php if ( '1c' !== arras_get_option( 'layout' ) ): // don't show sidebars on single column layout ?>
+<?php if ( '1c' !== $arras->get_option( 'layout' ) ): // don't show sidebars on single column layout ?>
 
-	<div id="primary" class="<?php echo arras_layout_columns( 'primary' ); ?>">
+	<div id="primary" class="<?php // echo arras_layout_columns( 'primary' ); ?>">
 	<?php arras_above_sidebar() ?>
 		<ul class="xoxo">
 			<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Primary Sidebar') ) : ?>
@@ -47,7 +47,7 @@
 		</ul>
 	</div><!-- #primary -->
 
-	<?php if ( false !== strpos( arras_get_option( 'layout' ), '3c' ) ): ?>
+	<?php if ( false !== strpos( $arras->get_option( 'layout' ), '3c' ) ): ?>
 		<div id="secondary" class="<?php echo arras_layout_columns( 'secondary' ); ?>">
 		    <ul class="xoxo">
 		        <!-- Widgetized sidebar, if you have the plugin installed.  -->

@@ -40,7 +40,7 @@
 			<div class="logo col span_2_of_3">
 				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"
 				   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-					<?php if ( $this->get_option( 'site_logo' ) ) :
+					<?php if ( $arras->get_option( 'site_logo' ) ) :
 //						arras_add_custom_logo();
 					else: ?>
 						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>

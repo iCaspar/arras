@@ -9,7 +9,7 @@
 
 namespace ICaspar\Arras\Model;
 
-use ICaspar\Arras\Controller\Controller;
+use ICaspar\Arras\Controller\Router;
 use ICaspar\Arras\Views\View;
 
 /**
@@ -20,14 +20,14 @@ use ICaspar\Arras\Views\View;
 class Arras {
 
 	/**
-	 * @var Config The options object.
+	 * @var Config The theme configuration object.
 	 */
 	protected $config;
 
 	/**
 	 * Arras constructor.
 	 *
-	 * @param Config $options Theme options.
+	 * @param Config $config Theme configuration manager.
 	 */
 	public function __construct( Config $config ) {
 		$this->config = $config;
@@ -47,7 +47,7 @@ class Arras {
 		add_action( 'after_setup_theme', array( $this, 'menus' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ) );
 
-		add_action( 'arras_template', array( $this, 'render' ) );
+		add_filter( 'arras_template', array( $this, 'render' ) );
 	}
 
 
@@ -126,13 +126,8 @@ class Arras {
 	 *
 	 * @return void
 	 */
-	public function render() {
-		$controller = new Controller( $this->config );
-		$request = $controller->parse_request();
-
-		$view = new View( $this->config );
-		$view->render( $request );
+	public function render( $template_type ) {
+		return new View( $this->config, $template_type );
 	}
-
 
 }

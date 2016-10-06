@@ -7,4 +7,13 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-do_action( 'arras_template' );
+$arras = apply_filters( 'arras_template', 'index' );
+?>
+
+<?php include 'header.php'; ?>
+
+<p>Here's the index page content.</p>
+
+<?php include 'sidebar.php'; ?>
+
+<?php include 'footer.php'; ?>

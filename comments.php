@@ -16,7 +16,7 @@ if ( have_comments() ) : ?>
 	<?php if ( !empty($comments_by_type['comment']) ) : ?>
 	<h4 class="module-title"><?php comments_number( __('No Comments', 'arras'), __('1 Comment', 'arras'), _n('% Comment', '% Comments', get_comments_number(), 'arras') ); ?></h4>
 		<ol id="commentlist" class="comment-list group">
-			<?php wp_list_comments('type=comment&callback=arras_list_comments'); ?>
+			<?php wp_list_comments('type=comment' /*&callback=arras_list_comments'*/); ?>
 		</ol>
 	<?php endif; ?>
 
@@ -26,7 +26,7 @@ if ( have_comments() ) : ?>
 
 	<?php if ( !empty($comments_by_type['pings']) ) : ?>
 	<h4 class="module-title"><?php _e('Trackbacks / Pings', 'arras') ?></h4>
-	<ol class="pingbacks"><?php wp_list_comments('type=pings&callback=arras_list_trackbacks'); ?></ol>
+	<ol class="pingbacks"><?php wp_list_comments('type=pings' /*&callback=arras_list_trackbacks'*/); ?></ol>
 	<?php endif; ?>
 
 <?php else: ?>
