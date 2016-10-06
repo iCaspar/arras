@@ -1,10 +1,10 @@
 <?php
 /**
- * Description
+ * The theme's template rendering engine.
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
- * @version: 1.0.0
+ * @version: 4.0.0
  */
 
 namespace ICaspar\Arras\Views;
@@ -14,6 +14,7 @@ use ICaspar\Arras\Model\Config;
 /**
  * Class View
  * @package ICaspar\Arras\Views
+ * @since 4.0.0
  */
 class View {
 

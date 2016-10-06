@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Theme Config Model.
+ * Theme Configuration Handler.
+ *
+ * Here's where all the settings and options happen.
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
@@ -13,6 +15,7 @@ namespace ICaspar\Arras\Model;
 /**
  * Class Config
  * @package ICaspar\Arras\Model
+ * @since 4.0.0
  */
 class Config {
 
