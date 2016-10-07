@@ -6,7 +6,7 @@ use ICaspar\Arras\Model\Config;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class OptionsSpec extends ObjectBehavior {
+class ConfigSpec extends ObjectBehavior {
 	function let() {
 		\WP_Mock::setUp();
 
