@@ -22,8 +22,14 @@ class View {
 
 	protected $template;
 
+	/**
+	 * View constructor.
+	 *
+	 * @param Config $config Theme configuration.
+	 * @param $template Current template context.
+	 */
 	public function __construct( Config $config, $template ) {
-		$this->config = $config;
+		$this->config   = $config;
 		$this->template = $template;
 	}
 
@@ -31,23 +37,27 @@ class View {
 		return $this->config->get_options( $option );
 	}
 
+
+	//* ----- NEED REVIEW ----- */
+
 	function get_layouts() {
 		$arras_layouts = array(
-			'1c'	=> __('1 Column - No Sidebars', 'arras'),
-			'2c-r'	=> __('2 Columns - Sidebar on Right', 'arras'),
-			'2c-l'	=> __('2 Columns - Sidebar on Left', 'arras'),
-			'3c-lr'	=> __('3 Columns - Left / Right Sidebars', 'arras'),
-			'3c-2r'	=> __('3 Columns - 2 Right Sidebars', 'arras'),
+			'1c'    => __( '1 Column - No Sidebars', 'arras' ),
+			'2c-r'  => __( '2 Columns - Sidebar on Right', 'arras' ),
+			'2c-l'  => __( '2 Columns - Sidebar on Left', 'arras' ),
+			'3c-lr' => __( '3 Columns - Left / Right Sidebars', 'arras' ),
+			'3c-2r' => __( '3 Columns - 2 Right Sidebars', 'arras' ),
 		);
 
 		return apply_filters( 'arras_layouts', $arras_layouts );
 	}
 
+
 	function layout_columns( $coltype ) {
 		$coltypes = array( 'content', 'primary', 'secondary', 'wrap' );
-		if ( ! in_array( $coltype, $coltypes ) ) return; // if we haven't got a column type we know about, bail
-
-
+		if ( ! in_array( $coltype, $coltypes ) ) {
+			return;
+		} // if we haven't got a column type we know about, bail
 
 		$layout = $this->get_option( 'layout' );
 		switch ( $layout ) {

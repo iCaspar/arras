@@ -70,7 +70,7 @@ class Arras {
 	public function theme_support() {
 		$supports = $this->config->getSetting( 'theme-support' );
 
-		foreach ( $supports as $support => $value) {
+		foreach ( $supports as $support => $value ) {
 			if ( is_array( $value ) ) {
 				add_theme_support( $support, $value );
 			} else {
@@ -94,7 +94,7 @@ class Arras {
 	 * @return  null
 	 */
 	public function sidebars() {
-		$sidebars = $this->config->getSetting( 'sidebars' );
+		$sidebars         = $this->config->getSetting( 'sidebars' );
 		$sidebar_defaults = [
 			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
 			'after_widget'  => '</li>',
@@ -124,14 +124,25 @@ class Arras {
 	 * @return void
 	 */
 	public function load_scripts() {
+		global $paged;
 
+		if ( is_home() && ! $paged && $this->config->get_options( 'enable_slideshow' ) !== false ) {
+			wp_enqueue_script( 'jquery-cycle', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2-min.js', array( 'jquery' ), ARRAS_VERSION, true );
+			wp_enqueue_script( 'slideshow-settings', ARRAS_ASSETS_URL . 'scripts/slideshowsettings.js', array( 'jquery-cycle' ), ARRAS_VERSION, true );
+			wp_enqueue_script( 'jquery-cycle-caption', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.caption2.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
+			wp_enqueue_script( 'jquery-cycle-swipe', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.swipe.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
+		}
+
+		if ( is_singular() ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
 	}
 
 	public function load_styles() {
-		wp_enqueue_style( 'arras-base', ARRAS_ASSETS_URL . '/styles/base.css', false, ARRAS_VERSION, 'all' );
+		wp_enqueue_style( 'arras-base', ARRAS_ASSETS_URL . 'styles/base.css', false, ARRAS_VERSION, 'all' );
 
 		if ( is_child_theme() ) {
-			wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), false, 'all' );
+			wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), false, ARRAS_VERSION, 'all' );
 		}
 	}
 
