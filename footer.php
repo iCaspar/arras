@@ -27,7 +27,8 @@
 		</p>
 		<?php echo stripslashes( $arras->get_option( 'footer-message' ) ); ?>
 	</div><!-- .footer-message -->
-</div>
+	</div><!-- #container -->
+</div><!-- #body -->
 </div><!-- #page -->
 <?php
 arras_footer();
