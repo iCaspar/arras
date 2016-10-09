@@ -1,0 +1,218 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+html {
+	font-size: 62.5%;
+	/* Normalizes font size for 1rem = 10px */
+	overflow-y: scroll;
+	/* Keeps page centered in all browsers regardless of content height */
+	-webkit-text-size-adjust: 100%;
+	/* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+	-ms-text-size-adjust: 100%;
+	/* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+}
+
+html,
+body {
+	height: 100%;
+	line-height: 1;
+	min-height: 100%;
+}
+
+body {
+	background-color: #f0f0f0;
+	color: #333;
+	font: 1.2rem Helvetica, Arial, sans-serif;
+}
+
+/* HTML5 for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+	display: block;
+}
+
+/* Headings */
+h1 {
+	font-size: 3rem;
+	margin: 10px 0 0;
+}
+
+h2 {
+	font-size: 2.2rem;
+	margin: 10px 0 0;
+}
+
+h3 {
+	font-size: 1.8rem;
+	margin: 10px 0 0;
+}
+
+h4 {
+	color: #333;
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin: 10px 0 0;
+}
+
+h5 {
+	font-weight: bold;
+	margin: 10px 0 0;
+}
+
+h6 {
+	margin: 10px 0 0;
+}
+
+/* Paragraphs */
+p {
+	line-height: 1.5;
+	margin: 10px 0 0;
+	padding: 0;
+}
+
+code {
+	background: #EAEAEA;
+	color: #333;
+	font-family: Consolas, Monaco, Courier, monospace;
+	margin: 1px 0;
+	padding: 1px 3px;
+}
+
+pre {
+	background: #322E2C;
+	border: 1px solid #635957;
+	color: #FFF;
+	font-family: Consolas, Monaco, Courier, monospace;
+	overflow: scroll;
+	padding: 1.5em 1.75em;
+}
+
+/* Hyperlinks */
+a,
+a:link,
+a:visited {
+	color: #313428;
+	text-decoration: none;
+}
+
+a:hover	{
+	color:
+			#CC0000;
+}
+
+a img {
+	border: none;
+}
+
+/* Lists */
+dl {
+	margin: 10px 0;
+}
+
+dl dt {
+	color: #666;
+	padding-bottom: 3px;
+}
+
+dl dd {
+	margin: 0 0 10px 0;
+	line-height: 1.5em;
+}
+
+
+/* Blockquotes */
+blockquote, q {
+	border-left: 2px solid #CCC;
+	color: #666;
+	font-style: normal;
+	padding: 5px 10px 1px;
+	margin: 10px;
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+}
+
+/* Images */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Tables */
+table {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ccc;
+	padding: 5px;
+	text-align: center;
+}
+
+th, thead th {
+	font-weight: bold;
+	color: #333;
+	background: #DDD;
+}
+
+td, tbody td {
+	background: #f0f0f0;
+}
+
+table caption {
+	background: #efefef;
+	border: 1px solid #CCC;
+	color: #333;
+	font-weight: bold;
+	margin: 0;
+	padding: 5px 9px;
+	text-align: center;
+}
+
+/* Forms */
+input[type=text], input[type=password], textarea {
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+input[type=submit] {
+	font-family: Helvetica, Arial, sans-serif;
+	border: 1px solid #CCC;
+	padding: 5px 10px;
+	color: #000;
+	font-weight: 700;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+input[type=submit]:hover {
+	background: #313428;
+	color: #FFF;
+}
+

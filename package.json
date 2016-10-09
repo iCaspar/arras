@@ -1,0 +1,27 @@
+{
+  "name": "arras",
+  "version": "4.0.0",
+  "description": "Arras Nova WordPress theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iCaspar/arras.git"
+  },
+  "keywords": [
+    "WordPress",
+    "theme"
+  ],
+  "author": "Caspar Green",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/iCaspar/arras/issues"
+  },
+  "homepage": "https://github.com/iCaspar/arras#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
