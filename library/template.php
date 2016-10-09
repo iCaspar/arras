@@ -60,33 +60,6 @@ function arras_add_custom_logo() {
 	}
 }
 
-
-/** ===== Menu support functions ===== */
-
-/**
- * A Wrapper function for wp_nav_menu() that outputs custom markup.
- * @since 3.0
- *
- * @param  string  $location The menu's theme location
- * @param  bool    $fallback Whether to use the WP fallback menu or skip
- * @param  integer $depth    How many sub-menu levels to output
- * @param  string  $class    Desired css class of the menu's container div
- * @return null
- */
-function arras_menu( $location, $fallback, $depth = 0, $class = '' ) {
-	if ( $fallback || has_nav_menu( $location ) ) {
-		wp_nav_menu( array(
-			'container_id'		=> $location . '-content',
-			'container_class'	=> $class . ' ' . $location,
-			'theme_location'	=> $location,
-			'menu_class'		=> 'menu',
-			'depth' 			=> $depth
-			)
-		);
-	} // endif
-} // end arras_menu()
-
-
 /** ===== Page Structure support functions ===== */
 
 

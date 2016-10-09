@@ -84,7 +84,7 @@ class Config {
 	 *          Request for multiple values returns an array: [ 'option' => value ], where value will be null
 	 *              for unset options,
 	 */
-	public function get_options( $requested_options = null ) {
+	public function get_option( $requested_options = null ) {
 		if ( ! isset( $requested_options ) ) {
 			return $this->options;
 		}

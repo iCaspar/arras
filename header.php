@@ -2,8 +2,6 @@
 /**
  * Arras Theme Header
  *
- * Displays everything from begining to <div id="container">
- *
  * @package Arras
  */
 ?>
@@ -25,13 +23,9 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'arras' ); ?></a>
 
-	<?php arras_above_top_menu();
+	<?php arras_above_top_menu(); ?>
 
-	if ( has_nav_menu( 'top-menu' ) ): ?>
-		<div id="top-menu-section" class="primary-utility section group">
-			<?php arras_menu( 'top-menu', false, 2, 'wrap' ); ?>
-		</div>
-	<?php endif; ?>
+	<?php $arras->do_menu( 'top' ); ?>
 
 	<?php arras_below_top_menu(); ?>
 
@@ -60,13 +54,7 @@
 
 	<?php arras_above_nav(); ?>
 
-	<div id="main-nav-section" class="nav section group">
-		<nav id="primary-nav" class="main-nav wrap">
-			<?php //arras_menu( 'main-menu', true, 3, 'col span_3_of_4' ); ?>
-			<?php //arras_social_nav(); ?>
-			<a href="#" class="menu-icon"></a>
-		</nav>
-	</div>
+	<?php $arras->do_menu( 'main' ); ?>
 
 	<?php arras_below_nav(); ?>
 

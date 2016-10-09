@@ -7,38 +7,49 @@
  * @version: 4.0.0
  */
 
-namespace ICaspar\Arras\Views;
+namespace ICaspar\Arras\Model;
 
-use ICaspar\Arras\Model\Config;
+use ICaspar\Arras\Views\Menu;
 
 /**
- * Class View
+ * Class TemplateEngine
  * @package ICaspar\Arras\Views
  * @since 4.0.0
  */
-class View {
+class TemplateEngine {
 
 	protected $config;
+
+	protected $menus;
 
 	protected $template;
 
 	/**
-	 * View constructor.
+	 * TemplateEngine constructor.
 	 *
 	 * @param Config $config Theme configuration.
-	 * @param $template Current template context.
+	 * @param string $template Current template context.
 	 */
-	public function __construct( Config $config, $template ) {
+	public function __construct( Config $config, Menu $menus, $template ) {
 		$this->config   = $config;
+		$this->menus = $menus;
 		$this->template = $template;
 	}
 
 	public function get_option( $option ) {
-		return $this->config->get_options( $option );
+		return $this->config->get_option( $option );
+	}
+
+	public function do_menu( $location ) {
+		if ( ! $this->menus->has_menu( $location ) ) {
+			return;
+		}
+
+		$this->menus->build( $location );
 	}
 
 
-	//* ----- NEED REVIEW ----- */
+	//* ----- NEEDS REVIEW ----- */
 
 	function get_layouts() {
 		$arras_layouts = array(

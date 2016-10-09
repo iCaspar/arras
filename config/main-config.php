@@ -26,8 +26,20 @@ return [
 		],
 
 		'menus' => [
-			'main-menu' => __( 'Main Menu', 'arras' ),
-			'top-menu'  => __( 'Top Menu', 'arras' ),
+			'main' => [
+				'name'      => __( 'Main Menu', 'arras' ),
+				'container' => 'nav',
+				'fallback'  => 'main',
+				'depth'     => 2,
+				'class'     => 'primary-nav',
+			],
+			'top'  => [
+				'name'      => __( 'Top Menu', 'arras' ),
+				'container' => 'nav',
+				'fallback'  => false,
+				'depth'     => 1,
+				'class'     => 'secondary-nav',
+			],
 		],
 
 		'sidebars' => [
@@ -59,9 +71,9 @@ return [
 		],
 	],
 
-	'options'  => [
+	'options' => [
 		'footer-sidebars' => 3,
-		'footer-message' => __( 'This is a footer message.', 'arras' ),
-		'layout' => '2c-l',
+		'footer-message'  => __( 'This is a footer message.', 'arras' ),
+		'layout'          => '2c-l',
 	]
 ];

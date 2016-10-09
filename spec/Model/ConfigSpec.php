@@ -57,10 +57,10 @@ class ConfigSpec extends ObjectBehavior {
 		];
 
 		// Test for returning the whole option set.
-		$this->get_options( null )->shouldBe( $options );
+		$this->get_option( null )->shouldBe( $options );
 
 		// Test for returning an array of requested options, all present.
-		$this->get_options( [
+		$this->get_option( [
 			'footer-sidebars',
 			'some-option',
 		] )->shouldBe( [
@@ -69,7 +69,7 @@ class ConfigSpec extends ObjectBehavior {
 		] );
 
 		// Test for returning an array of requested options, missing options return null.
-		$this->get_options( [
+		$this->get_option( [
 			'footer-sidebars',
 			'some-opt',
 		] )->shouldBe( [
@@ -78,12 +78,12 @@ class ConfigSpec extends ObjectBehavior {
 		] );
 
 		// Test for returning a single option when matched.
-		$this->get_options( 'another-option' )->shouldBe( 'another option value' );
+		$this->get_option( 'another-option' )->shouldBe( 'another option value' );
 
 		// Test for returning null for single option unmatched.
-		$this->get_options( 'bogus' )->shouldBe( null );
+		$this->get_option( 'bogus' )->shouldBe( null );
 
 		// Test for returning null for something screwy.
-		$this->get_options( new \stdClass() )->shouldBe( null );
+		$this->get_option( new \stdClass() )->shouldBe( null );
 	}
 }

@@ -9,7 +9,7 @@
 
 namespace ICaspar\Arras\Model;
 
-use ICaspar\Arras\Controller\Router;
+use ICaspar\Arras\Views\Menu;
 use ICaspar\Arras\Views\View;
 
 /**
@@ -23,6 +23,11 @@ class Arras {
 	 * @var Config The theme configuration object.
 	 */
 	protected $config;
+
+	/**
+	 * @var Menu Theme menus.
+	 */
+	protected $menus;
 
 	/**
 	 * Arras constructor.
@@ -42,9 +47,11 @@ class Arras {
 	 */
 	public function init() {
 
+		$this->menus = new Menu( $this->config->getSetting( 'menus' ) );
+		$this->menus->init();
+
 		add_action( 'after_setup_theme', array( $this, 'i18n' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_support' ) );
-		add_action( 'after_setup_theme', array( $this, 'menus' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
@@ -79,15 +86,6 @@ class Arras {
 		}
 	}
 
-	/**
-	 * Register menu locations.
-	 * @return null
-	 */
-	public function menus() {
-		$menus = $this->config->getSetting( 'menus' );
-
-		register_nav_menus( $menus );
-	}
 
 	/**
 	 * Register widgetized areas.
@@ -102,7 +100,7 @@ class Arras {
 			'after_title'   => '</h5>'
 		];
 
-		$footer_sidebars = $this->config->get_options( 'footer-sidebars' ) ?: 1;
+		$footer_sidebars = $this->config->get_option( 'footer-sidebars' ) ?: 1;
 
 		for ( $i = 1; $i <= $footer_sidebars; $i ++ ) {
 			$sidebars[] = [
@@ -126,7 +124,7 @@ class Arras {
 	public function load_scripts() {
 		global $paged;
 
-		if ( is_home() && ! $paged && $this->config->get_options( 'enable_slideshow' ) !== false ) {
+		if ( is_home() && ! $paged && $this->config->get_option( 'enable_slideshow' ) !== false ) {
 			wp_enqueue_script( 'jquery-cycle', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2-min.js', array( 'jquery' ), ARRAS_VERSION, true );
 			wp_enqueue_script( 'slideshow-settings', ARRAS_ASSETS_URL . 'scripts/slideshowsettings.js', array( 'jquery-cycle' ), ARRAS_VERSION, true );
 			wp_enqueue_script( 'jquery-cycle-caption', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.caption2.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
@@ -156,7 +154,7 @@ class Arras {
 	 * @return void
 	 */
 	public function render( $template_type ) {
-		return new View( $this->config, $template_type );
+		return new TemplateEngine( $this->config, $this->menus, $template_type );
 	}
 
 }
