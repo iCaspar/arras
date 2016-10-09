@@ -1,0 +1,64 @@
+/* Tapestry Quick */
+.posts-quick  {
+	margin: 0 10px 10px 0;
+	padding: 0;
+}
+.posts-quick li  {
+	list-style: none;
+	margin: 0 0 10px;
+}
+.posts-quick .entry-title  { padding: 5px 0 0; margin: 0; line-height: 1.3em; }
+.posts-quick .entry-summary	{ line-height: 1.6em; margin-bottom: 15px; }
+.posts-quick .entry-thumbnails  {
+	float: left;
+	height: 115px;
+	margin: 0 20px 10px 0;
+	padding: 4px;
+	width: 115px;
+}
+
+.posts-quick .entry-thumbnails {
+	border: 1px solid #CCC;
+	background: #FFF;
+}
+
+.posts-quick .entry-thumbnails img {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+.posts-quick .quick-read-more  { margin: 10px 0 5px; }
+.posts-quick .entry-info  { margin: 0 0 5px; }
+.posts-quick .entry-info abbr  { padding: 0 4px 0 0; }
+.posts-quick .entry-info span  { padding: 0 4px; }
+
+.posts-default .entry-meta, .posts-quick .entry-meta	{ float: left; display: block; margin: -25px 0 0; }
+.posts-quick .entry-comments {
+	padding: 0 0 0 12px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.posts-quick .entry-info {
+	color: #666;
+	border: none;
+}
+
+.posts-quick .entry-info abbr { text-decoration: none; border: none; }
+
+.posts-quick .quick-read-more a:link,
+.posts-quick .quick-read-more a:visited	{
+	padding: 5px 10px;
+	margin: 3px 0;
+	background: url(../../images/feed-title-white.jpg) top repeat-x #EFEFEF;
+	color: #000; text-decoration: none;
+	border: 1px solid #CCC;
+	font-weight: 700;
+	display: inline-block;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.posts-quick .quick-read-more a:hover { background: #383332; color: #FFF; }
+

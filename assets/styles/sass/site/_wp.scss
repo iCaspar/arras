@@ -1,0 +1,97 @@
+.alignnone,
+div .alignnone,
+a img .alignnone {
+	clear: both;
+	margin: 10px auto;
+}
+
+.aligncenter,
+div .aligncenter,
+a img .aligncenter {
+	clear: both;
+	display: block;
+	margin: 10px auto;
+}
+
+.alignright,
+div .alignright,
+a img .alignright {
+	float: right;
+	margin: 10px 0 10px 10px;
+}
+
+.alignleft,
+div .alignleft,
+a img .alignleft {
+	float: left;
+	margin: 10px 10px 10px 0;
+}
+img.aligncenter,
+img.alignright,
+img.alignleft {
+	background: #F3F3F3;
+	border: 1px solid #ddd;
+	padding: 4px;
+}
+
+.wp-caption {
+	background: #f3f3f3;
+	border: 1px solid #ddd;
+	max-width: 100%;
+	padding: 4px;
+	text-align: center;
+}
+
+.wp-caption img {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wp-caption .wp-caption-text {
+	font-size: 1rem;
+	margin: 0;
+	padding: 0 4px 4px;
+}
+
+/** --------------------------------------------------------------------
+ * WordPress.org Theme Repository Required Styles
+ * ------------------------------------------------------------------ */
+
+.sticky {
+	color: #338;
+}
+.bypostauthor {
+	background: #efefef;
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
+	background-color: #f1f1f1;
+	background-clip: padding-box;
+	/* stops bg color from leaking outside the border: */
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto;
+	color: #21759b;
+	display: block;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+

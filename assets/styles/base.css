@@ -1,5 +1,5 @@
 /**
- * Arras base styles
+ * Arras base styles.
  *
  * This is the primary stylesheet for the theme.
  * Do not alter this file. Use a child theme.
@@ -382,6 +382,58 @@ label.error {
 /*--------------------------------------------------------------
   Menus
 --------------------------------------------------------------*/
+/** ----- Old stuff ----- */
+.main-menu {
+  clear: both;
+  line-height: 2; }
+
+.main-menu ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  z-index: 99999; }
+
+.main-menu ul ul {
+  background-color: #322c2c;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  float: left;
+  position: absolute;
+  top: 99%;
+  left: -999em; }
+
+.main-menu ul ul ul {
+  background-color: #383838;
+  left: -999em;
+  top: 7px; }
+
+.main-menu ul ul li:hover > ul {
+  left: 100%; }
+
+.main-menu ul ul a {
+  width: 200px; }
+
+.main-menu ul li:hover > ul {
+  left: auto; }
+
+.main-menu li {
+  float: left;
+  position: relative; }
+
+.main-menu a,
+.main-menu a:link,
+.main-menu a:hover,
+.main-menu a:visited {
+  color: #aaa;
+  display: block;
+  font-size: 1.6rem;
+  margin: 0 10px;
+  text-decoration: none; }
+
+.main-menu a:hover {
+  color: white;
+  text-shadow: 1px 1px #999999; }
+
+/** ----- Old stuff ----- */
 .primary-utility {
   background: #111;
   color: #aaa; }
@@ -450,56 +502,6 @@ label.error {
   background-size: 95%;
   border-radius: 4px;
   margin: 5px; }
-
-.main-menu {
-  clear: both;
-  line-height: 2; }
-
-.main-menu ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-  z-index: 99999; }
-
-.main-menu ul ul {
-  background-color: #322c2c;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-  float: left;
-  position: absolute;
-  top: 99%;
-  left: -999em; }
-
-.main-menu ul ul ul {
-  background-color: #383838;
-  left: -999em;
-  top: 7px; }
-
-.main-menu ul ul li:hover > ul {
-  left: 100%; }
-
-.main-menu ul ul a {
-  width: 200px; }
-
-.main-menu ul li:hover > ul {
-  left: auto; }
-
-.main-menu li {
-  float: left;
-  position: relative; }
-
-.main-menu a,
-.main-menu a:link,
-.main-menu a:hover,
-.main-menu a:visited {
-  color: #aaa;
-  display: block;
-  font-size: 1.6rem;
-  margin: 0 10px;
-  text-decoration: none; }
-
-.main-menu a:hover {
-  color: white;
-  text-shadow: 1px 1px #999999; }
 
 /* post and comment navigation */
 .navigation {
@@ -721,6 +723,7 @@ label.error {
 .below-content-widgets .widgettitle {
   background: #f0f0f0; }
 
+/* Tapestries */
 /* Featured Slideshow */
 .featured {
   margin-bottom: 20px;
@@ -796,7 +799,6 @@ label.error {
 .cycle-overlay .entry-title {
   margin: 0; }
 
-/* Tapestries */
 /* Tapestry Node (Default) */
 .node-group {
   margin-top: 20px; }

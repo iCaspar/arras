@@ -1,0 +1,60 @@
+/* Tapestry Node (Default) */
+
+.node-group {
+	margin-top: 20px;
+}
+.node-group:first-child {
+	margin-top: 0;
+}
+
+.posts-default .entry-thumbnails {
+	width: 100%;
+	display: inline-block;
+	position: relative;
+}
+.posts-default .entry-thumbnails:after {
+	padding-top: 56.25%;  /* 16:9 ratio */
+	display: block;
+	content: '';
+}
+.posts-default .entry-thumbnails a {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+.posts-default img {
+	width: 100%;
+	height: 100%;
+}
+.posts-default .entry-meta {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.posts-default .published {
+	float: left;
+	margin: 8px 5px 0;
+}
+.posts-default .entry-comments {
+	padding: 0 0 0 12px;
+	position: absolute;
+	top: 8px;
+	right: 5px;
+}
+
+.posts-default img		{ background: #111; }
+.posts-default .entry-summary, .posts-quick .entry-summary	{ color: #333; }
+.posts-default .entry-thumbnails-link	{ border: 1px solid #E1E1E1; background: #FFF; }
+
+.posts-default .published {
+	text-transform: uppercase;
+	color: #999;
+	border-bottom: none;
+}
+
+.posts-default .entry-meta, .posts-quick .entry-meta	{ color: #CCC; background: #000; height: 25px; font-weight: 700; opacity: 0.7; }
+.posts-default .entry-meta a:link, .posts-default .entry-meta a:visited, .posts-quick .entry-meta a:link, .posts-quick .entry-meta a:visited	{ color: #FFF; text-decoration: none; }
+

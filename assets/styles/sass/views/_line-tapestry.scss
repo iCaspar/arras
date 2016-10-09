@@ -1,0 +1,39 @@
+/* Tapestry Line */
+
+.posts-line {
+	background: #FFF;
+	border: 1px solid #CCC;
+	margin: 0 10px 10px 0;
+	padding: 0 10px 10px;
+	line-height: 25px;
+}
+
+.posts-line	li  {
+	border-bottom: 1px solid #EEE;
+	list-style: none;
+	padding: 7px 0;
+}
+.posts-line .entry-cat  {
+	color: #848485;
+	float: left;
+	width: 100px;
+	overflow: hidden;
+}
+
+.posts-line .entry-title  {
+	float: left;
+	margin: 0;
+	max-width: 450px;
+}
+
+.posts-line .entry-comments	 {
+	color: #848485;
+	float: right;
+}
+
+.posts-line .sticky {
+	background-color: #f0f0f0;
+	margin: 3px -5px;
+	padding: 5px;
+}
+
