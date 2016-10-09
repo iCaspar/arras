@@ -14,7 +14,7 @@ namespace ICaspar\Arras\Views;
      class="primary-nav menu-<?php echo esc_attr( $this->location ); ?>-container">
 	<ul id="menu-<?php echo esc_attr( $this->location ); ?>" class="menu-<?php echo esc_attr( $this->location ); ?>">
 		<li>
-			<i class="fa fa-home" aria-hidden="true"></i><a class="fa fa-home" href="<?php echo home_url(); ?>">Home</a>
+			<i class="fa fa-home" aria-hidden="true"></i>&nbsp;<a href="<?php echo home_url(); ?>">Home</a>
 		</li>
 	</ul>
 </nav>
