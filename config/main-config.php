@@ -31,14 +31,14 @@ return [
 				'container' => 'nav',
 				'fallback'  => 'main',
 				'depth'     => 2,
-				'class'     => 'primary-nav',
+				'class'     => 'primary-nav wrap',
 			],
 			'top'  => [
 				'name'      => __( 'Top Menu', 'arras' ),
 				'container' => 'nav',
 				'fallback'  => false,
 				'depth'     => 1,
-				'class'     => 'secondary-nav',
+				'class'     => 'secondary-nav wrap',
 			],
 		],
 

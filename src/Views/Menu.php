@@ -92,12 +92,11 @@ class Menu {
 					'theme_location'  => $location,
 					'menu_class'      => 'menu-' . $location,
 					'depth'           => $depth,
-					'fallback_cb'     => array( $this, 'fallback_main_menu' ),
+					'fallback_cb'     => array( $this, 'fallback_menu' ),
 				]
 			);
 		}
 	}
-
 
 	/** ----- CALLBACKS ----- */
 
@@ -109,7 +108,14 @@ class Menu {
 		$this->register_menus( $this->menus );
 	}
 
-	public function fallback_main_menu() {
+	/**
+	 * Show a fallback menu.
+	 * @return void
+	 */
+	public function fallback_menu() {
+		$main = 'main' == $this->location ? 'primary-menu wrap ' : '';
+		$class = sprintf( '%smenu-%s-container', $main, $this->location );
+
 		include 'html/fallback-menu.php';
 	}
 
