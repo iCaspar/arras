@@ -22,5 +22,5 @@ gulp.task('sass:watch', function () {
 // Do nothing on default.
 gulp.task( 'default', function() {
     "use strict";
-
-});
+    // DO NOTHING
+    });

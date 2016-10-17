@@ -1,0 +1,22 @@
+/* --- Links --- */
+$base-link-color: $blue;
+$base-link-hover-color: $light-blue;
+
+a {
+	color: $base-link-color;
+	cursor: pointer;
+	text-decoration: none;
+	transition: all 0.25s ease;
+	&:visited {
+		color: $base-link-color;
+	}
+
+	&:active,
+	&:hover {
+		outline: none;
+	}
+
+	&:hover {
+		color: $base-link-hover-color;
+	}
+}

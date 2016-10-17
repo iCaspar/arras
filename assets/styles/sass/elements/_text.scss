@@ -1,0 +1,100 @@
+/* --- Text --- */
+$monospace-background: $off-white;
+
+$highlight-color: $yellow;
+$text-border-color: $medium-grey;
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+big {
+	font-size: 125%;
+}
+
+blockquote, q {
+	border-left: 2px solid $text-border-color;
+	color: $monospace-font-color;
+	font-style: normal;
+	margin: 15px 10px 15px 20px;
+}
+
+blockquote:before,
+q:before {
+	content: no-open-quote;
+}
+
+blockquote:after,
+q:after {
+	content: no-close-quote;
+}
+
+cite, dfn, em, i {
+	font-style: italic;
+}
+
+code, kbd, samp, tt, var {
+	background: $monospace-background;
+	font-family: $monospace-font;
+	@include font-size($monospace-font-size);
+	margin: 1px 0;
+	padding: 1px 3px;
+}
+
+ins, mark {
+	background: $highlight-color;
+	color: $base-font-color;
+	text-decoration: none;
+}
+
+p {
+	margin: 12px 0 0;
+	padding: 0;
+}
+
+pre {
+	background: $monospace-background;
+	border: 1px solid $text-border-color;
+	color: $base-font-color;
+	font-family: $monospace-font;
+	@include font-size($monospace-font-size);
+	line-height: $monospace-line-height;
+	margin: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 0.75em;
+}
+
+small {
+	font-size: 80%;
+}
+
+sub,
+sup {
+	@include font-size(0.75);
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted $text-border-color;
+	cursor: help;
+}

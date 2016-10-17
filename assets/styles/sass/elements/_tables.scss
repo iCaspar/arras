@@ -1,0 +1,36 @@
+/* Tables */
+$base-table-background: $whisp;
+$secondary-table-background: $light-shadow;
+
+table {
+	border: 1px solid $text-border-color;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid $text-border-color;
+	padding: 5px;
+	text-align: center;
+}
+
+th, thead th {
+	background: $secondary-table-background;
+	color: $base-font-color;
+	font-weight: bold;
+}
+
+td, tbody td {
+	background: $base-table-background;
+}
+
+table caption {
+	background: $base-table-background;
+	border: 1px solid $text-border-color;
+	color: $base-font-color;
+	font-weight: bold;
+	margin: 0;
+	padding: 5px 9px;
+	text-align: center;
+}

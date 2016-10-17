@@ -1,0 +1,20 @@
+.home-title {
+	border-bottom: 1px solid #CCC;
+	color: #333;
+	font-variant: small-caps;
+	margin: 25px 0 10px;
+}
+
+.module-title,
+.feed-title,
+.comment-reply-title {
+	line-height: 1em;
+	color: #333;
+	font-weight: 700;
+	margin: 0 10px 0 0;
+	padding: 7px 10px;
+	border: 1px solid #CCC;
+	display: block;
+}
+
+.feed-title  { border-bottom: none; }

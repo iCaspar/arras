@@ -1,0 +1,107 @@
+/* --- Forms --- */
+$base-form-background: $whisp;
+$secondary-form-background: $light-shadow;
+
+$base-button-background: $rust;
+$secondary-button-background: $medium-grey;
+$disabled-background: $light-grey;
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+
+button {
+	background: $base-button-background;
+	color: $inverted-font-color;
+	overflow: visible;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+	background: $disabled-background;
+	color: $base-font-color;
+	cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+fieldset {
+	border: 1px solid $text-border-color;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+
+input {
+	line-height: normal;
+}
+
+input[type=text], input[type=password], textarea {
+	background: $secondary-form-background;
+	border: 1px solid $text-border-color;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+input[type=submit] {
+	background: $base-button-background;
+	border: 1px solid $text-border-color;
+	@include border-radius(3);
+	color: $inverted-font-color;
+	font-weight: bold;
+	padding: 5px 10px;
+}
+
+input[type=submit]:hover {
+	background: $disabled-background;
+	color: $base-font-color;
+}
+
+legend {
+	border: 0;
+	padding: 0;
+}
+
+optgroup {
+	font-weight: bold;
+}
+
+textarea {
+	overflow: auto;
+}

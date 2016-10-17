@@ -25,7 +25,9 @@
 
 	<?php arras_above_top_menu(); ?>
 
-	<?php $arras->do_menu( 'top' ); ?>
+	<div id="menu-top-container" class="menu-top-container">
+		<?php $arras->do_menu( 'top' ); ?>
+	</div>
 
 	<?php arras_below_top_menu(); ?>
 
@@ -54,7 +56,9 @@
 
 	<?php arras_above_nav(); ?>
 
-	<?php $arras->do_menu( 'main' ); ?>
+	<div id="menu-main-container" class="menu-main-container">
+		<?php $arras->do_menu( 'main' ); ?>
+	</div>
 
 	<?php arras_below_nav(); ?>
 

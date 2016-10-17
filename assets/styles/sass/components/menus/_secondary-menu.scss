@@ -1,0 +1,40 @@
+/* --- Top Menu --- */
+$base-top-menu-background: $near-black;
+$base-top-menu-border: $dark;
+$base-top-menu-color: $light-grey;
+$hover-top-menu-color: $whisp;
+
+.menu-top-container {
+	background: $base-top-menu-background;
+	border-bottom: 1px solid $base-top-menu-border;
+}
+
+.menu-top {
+	@include font-size(0.75);
+	line-height: 2;
+	margin: 0;
+	padding: .25em 0;
+	text-transform: uppercase;
+
+	li {
+		display: block;
+		float: left;
+
+		a {
+			color: $base-top-menu-color;
+			padding: 0 1em;
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			&:visited {
+				color: $base-top-menu-color;
+			}
+
+			&:hover {
+				color: $hover-top-menu-color;
+			}
+		}
+	}
+}

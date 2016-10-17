@@ -1,0 +1,175 @@
+/** ----- Old stuff ----- */
+
+.main-menu {
+	clear: both;
+	line-height: 2;
+}
+.main-menu ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+	z-index: 99999;
+}
+.main-menu ul ul {
+	background-color: #322c2c;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+	float: left;
+	position: absolute;
+	top: 99%;
+	left: -999em;
+}
+.main-menu ul ul ul {
+	background-color: #383838;
+	left: -999em;
+	top: 7px;
+}
+.main-menu ul ul li:hover > ul {
+	left: 100%;
+}
+.main-menu ul ul a {
+	width: 200px;
+}
+.main-menu ul li:hover > ul {
+	left: auto;
+}
+.main-menu li {
+	float: left;
+	position: relative;
+}
+.main-menu a,
+.main-menu a:link,
+.main-menu a:hover,
+.main-menu a:visited {
+	color: #aaa;
+	display: block;
+	font-size: 1.6rem;
+	margin: 0 10px;
+	text-decoration: none;
+}
+.main-menu a:hover {
+	color: white;
+	text-shadow: 1px 1px #999999;
+}
+
+/*--------------------------------------------------------------
+  Menus
+--------------------------------------------------------------*/
+
+
+.nav {
+	background-color: #322c2c;
+	font-variant: small-caps;
+}
+
+.menu-icon {
+	display: none;
+	width: 30px;
+	height: 30px;
+	background: #efefef url(../../images/mobile-menu-icon.png) center;
+	background-size: 95%;
+	border-radius: 4px;
+	margin: 5px;
+}
+
+
+/* post and comment navigation */
+.navigation  {
+	margin: 0 10px 20px 0;
+	text-align: center;
+}
+
+/* Quick Nav (Social Media) */
+.quick-nav li {
+	list-style: none;
+	float: left;
+	padding: 5px 0 0 5px;
+}
+
+.quick-nav a:link,
+.quick-nav a:visited {
+	display: block;
+	color: transparent;
+	width: 20px;
+	height: 20px;
+	clear: left;
+	opacity: 0.6;
+}
+
+.quick-nav a:hover {
+	opacity: 1;
+}
+
+.quick-nav .rss			{ background: url(../../images/social/rss.png) no-repeat center center; }
+.quick-nav .twitter		{ background: url(../../images/social/twitter.png) no-repeat center center; }
+.quick-nav .facebook	{ background: url(../../images/social/facebook.png) no-repeat center center; }
+.quick-nav .gplus		{ background: url(../../images/social/gplus.png) no-repeat center center; }
+.quick-nav .flickr		{ background: url(../../images/social/flickr.png) no-repeat center center; }
+.quick-nav .youtube		{ background: url(../../images/social/youtube.png) no-repeat center center; }
+
+/* Main Nav on small screens */
+@media only screen and (max-width : 768px) {
+
+	.primary-utility {
+		position: absolute;
+		display: none;
+	}
+
+	.top-banner {
+		margin-top: 40px;
+	}
+
+	.nav {
+		position: absolute;
+		top: -40px;
+		left: 0;
+		right: 0;
+	}
+
+	.nav .quick-nav {
+		display: none;
+	}
+
+	.menu-icon {
+		display: block;
+	}
+
+	.nav ul, .nav:active ul {
+		display: none;
+		position: absolute;
+		padding: 20px;
+		background: #f5f5f5;
+		border: 1px solid #ccc;
+		left: 5px;
+		right: 5px;
+		top: 0;
+		width: 98%;
+		border-radius: 4px 0 4px 4px;
+	}
+	.nav ul ul,
+	.nav ul ul ul {
+		background: #f5f5f5;
+		width: 75%;
+	}
+	.nav .main-menu a,
+	.nav .main-menu a:link,
+	.nav .main-menu a:hover,
+	.nav .main-menu a:visited {
+		color: #333;
+	}
+
+	.nav li {
+		text-align: left;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+	}
+
+	.nav:hover ul {
+		display: block;
+	}
+
+	.nav ul ul li:hover > ul {
+		left: auto;
+	}
+}
+

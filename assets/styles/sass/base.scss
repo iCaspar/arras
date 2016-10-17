@@ -5,588 +5,77 @@
  * Do not alter this file. Use a child theme.
  */
 
-/** --------------------------------------------------------------------
- * Reset
- * ------------------------------------------------------------------ */
 
-@import 'site/reset';
+/* --------------------
+ * 1. Settings
+ * -------------------- */
+@import "settings/colors";
+@import "settings/fonts";
+@import "settings/global.variables";
+
+/* --------------------
+ * 2. Tools
+ * -------------------- */
+@import "tools/mixins";
+
+/* --------------------
+ * 3. Generic
+ * -------------------- */
+@import "generic/reset";
+
+/* --------------------
+ * 4. Elements
+ * -------------------- */
+@import "elements/headings";
+@import "elements/text";
+@import "elements/images";
+@import "elements/links";
+@import "elements/lists";
+@import "elements/tables";
+@import "elements/forms";
+@import "elements/borders";
+
+/* --------------------
+ * 5. Objects
+ * -------------------- */
+@import "objects/grid";
+@import "objects/alignments";
+@import "objects/navigation";
+
+
+/* --------------------
+ * 6. Components
+ * -------------------- */
+@import "components/wp";
+
+@import "components/layout";
+
+@import "components/site.header";
+@import "components/sidebars";
+@import "components/footer";
+
+@import "components/menus/primary-menu";
+@import "components/menus/secondary-menu";
+
+@import "components/views/slides";
+
+@import "components/titles";
+@import "components/entries";
+
+@import "components/views/node-tapestry";
+@import "components/views/quick-tapestry";
+@import "components/views/line-tapestry";
+
+@import "components/views/single";
+@import "components/views/comments";
+
+@import "components/author";
+@import "components/search";
+@import "components/galleries";
+
+@import "components/forms";
+
+/* --------------------
+ * 7. Trumps
+ * -------------------- */
 
-/** --------------------------------------------------------------------
- * WordPress Core Generated Classes
- * ------------------------------------------------------------------ */
-
-@import 'site/wp';
-
-
-/*  Alignments
- * ------------------------------------------------------------------ */
-
-.floatleft  { float: left; }
-.floatright  { float: right; }
-
-.textcenter  { text-align: center; }
-.textright  { text-align: right; }
-.textleft  { text-align: left; }
-
-
-
-
-/* Structure */
-
-.clearfix:after  { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
-
-.site {
-	position: relative;
-}
-
-.wrap {
-	margin: auto;
-	max-width: 1000px;
-	position: relative;
-}
-
-.wrap-alt {
-	padding: 10px 23.8%;
-}
-
-.page-body {
-	min-height: 100%;
-	position: relative;
-	padding: 20px 0;
-}
-
-.main {
-	background: #F5F5F5;
-	border: 1px solid #d3d1c7;
-	padding: 10px;
-}
-
-/* common classes */
-
-.small {
-	font-size: 1rem;
-}
-
-.tags a:link, .tags a:visited	{ text-decoration: none; font-weight: 700; padding: 0 5px 3px; line-height: 1.3em; display: inline-block; }
-.tags a:hover					{ text-decoration: underline; }
-
-.avatar					{ float: left; margin: 0 10px 10px 0; border: 1px solid #CCC; padding: 2px; background: #FFF; }
-
-label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA; margin: 5px 0; }
-
-
-/* Header */
-.page-header {
-	background: #1e1b1a;
-	border-bottom: 5px solid #383332;
-}
-
-.logo {
-	min-height: 1px;
-}
-.logo .site-title,
-.logo .site-description {
-	padding-left: 30px;
-	text-transform: uppercase;
-}
-.logo img {
-	padding: 20px 0 0 30px;
-}
-
-.site-title	{
-	color: #ffffff;
-	font-weight: bold;
-	margin: 45px 0;
-}
-
-.site-description {
-	color: #ffffff;
-	margin: 20px 0;
-}
-
-
-/*--------------------------------------------------------------
-  Menus
---------------------------------------------------------------*/
-
-@import "navigation/primary-menu";
-
-@import "navigation/secondary-menu";
-
-
-.nav {
-	background-color: #322c2c;
-	font-variant: small-caps;
-}
-
-.menu-icon {
-	display: none;
-	width: 30px;
-	height: 30px;
-	background: #efefef url(../../images/mobile-menu-icon.png) center;
-	background-size: 95%;
-	border-radius: 4px;
-	margin: 5px;
-}
-
-
-/* post and comment navigation */
-.navigation  {
-	margin: 0 10px 20px 0;
-	text-align: center;
-}
-
-/* Quick Nav (Social Media) */
-.quick-nav li {
-	list-style: none;
-	float: left;
-	padding: 5px 0 0 5px;
-}
-
-.quick-nav a:link,
-.quick-nav a:visited {
-	display: block;
-	color: transparent;
-	width: 20px;
-	height: 20px;
-	clear: left;
-	opacity: 0.6;
-}
-
-.quick-nav a:hover {
-	opacity: 1;
-}
-
-.quick-nav .rss			{ background: url(../../images/social/rss.png) no-repeat center center; }
-.quick-nav .twitter		{ background: url(../../images/social/twitter.png) no-repeat center center; }
-.quick-nav .facebook	{ background: url(../../images/social/facebook.png) no-repeat center center; }
-.quick-nav .gplus		{ background: url(../../images/social/gplus.png) no-repeat center center; }
-.quick-nav .flickr		{ background: url(../../images/social/flickr.png) no-repeat center center; }
-.quick-nav .youtube		{ background: url(../../images/social/youtube.png) no-repeat center center; }
-
-/* Main Nav on small screens */
-@media only screen and (max-width : 768px) {
-
-	.primary-utility {
-        position: absolute;
-		display: none;
-	}
-
-	.top-banner {
-		margin-top: 40px;
-	}
-
-	.nav {
-		position: absolute;
-		top: -40px;
-		left: 0;
-		right: 0;
-	}
-
-	.nav .quick-nav {
-		display: none;
-	}
-
-	.menu-icon {
-		display: block;
-	}
-
-	.nav ul, .nav:active ul {
-		display: none;
-		position: absolute;
-		padding: 20px;
-		background: #f5f5f5;
-		border: 1px solid #ccc;
-		left: 5px;
-		right: 5px;
-		top: 0;
-		width: 98%;
-		border-radius: 4px 0 4px 4px;
-	}
-	.nav ul ul,
-	.nav ul ul ul {
-		background: #f5f5f5;
-		width: 75%;
-	}
-	.nav .main-menu a,
-	.nav .main-menu a:link,
-	.nav .main-menu a:hover,
-	.nav .main-menu a:visited {
-		color: #333;
-	}
-
-	.nav li {
-		text-align: left;
-		width: 100%;
-		padding: 10px 0;
-		margin: 0;
-	}
-
-	.nav:hover ul {
-		display: block;
-	}
-
-	.nav ul ul li:hover > ul {
-    	left: auto;
-	}
-}
-
-/* Header Widgets */
-.headerwidgets {
-	margin: 20px 0;
-	max-height: 160px;
-	overflow: hidden;
-	background: transparent;
-}
-.headerwidgets .widgetcontainer:last-child {
-  margin-bottom: 0;
-}
-
-/* Common classes */
-
-.entry-content {
-	margin: 10px 0;
-	line-height: 1.5em;
-	overflow: hidden;
-}
-
-.entry-content ul,
-.entry-content ol {
-	margin: 0 20px;
-	padding: 0 0 1.5em;
-}
-
-.entry-content ul ul,
-.entry-content ol ol,
-.entry-content ol ul,
-.entry-content ul ol {
-	padding: 0;
-}
-
-.entry-content blockquote {
-	font-style: italic;
-}
-
-.entry-content form {
-	margin: 1em 0;
-}
-
-.traditional .entry-comments {
-	background: rgba(50, 50, 50, 0.7) url("../../images/comments.gif") no-repeat scroll 2px center;
-	border-radius: 7px;
-	float: right;
-	margin: 15px;
-	padding: 3px 5px 3px 15px;
-}
-.traditional .entry-comments a {
-	color: #fff;
-}
-
-.post-edit-link:link, .post-edit-link:visited  { padding: 0 0 0 14px; }
-
-
-/* Sidebars and Widgets */
-
-
-
-.xoxo {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.widgetcontainer {
-	padding: 10px;
-	margin-bottom: 10px;
-}
-
-.widgetcontainer ul,
-.widgetcontainer .xoxo,
-.widgetcontainer ol {
-	list-style: disc;
-	margin: 0 0 0 15px;
-	padding: 0;
-}
-
-.widgetcontainer li {
-	margin: 3px 0;
-}
-
-.widgetcontainer input[type=text],
-.widgetcontainer input[type=password] {
-	width: 80%;
-}
-
-.widgetcontainer {
-	border: solid #CCC;
-	border-width: 1px;
-	background: repeat-x #FFF;
-	line-height: 1.5;
-}
-
-.widgetcontainer a {
-	font-weight: bold;
-}
-
-.widgetcontainer .excerpt {
-	margin: 5px 0;
-}
-
-.widgettitle {
-	color: #aaa;
-	font-weight: 700;
-	margin: -10px -10px 10px;
-	padding: 5px 10px;
-	background: #efefef; border-bottom: 1px solid #CCC;
-}
-
-.widgettitle a {
-	color: #fff;
-}
-
-/* Featured Articles Widget */
-
-.featured-stories li {
-	list-style: none;
-}
-
-.widget-thumb {
-	float: left;
-	margin: 4px 4px 4px 0;
-	max-width: 115px;
-	width: 30%;
-}
-
-.widget-thumb a {
-	width: 100%;
-}
-
-.featured-stories .thumb {
-	float: left; border: 1px solid #CCC; margin: 0 10px 0 0; background: #FFF; padding: 2px; }
-
-.sidebar-read-more:link,
-.sidebar-read-more:visited {
-	text-transform: uppercase;
-	font-weight: normal;
-	padding: 2px 4px;
-	margin: 5px 0 0;
-	display: inline-block;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	color: #FFF;
-	background: #333;
-}
-
-.sidebar-read-more:hover {
-	background: #CC0000;
-}
-
-/* Below-Content Widgets */
-.below-content-widgets .widgettitle {
-	background: #f0f0f0;
-}
-
-/* Tapestries */
-
-@import "views/slides";
-
-@import "views/node-tapestry";
-
-@import "views/quick-tapestry";
-
-@import "views/line-tapestry";
-
-/** --------------------------------------------------------------------
- * Template-specific styles
- * ------------------------------------------------------------------ */
-
-/* Author Template */
-
-.author-title,
-.archive-title {
-	border-bottom: 1px solid #DDD;
-	color: #333;
-	margin: 0 15px 10px 0;
-	padding: 0 3px 8px;
-}
-
-.author-content	{
-	margin-right: 10px;
-}
-
-.author-content dl {
-	margin-left: 115px;
-}
-
-/* Home Template */
-
-.home-title {
-    border-bottom: 1px solid #CCC;
-    color: #333;
-    font-variant: small-caps;
-    margin: 25px 0 10px;
-}
-
-/* Search Template */
-
-.search-results-title {
-    border-bottom: 1px solid #CCC;
-    color: #333;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 6px;
-    text-transform: uppercase;
-}
-
-.search-results-content {
-    background: #FFF;
-    border: 1px solid #CCC;
-    margin: 0 10px 10px 0;
-    padding: 10px;
-}
-
-.search-results-content .searchform,
-.sidebar .searchform {
-	border: 2px solid #CCC;
-	background: #EFEFEF;
-}
-
-.searchform {
-	border: 3px solid #383332;
-	background: #efefef;
-	margin: 0;
-}
-
-.searchform .s {
-	font-family: Helvetica, Arial, sans-serif;
-	border: none; background: #efefef;
-	padding: 8px 5px;
-	margin: 0;
-	float: left;
-	width: 234px;
-}
-
-.searchform input[type="submit"] {
-	background: #efefef url(../../images/searchsubmit.gif) no-repeat;
-	color: transparent;
-	width: 16px;
-	height: 16px;
-	border: none;
-	float: right;
-	cursor: pointer;
-	opacity: 0.7;
-	text-transform: capitalize;
-	padding: 0;
-	margin: 6px 5px;
-}
-
-.searchform input[type="submit"]:hover {
-	opacity: 1;
-}
-
-@import "views/single";
-
-.module-title,
-.feed-title,
-.comment-reply-title {
-	line-height: 1em;
-	color: #333;
-	font-weight: 700;
-	margin: 0 10px 0 0;
-	padding: 7px 10px;
-	border: 1px solid #CCC;
-	display: block;
-}
-
-.feed-title  { border-bottom: none; }
-
-.gallery-icon img  { background: #FFF; border: 1px solid #CCC; }
-
-.about-author  { border: 1px solid #CCC; background: #F5F5F5; }
-
-
-
-/* Page Template */
-
-.page .entry-content  { margin: 0 0 20px; }
-
-
-/* Galleries */
-
-.gallery  {
-	margin: 10px 0;
-}
-.gallery:before,
-.gallery:after {
-  content: "";
-  display: table;
-}
-.gallery:after {
-  clear: both;
-}
-
-.gallery-item  { float: left; margin-right: 10px; text-align: center; }
-.gallery-icon img  { padding: 4px; }
-
-.about-author  { padding: 10px; margin: 0 0 10px; line-height: 1.5em; }
-.about-author .avatar  { margin-bottom: 0; }
-.about-author .author-meta  { float: left; width: 85%; }
-
-@import "views/comments";
-
-/* Footer */
-
-.page-footer	{
-	background: #F5F5F5;
-	border: 1px solid #CCC;
-	margin: 20px auto 0;
-	padding: 10px;
-}
-
-.page-footer .widgetcontainer {
-	background: none;
-	border: none;
-	padding: 5px 10px;
-	margin-right: 10px;
-	float: left;
-}
-
-.page-footer .widgettitle {
-	background: none;
-	border: none;
-	color: #444;
-	padding: 0 0 10px;
-	letter-spacing: -1px;
-	margin: 0;
-}
-
-.page-footer .widgetcontent {
-	border: none;
-	padding: 0;
-}
-
-.footer-message	{
-	margin: 0;
-	padding: 10px 15px 0;
-}
-
-.footer-message p {
-	margin: 0 0 0.5em;
-}
-
-.footer-message .floatright {
-	margin-left: 20px;
-}
-
-.footer-sidebar	{
-	overflow: hidden;
-	padding: 0 0 10px;
-}
-
-.footer-sidebar-container {
-	border-bottom: 1px solid #CCC;
-	margin: 10px;
-}
-
-@import "responsive/grid";

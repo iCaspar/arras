@@ -1,0 +1,45 @@
+/* --- Site Header --- */
+$base-site-header-background: $dark-brown;
+$base-site-header-border: $chocolate;
+$base-site-header-color: $white;
+
+.page-header {
+	background: $base-site-header-background;
+	border-bottom: 5px solid $base-site-header-border;
+}
+
+.logo {
+	min-height: 1px;
+}
+.logo .site-title,
+.logo .site-description {
+	padding-left: 30px;
+	text-transform: uppercase;
+}
+.logo img {
+	padding: 20px 0 0 30px;
+}
+
+.site-title	{
+	color: $base-site-header-color;
+	font-weight: bold;
+	margin: 25px 0 0;
+}
+
+.site-description {
+	color: $base-site-header-color;
+	margin: 15px 0 0;
+}
+
+
+
+/* Header Widgets */
+.headerwidgets {
+	margin: 20px 0;
+	max-height: 160px;
+	overflow: hidden;
+	background: transparent;
+}
+.headerwidgets .widgetcontainer:last-child {
+	margin-bottom: 0;
+}

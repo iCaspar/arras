@@ -1,0 +1,19 @@
+/* Galleries */
+
+.gallery  {
+	margin: 10px 0;
+}
+.gallery:before,
+.gallery:after {
+	content: "";
+	display: table;
+}
+.gallery:after {
+	clear: both;
+}
+
+.gallery-item  { float: left; margin-right: 10px; text-align: center; }
+.gallery-icon img  { padding: 4px; }
+
+.gallery-icon img  { background: #FFF; border: 1px solid #CCC; }
+

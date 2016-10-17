@@ -87,8 +87,7 @@ class Menu {
 		if ( has_nav_menu( $location ) || $fallback ) {
 			wp_nav_menu( [
 					'container'       => $container,
-					'container_id'    => 'menu-' . $location . '-container',
-					'container_class' => $class . ' menu-' . $location . '-container',
+					'container_class' => $class,
 					'theme_location'  => $location,
 					'menu_class'      => 'menu-' . $location,
 					'depth'           => $depth,
