@@ -34,16 +34,18 @@
 	<header id="header" class="page-header section">
 		<div id="branding" class="top-banner wrap group">
 			<div class="logo col span_2_of_3">
-				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>"
-				   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-					<?php if ( $arras->get_option( 'site_logo' ) ) :
-//						arras_add_custom_logo();
-					else: ?>
-						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-					<?php endif; ?>
-					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-				</a>
+				<?php if ( is_front_page() && is_home() ) : ?>
+					<h1 class="site-title"><a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php else : ?>
+					<p class="site-title"><a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<?php endif;
+
+				$description = get_bloginfo( 'description', 'display' );
+				if ( $description || is_customize_preview() ) : ?>
+					<p class="site-description"><?php echo $description; ?></p>
+				<?php endif; ?>
 			</div>
+
 			<div class="sidebar headerwidgets col span_1_of_3">
 				<ul class="xoxo">
 					<?php if ( dynamic_sidebar( 'Header Widgets' ) ) {

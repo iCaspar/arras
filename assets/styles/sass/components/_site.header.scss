@@ -2,6 +2,7 @@
 $base-site-header-background: $dark-brown;
 $base-site-header-border: $chocolate;
 $base-site-header-color: $white;
+$secondary-site-header-color: $light-chocolate;
 
 .page-header {
 	background: $base-site-header-background;
@@ -9,28 +10,39 @@ $base-site-header-color: $white;
 }
 
 .logo {
-	min-height: 1px;
+	padding: 30px 0 30px;
 }
-.logo .site-title,
-.logo .site-description {
-	padding-left: 30px;
+
+%header_titles {
+	font-family: $secondary-font;
+	font-weight: bold;
+	line-height: 1;
+	margin: 0 0 6px;
 	text-transform: uppercase;
 }
+
+.site-title {
+	@extend %header_titles;
+	color: $base-site-header-color;
+	@include font-size(1.375);
+	letter-spacing: 1px;
+ }
+
+.site-description {
+	@extend %header_titles;
+	color: $secondary-site-header-color;
+	@include font-size(0.75);
+}
+
+.home-link,
+.home-link:hover,
+.home-link:visited {
+	color: $base-site-header-color;
+}
+
 .logo img {
 	padding: 20px 0 0 30px;
 }
-
-.site-title	{
-	color: $base-site-header-color;
-	font-weight: bold;
-	margin: 25px 0 0;
-}
-
-.site-description {
-	color: $base-site-header-color;
-	margin: 15px 0 0;
-}
-
 
 
 /* Header Widgets */
