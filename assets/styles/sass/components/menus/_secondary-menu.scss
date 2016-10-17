@@ -11,22 +11,24 @@ $hover-top-menu-color: $whisp;
 
 .menu-top {
 	@include font-size(0.75);
-	line-height: 2;
+	line-height: 2.5;
 	margin: 0;
-	padding: .25em 0;
+	padding: .15em 0;
 	text-transform: uppercase;
 
 	li {
 		display: block;
 		float: left;
+		border-right: 1px solid $base-top-menu-border;
+
+		&:first-child > a {
+			padding-left: 0;
+		}
 
 		a {
 			color: $base-top-menu-color;
 			padding: 0 1em;
 
-			&:first-child {
-				padding-left: 0;
-			}
 
 			&:visited {
 				color: $base-top-menu-color;

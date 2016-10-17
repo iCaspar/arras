@@ -1342,18 +1342,19 @@ img.alignleft {
 .menu-top {
   font-size: 12px;
   font-size: 0.75rem;
-  line-height: 2;
+  line-height: 2.5;
   margin: 0;
-  padding: .25em 0;
+  padding: .15em 0;
   text-transform: uppercase; }
   .menu-top li {
     display: block;
-    float: left; }
+    float: left;
+    border-right: 1px solid #333; }
+    .menu-top li:first-child > a {
+      padding-left: 0; }
     .menu-top li a {
       color: #aaa;
       padding: 0 1em; }
-      .menu-top li a:first-child {
-        padding-left: 0; }
       .menu-top li a:visited {
         color: #aaa; }
       .menu-top li a:hover {
