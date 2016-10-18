@@ -40,6 +40,7 @@
  * -------------------- */
 @import "objects/grid";
 @import "objects/alignments";
+@import "objects/layouts";
 @import "objects/navigation";
 
 
@@ -48,11 +49,11 @@
  * -------------------- */
 @import "components/wp";
 
-@import "components/layout";
+@import "components/page/content";
 
-@import "components/site.header";
-@import "components/sidebars";
-@import "components/footer";
+@import "components/page/site.header";
+@import "components/page/sidebars";
+@import "components/page/footer";
 
 @import "components/menus/primary-menu";
 @import "components/menus/secondary-menu";

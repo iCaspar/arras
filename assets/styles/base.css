@@ -13,7 +13,6 @@
 /* - Colors - */
 /* All colors found
 
-#f5f5f5; child comment background
 #313428; comment list background
 #d8000c; comment form label text
 #848485; line tapestry text
@@ -34,6 +33,7 @@
 #8a8a8a; options tab cover background
 #dedede; form table border
 */
+/* --- Global Colors --- */
 /* --- Base Fonts --- */
 /** ----- Global Variables ----- */
 /* --------------------
@@ -50,6 +50,7 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
+  background: #f0f0f0;
   margin: 0; }
 
 body,
@@ -894,6 +895,15 @@ hr {
 .textleft {
   text-align: left; }
 
+/** ----- Layouts -----*/
+.wrap {
+  margin: auto;
+  max-width: 1000px;
+  position: relative; }
+
+.wrap-alt {
+  padding: 10px 23.8%; }
+
 /* ----- Navigation ----- */
 nav {
   display: flex; }
@@ -996,21 +1006,12 @@ img.alignleft {
 .site {
   position: relative; }
 
-.wrap {
-  margin: auto;
-  max-width: 1000px;
-  position: relative; }
-
-.wrap-alt {
-  padding: 10px 23.8%; }
-
 .page-body {
   min-height: 100%;
-  position: relative;
   padding: 20px 0; }
 
 .main {
-  background: #F5F5F5;
+  background: #f5f5f5;
   border: 1px solid #d3d1c7;
   padding: 10px; }
 

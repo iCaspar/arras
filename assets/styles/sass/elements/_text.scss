@@ -1,8 +1,4 @@
 /* --- Text --- */
-$monospace-background: $off-white;
-
-$highlight-color: $yellow;
-$text-border-color: $medium-grey;
 
 abbr[title] {
 	border-bottom: 1px dotted;
@@ -18,7 +14,7 @@ big {
 }
 
 blockquote, q {
-	border-left: 2px solid $text-border-color;
+	border-left: 2px solid $base-border-color;
 	color: $monospace-font-color;
 	font-style: normal;
 	margin: 15px 10px 15px 20px;
@@ -59,7 +55,7 @@ p {
 
 pre {
 	background: $monospace-background;
-	border: 1px solid $text-border-color;
+	border: 1px solid $base-border-color;
 	color: $base-font-color;
 	font-family: $monospace-font;
 	@include font-size($monospace-font-size);
@@ -95,6 +91,6 @@ address {
 }
 
 abbr, acronym {
-	border-bottom: 1px dotted $text-border-color;
+	border-bottom: 1px dotted $base-border-color;
 	cursor: help;
 }

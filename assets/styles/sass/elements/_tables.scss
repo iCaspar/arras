@@ -1,16 +1,16 @@
 /* Tables */
-$base-table-background: $whisp;
+$base-table-background: $wisp;
 $secondary-table-background: $light-shadow;
 
 table {
-	border: 1px solid $text-border-color;
+	border: 1px solid $base-border-color;
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 }
 
 th, td {
-	border: 1px solid $text-border-color;
+	border: 1px solid $base-border-color;
 	padding: 5px;
 	text-align: center;
 }
@@ -27,7 +27,7 @@ td, tbody td {
 
 table caption {
 	background: $base-table-background;
-	border: 1px solid $text-border-color;
+	border: 1px solid $base-border-color;
 	color: $base-font-color;
 	font-weight: bold;
 	margin: 0;

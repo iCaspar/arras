@@ -31,7 +31,7 @@
 
 	<?php arras_below_top_menu(); ?>
 
-	<header id="header" class="page-header section">
+	<header id="page-header" class="page-header section">
 		<div id="branding" class="top-banner wrap group">
 			<div class="logo col span_2_of_3">
 				<?php if ( is_front_page() && is_home() ) : ?>
@@ -48,13 +48,11 @@
 
 			<div class="sidebar headerwidgets col span_1_of_3">
 				<ul class="xoxo">
-					<?php if ( dynamic_sidebar( 'Header Widgets' ) ) {
-						;
-					} ?>
+					<?php if ( dynamic_sidebar( 'Header Widgets' ) ) {} ?>
 				</ul>
 			</div>
-		</div><!-- #branding -->
-	</header><!-- #header -->
+		</div>
+	</header>
 
 	<?php arras_above_nav(); ?>
 

@@ -1,0 +1,16 @@
+/* Structure */
+
+.site {
+	position: relative;
+}
+
+.page-body {
+	min-height: 100%;
+	padding: 20px 0;
+}
+
+.main {
+	background: $base-content-background;
+	border: 1px solid $secondary-border-color;
+	padding: 10px;
+}
