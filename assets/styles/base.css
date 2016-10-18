@@ -1189,6 +1189,31 @@ img.alignleft {
   border-bottom: 1px solid #CCC;
   margin: 10px; }
 
+/** ----- Main Menu ----- */
+.menu-main-container {
+  background: #322c2c; }
+
+.menu-main {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 2.5;
+  margin: 0 0 0 -1em;
+  padding: 0; }
+  .menu-main li {
+    color: #aaa;
+    display: block;
+    float: left; }
+    .menu-main li:hover {
+      color: #fff; }
+    .menu-main li a {
+      color: #aaa;
+      padding: 0.75em 1em; }
+      .menu-main li a:visited {
+        color: #aaa; }
+      .menu-main li a:hover {
+        background: #333;
+        color: #fff; }
+
 /** ----- Old stuff ----- */
 .main-menu {
   clear: both;

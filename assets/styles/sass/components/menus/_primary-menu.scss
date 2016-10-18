@@ -1,3 +1,47 @@
+/** ----- Main Menu ----- */
+$base-main-menu-background: $brick;
+$base-main-menu-border: $dark;
+$base-main-menu-color: $light-grey;
+$hover-main-menu-background: $dark;
+$hover-main-menu-color: $white;
+
+.menu-main-container {
+	background: $base-main-menu-background;
+}
+
+.menu-main {
+	@include font-size(0.875);
+	line-height: 2.5;
+	margin: 0 0 0 -1em;
+	padding: 0;
+
+	li {
+		color: $base-main-menu-color;
+		display: block;
+		float: left;
+
+		&:hover {
+			color: $hover-main-menu-color;
+		}
+
+		a {
+			color: $base-main-menu-color;
+			padding: 0.75em 1em;
+
+
+			&:visited {
+				color: $base-main-menu-color;
+			}
+
+			&:hover {
+				background: $hover-main-menu-background;
+				color: $hover-main-menu-color;
+			}
+		}
+	}
+}
+
+
 /** ----- Old stuff ----- */
 
 .main-menu {
