@@ -12,7 +12,13 @@ $arras = apply_filters( 'arras_template', 'index' );
 
 <?php include 'header.php'; ?>
 
-<p>Here's the index page content.</p>
+<?php arras_above_content(); ?>
+
+<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
+	<p>Here's the index page content.</p>
+</div>
+
+<?php arras_below_content() ?>
 
 <?php include 'sidebar.php'; ?>
 

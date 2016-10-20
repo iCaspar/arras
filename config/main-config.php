@@ -74,6 +74,6 @@ return [
 	'options' => [
 		'footer-sidebars' => 3,
 		'footer-message'  => __( 'This is a footer message.', 'arras' ),
-		'layout'          => '2c-l',
+		'layout'          => '2c-r',
 	]
 ];
