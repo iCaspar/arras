@@ -66,4 +66,4 @@
 
 		<?php arras_above_main() ?>
 
-		<div id="container" class="wrap group main">
+		<div id="page-content" class="page-content wrap group">

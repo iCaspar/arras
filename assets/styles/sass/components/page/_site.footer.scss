@@ -1,0 +1,28 @@
+/* Footer */
+
+.page-footer {
+	background: $base-content-background;
+	border: 1px solid $base-border-color;
+	margin: 20px auto 0;
+	padding: 10px;
+}
+
+.coda {
+	@include font-size(0.75);
+	margin: 1em;
+}
+
+%coda-content-section {
+	width: 48%;
+}
+
+.footer-message {
+	@extend %coda-content-section;
+	float: left;
+}
+
+.arras-info {
+	@extend %coda-content-section;
+	float: right;
+	text-align: right;
+}

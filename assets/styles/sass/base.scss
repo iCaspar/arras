@@ -53,10 +53,12 @@
 
 @import "components/page/site.header";
 @import "components/page/sidebars";
-@import "components/page/footer";
+@import "components/page/site.footer";
 
 @import "components/menus/primary-menu";
 @import "components/menus/secondary-menu";
+
+@import "components/widgets/widgets.footer";
 
 @import "components/views/slides";
 
