@@ -330,70 +330,6 @@ function arras_excerpt_length($length) {
 }
 add_filter('excerpt_length', 'arras_excerpt_length');
 
-/**
- * Function adapted from http://graveyard.maniacalrage.net/etc/relative/.
- * @since 1.6
- */
-function arras_posted_on( $echo = 1 ) {
-	if ( ! arras_get_option( 'relative_postdates' ) ) {
-		$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
-	} else {
-		$diff = current_time( 'timestamp' ) - get_the_time( 'U' );
-
-		$months = floor( $diff / 2592000 );
-		$diff -= $months * 2419200;
-
-		$weeks = floor( $diff / 604800 );
-		$diff -= $weeks * 604800;
-
-		$days = floor( $diff / 86400 );
-		$diff -= $days * 86400;
-
-		$hours = floor( $diff / 3600 );
-		$diff -= $hours * 3600;
-
-		$minutes = floor( $diff / 60 );
-		$diff -= $minutes * 60;
-
-		if ( $months > 0 || $months < 0 ) {
-			// over a month old, just show date
-			$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
-		} else {
-			if ( $weeks > 0 ) {
-				// weeks
-				if ( $weeks > 1 )
-					$result = sprintf( __( '%s weeks ago', 'arras' ), number_format_i18n( $weeks ) );
-				else
-					$result = __( '1 week ago', 'arras' );
-			} elseif ( $days > 0 ) {
-				// days
-				if ( $days > 1 )
-					$result = sprintf( __( '%s days ago', 'arras' ), number_format_i18n( $days ) );
-				else
-					$result = __( '1 day ago', 'arras' );
-			} elseif ( $hours > 0 ) {
-				// hours
-				if ( $hours > 1 )
-					$result = sprintf( __( '%s hours ago', 'arras' ), number_format_i18n( $hours ) );
-				else
-					$result = __( '1 hour ago', 'arras' );
-			} elseif ( $minutes > 0 ) {
-				// minutes
-				if ( $minutes > 1 )
-					$result = sprintf( __( '%s minutes ago', 'arras' ), number_format_i18n( $minutes ) );
-				else
-					$result = __( '1 minute ago', 'arras' );
-			} else {
-				// seconds
-				$result = __( 'less than a minute ago', 'arras' );
-			}
-		}
-
-	}
-
-	if ( $echo ) echo $result;
-	return $result;
-}
 
 function arras_social_nav() {
 ?>
@@ -442,14 +378,6 @@ function arras_blacklist_duplicates() {
 	}
 }
 
-function arras_constrain_footer_sidebars() {
-/*	$footer_sidebars = arras_get_option('footer_sidebars');
-	if ($footer_sidebars == '') $footer_sidebars = 1;
-	?>
-	.footer-sidebar  { width: <?php echo $width ?>px; }
-	<?php */
-}
-
 function arras_nav_fallback_cb() {
 	echo '<ul class="sf-menu menu clearfix">';
 	wp_list_categories('hierarchical=1&orderby=id&hide_empty=1&title_li=');
@@ -461,33 +389,3 @@ function arras_debug($exp) {
 		echo '<pre><code style="max-height: 200px; overflow: scroll">' . htmlentities( print_r($exp, true) ) . '</code></pre>';
 	//}
 }
-
-if ( ! function_exists( 'arras_post_nav' ) ) :
-/**
- * Display navigation to next/previous post when applicable.
- *
- * @return void
- */
-function arras_post_nav() {
-	// Don't print empty markup if there's nowhere to navigate.
-	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
-
-	if ( ! $next && ! $previous ) {
-		return;
-	}
-	?>
-	<nav class="navigation post-navigation clearfix" role="navigation">
-		<!-- <h1 class="screen-reader-text"><?php// _e( 'Post navigation', 'arras' ); ?></h1>-->
-		<div class="nav-links">
-			<?php if ( $previous ) {?>
-				<div class="floatleft"><?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'arras' ) ); ?></div>
-			<?php }
-			if ( $next ) {?>
-				<div class="floatright"><?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'arras' ) ); ?></div>
-			<?php }?>
-		</div><!-- .nav-links -->
-	</nav><!-- .navigation -->
-	<?php
-}
-endif;

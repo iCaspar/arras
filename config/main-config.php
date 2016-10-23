@@ -76,5 +76,8 @@ return [
 		'footer-message'      => __( 'This is a footer message.', 'arras' ),
 		'layout'              => '2c-r',
 		'display-author-page' => true,
+		'post_author'         => true,
+		'post_date'           => true,
+		'post_cats'           => true,
 	]
 ];

@@ -197,14 +197,14 @@ class TemplateEngine {
 			}
 
 			if ( $this->get_option('post_date') ) {
-				$postheader .= ' &ndash; <abbr class="published" title="' . get_the_time('c') . '">' . sprintf( __('Posted %s', 'arras'), arras_posted_on( false ) ) . '</abbr>';
+				$postheader .= ' &ndash; <abbr class="published" title="' . get_the_time('c') . '">' . sprintf( __('Posted %s', 'arras'), $this->posted_on( false ) ) . '</abbr>';
 			}
 
 			if (current_user_can('edit_post', $id)) {
 				$postheader .= '<a class="post-edit-link" href="' . get_edit_post_link($id) . '" title="' . __('Edit Post', 'arras') . '">' . __('(Edit Post)', 'arras') . '</a>';
 			}
 
-			if ( !is_attachment() && arras_get_option('post_cats') ) {
+			if ( !is_attachment() && $this->get_option('post_cats') ) {
 				$post_cats = array();
 				$cats = get_the_category();
 				foreach ($cats as $c) $post_cats[] = '<a href="' . get_category_link($c->cat_ID) . '">' . $c->cat_name . '</a>';
@@ -238,6 +238,34 @@ class TemplateEngine {
 	}
 
 	/**
+	 * Display navigation to next/previous post when applicable.
+	 *
+	 * @return void
+	 */
+	function post_nav() {
+		// Don't print empty markup if there's nowhere to navigate.
+		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
+		$next     = get_adjacent_post( false, '', false );
+
+		if ( ! $next && ! $previous ) {
+			return;
+		}
+		?>
+		<nav class="navigation post-navigation clearfix" role="navigation">
+			<!-- <h1 class="screen-reader-text"><?php// _e( 'Post navigation', 'arras' ); ?></h1>-->
+			<div class="nav-links">
+				<?php if ( $previous ) {?>
+					<div class="floatleft"><?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'arras' ) ); ?></div>
+				<?php }
+				if ( $next ) {?>
+					<div class="floatright"><?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'arras' ) ); ?></div>
+				<?php }?>
+			</div><!-- .nav-links -->
+		</nav><!-- .navigation -->
+		<?php
+	}
+
+	/**
 	 * Displays when the specified post/archive requested by the user is not found.
 	 * @since	1.2.2
 	 */
@@ -262,6 +290,70 @@ class TemplateEngine {
 		echo apply_filters('arras_post_notfound', $postcontent);
 	}
 
+	/**
+	 * Function adapted from http://graveyard.maniacalrage.net/etc/relative/.
+	 * @since 1.6
+	 */
+	function posted_on( $echo = 1 ) {
+		if ( ! $this->get_option( 'relative_postdates' ) ) {
+			$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
+		} else {
+			$diff = current_time( 'timestamp' ) - get_the_time( 'U' );
+
+			$months = floor( $diff / 2592000 );
+			$diff -= $months * 2419200;
+
+			$weeks = floor( $diff / 604800 );
+			$diff -= $weeks * 604800;
+
+			$days = floor( $diff / 86400 );
+			$diff -= $days * 86400;
+
+			$hours = floor( $diff / 3600 );
+			$diff -= $hours * 3600;
+
+			$minutes = floor( $diff / 60 );
+			$diff -= $minutes * 60;
+
+			if ( $months > 0 || $months < 0 ) {
+				// over a month old, just show date
+				$result = sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
+			} else {
+				if ( $weeks > 0 ) {
+					// weeks
+					if ( $weeks > 1 )
+						$result = sprintf( __( '%s weeks ago', 'arras' ), number_format_i18n( $weeks ) );
+					else
+						$result = __( '1 week ago', 'arras' );
+				} elseif ( $days > 0 ) {
+					// days
+					if ( $days > 1 )
+						$result = sprintf( __( '%s days ago', 'arras' ), number_format_i18n( $days ) );
+					else
+						$result = __( '1 day ago', 'arras' );
+				} elseif ( $hours > 0 ) {
+					// hours
+					if ( $hours > 1 )
+						$result = sprintf( __( '%s hours ago', 'arras' ), number_format_i18n( $hours ) );
+					else
+						$result = __( '1 hour ago', 'arras' );
+				} elseif ( $minutes > 0 ) {
+					// minutes
+					if ( $minutes > 1 )
+						$result = sprintf( __( '%s minutes ago', 'arras' ), number_format_i18n( $minutes ) );
+					else
+						$result = __( '1 minute ago', 'arras' );
+				} else {
+					// seconds
+					$result = __( 'less than a minute ago', 'arras' );
+				}
+			}
+
+		}
+
+		if ( $echo ) echo $result;
+		return $result;
+	}
 
 
 }

@@ -898,7 +898,7 @@ hr {
 .wrap-alt {
   padding: 10px 23.8%; }
 
-.type-page, .single-post {
+.page .page, .single .post {
   background: #fff;
   border: 1px solid #ccc; }
 
@@ -1384,7 +1384,7 @@ nav {
   font-weight: bold; }
 
 /* --- Page --- */
-.type-page {
+.page .page {
   padding: 0 15px; }
 
 /** ----- Footer Widgets ----- */
@@ -1758,7 +1758,7 @@ nav {
   padding: 5px; }
 
 /* --- Single Template */
-.single-post {
+.single .post {
   padding: 0 15px; }
 
 .single .entry-info,
