@@ -1,0 +1,37 @@
+/* --------------------
+ * 6. Components
+ * -------------------- */
+@import "wp";
+
+@import "layout/site.header";
+@import "layout/content";
+@import "layout/sidebars";
+@import "layout/site.footer";
+
+@import "menus/primary-menu";
+@import "menus/secondary-menu";
+@import "navigation";
+
+@import "pages/page";
+
+@import "widgets/widgets.footer";
+
+@import "pages/slides";
+
+@import "titles";
+
+@import "entries";
+@import "profile";
+
+@import "pages/node-tapestry";
+@import "pages/quick-tapestry";
+@import "pages/line-tapestry";
+
+@import "pages/single";
+@import "pages/comments";
+
+@import "pages/author";
+@import "search";
+@import "galleries";
+
+@import "forms";

@@ -186,16 +186,16 @@ figure {
 
 /* --- Links --- */
 a {
-  color: blue;
+  color: #313428;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.25s ease; }
   a:visited {
-    color: blue; }
+    color: #313428; }
   a:active, a:hover {
     outline: none; }
   a:hover {
-    color: #8888ff; }
+    color: #c00; }
 
 /* Lists */
 dl {
@@ -880,12 +880,6 @@ hr {
 
 /*  Alignments
  * ------------------------------------------------------------------ */
-.floatleft {
-  float: left; }
-
-.floatright {
-  float: right; }
-
 .textcenter {
   text-align: center; }
 
@@ -904,11 +898,47 @@ hr {
 .wrap-alt {
   padding: 10px 23.8%; }
 
+.type-page, .single-post {
+  background: #fff;
+  border: 1px solid #ccc; }
+
 /* ----- Navigation ----- */
 nav {
   display: flex; }
   nav ul {
     list-style: none; }
+
+/** ----- Titles ----- */
+.entry-title {
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.3;
+  margin: 1em 0 0;
+  padding: 0; }
+
+/* --- Media --- */
+.alignnone {
+  clear: both;
+  margin: 10px auto; }
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 10px auto; }
+
+.alignright {
+  float: right;
+  margin-left: 10px; }
+
+.alignleft {
+  float: left;
+  margin-right: 10px; }
+
+.avatar {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 2px; }
 
 /* --------------------
  * 6. Components
@@ -916,38 +946,6 @@ nav {
 /** --------------------------------------------------------------------
  * WordPress Core Generated Classes
  * ------------------------------------------------------------------ */
-.alignnone,
-div .alignnone,
-a img .alignnone {
-  clear: both;
-  margin: 10px auto; }
-
-.aligncenter,
-div .aligncenter,
-a img .aligncenter {
-  clear: both;
-  display: block;
-  margin: 10px auto; }
-
-.alignright,
-div .alignright,
-a img .alignright {
-  float: right;
-  margin: 10px 0 10px 10px; }
-
-.alignleft,
-div .alignleft,
-a img .alignleft {
-  float: left;
-  margin: 10px 10px 10px 0; }
-
-img.aligncenter,
-img.alignright,
-img.alignleft {
-  background: #F3F3F3;
-  border: 1px solid #ddd;
-  padding: 4px; }
-
 .wp-caption {
   background: #f3f3f3;
   border: 1px solid #ddd;
@@ -1002,19 +1000,6 @@ img.alignleft {
   width: auto;
   z-index: 100000; }
 
-/* Structure */
-.site {
-  position: relative; }
-
-.page-body {
-  min-height: 100%;
-  padding: 20px 0; }
-
-.page-content {
-  background: #f5f5f5;
-  border: 1px solid #d3d1c7;
-  padding: 10px; }
-
 /* --- Site Header --- */
 .page-header {
   background: #1e1b1a;
@@ -1058,6 +1043,19 @@ img.alignleft {
 
 .headerwidgets .widgetcontainer:last-child {
   margin-bottom: 0; }
+
+/* Structure */
+.site {
+  position: relative; }
+
+.page-body {
+  min-height: 100%;
+  padding: 20px 0; }
+
+.page-content {
+  background: #f5f5f5;
+  border: 1px solid #d3d1c7;
+  padding: 10px; }
 
 /* Sidebars and Widgets */
 .xoxo {
@@ -1381,6 +1379,14 @@ img.alignleft {
       .menu-top li a:hover {
         color: #f0f0f0; }
 
+/** ----- Other Navigation ----- */
+.link-pages {
+  font-weight: bold; }
+
+/* --- Page --- */
+.type-page {
+  padding: 0 15px; }
+
 /** ----- Footer Widgets ----- */
 .page-footer .widgetcontainer {
   background: none;
@@ -1545,6 +1551,24 @@ img.alignleft {
 
 .tags a:hover {
   text-decoration: underline; }
+
+/* --- Author Profile --- */
+.author-profile {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  line-height: 1.5em;
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 10px; }
+
+.profile-title {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin: 0; }
+
+.profile-content {
+  margin-top: 10px; }
 
 /* Tapestry Node (Default) */
 .node-group {
@@ -1733,22 +1757,9 @@ img.alignleft {
   margin: 3px -5px;
   padding: 5px; }
 
-/* Single Template */
-.single .single-post,
-.page .single-post,
-.traditional .single-post {
-  background: #FFF;
-  border: 1px solid #CCC;
-  margin: 0 10px 15px 0;
+/* --- Single Template */
+.single-post {
   padding: 0 15px; }
-
-.single .entry-title,
-.page .entry-title,
-.traditional .entry-title {
-  font-weight: bold;
-  line-height: 1.3em;
-  margin: 15px 0 5px;
-  padding: 0; }
 
 .single .entry-info,
 .page .entry-info,
@@ -2077,29 +2088,6 @@ img.alignleft {
 
 .author-content dl {
   margin-left: 115px; }
-
-.about-author {
-  border: 1px solid #CCC;
-  background: #F5F5F5; }
-
-.about-author {
-  padding: 10px;
-  margin: 0 0 10px;
-  line-height: 1.5em; }
-
-.about-author .avatar {
-  margin-bottom: 0; }
-
-.about-author .author-meta {
-  float: left;
-  width: 85%; }
-
-.avatar {
-  float: left;
-  margin: 0 10px 10px 0;
-  border: 1px solid #CCC;
-  padding: 2px;
-  background: #FFF; }
 
 /* Search Template */
 .search-results-title {

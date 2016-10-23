@@ -107,6 +107,14 @@ function arras_below_post() {
 }
 
 /**
+ * Called before the comments (form)
+ * @since 1.2.1
+ */
+function arras_above_comments() {
+	do_action('arras_below_comments');
+}
+
+/**
  * Called after the comments (form)
  * @since 1.2.1
  */

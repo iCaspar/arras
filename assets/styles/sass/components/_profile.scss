@@ -1,0 +1,19 @@
+/* --- Author Profile --- */
+.author-profile  {
+	background: $base-content-background;
+	border: 1px solid $base-border-color;
+	line-height: 1.5em;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding: 10px;
+}
+
+.profile-title {
+	@include font-size(0.875);
+	font-weight: bold;
+	margin: 0;
+}
+
+.profile-content {
+	margin-top: 10px;
+}

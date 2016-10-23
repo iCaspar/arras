@@ -1,20 +1,7 @@
-/* Single Template */
-.single .single-post,
-.page .single-post,
-.traditional .single-post {
-	background: #FFF;
-	border: 1px solid #CCC;
-	margin: 0 10px 15px 0;
+/* --- Single Template */
+.single-post {
+	@extend %post;
 	padding: 0 15px;
-}
-
-.single .entry-title,
-.page .entry-title,
-.traditional .entry-title {
-	font-weight: bold;
-	line-height: 1.3em;
-	margin: 15px 0 5px;
-	padding: 0;
 }
 
 .single .entry-info,

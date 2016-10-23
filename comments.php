@@ -13,6 +13,10 @@ $comments_by_type = separate_comments($comments);
 
 if ( have_comments() ) : ?>
 
+	<?php arras_above_comments(); ?>
+
+	<a name="comments"></a>
+
 	<?php if ( !empty($comments_by_type['comment']) ) : ?>
 	<h4 class="module-title"><?php comments_number( __('No Comments', 'arras'), __('1 Comment', 'arras'), _n('% Comment', '% Comments', get_comments_number(), 'arras') ); ?></h4>
 		<ol id="commentlist" class="comment-list group">
@@ -60,5 +64,7 @@ if ( have_comments() ) : ?>
 		)
 	);
 	?>
+
+	<?php arras_below_comments(); ?>
 
 <?php endif ?>

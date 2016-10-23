@@ -5,80 +5,10 @@
  * Do not alter this file. Use a child theme.
  */
 
-
-/* --------------------
- * 1. Settings
- * -------------------- */
-@import "settings/colors";
-@import "settings/fonts";
-@import "settings/global.variables";
-
-/* --------------------
- * 2. Tools
- * -------------------- */
-@import "tools/mixins";
-
-/* --------------------
- * 3. Generic
- * -------------------- */
-@import "generic/reset";
-
-/* --------------------
- * 4. Elements
- * -------------------- */
-@import "elements/headings";
-@import "elements/text";
-@import "elements/images";
-@import "elements/links";
-@import "elements/lists";
-@import "elements/tables";
-@import "elements/forms";
-@import "elements/borders";
-
-/* --------------------
- * 5. Objects
- * -------------------- */
-@import "objects/grid";
-@import "objects/alignments";
-@import "objects/layouts";
-@import "objects/navigation";
-
-
-/* --------------------
- * 6. Components
- * -------------------- */
-@import "components/wp";
-
-@import "components/page/content";
-
-@import "components/page/site.header";
-@import "components/page/sidebars";
-@import "components/page/site.footer";
-
-@import "components/menus/primary-menu";
-@import "components/menus/secondary-menu";
-
-@import "components/widgets/widgets.footer";
-
-@import "components/views/slides";
-
-@import "components/titles";
-@import "components/entries";
-
-@import "components/views/node-tapestry";
-@import "components/views/quick-tapestry";
-@import "components/views/line-tapestry";
-
-@import "components/views/single";
-@import "components/views/comments";
-
-@import "components/author";
-@import "components/search";
-@import "components/galleries";
-
-@import "components/forms";
-
-/* --------------------
- * 7. Trumps
- * -------------------- */
-
+@import "settings/settings";
+@import "tools/tools";
+@import "generic/generic";
+@import "elements/elements";
+@import "objects/objects";
+@import "components/components";
+@import "trumps/trumps";

@@ -1,0 +1,9 @@
+/** ----- Titles ----- */
+.entry-title {
+	@include font-size(1.5);
+	font-weight: bold;
+	line-height: 1.3;
+	margin: 1em 0 0;
+	padding: 0;
+}
+

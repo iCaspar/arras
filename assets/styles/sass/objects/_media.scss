@@ -1,0 +1,27 @@
+/* --- Media --- */
+.alignnone {
+	clear: both;
+	margin: 10px auto;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 10px auto;
+}
+
+.alignright {
+	float: right;
+	margin-left: 10px;
+}
+
+.alignleft {
+	float: left;
+	margin-right: 10px;
+}
+
+.avatar {
+	background: $secondary-content-background;
+	border: 1px solid $base-border-color;
+	padding: 2px;
+}

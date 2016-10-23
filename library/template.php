@@ -300,13 +300,6 @@ function arras_list_comments($comment, $args, $depth) {
 <?php
 }
 
-function arras_post_class( $args = array( 'entry' ) ) {
-	return post_class( apply_filters( 'arras_post_class', $args ) );
-}
-
-function arras_single_post_class() {
-	return post_class( apply_filters('arras_single_post_class', array('group', 'single-post')) );
-}
 
 function arras_parse_single_custom_fields() {
 	if (arras_get_option('single_custom_fields') == '') return false;

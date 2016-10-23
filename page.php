@@ -1,43 +1,54 @@
-<?php get_header(); ?>
+<?php
+/**
+ *    The Arras theme page template.
+ */
 
-<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
-<?php arras_above_content() ?>
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'page' );
+?>
 
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-	<?php arras_above_post() ?>
-	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
-        <?php arras_postheader() ?>
+<?php include 'header.php'; ?>
 
-        <div class="entry-content clearfix">
-		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>
-        <?php wp_link_pages(array('before' => __('<p><strong>Pages:</strong> ', 'arras'),
-			'after' => '</p>', 'next_or_number' => 'number')); ?>
-		</div>
+<?php arras_above_content(); ?>
 
-		<?php arras_postfooter() ?>
+	<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
 
-        <?php if ( arras_get_option('display_author') ) : ?>
-        <div class="about-author clearfix">
-        	<h4><?php _e('About the Author', 'arras') ?></h4>
-            <?php echo get_avatar(get_the_author_meta('ID'), 48); ?>
-            <?php the_author_meta('description'); ?>
-        </div>
-        <?php endif; ?>
-    </div>
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	<?php arras_below_post() ?>
-	<a name="comments"></a>
-    <?php comments_template('', true); ?>
-	<?php arras_below_comments() ?>
+			<?php arras_above_post() ?>
 
-<?php endwhile; else: ?>
+			<div id="post-<?php the_ID() ?>" <?php post_class( [ 'group' ] ); ?>>
+				<?php $arras->postheader() ?>
 
-<?php arras_post_notfound() ?>
+				<div class="entry-content">
+					<?php the_content( __( '<p>Read the rest of this entry &raquo;</p>', 'arras' ) ); ?>
+					<?php $arras->link_pages(); ?>
+				</div>
 
-<?php endif; ?>
+				<?php $arras->postfooter() ?>
+
+				<?php if ( $arras->get_option( 'display-author-page' ) ) : ?>
+					<?php include 'views/author-profile.php'; ?>
+				<?php endif; ?>
+			</div>
+
+			<?php arras_below_post() ?>
+
+			<?php comments_template( '', true ); ?>
+
+		<?php endwhile;
+		else: ?>
+
+			<?php $arras->post_notfound() ?>
+
+		<?php endif; ?>
+
+	</div>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php include 'sidebar.php'; ?>
+
+<?php include 'footer.php'; ?>
