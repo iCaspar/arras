@@ -28,8 +28,8 @@ if ( ! defined( 'ARRAS_CONFIG_DIR' ) ) {
 	define( 'ARRAS_CONFIG_DIR', ARRAS_THEME_DIR . '/config/' );
 }
 
-if ( ! defined( 'ARRAS_TEMPLATE_DIR' ) ) {
-	define( 'ARRAS_TEMPLATE_DIR', ARRAS_THEME_DIR . '/templates/' );
+if ( ! defined( 'ARRAS_VIEWS_DIR' ) ) {
+	define( 'ARRAS_VIEWS_DIR', ARRAS_THEME_DIR . '/views/' );
 }
 
 if ( ! defined( 'ARRAS_THEME_URL' ) ) {

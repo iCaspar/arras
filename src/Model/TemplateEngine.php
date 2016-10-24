@@ -190,14 +190,14 @@ class TemplateEngine {
 		}
 
 		if ( ! is_page() ) {
-			$postheader .= '<div class="entry-info">';
+			$postheader .= '<div class="entry-meta">';
 
 			if ( $this->get_option('post_author') ) {
 				$postheader .= sprintf( __('<div class="entry-author">By %s</div>', 'arras'), '<address class="author vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta('ID') ) . '" rel="author" title="' . esc_attr(get_the_author()) . '">' . get_the_author() . '</a></address>' );
 			}
 
 			if ( $this->get_option('post_date') ) {
-				$postheader .= ' &ndash; <abbr class="published" title="' . get_the_time('c') . '">' . sprintf( __('Posted %s', 'arras'), $this->posted_on( false ) ) . '</abbr>';
+				$postheader .= ' &ndash; <span class="published" title="' . get_the_time('c') . '">' . sprintf( __('Posted %s', 'arras'), $this->posted_on( false ) ) . '</span>';
 			}
 
 			if (current_user_can('edit_post', $id)) {
@@ -232,7 +232,7 @@ class TemplateEngine {
 		$postfooter = '';
 
 		if ( $this->get_option('post_tags') && !is_attachment() && is_array(get_the_tags()) )
-			$postfooter .= '<div class="tags"><strong>' . __('Tags:', 'arras') . '</strong>' . get_the_tag_list(' ', ', ', ' ') . '</div>';
+			$postfooter .= '<div class="entry-meta-footer"><span class="meta-label">' . __('Tags:', 'arras') . '</span>' . get_the_tag_list(' ', ', ', ' ') . '</div>';
 
 		echo apply_filters('arras_postfooter', $postfooter);
 	}
@@ -245,24 +245,13 @@ class TemplateEngine {
 	function post_nav() {
 		// Don't print empty markup if there's nowhere to navigate.
 		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-		$next     = get_adjacent_post( false, '', false );
+		$next     = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', false );
 
 		if ( ! $next && ! $previous ) {
 			return;
 		}
-		?>
-		<nav class="navigation post-navigation clearfix" role="navigation">
-			<!-- <h1 class="screen-reader-text"><?php// _e( 'Post navigation', 'arras' ); ?></h1>-->
-			<div class="nav-links">
-				<?php if ( $previous ) {?>
-					<div class="floatleft"><?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'arras' ) ); ?></div>
-				<?php }
-				if ( $next ) {?>
-					<div class="floatright"><?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'arras' ) ); ?></div>
-				<?php }?>
-			</div><!-- .nav-links -->
-		</nav><!-- .navigation -->
-		<?php
+
+		include ARRAS_VIEWS_DIR . 'post-nav.php';
 	}
 
 	/**

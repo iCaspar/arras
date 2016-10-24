@@ -20,6 +20,11 @@ button {
 	background: $base-button-background;
 	color: $inverted-font-color;
 	overflow: visible;
+
+	&:hover {
+		background: $disabled-background;
+		color: $base-font-color;
+	}
 }
 
 button,

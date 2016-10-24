@@ -79,5 +79,7 @@ return [
 		'post_author'         => true,
 		'post_date'           => true,
 		'post_cats'           => true,
+		'post_tags'           => true,
+		'show-post-nav'       => true,
 	]
 ];

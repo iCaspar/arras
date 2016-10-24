@@ -115,7 +115,7 @@ class Menu {
 		$main = 'main' == $this->location ? 'primary-menu wrap ' : '';
 		$class = sprintf( '%smenu-%s-container', $main, $this->location );
 
-		include 'html/fallback-menu.php';
+		include ARRAS_VIEWS_DIR . 'fallback-menu.php';
 	}
 
 }

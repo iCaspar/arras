@@ -250,6 +250,9 @@ button {
   background: #313428;
   color: #f0f0f0;
   overflow: visible; }
+  button:hover {
+    background: #aaa;
+    color: #333; }
 
 button,
 select {
@@ -908,6 +911,17 @@ nav {
   nav ul {
     list-style: none; }
 
+/* --- Buttons --- */
+.button, .post-nav a {
+  background: #313428;
+  color: #f0f0f0;
+  cursor: pointer;
+  overflow: visible;
+  padding: .5em 1em; }
+  .button:hover, .post-nav a:hover {
+    background: #aaa;
+    color: #333; }
+
 /** ----- Titles ----- */
 .entry-title {
   font-size: 24px;
@@ -1383,6 +1397,18 @@ nav {
 .link-pages {
   font-weight: bold; }
 
+.post-navigation {
+  font-size: 14px;
+  font-size: 0.875rem;
+  margin: 10px 0; }
+
+.post-nav a {
+  display: inline-block;
+  margin-right: 10px; }
+
+.post-nav a {
+  float: left; }
+
 /* --- Page --- */
 .page .page {
   padding: 0 15px; }
@@ -1551,6 +1577,27 @@ nav {
 
 .tags a:hover {
   text-decoration: underline; }
+
+/* --- Meta --- */
+.entry-meta, .entry-meta-footer {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #848485; }
+
+.entry-meta {
+  border-bottom: 1px dotted #ccc;
+  margin-top: .25em;
+  padding-bottom: .5em;
+  text-transform: uppercase; }
+
+.entry-meta-footer {
+  border-top: 1px dotted #ccc;
+  font-weight: bold;
+  margin: 1.5em 0 1em;
+  padding-top: 1em; }
+
+.meta-label {
+  text-transform: uppercase; }
 
 /* --- Author Profile --- */
 .author-profile {
