@@ -1,6 +1,6 @@
 <?php
 /**
- *    The Arras theme single post template.
+ * The Arras theme single post template.
  */
 
 /**
@@ -41,7 +41,6 @@ $arras = apply_filters( 'arras_template', 'single' );
 			<?php arras_below_post() ?>
 
 			<?php comments_template( '', true ); ?>
-			<?php arras_below_comments() ?>
 
 		<?php endwhile;
 		else: ?>

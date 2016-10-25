@@ -30,6 +30,11 @@ class Arras {
 	protected $menus;
 
 	/**
+	 * @var The Template engine.
+	 */
+	protected $template_engine;
+
+	/**
 	 * Arras constructor.
 	 *
 	 * @param Config $config Theme configuration manager.
@@ -49,6 +54,8 @@ class Arras {
 
 		$this->menus = new Menu( $this->config->getSetting( 'menus' ) );
 		$this->menus->init();
+
+		$this->template_engine = new TemplateEngine( $this->config, $this->menus );
 
 		add_action( 'after_setup_theme', array( $this, 'i18n' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_support' ) );
@@ -148,14 +155,20 @@ class Arras {
 	/* Todo: Load and instantiate color scheme controller class */
 
 	/**
-	 * Fire the Controller to initiate page rendering.
+	 * Return the template engine with the appropriate template type.
 	 *
-	 * This is hooked to the 'arras_templates' action and called from the index.php file.
+	 * This is hooked to the 'arras_templates' action and called from template files.
 	 *
-	 * @return void
+	 * @param string $template_type Template type to set.
+	 *
+	 * @return TemplateEngine
 	 */
 	public function render( $template_type ) {
-		return new TemplateEngine( $this->config, $this->menus, $template_type );
+		$sub_template = in_array( $template_type, [ 'header', 'comments', 'sidebar', 'footer' ] );
+
+		$this->template_engine->set_template( $template_type, $sub_template );
+
+		return $this->template_engine;
 	}
 
 }
