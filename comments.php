@@ -52,24 +52,40 @@ if ( have_comments() ) : ?>
 
 
 	<?php if ( ! empty( $comments_by_type['pings'] ) ) : ?>
-		<h3 class="module-title"><?php _e( 'Trackbacks / Pings', 'arras' ) ?></h3>
-		<ol class="pingbacks"><?php wp_list_comments( [
-				'type'     => 'pings',
-				'callback' => array( $arras, 'list_trackbacks' ),
-			] ); ?>
-		</ol>
+		<div class="module pingback-list">
+			<h3 class="module-title"><?php _e( 'Trackbacks / Pings', 'arras' ) ?></h3>
+			<ol class="pingbacks"><?php wp_list_comments( [
+					'type'     => 'pings',
+					'callback' => array( $arras, 'list_trackbacks' ),
+				] ); ?>
+				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+					<li class="comments-navigation-container">
+						<div class="comments-navigation">
+							<?php paginate_comments_links( [
+								'prev_text' => '<i class="fa fa-arrow-circle-left"></i> ' . _x( 'Previous', 'previous comments link', 'arras' ),
+								'next_text' => _x( 'Next', 'next comments link', 'arras' ) . ' <i class="fa fa-arrow-circle-right"></i>',
+							] ); ?>
+						</div>
+					</li>
+				<?php endif; ?>
+			</ol>
+		</div>
 	<?php endif; ?>
 
 <?php else: ?>
 	<?php if ( 'open' == $post->comment_status ) : ?>
-		<h3 class="module-title"><?php _e( 'No Comments', 'arras' ) ?></h3>
-		<p class="nocomments"><?php _e( 'Start the ball rolling by posting a comment on this article!', 'arras' ) ?></p>
+		<div class="module no-comments">
+			<h3 class="module-title"><?php _e( 'No Comments', 'arras' ) ?></h3>
+			<p class="nocomments"><?php _e( 'Start the ball rolling by posting a comment on this article!', 'arras' ) ?></p>
+		</div>
 	<?php endif ?>
 <?php endif; ?>
 
 <?php if ( 'closed' == $post->comment_status ) : if ( ! is_page() ) : ?>
-	<h3 class="module-title"><?php _e( 'Comments Closed', 'arras' ) ?></h3>
-	<p class="nocomments"><?php _e( 'Comments are closed. You will not be able to post a comment in this post.', 'arras' ) ?></p>
+	<div class="module no-comments">
+		<h3 class="module module-title"><?php _e( 'Comments Closed', 'arras' ) ?></h3>
+		<p class="nocomments"><?php _e( 'Comments are closed. You will not be able to post a comment in this post.', 'arras' ) ?></p>
+	</div>
 <?php endif;
 else: ?>
 

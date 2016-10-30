@@ -36,7 +36,7 @@ $comments-form-background: $white;
 	}
 
 	.comment-node {
-		background: #FFF;
+		background: $comments-form-background;
 		border: 1px solid $base-border-color;
 		margin-top: 10px;
 		padding: 10px;
@@ -71,6 +71,8 @@ $comments-form-background: $white;
 /* --- Comment Navigation --- */
 .comments-navigation-container {
 	@extend .module;
+	list-style: none;
+	padding: 0;
 }
 
 .comments-navigation a {
@@ -83,17 +85,19 @@ $comments-form-background: $white;
 
 /* --- Pingbacks --- */
 .pingbacks {
-	background: #FFF;
-	border: solid #CCC;
-	border-width: 0 1px 1px;
-	padding: 15px 10px 15px 30px;
-	margin: 0 10px 20px 0;
+	background: $comments-form-background;
+	border: 1px solid $base-border-color;
+	padding: 0 10px 10px;
+	margin: 0;
 
-	li {
-		padding: 2px 0;
-		font-weight: 700;
+	.pingback {
+		@include font-size(0.875);
+		margin: 10px 0 0 20px;
+		font-weight: bold;
 	}
-	a:link, .pingbacks a:visited {
+
+	a:link,
+	a:visited {
 		text-decoration: none;
 	}
 }
