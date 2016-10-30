@@ -124,7 +124,10 @@ $comments-form-background: $white;
 		width: 90%;
 	}
 
-	input[type=text] {
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="url"] {
 		display: block;
 		width: 75%;
 		max-width: 350px;

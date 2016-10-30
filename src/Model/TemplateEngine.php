@@ -33,8 +33,8 @@ class TemplateEngine {
 	 * @param string $template Current template context.
 	 */
 	public function __construct( Config $config, Menu $menus ) {
-		$this->config   = $config;
-		$this->menus    = $menus;
+		$this->config = $config;
+		$this->menus  = $menus;
 
 		$this->hooks();
 	}
@@ -98,6 +98,15 @@ class TemplateEngine {
 		] );
 	}
 
+	/**
+	 * Customize comment paging links.
+	 * @return void
+	 */
+	public function comments_page_links() {
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
+			include ARRAS_VIEWS_DIR . 'comment-page-nav.php';
+		}
+	}
 
 	//* ----- CALLBACKS ----- */
 
@@ -379,30 +388,32 @@ class TemplateEngine {
 		return $result;
 	}
 
-	function list_comments($comment, $args, $depth) {
+	function list_comments( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
 		<div class="comment-node" id="comment-<?php comment_ID(); ?>">
 			<div class="comment-controls">
-				<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+				<?php comment_reply_link( array_merge( $args, array( 'depth'     => $depth,
+				                                                     'max_depth' => $args['max_depth']
+				) ) ) ?>
 			</div>
 			<div class="comment-author vcard">
-				<?php echo get_avatar($comment, $size = 40) ?>
+				<?php echo get_avatar( $comment, $size = 40 ) ?>
 				<div class="fn comment-author-name"><?php echo get_comment_author_link() ?></div>
 			</div>
 			<?php if ( $comment->comment_approved == '0' ) : ?>
-				<span class="comment-moderation"><?php _e('Your comment is awaiting moderation.', 'arras') ?></span>
+				<span class="comment-moderation"><?php _e( 'Your comment is awaiting moderation.', 'arras' ) ?></span>
 			<?php endif; ?>
 			<div class="comment-meta commentmetadata">
-				<?php printf( __('Posted %1$s at %2$s', 'arras'), '<abbr class="comment-datetime" title="' . get_comment_time( __('c', 'arras') ) . '">' . get_comment_time( __('F j, Y', 'arras') ), get_comment_time( __('g:i A', 'arras') ) . '</abbr>' ); ?>
+				<?php printf( __( 'Posted %1$s at %2$s', 'arras' ), '<abbr class="comment-datetime" title="' . get_comment_time( __( 'c', 'arras' ) ) . '">' . get_comment_time( __( 'F j, Y', 'arras' ) ), get_comment_time( __( 'g:i A', 'arras' ) ) . '</abbr>' ); ?>
 			</div>
 			<div class="comment-content"><?php comment_text() ?></div>
 		</div>
 		<?php
 	}
 
-	function list_trackbacks($comment, $args, $depth) {
+	function list_trackbacks( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		?>
 	<li <?php comment_class(); ?> id="li-trackback-<?php comment_ID() ?>">

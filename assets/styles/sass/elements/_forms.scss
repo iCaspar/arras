@@ -63,7 +63,11 @@ fieldset {
 	padding: .5em .25em;
 }
 
-input[type=text], input[type=password], textarea {
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+textarea {
 	@extend %fields;
 	border: 1px solid $base-border-color;
 }
