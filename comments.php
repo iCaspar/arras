@@ -27,37 +27,48 @@ if ( have_comments() ) : ?>
 	<a name="comments"></a>
 
 	<?php if ( ! empty( $comments_by_type['comment'] ) ) : ?>
-		<h4 class="module-title"><?php comments_number( __( 'No Comments', 'arras' ), __( '1 Comment', 'arras' ), _n( '% Comment', '% Comments', get_comments_number(), 'arras' ) ); ?></h4>
-		<ol id="commentlist" class="comment-list group">
-			<?php wp_list_comments( [
-				'type'     => 'comment',
-				'callback' => array( $arras, 'list_comments' ),
-			] ); ?>
-		</ol>
+		<div class="module comments">
+			<h3 class="module-title comments-title"><?php comments_number( __( 'No Comments', 'arras' ), __( '1 Comment', 'arras' ), _n( '% Comment', '% Comments', get_comments_number(), 'arras' ) ); ?></h3>
+
+			<ol id="comment-list" class="comment-list group">
+				<?php wp_list_comments( [
+					'type'     => 'comment',
+					'callback' => array( $arras, 'list_comments' ),
+				] ); ?>
+
+				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+					<li class="comments-navigation-container">
+						<div class="comments-navigation">
+							<?php paginate_comments_links( [
+								'prev_text' => '<i class="fa fa-arrow-circle-left"></i> ' . _x( 'Previous', 'previous comments link', 'arras' ),
+								'next_text' => _x( 'Next', 'next comments link', 'arras' ) . ' <i class="fa fa-arrow-circle-right"></i>',
+							] ); ?>
+						</div>
+					</li>
+				<?php endif; ?>
+			</ol>
+		</div>
 	<?php endif; ?>
 
-	<div class="comments-navigation clearfix">
-		<?php paginate_comments_links() ?>
-	</div>
 
 	<?php if ( ! empty( $comments_by_type['pings'] ) ) : ?>
-		<h4 class="module-title"><?php _e( 'Trackbacks / Pings', 'arras' ) ?></h4>
+		<h3 class="module-title"><?php _e( 'Trackbacks / Pings', 'arras' ) ?></h3>
 		<ol class="pingbacks"><?php wp_list_comments( [
-			'type'=>'pings',
-			'callback'=>array( $arras, 'list_trackbacks' ),
+				'type'     => 'pings',
+				'callback' => array( $arras, 'list_trackbacks' ),
 			] ); ?>
 		</ol>
 	<?php endif; ?>
 
 <?php else: ?>
 	<?php if ( 'open' == $post->comment_status ) : ?>
-		<h4 class="module-title"><?php _e( 'No Comments', 'arras' ) ?></h4>
+		<h3 class="module-title"><?php _e( 'No Comments', 'arras' ) ?></h3>
 		<p class="nocomments"><?php _e( 'Start the ball rolling by posting a comment on this article!', 'arras' ) ?></p>
 	<?php endif ?>
 <?php endif; ?>
 
 <?php if ( 'closed' == $post->comment_status ) : if ( ! is_page() ) : ?>
-	<h4 class="module-title"><?php _e( 'Comments Closed', 'arras' ) ?></h4>
+	<h3 class="module-title"><?php _e( 'Comments Closed', 'arras' ) ?></h3>
 	<p class="nocomments"><?php _e( 'Comments are closed. You will not be able to post a comment in this post.', 'arras' ) ?></p>
 <?php endif;
 else: ?>
@@ -69,7 +80,8 @@ else: ?>
 
 	comment_form(
 		array(
-			'fields'        => array(
+			'title_reply_before' => '<h3 id="reply-title" class="module-title comment-reply-title">',
+			'fields'             => array(
 				'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'arras' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
 				            '<input id="author" class="required" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
 				'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'arras' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
@@ -77,7 +89,7 @@ else: ?>
 				'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'arras' ) . '</label>' .
 				            '<input id="url" class="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>'
 			),
-			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'arras' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>'
+			'comment_field'      => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'arras' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>'
 		)
 	);
 	?>

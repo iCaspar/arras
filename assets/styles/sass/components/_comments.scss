@@ -1,0 +1,128 @@
+/* --- Comments List --- */
+
+$comments-background: $wisp;
+$replies-gackground: $white-silver;
+$comments-form-background: $white;
+
+.comment-list {
+	background: $comments-background;
+	border: 1px solid $base-border-color;
+	list-style: none;
+	margin: 0;
+	padding: 0 10px 10px;
+
+	p {
+		clear: left;
+		line-height: 1.5;
+	}
+
+	.comment-controls {
+		@extend button;
+		float: right;
+	}
+
+	.avatar {
+		@extend .alignleft;
+	}
+
+	.comment-author-name {
+		font-weight: bold;
+	}
+
+	.comment-meta,
+	.comment-meta abbr {
+		border: none;
+		color: $meta-base-color;
+	}
+
+	.comment-node {
+		background: #FFF;
+		border: 1px solid $base-border-color;
+		margin-top: 10px;
+		padding: 10px;
+	}
+
+	.reply {
+		float: right;
+	}
+
+	.children {
+		clear: right;
+		list-style: none;
+		margin-left: 20px;
+		padding: 0;
+
+		.comment-node {
+			background: $replies-gackground;
+		}
+	}
+
+}
+
+.comment-respond {
+	@extend .module;
+}
+
+.comment .comment-respond {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* --- Comment Navigation --- */
+.comments-navigation-container {
+	@extend .module;
+}
+
+.comments-navigation a {
+	@extend button;
+}
+
+.comments-navigation .current {
+	@extend input[type="submit"];
+}
+
+/* --- Pingbacks --- */
+.pingbacks {
+	background: #FFF;
+	border: solid #CCC;
+	border-width: 0 1px 1px;
+	padding: 15px 10px 15px 30px;
+	margin: 0 10px 20px 0;
+
+	li {
+		padding: 2px 0;
+		font-weight: 700;
+	}
+	a:link, .pingbacks a:visited {
+		text-decoration: none;
+	}
+}
+
+	/* --- No Comments --- */
+.nocomments {
+	background: $comments-form-background;
+	border: 1px solid $base-border-color;
+	margin: 0;
+	padding: 10px;
+}
+
+/* --- Comment Form --- */
+.comment-form {
+	padding: 10px;
+	background: $comments-form-background;
+	border: 1px solid $base-border-color;
+
+	label {
+		color: $medium;
+	}
+
+	textarea {
+		width: 90%;
+	}
+
+	input[type=text] {
+		display: block;
+		width: 75%;
+		max-width: 350px;
+	}
+}

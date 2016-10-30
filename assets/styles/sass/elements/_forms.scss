@@ -1,10 +1,9 @@
 /* --- Forms --- */
-$base-form-background: $wisp;
+$base-form-background: $white;
+$base-button-background: $base-bar-gradient;
 $secondary-form-background: $light-shadow;
+$secondary-button-background: $rust;
 
-$base-button-background: $rust;
-$secondary-button-background: $medium-grey;
-$disabled-background: $light-grey;
 
 button,
 input,
@@ -17,13 +16,19 @@ textarea {
 }
 
 button {
+	@include font-size(0.875);
 	background: $base-button-background;
-	color: $inverted-font-color;
+	border: 1px solid $base-border-color;
+	border-radius: 3px;
+	color: $base-font-color;
+	cursor: pointer;
+	font-weight: bold;
 	overflow: visible;
+	padding: .3em .75em;
 
 	&:hover {
-		background: $disabled-background;
-		color: $base-font-color;
+		background: $secondary-button-background;
+		color: $inverted-font-color;
 	}
 }
 
@@ -32,16 +37,8 @@ select {
 	text-transform: none;
 }
 
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	-webkit-appearance: button;
-	cursor: pointer;
-}
-
 button[disabled],
-html input[disabled] {
+input[disabled] {
 	background: $disabled-background;
 	color: $base-font-color;
 	cursor: default;
@@ -59,12 +56,15 @@ fieldset {
 	padding: 0.35em 0.625em 0.75em;
 }
 
-input {
-	line-height: normal;
+%fields {
+	background: linear-gradient(to bottom, $light-shadow, $white 1em);
+	font-family: $secondary-font;
+	font-size: 0.875em;
+	padding: .5em .25em;
 }
 
 input[type=text], input[type=password], textarea {
-	background: $secondary-form-background;
+	@extend %fields;
 	border: 1px solid $base-border-color;
 }
 
@@ -76,26 +76,29 @@ input[type="radio"] {
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
+	@extend %fields;
 	height: auto;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
+	@extend %fields;
 	-webkit-appearance: none;
 }
 
-input[type=submit] {
-	background: $base-button-background;
-	border: 1px solid $base-border-color;
-	@include border-radius(3);
+input[type="submit"] {
+	@extend button;
+	background: $secondary-button-background;
 	color: $inverted-font-color;
-	font-weight: bold;
-	padding: 5px 10px;
+
+	&:hover {
+		background: $base-button-background;
+		color: $base-font-color;
+	}
 }
 
-input[type=submit]:hover {
-	background: $disabled-background;
-	color: $base-font-color;
+input[type="reset"] {
+	@extend button;
 }
 
 legend {
@@ -108,5 +111,6 @@ optgroup {
 }
 
 textarea {
+	@extend %fields;
 	overflow: auto;
 }

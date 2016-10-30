@@ -388,8 +388,8 @@ class TemplateEngine {
 				<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 			</div>
 			<div class="comment-author vcard">
-				<?php echo get_avatar($comment, $size = 32) ?>
-				<cite class="fn"><?php echo get_comment_author_link() ?></cite>
+				<?php echo get_avatar($comment, $size = 40) ?>
+				<div class="fn comment-author-name"><?php echo get_comment_author_link() ?></div>
 			</div>
 			<?php if ( $comment->comment_approved == '0' ) : ?>
 				<span class="comment-moderation"><?php _e('Your comment is awaiting moderation.', 'arras') ?></span>

@@ -33,3 +33,6 @@
 	margin-right: auto;
 }
 
+@mixin linear-gradient( $direction, $start-color, $end-color ) {
+	background: linear-gradient( to $direction, $start-color, $end-color );
+}

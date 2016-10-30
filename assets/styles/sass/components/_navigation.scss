@@ -1,20 +1,11 @@
 /** ----- Other Navigation ----- */
-.link-pages {
-	font-weight: bold;
-}
-
 .post-navigation {
 	@include font-size(0.875);
 	margin: 10px 0;
 }
 
-%post-nav {
-	display: inline-block;
-	margin-right: 10px;
-}
-
 .post-nav a {
-	@extend .button;
-	@extend %post-nav;
-	float: left;
+	@extend button;
+	display: inline-block;
+	margin: 0 1em 0 0;
 }
