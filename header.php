@@ -4,6 +4,11 @@
  *
  * @package Arras
  */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'header' );
 ?>
 
 <!DOCTYPE html>

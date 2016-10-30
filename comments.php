@@ -51,23 +51,25 @@ if ( have_comments() ) : ?>
 		</div>
 	<?php endif; ?>
 
-<?php endif; ?>
+<?php else: ?>
 
-<?php if ( 'open' == $post->comment_status ) : ?>
-	<div class="module no-comments">
-		<h3 class="module-title"><?php _e( 'No Comments', 'arras' ) ?></h3>
-		<p class="nocomments"><?php _e( 'Start the ball rolling by posting a comment on this article!', 'arras' ) ?></p>
-	</div>
-<?php endif ?>
-
-<?php if ( 'closed' == $post->comment_status ) : ?>
-	<?php if ( ! is_page() ) : ?>
+	<?php if ( 'open' == $post->comment_status ) : ?>
 		<div class="module no-comments">
-			<h3 class="module module-title"><?php _e( 'Comments Closed', 'arras' ) ?></h3>
-			<p class="nocomments"><?php _e( 'Comments are closed.', 'arras' ) ?></p>
+			<h3 class="module-title"><?php _e( 'No Comments', 'arras' ) ?></h3>
+			<p class="nocomments"><?php _e( 'Start the ball rolling by posting a comment on this article!', 'arras' ) ?></p>
 		</div>
-	<?php endif; ?>
+	<?php endif ?>
+
 <?php endif; ?>
+
+	<?php if ( 'closed' == $post->comment_status ) : ?>
+		<?php if ( ! is_page() ) : ?>
+			<div class="module no-comments">
+				<h3 class="module module-title"><?php _e( 'Comments Closed', 'arras' ) ?></h3>
+				<p class="nocomments"><?php _e( 'Comments are closed.', 'arras' ) ?></p>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
 
 <?php comment_form( [ 'title_reply_before' => '<h3 id="reply-title" class="module-title comment-reply-title">' ] ); ?>
 

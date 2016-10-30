@@ -1,3 +1,14 @@
+<?php
+/**
+ * Arras theme sidebar template.
+ */
+
+/**
+* @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+*/
+$arras = apply_filters( 'arras_template', 'sidebar' );
+?>
+
 <?php if ( '1c' !== $arras->get_option( 'layout' ) ): // don't show sidebars on single column layout ?>
 
 	<div id="primary" class="<?php echo $arras->layout_columns( 'primary' ); ?>">

@@ -9,7 +9,7 @@
 $arras = apply_filters( 'arras_template', 'page' );
 ?>
 
-<?php include 'header.php'; ?>
+<?php get_header(); ?>
 
 <?php arras_above_content(); ?>
 
@@ -49,6 +49,6 @@ $arras = apply_filters( 'arras_template', 'page' );
 
 <?php arras_below_content() ?>
 
-<?php include 'sidebar.php'; ?>
+<?php get_sidebar(); ?>
 
-<?php include 'footer.php'; ?>
+<?php get_footer(); ?>

@@ -208,7 +208,7 @@ class TemplateEngine {
 			if ( is_attachment() ) {
 				$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rev="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h1>';
 			} else {
-				$postheader .= '<h1 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h1>';
+				$postheader .= '<h1 class="entry-title">' . get_the_title() . '</h1>';
 			}
 
 		} else {

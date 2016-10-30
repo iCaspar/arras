@@ -10,7 +10,7 @@
 $arras = apply_filters( 'arras_template', 'index' );
 ?>
 
-<?php include 'header.php'; ?>
+<?php get_header(); ?>
 
 <?php arras_above_content(); ?>
 
@@ -20,6 +20,6 @@ $arras = apply_filters( 'arras_template', 'index' );
 
 <?php arras_below_content() ?>
 
-<?php include 'sidebar.php'; ?>
+<?php get_sidebar(); ?>
 
-<?php include 'footer.php'; ?>
+<?php get_footer(); ?>

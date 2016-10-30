@@ -1,3 +1,14 @@
+<?php
+/**
+ * Arras footer template.
+ */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'footer' );
+?>
+
 </div>
 
 <?php arras_before_footer() ?>
