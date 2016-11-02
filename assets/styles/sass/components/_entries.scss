@@ -1,46 +1,116 @@
+/** ----- Entries ----- */
+$meta-base-color: $stormcloud;
+$meta-border: 1px dotted $base-border-color;
+
+%meta {
+	@include font-size(0.8125);
+	color: $meta-base-color;
+}
+
+.entry-title {
+	@extend %title;
+}
+
+.entry-meta {
+	@extend %meta;
+	border-bottom: $meta-border;
+	margin-top: .25em;
+	padding-bottom: .5em;
+	text-transform: uppercase;
+}
+
+.entry-author {
+	color: #848485;
+	display: inline;
+	font-weight: bold;
+
+	address {
+		display: inline;
+		font-style: normal;
+	}
+}
+
+.entry-cat {
+	color: #848485;
+	display: block;
+	line-height: 1.5em;
+	margin: 5px 0 0;
+}
+
+.post-edit-link {
+	padding-left: 1.25em;
+}
+
+.entry-meta-footer {
+	@extend %meta;
+	border-top: $meta-border;
+	font-weight: bold;
+	margin: 1.5em 0 1em;
+	padding-top: 1em;
+}
+
+.entry-tags {
+	margin: 15px 0;
+	padding: 15px 0 0;
+	color: #848485;
+	border-top: 1px dotted #CCC;
+	line-height: 1.5em;
+	text-transform: uppercase;
+
+	a:link,
+	a:visited {
+		text-decoration: none;
+		font-weight: 700;
+		padding: 0 5px 3px;
+		line-height: 1.3em;
+		display: inline-block;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	strong {
+		text-transform: uppercase;
+	}
+}
+
+.entry-photo {
+	border: 1px solid $base-border-color;
+	max-width: 100%;
+	overflow: hidden;
+
+	img {
+		height: auto;
+		margin: 10px auto;
+		max-height: 350px;
+		max-width: 100%;
+		width: auto;
+	}
+}
+
 .entry-content {
 	margin: 10px 0;
-	line-height: 1.5em;
 	overflow: hidden;
 }
 
 .entry-content ul,
 .entry-content ol {
-	margin: 0 20px;
-	padding: 0 0 1.5em;
-}
-
-.entry-content ul ul,
-.entry-content ol ol,
-.entry-content ol ul,
-.entry-content ul ol {
-	padding: 0;
-}
-
-.entry-content blockquote {
-	font-style: italic;
+	margin-left: 20px;
 }
 
 .entry-content form {
 	margin: 1em 0;
 }
 
-.traditional .entry-comments {
-	background: rgba(50, 50, 50, 0.7) url("../../images/comments.gif") no-repeat scroll 2px center;
-	border-radius: 7px;
-	float: right;
-	margin: 15px;
-	padding: 3px 5px 3px 15px;
-}
-.traditional .entry-comments a {
-	color: #fff;
-}
 
-.post-edit-link:link, .post-edit-link:visited  { padding: 0 0 0 14px; }
+@import 'entry-types/traditional-tapestry';
+@import "entry-types/node-tapestry";
+@import "entry-types/quick-tapestry";
+@import "entry-types/line-tapestry";
 
-.page .entry-content  { margin: 0 0 20px; }
+@import "entry-types/slides";
 
-/* common classes */
-/* meta */
-.tags a:link, .tags a:visited	{ text-decoration: none; font-weight: 700; padding: 0 5px 3px; line-height: 1.3em; display: inline-block; }
-.tags a:hover					{ text-decoration: underline; }
+@import "entry-types/single";
+@import "entry-types/page";
+@import "entry-types/author";

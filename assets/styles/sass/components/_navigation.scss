@@ -1,11 +1,19 @@
 /** ----- Other Navigation ----- */
-.post-navigation {
+.post-navigation,
+.posts-navigation {
 	@include font-size(0.875);
 	margin: 10px 0;
 }
 
-.post-nav a {
-	@extend button;
-	display: inline-block;
-	margin: 0 1em 0 0;
+.post-nav,
+.nav-links {
+	div {
+		display: inline-block;
+	}
+
+	a {
+		@extend button;
+		display: inline-block;
+		margin: 0 1em 0 0;
+	}
 }

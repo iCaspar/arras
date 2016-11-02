@@ -1,4 +1,18 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Arras front-page template.
+ */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'front-page' );
+?>
+
+<?php get_header();
+arras_fp_skip();
+return;
+?>
 
 <?php
 $stickies = get_option('sticky_posts');
@@ -125,5 +139,12 @@ $post_blacklist = array();
 <?php arras_below_content() ?>
 </div><!-- #content -->
 
+
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
+
+<?php
+function arras_fp_skip() {
+	get_sidebar();
+	get_footer();
+}

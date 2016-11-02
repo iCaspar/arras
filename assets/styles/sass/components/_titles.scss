@@ -6,14 +6,6 @@
 	margin: 25px 0 10px;
 }
 
-.entry-title {
-	@include font-size(1.5);
-	font-weight: bold;
-	line-height: 1.3;
-	margin: 1em 0 0;
-	padding: 0;
-}
-
 .module-title {
 	@include font-size(0.875);
 	background: $secondary-bar-gradient;
@@ -33,4 +25,6 @@
 	display: block;
 }
 
-.feed-title  { border-bottom: none; }
+.feed-title {
+	border-bottom: none;
+}

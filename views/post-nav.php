@@ -10,9 +10,9 @@
 
 <nav class="post-navigation" role="navigation">
 	<?php if ( $previous ) {?>
-		<div class="post-nav"><?php previous_post_link( '%link', _x( '<i class="fa fa-arrow-circle-left"></i> %title', 'Previous post link', 'arras' ) ); ?></div>
+		<div class="post-nav"><?php previous_post_link( '%link', _x( '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> %title', 'Previous post link', 'arras' ) ); ?></div>
 	<?php }
 	if ( $next ) {?>
-		<div class="post-nav"><?php next_post_link( '%link', _x( '%title <i class="fa fa-arrow-circle-right"></i>', 'Next post link', 'arras' ) ); ?></div>
+		<div class="post-nav"><?php next_post_link( '%link', _x( '%title <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>', 'Next post link', 'arras' ) ); ?></div>
 	<?php }?>
 </nav>

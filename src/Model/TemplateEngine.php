@@ -46,8 +46,8 @@ class TemplateEngine {
 	 *
 	 * @param bool $sub_template Template is the main template.
 	 */
-	public function set_template( $template, $sub_template = false ) {
-		if ( $sub_template ) {
+	public function set_template( $template, $is_sub_template = false ) {
+		if ( $is_sub_template ) {
 			$this->subtemplate = $template;
 		} else {
 			$this->template = $template;
@@ -216,10 +216,10 @@ class TemplateEngine {
 			if ( is_attachment() ) {
 				$postheader .= '<h2 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rev="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h2>';
 			} else {
+				$postheader .= '<h3 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h3>';
 				if ( ! is_page() && ! is_front_page() ) {
-					$postheader .= '<a class="entry-comments" href="' . get_comments_link() . '">' . get_comments_number() . '</a>';
+					$postheader .= '<a class="entry-comments-number" href="' . get_comments_link() . '"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;' . get_comments_number() . '</a>';
 				}
-				$postheader .= '<h2 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h2>';
 			}
 		}
 
@@ -268,7 +268,7 @@ class TemplateEngine {
 		$postfooter = '';
 
 		if ( $this->get_option( 'post_tags' ) && ! is_attachment() && is_array( get_the_tags() ) ) {
-			$postfooter .= '<div class="entry-meta-footer"><span class="meta-label">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
+			$postfooter .= '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
 		}
 
 		echo apply_filters( 'arras_postfooter', $postfooter );

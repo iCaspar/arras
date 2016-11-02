@@ -8,30 +8,17 @@
 @import "layout/sidebars";
 @import "layout/site.footer";
 
+@import "titles";
+
 @import "menus/primary-menu";
 @import "menus/secondary-menu";
 @import "navigation";
-@import "pages/page";
+
+@import "entries";
+@import "profile";
+@import "comments";
 
 @import "widgets/widgets.footer";
 
-@import "pages/slides";
-
-@import "titles";
-
-@import "entries";
-@import "../objects/meta";
-@import "profile";
-
-@import "pages/node-tapestry";
-@import "pages/quick-tapestry";
-@import "pages/line-tapestry";
-
-@import "pages/single";
-@import "comments";
-
-@import "pages/author";
 @import "search";
 @import "galleries";
-
-@import "forms";

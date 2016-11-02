@@ -1,14 +1,8 @@
-/* --- Button ---
-%button {
-	background: $base-bar-gradient;
-	color: $base-font-color;
-	cursor: pointer;
-	overflow: visible;
-	padding: .5em 1em;
-
-	&:hover {
-		background: $disabled-background;
-		color: $base-font-color;
-	}
+/* --- Button --- */
+%title {
+	@include font-size(1.5);
+	font-weight: bold;
+	line-height: 1.3;
+	margin: 15px 0 0;
+	padding: 0;
 }
-*/

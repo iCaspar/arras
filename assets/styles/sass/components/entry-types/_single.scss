@@ -1,0 +1,5 @@
+/* --- Single Template */
+.single .post {
+	@extend %post;
+	padding: 0 15px;
+}

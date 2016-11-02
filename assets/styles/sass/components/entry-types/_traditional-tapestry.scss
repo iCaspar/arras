@@ -1,0 +1,27 @@
+/* --- Traditional Tapestry --- */
+$entry-comments-background: $chocolate;
+
+.traditional {
+	@extend %post;
+	margin-top: 15px;
+	padding: 0 15px;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	.entry-title {
+		margin-right: 75px;
+	}
+
+	.entry-comments-number {
+		background: $entry-comments-background;
+		border-radius: 4px;
+		color: $inverted-font-color;
+		cursor: pointer;
+		padding: 0 5px;
+		position: absolute;
+		right: 10px;
+		top: 1em;
+	}
+}
