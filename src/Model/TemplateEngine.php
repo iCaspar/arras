@@ -206,7 +206,7 @@ class TemplateEngine {
 		if ( is_single() || is_page() ) {
 
 			if ( is_attachment() ) {
-				$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rev="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h1>';
+				$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rel="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h1>';
 			} else {
 				$postheader .= '<h1 class="entry-title">' . get_the_title() . '</h1>';
 			}
@@ -214,7 +214,7 @@ class TemplateEngine {
 		} else {
 
 			if ( is_attachment() ) {
-				$postheader .= '<h2 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rev="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h2>';
+				$postheader .= '<h3 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rel="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h3>';
 			} else {
 				$postheader .= '<h3 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h3>';
 				if ( ! is_page() && ! is_front_page() ) {
@@ -251,8 +251,8 @@ class TemplateEngine {
 			$postheader .= '</div>';
 		}
 
-		if ( $this->get_option( 'single_thumbs' ) && has_post_thumbnail( $post->ID ) ) {
-			$postheader .= '<div class="entry-photo">' . get_the_post_thumbnail() . '</div>';
+		if ( $this->get_option( 'single-thumbs' ) && has_post_thumbnail( $post->ID ) ) {
+			$postheader .= '<div class="entry-image">' . get_the_post_thumbnail() . '</div>';
 		}
 
 		echo apply_filters( 'arras_postheader', $postheader );
@@ -265,10 +265,8 @@ class TemplateEngine {
 	function postfooter() {
 		global $id, $post;
 
-		$postfooter = '';
-
 		if ( $this->get_option( 'post_tags' ) && ! is_attachment() && is_array( get_the_tags() ) ) {
-			$postfooter .= '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
+			$postfooter = '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
 		}
 
 		echo apply_filters( 'arras_postfooter', $postfooter );

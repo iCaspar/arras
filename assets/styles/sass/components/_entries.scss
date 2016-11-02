@@ -45,7 +45,7 @@ $meta-border: 1px dotted $base-border-color;
 	@extend %meta;
 	border-top: $meta-border;
 	font-weight: bold;
-	margin: 1.5em 0 1em;
+	margin: 1em 0 1em;
 	padding-top: 1em;
 }
 
@@ -75,12 +75,12 @@ $meta-border: 1px dotted $base-border-color;
 	}
 }
 
-.entry-photo {
-	border: 1px solid $base-border-color;
+.entry-image {
 	max-width: 100%;
-	overflow: hidden;
 
 	img {
+		border: 1px solid $base-border-color;
+		display: block;
 		height: auto;
 		margin: 10px auto;
 		max-height: 350px;
@@ -90,8 +90,8 @@ $meta-border: 1px dotted $base-border-color;
 }
 
 .entry-content {
-	margin: 10px 0;
 	overflow: hidden;
+	padding-bottom: 10px;
 }
 
 .entry-content ul,
