@@ -22,11 +22,14 @@ $arras = apply_filters( 'arras_template', 'footer' );
 		}
 
 		for ( $i = 1; $i < $footer_sidebars + 1; $i ++ ) : ?>
-			<?php if ( is_active_sidebar( 'footer-sidebar-' . $i ) ): ?>
-				<aside id="<?php echo 'footer-sidebar-' . $i; ?>" class="footer-sidebar col span_1_of_<?php echo (int) $footer_sidebars; ?>" role="complementary">
+			<aside id="<?php echo 'footer-sidebar-' . $i; ?>"
+			       class="footer-sidebar col span_1_of_<?php echo (int) $footer_sidebars; ?>" role="complementary">
+				<?php if ( is_active_sidebar( 'footer-sidebar-' . $i ) ): ?>
 					<?php dynamic_sidebar( 'footer-sidebar-' . $i ); ?>
-				</aside>
-			<?php endif; ?>
+				<?php else: ?>
+					&nbsp;
+				<?php endif; ?>
+			</aside>
 		<?php endfor; ?>
 	</div>
 
@@ -38,12 +41,13 @@ $arras = apply_filters( 'arras_template', 'footer' );
 			<a href="http://arrastheme.net/"><?php _e( 'About Arras WordPress Theme', 'arras' ) ?></a>
 		</div>
 	</div>
-</div><!-- #container -->
-</div><!-- #body -->
-</div><!-- #page -->
-<?php
-arras_footer();
-wp_footer();
-?>
+</div>
+</div>
+</div>
+
+<?php arras_footer(); ?>
+
+<?php wp_footer(); ?>
+
 </body>
 </html>
