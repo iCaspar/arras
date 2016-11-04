@@ -45,12 +45,12 @@ return [
 		'sidebars' => [
 			[
 				'name'        => _x( 'Primary Sidebar', 'Sidebar name', 'arras' ),
-				'id'          => 'primary',
+				'id'          => 'primary-sidebar',
 				'description' => __( 'Primary Sidebar', 'arras' ),
 			],
 			[
 				'name'        => _x( 'Secondary Sidebar', 'Sidebar name', 'arras' ),
-				'id'          => 'secondary',
+				'id'          => 'secondary-sidebar',
 				'description' => __( 'Secondary Sidebar', 'arras' ),
 			],
 			[

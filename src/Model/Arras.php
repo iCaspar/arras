@@ -101,10 +101,10 @@ class Arras {
 	public function sidebars() {
 		$sidebars         = $this->config->getSetting( 'sidebars' );
 		$sidebar_defaults = [
-			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer group">',
-			'after_widget'  => '</li>',
-			'before_title'  => '<h5 class="widgettitle">',
-			'after_title'   => '</h5>'
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
 		];
 
 		$footer_sidebars = $this->config->get_option( 'footer-sidebars' ) ?: 1;

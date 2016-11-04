@@ -5,7 +5,6 @@
 
 @import "layout/site.header";
 @import "layout/content";
-@import "layout/sidebars";
 @import "layout/site.footer";
 
 @import "titles";
@@ -18,7 +17,7 @@
 @import "profile";
 @import "comments";
 
-@import "widgets/widgets.footer";
+@import "widgets";
 
 @import "search";
 @import "galleries";

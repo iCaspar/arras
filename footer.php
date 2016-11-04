@@ -21,14 +21,12 @@ $arras = apply_filters( 'arras_template', 'footer' );
 			$footer_sidebars = 1;
 		}
 
-		for ( $i = 1; $i < $footer_sidebars + 1; $i ++ ) :
-			?>
-			<ul id="footer-sidebar-<?php echo $i ?>"
-			    class="footer-sidebar xoxo col span_1_of_<?php echo $footer_sidebars; ?>">
-				<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'Footer Sidebar #' . $i ) ) : ?>
-					<li></li>
-				<?php endif; ?>
-			</ul>
+		for ( $i = 1; $i < $footer_sidebars + 1; $i ++ ) : ?>
+			<?php if ( is_active_sidebar( 'footer-sidebar-' . $i ) ): ?>
+				<aside id="<?php echo 'footer-sidebar-' . $i; ?>" class="footer-sidebar col span_1_of_<?php echo (int) $footer_sidebars; ?>" role="complementary">
+					<?php dynamic_sidebar( 'footer-sidebar-' . $i ); ?>
+				</aside>
+			<?php endif; ?>
 		<?php endfor; ?>
 	</div>
 
