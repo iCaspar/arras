@@ -34,6 +34,23 @@ $base-widget-background: $white;
 	padding: .5em 10px;
 }
 
+.page-footer {
+	.widget {
+		background: none;
+		border: none;
+	}
+
+	.widget-title {
+		background: none;
+	}
+}
+
+/* Below-Content Widgets */
+.below-content-widgets .widgettitle {
+	background: #f0f0f0;
+}
+
+
 /* Featured Articles Widget */
 
 .featured-stories li {
@@ -76,44 +93,3 @@ $base-widget-background: $white;
 .sidebar-read-more:hover {
 	background: #CC0000;
 }
-
-/* Below-Content Widgets */
-.below-content-widgets .widgettitle {
-	background: #f0f0f0;
-}
-
-.footer-sidebar {
-	overflow: hidden;
-	padding: 0;
-}
-
-.footer-sidebar-container {
-	border-bottom: 1px solid #CCC;
-}
-
-/** ----- Footer Widgets ----- */
-.page-footer {
-	.widget {
-		background: none;
-		border: none;
-	}
-
-	.widget-title {
-		background: none;
-	}
-}
-
-.page-footer .widgettitle {
-	background: none;
-	border: none;
-	color: #444;
-	padding: 0 0 10px;
-	letter-spacing: -1px;
-	margin: 0;
-}
-
-.page-footer .widgetcontent {
-	border: none;
-	padding: 0;
-}
-

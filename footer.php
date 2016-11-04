@@ -27,7 +27,7 @@ $arras = apply_filters( 'arras_template', 'footer' );
 				<?php if ( is_active_sidebar( 'footer-sidebar-' . $i ) ): ?>
 					<?php dynamic_sidebar( 'footer-sidebar-' . $i ); ?>
 				<?php else: ?>
-					&nbsp;
+					<?php echo '&nbsp'; ?>
 				<?php endif; ?>
 			</aside>
 		<?php endfor; ?>
