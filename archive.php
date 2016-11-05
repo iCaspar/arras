@@ -1,7 +1,19 @@
+<?php
+/**
+ * The Arras archives template.
+ */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'single' );
+?>
+
 <?php get_header(); ?>
 
-<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content() ?>
+
+<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
 
 <?php is_tag(); if ( have_posts() ) : ?>
 	<?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
@@ -24,23 +36,35 @@
         <h1 class="archive-title"><?php _e('Archives', 'arras') ?></h1>
     <?php endif; ?>
 
-	<div id="archive-posts">
-<?php arras_render_posts( null, ( arras_get_option( 'default_tapestry' ) ) ? arras_get_option( 'default_tapestry' ) : 'quick' ); ?>
+<?php //arras_render_posts( null, ( arras_get_option( 'default_tapestry' ) ) ? arras_get_option( 'default_tapestry' ) : 'quick' ); ?>
 
-	<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
-    	<div class="navigation clearfix">
-			<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
-			<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
+	<?php while ( have_posts() ) : the_post(); ?>
+
+		<div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
+			<?php $arras->postheader() ?>
+			<div
+				class="entry-content"><?php the_content( __( 'Read the rest of this entry &raquo;', 'arras' ) ); ?>
+			</div>
+			<?php $arras->postfooter() ?>
 		</div>
-    <?php } ?>
-	</div><!-- #archive-posts -->
 
-<?php else : ?>
-	<?php arras_post_notfound() ?>
+	<?php endwhile; ?>
+
+	<?php the_posts_navigation( [
+		'prev_text' => '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> ' . _x( 'Older Posts', 'Previous post link', 'arras' ),
+		'next_text' => _x( 'Newer Posts', 'Next post link', 'arras' ) . ' <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>',
+	] ); ?>
+
+<?php else: ?>
+	<?php $arras->post_notfound() ?>
+
 <?php endif; ?>
 
+</div>
+
+
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
 <?php get_sidebar(); ?>
+
 <?php get_footer(); ?>
