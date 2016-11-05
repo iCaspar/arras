@@ -1,5 +1,10 @@
 /* --- Single Template */
-.single .post {
+.single .post,
+.single .attachment {
 	@extend %post;
 	padding: 0 15px;
+}
+
+.single-post-attachment {
+	margin-top: 15px;
 }

@@ -1,43 +1,59 @@
+<?php
+/**
+ *    The Arras attachment page template.
+ */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'attachment' );
+?>
+
 <?php get_header(); ?>
 
-<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content() ?>
 
-<?php if (have_posts()) : the_post(); ?>
-	<?php arras_above_post() ?>
-	<div id="post-<?php the_ID() ?>" <?php arras_single_post_class() ?>>
+	<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
 
-        <?php arras_postheader() ?>
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-		<div class="entry-content single-post-attachment clearfix"><?php the_attachment_link($post->ID, false) ?>
-		<?php the_content( __('<p>Read the rest of this entry &raquo;</p>', 'arras') ); ?>
+			<?php arras_above_post() ?>
 
-        <?php wp_link_pages(array('before' => __('<p><strong>Pages:</strong> ', 'arras'),
-			'after' => '</p>', 'next_or_number' => 'number')); ?>
-        </div>
+			<div id="attachment-<?php the_ID() ?>" <?php post_class( [ 'attachment', 'group' ] ) ?>>
 
-		<?php arras_postfooter() ?>
+				<?php $arras->postheader() ?>
 
-        <?php
-		if ( arras_get_option('display_author') ) {
-			arras_post_aboutauthor();
-		}
-        ?>
-    </div>
+				<div class="entry-content single-post-attachment"><?php the_attachment_link( $post->ID, false ) ?>
+					<?php the_content( __( '<p>Read the rest of this entry &raquo;</p>', 'arras' ) ); ?>
+					<?php $arras->link_pages(); ?>
+				</div>
 
-	<?php arras_below_post() ?>
-	<a name="comments"></a>
-    <?php comments_template('', true); ?>
-	<?php arras_below_comments() ?>
+				<?php $arras->postfooter() ?>
 
-<?php else: ?>
+				<?php if ( $arras->get_option( 'display-author-page' ) ) : ?>
+					<?php include ARRAS_VIEWS_DIR . 'author-profile.php'; ?>
+				<?php endif; ?>
+			</div>
 
-<?php arras_post_notfound() ?>
+			<?php if ( $arras->get_option( 'show-post-nav' ) ): ?>
+				<?php $arras->post_nav() ?>
+			<?php endif; ?>
 
-<?php endif; ?>
+			<?php arras_below_post() ?>
+
+			<?php comments_template( '', true ); ?>
+
+		<?php endwhile;
+		else: ?>
+
+			<?php $arras->post_notfound() ?>
+
+		<?php endif; ?>
+
+	</div>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
 <?php get_sidebar(); ?>
+
 <?php get_footer(); ?>
