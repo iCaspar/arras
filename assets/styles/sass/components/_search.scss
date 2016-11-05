@@ -1,31 +1,32 @@
-/* Search Template */
+/** ----- Search ----- **/
+$base-search-content: $white;
 
 .search-results-title {
-	border-bottom: 1px solid #CCC;
-	color: #333;
-	font-weight: bold;
-	margin: 10px 0;
-	padding: 6px;
-	text-transform: uppercase;
+	@extend .module-title;
 }
 
 .search-results-content {
-	background: #FFF;
-	border: 1px solid #CCC;
-	margin: 0 10px 10px 0;
+	background: $base-search-content;
+	border: 1px solid $base-border-color;
 	padding: 10px;
+
+	p {
+		margin: 0;
+	}
+
+	.search-form {
+		margin-top: 10px;
+	}
 }
 
-.searchform .s {
-	font-family: Helvetica, Arial, sans-serif;
-	border: none;
-	background: #efefef;
-	padding: 8px 5px;
-	margin: 0;
-	float: left;
-	width: 234px;
+.search-results-no-content {
+	@extend .module;
+	@extend .search-results-content;
 }
 
+.search-terms {
+	font-weight: bold;
+}
 
 .search-form {
 	position: relative;

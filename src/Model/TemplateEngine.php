@@ -118,6 +118,8 @@ class TemplateEngine {
 	 */
 	public function run_query( array $args ) {
 		$arras_query = new \WP_Query( $args );
+
+		return $arras_query;
 	}
 
 	//* ----- CALLBACKS ----- */

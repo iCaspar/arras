@@ -37,14 +37,14 @@ $arras = apply_filters( 'arras_template', 'author' );
 
 		<?php //arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option( 'default_tapestry' ) ) ?>
 
-		<?php $arras->run_query( [
+		<?php $author_posts = $arras->run_query( [
 			'author' => get_the_author_meta( 'ID' ),
 			'paged'  => true,
 		] ); ?>
 
-		<?php if ( have_posts() ): ?>
+		<?php if ( $author_posts->have_posts() ): ?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php while ( $author_posts->have_posts() ) : $author_posts->the_post(); ?>
 
 				<div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
 					<?php $arras->postheader() ?>
@@ -63,15 +63,16 @@ $arras = apply_filters( 'arras_template', 'author' );
 
 
 		<?php else: ?>
+
 			<?php $arras->post_notfound() ?>
-			<?php wp_reset_postdata(); ?>
 
 		<?php endif; ?>
+
+		<?php wp_reset_postdata(); ?>
 
 	<?php endif; ?>
 
 </div>
-
 
 <?php arras_below_content() ?>
 
