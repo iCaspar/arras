@@ -15,12 +15,14 @@
 	padding: .5em .75em;
 }
 
-.archive-title {
+.archive-title,
+.author-title {
 	@extend %title;
 	@include font-size(1);
 	border-bottom: 1px solid $base-border-color;
 	text-transform: uppercase;
 }
+
 
 .feed-title {
 	line-height: 1em;

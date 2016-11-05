@@ -1,42 +1,80 @@
+<?php
+/**
+ * The Arras author template.
+ */
+
+/**
+ * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ */
+$arras = apply_filters( 'arras_template', 'author' );
+?>
+
 <?php get_header(); ?>
 
-<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
 <?php arras_above_content() ?>
 
-<div class="author-content">
-	<?php the_post(); // Get author information ?>
+<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
 
-	<h1 class="author-title"><?php printf( __('About Author: %s', 'arras'), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr(get_the_author()) . '" rel="me">' . get_the_author_meta('display_name') . '</a></span>' ); ?></h1>
+	<?php if ( have_posts() ): the_post(); ?>
 
-	<div class="author-entry-content group">
-		<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"><?php echo get_avatar(get_the_author_meta('ID'), 96) ?></a>
-		<dl>
-			<?php if (get_the_author_meta('user_url')) : ?>
-				<dt><?php _e('Website', 'arras') ?></dt>
-				<dd><a href="<?php the_author_meta('user_url') ?>"><?php the_author_meta('user_url') ?></a></dd>
-			<?php endif ?>
-			<?php if (get_the_author_meta('description')) : ?>
-				<dt><?php _e('Description', 'arras') ?></dt>
-				<dd><?php the_author_meta('description') ?></dd>
-			<?php endif ?>
-		</dl>
-	</div>
+		<h1 class="author-title"><?php printf( __( 'About Author: %s', 'arras' ), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author_meta( 'display_name' ) . '</a></span>' ); ?></h1>
 
-	<h2 class="author-posts-title"><?php printf( __('Posts by %s', 'arras'), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr(get_the_author()) . '" rel="me">' . get_the_author_meta('display_name') . '</a></span>' ); ?></h2>
+		<div id="author-<?php the_ID(); ?>" <?php post_class( [ 'profile', 'group' ] ); ?>>
+			<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>"><?php echo get_avatar( get_the_author_meta( 'ID' ), 96 ) ?></a>
+			<dl>
+				<?php if ( get_the_author_meta( 'user_url' ) ) : ?>
+					<dt><?php _e( 'Website', 'arras' ) ?></dt>
+					<dd><a href="<?php the_author_meta( 'user_url' ) ?>"><?php the_author_meta( 'user_url' ) ?></a></dd>
+				<?php endif ?>
+				<?php if ( get_the_author_meta( 'description' ) ) : ?>
+					<dt><?php _e( 'Description', 'arras' ) ?></dt>
+					<dd><?php the_author_meta( 'description' ) ?></dd>
+				<?php endif ?>
+			</dl>
+		</div>
 
-	<div id="archive-posts">
-		<?php arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option( 'default_tapestry' ) ) ?>
-	</div>
+		<h2 class="archive-title"><?php printf( __( 'Posts by %s', 'arras' ), '<span class="vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author_meta( 'display_name' ) . '</a></span>' ); ?></h2>
 
-	<div class="navigation group">
-		<div class="floatleft"><?php next_posts_link( __('&laquo; Older Entries', 'arras') ) ?></div>
-		<div class="floatright"><?php previous_posts_link( __('Newer Entries &raquo;', 'arras') ) ?></div>
-	</div>
+		<?php //arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option( 'default_tapestry' ) ) ?>
+
+		<?php $arras->run_query( [
+			'author' => get_the_author_meta( 'ID' ),
+			'paged'  => true,
+		] ); ?>
+
+		<?php if ( have_posts() ): ?>
+
+			<?php while ( have_posts() ) : the_post(); ?>
+
+				<div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
+					<?php $arras->postheader() ?>
+					<div
+						class="entry-content"><?php the_content( __( 'Read the rest of this entry &raquo;', 'arras' ) ); ?>
+					</div>
+					<?php $arras->postfooter() ?>
+				</div>
+
+			<?php endwhile; ?>
+
+			<?php the_posts_navigation( [
+				'prev_text' => '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> ' . _x( 'Older Posts', 'Previous post link', 'arras' ),
+				'next_text' => _x( 'Newer Posts', 'Next post link', 'arras' ) . ' <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>',
+			] ); ?>
+
+
+		<?php else: ?>
+			<?php $arras->post_notfound() ?>
+			<?php wp_reset_postdata(); ?>
+
+		<?php endif; ?>
+
+	<?php endif; ?>
 
 </div>
 
+
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
 <?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

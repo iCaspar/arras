@@ -6,7 +6,7 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$arras = apply_filters( 'arras_template', 'single' );
+$arras = apply_filters( 'arras_template', 'archive' );
 ?>
 
 <?php get_header(); ?>
@@ -40,7 +40,7 @@ $arras = apply_filters( 'arras_template', 'single' );
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
-		<div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
+		<div id="post-<?php the_ID(); ?>" <?php post_class( [ 'traditional', 'group' ] ); ?>>
 			<?php $arras->postheader() ?>
 			<div
 				class="entry-content"><?php the_content( __( 'Read the rest of this entry &raquo;', 'arras' ) ); ?>

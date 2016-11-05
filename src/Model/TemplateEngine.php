@@ -108,6 +108,18 @@ class TemplateEngine {
 		}
 	}
 
+
+	/**
+	 * Run a custom query.
+	 *
+	 * @param array $args Query arguments.
+	 *
+	 * @return void
+	 */
+	public function run_query( array $args ) {
+		$arras_query = new \WP_Query( $args );
+	}
+
 	//* ----- CALLBACKS ----- */
 
 	/**

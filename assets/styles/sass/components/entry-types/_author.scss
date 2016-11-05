@@ -1,16 +1,28 @@
-/* Author Template */
+/** ----- Author ----- **/
+.profile {
+	@extend .module;
 
-.author-title {
-	border-bottom: 1px solid #DDD;
-	color: #333;
-	margin: 0 15px 10px 0;
-	padding: 0 3px 8px;
+	.avatar {
+		@extend .alignleft;
+	}
 }
 
-.author-content	{
-	margin-right: 10px;
+/* --- Author Profile --- */
+.author-profile  {
+	background: $base-content-background;
+	border: 1px solid $base-border-color;
+	line-height: 1.5em;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding: 10px;
 }
 
-.author-content dl {
-	margin-left: 115px;
+.profile-title {
+	@include font-size(0.875);
+	font-weight: bold;
+	margin: 0;
+}
+
+.profile-content {
+	margin-top: 10px;
 }
