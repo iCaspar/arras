@@ -23,8 +23,12 @@ $arras = apply_filters( 'arras_template', 'attachment' );
 
 				<?php $arras->postheader() ?>
 
-				<div class="entry-content single-post-attachment"><?php the_attachment_link( $post->ID, false ) ?>
-					<?php the_content( __( '<p>Read the rest of this entry &raquo;</p>', 'arras' ) ); ?>
+				<div class="entry-content single-post-attachment">
+
+					<?php the_attachment_link( $post->ID, true ) ?>
+					<div class="attachment-caption">
+						<?php the_excerpt(); ?>
+					</div>
 					<?php $arras->link_pages(); ?>
 				</div>
 

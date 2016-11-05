@@ -8,3 +8,8 @@
 .single-post-attachment {
 	margin-top: 15px;
 }
+
+.attachment-caption {
+	@extend .module;
+	text-align: center;
+}
