@@ -16,29 +16,68 @@ $hover-main-menu-color: $white;
 	padding: 0;
 
 	li {
-		color: $base-main-menu-color;
 		display: block;
 		float: left;
+		position: relative;
+
+		&:hover > ul {
+			left: auto;
+			padding: 0;
+		}
+	}
+
+	a {
+		background: $base-main-menu-background;
+		color: $base-main-menu-color;
+		display: block;
+		padding: 0 1em;
 
 		&:hover {
+			background: $hover-main-menu-background;
 			color: $hover-main-menu-color;
+		}
+	}
+
+	ul {
+		box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.25);
+		position: absolute;
+		left: -999em;
+		width: 200px;
+		z-index: 100;
+
+		li {
+			float: none;
+
+			&:hover {
+				background: $hover-main-menu-color;
+			}
+
+			&:hover > ul {
+				left: 100%;
+				top: 0;
+			}
 		}
 
 		a {
-			color: $base-main-menu-color;
-			padding: 0.75em 1em;
-
-
-			&:visited {
-				color: $base-main-menu-color;
-			}
+			@include font-size(0.75);
 
 			&:hover {
-				background: $hover-main-menu-background;
-				color: $hover-main-menu-color;
+				background: $hover-main-menu-color;
+				color: $base-font-color;
 			}
 		}
+
+		.menu-item-has-children > a:after {
+			content: ' \f0da';
+		}
+
 	}
+
+	.menu-item-has-children > a:after {
+		font-family: FontAwesome;
+		content: ' \f0d7';
+	}
+
 }
 
 
@@ -48,38 +87,34 @@ $hover-main-menu-color: $white;
 	clear: both;
 	line-height: 2;
 }
+
 .main-menu ul {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
 	z-index: 99999;
 }
-.main-menu ul ul {
-	background-color: #322c2c;
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 99%;
-	left: -999em;
-}
+
 .main-menu ul ul ul {
 	background-color: #383838;
 	left: -999em;
 	top: 7px;
 }
+
 .main-menu ul ul li:hover > ul {
 	left: 100%;
 }
+
 .main-menu ul ul a {
 	width: 200px;
 }
-.main-menu ul li:hover > ul {
-	left: auto;
-}
+
+.main-menu ul
 .main-menu li {
 	float: left;
 	position: relative;
 }
+
 .main-menu a,
 .main-menu a:link,
 .main-menu a:hover,
@@ -90,6 +125,7 @@ $hover-main-menu-color: $white;
 	margin: 0 10px;
 	text-decoration: none;
 }
+
 .main-menu a:hover {
 	color: white;
 	text-shadow: 1px 1px #999999;
@@ -98,12 +134,6 @@ $hover-main-menu-color: $white;
 /*--------------------------------------------------------------
   Menus
 --------------------------------------------------------------*/
-
-
-.nav {
-	background-color: #322c2c;
-	font-variant: small-caps;
-}
 
 .menu-icon {
 	display: none;
@@ -115,9 +145,8 @@ $hover-main-menu-color: $white;
 	margin: 5px;
 }
 
-
 /* post and comment navigation */
-.navigation  {
+.navigation {
 	margin: 0 10px 20px 0;
 	text-align: center;
 }
@@ -143,15 +172,32 @@ $hover-main-menu-color: $white;
 	opacity: 1;
 }
 
-.quick-nav .rss			{ background: url(../../images/social/rss.png) no-repeat center center; }
-.quick-nav .twitter		{ background: url(../../images/social/twitter.png) no-repeat center center; }
-.quick-nav .facebook	{ background: url(../../images/social/facebook.png) no-repeat center center; }
-.quick-nav .gplus		{ background: url(../../images/social/gplus.png) no-repeat center center; }
-.quick-nav .flickr		{ background: url(../../images/social/flickr.png) no-repeat center center; }
-.quick-nav .youtube		{ background: url(../../images/social/youtube.png) no-repeat center center; }
+.quick-nav .rss {
+	background: url(../../images/social/rss.png) no-repeat center center;
+}
+
+.quick-nav .twitter {
+	background: url(../../images/social/twitter.png) no-repeat center center;
+}
+
+.quick-nav .facebook {
+	background: url(../../images/social/facebook.png) no-repeat center center;
+}
+
+.quick-nav .gplus {
+	background: url(../../images/social/gplus.png) no-repeat center center;
+}
+
+.quick-nav .flickr {
+	background: url(../../images/social/flickr.png) no-repeat center center;
+}
+
+.quick-nav .youtube {
+	background: url(../../images/social/youtube.png) no-repeat center center;
+}
 
 /* Main Nav on small screens */
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width: 768px) {
 
 	.primary-utility {
 		position: absolute;

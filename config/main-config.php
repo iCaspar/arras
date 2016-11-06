@@ -30,7 +30,7 @@ return [
 				'name'      => __( 'Main Menu', 'arras' ),
 				'container' => 'nav',
 				'fallback'  => 'main',
-				'depth'     => 2,
+				'depth'     => 3,
 				'class'     => 'primary-nav wrap',
 			],
 			'top'  => [
