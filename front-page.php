@@ -7,144 +7,97 @@
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
 $arras = apply_filters( 'arras_template', 'front-page' );
+$paged = get_query_var( 'page' );
 ?>
 
-<?php get_header();
-arras_fp_skip();
-return;
-?>
+<?php get_header(); ?>
 
 <?php
-$stickies = get_option('sticky_posts');
-rsort($stickies);
+$stickies = get_option( 'sticky_posts' );
+rsort( $stickies );
+/*
+	$slideshow_cat = $arras->get_option( 'slideshow_cat' );
+	$featured1_cat = $arras->get_option( 'featured1_cat' );
+	$featured2_cat = $arras->get_option( 'featured2_cat' );
+	$news_cat      = $arras->get_option( 'news_cat' );
 
-$slideshow_cat	= arras_get_option('slideshow_cat');
-$featured1_cat 	= arras_get_option('featured1_cat');
-$featured2_cat 	= arras_get_option('featured2_cat');
-$news_cat 		= arras_get_option('news_cat');
+	$slideshow_count = (int) $arras->get_option( 'slideshow_count' );
+	$featured1_count = (int) $arras->get_option( 'featured1_count' );
+	$featured2_count = (int) arras_get_option( 'featured2_count' );
 
-$slideshow_count	= (int)arras_get_option('slideshow_count');
-$featured1_count 	= (int)arras_get_option('featured1_count');
-$featured2_count 	= (int)arras_get_option('featured2_count');
-
-$post_blacklist = array();
+	$post_blacklist = array();
+/*/
 ?>
 
-<div id="content" class="<?php echo arras_layout_columns( 'content' ); ?>">
-<?php arras_above_content(); // if the Slideshow is active it is loaded here ?>
+<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
+	<?php arras_above_content(); // if the Slideshow is active it is loaded here ?>
 
-<?php if (!$paged) : ?>
+	<?php if ( ! $paged ) : ?>
 
-	<?php if ( false !== arras_get_option( 'enable_featured1' ) ) : ?>
-	<?php arras_above_index_featured1_post() ?>
-	<!-- Featured Articles #1 -->
+		<?php if ( false !== $arras->get_option( 'enable_featured1' ) ) : ?>
+			<?php arras_above_index_featured1_post() ?>
+			<!-- Featured Articles #1 -->
 
-	<div id="index-featured1" class="section group">
-	<?php if ( arras_get_option('featured1_title') != '' ) : ?>
-		<h2 class="home-title"><?php _e( arras_get_option('featured1_title'), 'arras' ) ?></h2>
-	<?php endif;
-	arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras_featured1_query', array(
-		'list' 				=> $featured1_cat,
-		'taxonomy'			=> arras_get_option('featured1_tax'),
-		'query'				=> array(
-			'posts_per_page' 	=> $featured1_count,
-			'exclude'			=> $post_blacklist,
-			'ignore_sticky_posts'   => true,
-			'post_type'			=> arras_get_option('featured1_posttype')
-		)
-	) ) );
-	?>
-	</div><!-- #index-featured1 -->
-	<?php endif ?>
+			<div id="index-featured1" class="section group">
+				<?php if ( $arras->get_option( 'featured1_title' ) != '' ) : ?>
+					<h2 class="home-title"><?php _e( $arras->get_option( 'featured1_title' ), 'arras' ) ?></h2>
+				<?php endif;
+				/*					arras_featured_loop( $arras->get_option( 'featured1_display' ), apply_filters( 'arras_featured1_query', array(
+										'list'     => $featured1_cat,
+										'taxonomy' => $arras->get_option( 'featured1_tax' ),
+										'query'    => array(
+											'posts_per_page'      => $featured1_count,
+											'exclude'             => $post_blacklist,
+											'ignore_sticky_posts' => true,
+											'post_type'           => $arras->get_option( 'featured1_posttype' )
+										)
+									) ) );
+									*/ ?>
+			</div><!-- #index-featured1 -->
+		<?php endif ?>
 
-	<?php if ( false !== arras_get_option( 'enable_featured2' ) ) : ?>
-	<?php arras_above_index_featured2_post() ?>
-	<!-- Featured Articles #2 -->
-	<div id="index-featured2">
-	<?php if ( arras_get_option('featured2_title') != '' ) : ?>
-		<h2 class="home-title"><?php _e( arras_get_option('featured2_title'), 'arras' ) ?></h2>
-	<?php endif;
-	arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras_featured2_query', array(
-		'list' 				=> $featured2_cat,
-		'taxonomy'			=> arras_get_option('featured2_tax'),
-		'query'				=> array(
-			'posts_per_page' 	=> $featured2_count,
-			'exclude'			=> $post_blacklist,
-			'ignore_sticky_posts'   => true,
-			'post_type'			=> arras_get_option('featured2_posttype')
-		)
-	) ) );
-	?>
+		<?php if ( false !== $arras->get_option( 'enable_featured2' ) ) : ?>
+			<?php arras_above_index_featured2_post() ?>
+			<!-- Featured Articles #2 -->
+			<div id="index-featured2">
+				<?php if ( $arras->get_option( 'featured2_title' ) != '' ) : ?>
+					<h2 class="home-title"><?php _e( $arras->get_option( 'featured2_title' ), 'arras' ) ?></h2>
+				<?php endif;
+				/*					arras_featured_loop( $arras->get_option( 'featured2_display' ), apply_filters( 'arras_featured2_query', array(
+										'list'     => $featured2_cat,
+										'taxonomy' => $arras->get_option( 'featured2_tax' ),
+										'query'    => array(
+											'posts_per_page'      => $featured2_count,
+											'exclude'             => $post_blacklist,
+											'ignore_sticky_posts' => true,
+											'post_type'           => $arras->get_option( 'featured2_posttype' )
+										)
+									) ) );
+									*/ ?>
 
-	</div><!-- #index-featured2 -->
+			</div><!-- #index-featured2 -->
+		<?php endif; ?>
+
+		<?php if ( $arras->get_option( 'enable-news' ) ) : ?>
+
+			<?php $arras->do_the_news(); ?>
+
+		<?php endif; ?>
+
+		<?php //arras_main_column_widgets() ?>
+
+	<?php else: // We're on a second (or subsequent) page from the news section ?>
+
+		<?php $arras->do_the_news(); ?>
+
+		<?php arras_below_index_news_post() ?>
+
 	<?php endif; ?>
 
-	<?php if ( false !== arras_get_option( 'enable_news' ) ) : ?>
-	<?php arras_above_index_news_post() ?>
-	<!-- News Articles -->
-	<div id="index-news">
-	<?php if ( arras_get_option('news_title') != '' ) : ?>
-	<h2 class="home-title"><?php _e( arras_get_option('news_title') ) ?></h2>
-	<?php endif ?>
-	<?php
-	$news_query_args = apply_filters('arras_news_query', array(
-		'list' 				=> $news_cat,
-		'taxonomy'			=> arras_get_option('news_tax'),
-		'query'				=> array(
-			'posts_per_page' 	=> arras_get_option('news_count'),
-			'exclude'			=> $post_blacklist,
-			'post_type'			=> arras_get_option('news_posttype'),
-			'paged'				=> $paged
-		)
-	) );
-
-	$news_query = arras_prep_query($news_query_args);
-
-	query_posts($news_query);
-	$news_display = ( arras_get_option('news_display') ? arras_get_option('news_display') : 'default' );
-
-	arras_featured_loop( $news_display, $news_query_args, true );
-
-	if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
-		<div class="navigation clearfix">
-			<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
-			<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
-		</div>
-	<?php } ?>
-
-	</div><!-- #index-news -->
-	<?php arras_below_index_news_post() ?>
-	<?php endif; ?>
-
-
-	<?php arras_main_column_widgets() ?>
-
-<?php else: // We're on a second (or subsequent) page from the news section ?>
-
-	<?php if ( arras_get_option('news_title') != '' ) : ?>
-	<h2 class="home-title"><?php _e( arras_get_option('news_title') ) ?></h2>
-	<?php endif ?>
-
-	<div id="archive-posts">
-<?php arras_render_posts( null, ( arras_get_option( 'default_tapestry' ) ) ? arras_get_option( 'default_tapestry' ) : 'quick' ); ?>
-
-	    	<div class="navigation clearfix">
-				<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
-				<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
-			</div>
-	</div><!-- #archive-posts -->
-
-<?php endif; ?>
+</div>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
-
 
 <?php get_sidebar(); ?>
-<?php get_footer(); ?>
 
-<?php
-function arras_fp_skip() {
-	get_sidebar();
-	get_footer();
-}
+<?php get_footer(); ?>

@@ -38,8 +38,7 @@ $arras = apply_filters( 'arras_template', 'author' );
 		<?php //arras_render_posts( 'author=' . get_the_author_meta('ID') . '&paged=' . $paged, arras_get_option( 'default_tapestry' ) ) ?>
 
 		<?php $author_posts = $arras->run_query( [
-			'author' => get_the_author_meta( 'ID' ),
-			'paged'  => true,
+			'author'         => get_the_author_meta( 'ID' ),
 		] ); ?>
 
 		<?php if ( $author_posts->have_posts() ): ?>

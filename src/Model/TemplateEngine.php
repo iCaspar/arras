@@ -406,8 +406,9 @@ class TemplateEngine {
 		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
 		<div class="comment-node" id="comment-<?php comment_ID(); ?>">
 			<div class="comment-controls">
-				<?php comment_reply_link( array_merge( $args, array( 'depth'     => $depth,
-				                                                     'max_depth' => $args['max_depth']
+				<?php comment_reply_link( array_merge( $args, array(
+					'depth'     => $depth,
+					'max_depth' => $args['max_depth']
 				) ) ) ?>
 			</div>
 			<div class="comment-author vcard">
@@ -428,10 +429,92 @@ class TemplateEngine {
 	function list_trackbacks( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		?>
-	<li <?php comment_class(); ?> id="li-trackback-<?php comment_ID() ?>">
+		<li <?php comment_class(); ?> id="li-trackback-<?php comment_ID() ?>">
 		<div id="trackback-<?php comment_ID(); ?>">
 			<?php echo get_comment_author_link() ?>
 		</div>
+		<?php
+	}
+
+	/**
+	 * Do the news.
+	 *
+	 * @return void
+	 */
+	public function do_the_news() {
+		?>
+
+		<?php arras_above_index_news_post() ?>
+		<!-- News Articles -->
+		<!--				<div id="index-news">
+					<?php /*if ( $arras->get_option( 'news_title' ) != '' ) : */ ?>
+					<?php /*endif */ ?>
+					--><?php
+		/*					$news_query_args = apply_filters( 'arras_news_query', array(
+								'list'     => $news_cat,
+								'taxonomy' => $arras->get_option( 'news_tax' ),
+								'query'    => array(
+									'posts_per_page' => $arras->get_option( 'news_count' ),
+									'exclude'        => $post_blacklist,
+									'post_type'      => $arras->get_option( 'news_posttype' ),
+									'paged'          => $paged
+								)
+							) );
+		*/
+		//$news_query = arras_prep_query( $news_query_args );
+
+		//query_posts( $news_query );
+		//$news_display = ( $arras->get_option( 'news_display' ) ? $arras->get_option( 'news_display' ) : 'default' );
+
+		//arras_featured_loop( $news_display, $news_query_args, true ); ?>
+		<?php $news = $this->run_query( [
+			'post_type' => 'post',
+			'paged'     => get_query_var( 'page' ) ? get_query_var( 'page' ) : 1,
+		] ); ?>
+
+		<?php if ( $news->have_posts() ): ?>
+
+			<h2 class="home-title"><?php echo $news_title = $this->get_option( 'news-title' ) ? $news_title : 'Latest Headlines'; ?></h2>
+
+			<?php while ( $news->have_posts() ) : $news->the_post(); ?>
+
+				<div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
+					<?php $this->postheader() ?>
+					<div
+						class="entry-content"><?php the_content( __( 'Read the rest of this entry &raquo;', 'arras' ) ); ?>
+					</div>
+					<?php $this->postfooter() ?>
+				</div>
+
+			<?php endwhile; ?>
+
+			<?php if ( $news->max_num_pages > 1 ): ?>
+				<div class="navigation post-navigation" role="navigation">
+					<h2 class="screen-reader-text">Posts navigation</h2>
+					<div class="nav-links">
+						<?php if ( $next_link = get_next_posts_link( '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> ' . _x( 'Older Posts', 'Previous post link', 'arras' ), $news->max_num_pages ) ): ?>
+							<div class="nav-previous">
+								<?php echo $next_link; ?>
+							</div>
+						<?php endif; ?>
+						<?php if ( $prev_link = get_previous_posts_link( _x( 'Newer Posts', 'Next post link', 'arras' ) . ' <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>' ) ): ?>
+							<div class="nav-next">
+								<?php echo $prev_link; ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			<?php endif; ?>
+
+		<?php else: ?>
+			<?php $this->post_notfound() ?>
+
+		<?php endif; ?>
+
+		<?php wp_reset_postdata(); ?>
+
+		<?php arras_below_index_news_post() ?>
+
 		<?php
 	}
 

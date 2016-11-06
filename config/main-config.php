@@ -82,5 +82,6 @@ return [
 		'post_tags'           => true,
 		'show-post-nav'       => true,
 		'single-thumbs'       => true,
+		'enable-news'         => true,
 	]
 ];
