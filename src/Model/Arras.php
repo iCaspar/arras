@@ -144,8 +144,8 @@ class Arras {
 	}
 
 	public function load_styles() {
-		wp_enqueue_style( 'arras-base', ARRAS_ASSETS_URL . 'styles/base.css', false, ARRAS_VERSION, 'all' );
-		wp_enqueue_style( 'font-awesome', ARRAS_ASSETS_URL . 'styles/font-awesome.css', '4.6.3', ARRAS_VERSION, 'all' );
+		wp_enqueue_style( 'arras-base', ARRAS_ASSETS_URL . 'styles/css/base.css', false, ARRAS_VERSION, 'all' );
+		wp_enqueue_style( 'font-awesome', ARRAS_ASSETS_URL . 'styles/css/font-awesome.min.css', '4.6.3', ARRAS_VERSION, 'all' );
 
 		if ( is_child_theme() ) {
 			wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), false, ARRAS_VERSION, 'all' );
