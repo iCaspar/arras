@@ -468,8 +468,9 @@ class TemplateEngine {
 
 		//arras_featured_loop( $news_display, $news_query_args, true ); ?>
 		<?php $news = $this->run_query( [
-			'post_type' => 'post',
-			'paged'     => get_query_var( 'page' ) ? get_query_var( 'page' ) : 1,
+			'post_type'           => 'post',
+			'paged'               => get_query_var( 'page' ) ? get_query_var( 'page' ) : 1,
+			'ignore_sticky_posts' => true,
 		] ); ?>
 
 		<?php if ( $news->have_posts() ): ?>

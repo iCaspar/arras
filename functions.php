@@ -47,7 +47,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.6', '>' ) ) {
 /**
  * Launch the theme.
  *
- * @since 1.0.0
+ * @since 4.0.0
  *
  * @return void
  */
@@ -58,7 +58,7 @@ function launch() {
 	$config = apply_filters( 'arras_settings', include ARRAS_CONFIG_DIR . 'main-config.php' );
 
 	try {
-		$arras = new Arras( new Config( ( $config ) ) );
+		$arras = new Arras( new Config( $config ) );
 		$arras->init();
 	} catch ( \Exception $e ) {
 		die( $e->getMessage() );
