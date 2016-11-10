@@ -132,14 +132,14 @@ class Arras {
 		global $paged;
 
 		wp_enqueue_script( 'arras-menu-helper', ARRAS_ASSETS_URL . 'scripts/min/menu.min.js', array( 'jquery' ), ARRAS_VERSION, true );
-
+/*
 		if ( is_home() && ! $paged && $this->config->get_option( 'enable_slideshow' ) !== false ) {
 			wp_enqueue_script( 'jquery-cycle', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2-min.js', array( 'jquery' ), ARRAS_VERSION, true );
 			wp_enqueue_script( 'slideshow-settings', ARRAS_ASSETS_URL . 'scripts/slideshowsettings.js', array( 'jquery-cycle' ), ARRAS_VERSION, true );
 			wp_enqueue_script( 'jquery-cycle-caption', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.caption2.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
 			wp_enqueue_script( 'jquery-cycle-swipe', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.swipe.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
 		}
-
+*/
 		if ( is_singular() ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
