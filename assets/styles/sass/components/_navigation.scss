@@ -26,6 +26,11 @@ $hover-main-menu-color: $white;
 		}
 	}
 
+	.edge:hover > ul {
+		left: auto;
+		right: 0;
+	}
+
 	a {
 		background: $base-main-menu-background;
 		color: $base-main-menu-color;
@@ -40,6 +45,7 @@ $hover-main-menu-color: $white;
 
 	ul {
 		box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.25);
+		padding: 0;
 		position: absolute;
 		left: -999em;
 		width: 200px;

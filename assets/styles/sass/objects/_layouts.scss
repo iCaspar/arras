@@ -14,3 +14,9 @@
 	border: 1px solid $base-border-color;
 	position: relative;
 }
+
+@media only screen and (max-width: 480px) {
+	.wrap {
+		width: 95%;
+	}
+}
