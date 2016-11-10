@@ -38,7 +38,7 @@ $arras = apply_filters( 'arras_template', 'footer' );
 			<?php echo stripslashes( $arras->get_option( 'footer-message' ) ); ?>
 		</div>
 		<div class="arras-info">
-			<a href="http://arrastheme.net/"><?php _e( 'About Arras WordPress Theme', 'arras' ) ?></a>
+			<a href="http://arrastheme.net/">Arras v<?php echo ARRAS_VERSION;?></a>
 		</div>
 	</div>
 </div>

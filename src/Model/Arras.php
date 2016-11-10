@@ -131,7 +131,7 @@ class Arras {
 	public function load_scripts() {
 		global $paged;
 
-		wp_enqueue_script( 'arras-menu-helper', ARRAS_ASSETS_URL . 'scripts/dist/menu.min.js', array( 'jquery' ), ARRAS_VERSION, true );
+		wp_enqueue_script( 'arras-menu-helper', ARRAS_ASSETS_URL . 'scripts/min/menu.min.js', array( 'jquery' ), ARRAS_VERSION, true );
 
 		if ( is_home() && ! $paged && $this->config->get_option( 'enable_slideshow' ) !== false ) {
 			wp_enqueue_script( 'jquery-cycle', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2-min.js', array( 'jquery' ), ARRAS_VERSION, true );

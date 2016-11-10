@@ -111,14 +111,14 @@ pre code {
 }
 
 input[type=text], input[type=password], textarea {
-	background: url(../../images/form.jpg) repeat-x top #FFF;
+	background: url(../../images/legacy/form.jpg) repeat-x top #FFF;
 	border: 1px solid #CCC;
 	padding: 3px;
 }
 
 input[type=submit], #wp-email-submit {
 	font-family: Helvetica, Arial, sans-serif;
-	background: url(../../images/feed-title-white.jpg) repeat-x;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x;
 	border: 1px solid #CCC;
 	padding: 5px 10px;
 	font-size: 12px;
@@ -390,7 +390,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .sf-shadow ul {
-	background: url(../../images/shadow.png) no-repeat bottom right;
+	background: url(../../images/legacy/shadow.png) no-repeat bottom right;
 	padding: 0 8px 9px 0;
 	-moz-border-radius-bottomleft: 17px;
 	-moz-border-radius-topright: 17px;
@@ -477,7 +477,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #top-menu .sf-sub-indicator {
-	background: url(../../images/dropdown.png) no-repeat;
+	background: url(../../images/legacy/dropdown.png) no-repeat;
 	width: 5px;
 	height: 5px;
 	text-indent: -9999px;
@@ -502,7 +502,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 /* main navigation */
 #nav {
-	background: url(../../images/postbar.jpg) repeat-x top #F0F0F0;
+	background: url(../../images/legacy/postbar.jpg) repeat-x top #F0F0F0;
 	min-width: 990px;
 	border-bottom: 1px solid #CCC;
 }
@@ -537,7 +537,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #nav .sf-menu a:hover, #nav .sf-menu li:hover, #nav .sf-menu li.sfHover, #nav .sf-menu ul li {
-	background: url(../../images/content-bg.jpg) repeat-x top;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x top;
 	color: #0052A3;
 }
 
@@ -610,27 +610,27 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .quick-nav #rss {
-	background: url(../../images/social/rss.png) no-repeat center center;
+	background: url(../../images/legacy/social/rss.png) no-repeat center center;
 }
 
 .quick-nav #twitter {
-	background: url(../../images/social/twitter.png) no-repeat center center;
+	background: url(../../images/legacy/social/twitter.png) no-repeat center center;
 }
 
 .quick-nav #facebook {
-	background: url(../../images/social/facebook.png) no-repeat center center;
+	background: url(../../images/legacy/social/facebook.png) no-repeat center center;
 }
 
 .quick-nav #gplus {
-	background: url(../../images/social/gplus.png) no-repeat center center;
+	background: url(../../images/legacy/social/gplus.png) no-repeat center center;
 }
 
 .quick-nav #flickr {
-	background: url(../../images/social/flickr.png) no-repeat center center;
+	background: url(../../images/legacy/social/flickr.png) no-repeat center center;
 }
 
 .quick-nav #youtube {
-	background: url(../../images/social/youtube.png) no-repeat center center;
+	background: url(../../images/legacy/social/youtube.png) no-repeat center center;
 }
 
 /* search bar */
@@ -659,7 +659,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	float: left;
 	cursor: pointer;
 	border: 1px solid #333;
-	background: url(../../images/postbar-black.gif) repeat-x;
+	background: url(../../images/legacy/postbar-black.gif) repeat-x;
 	color: #FFF;
 }
 
@@ -677,7 +677,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 .widgetcontainer {
 	padding: 10px;
-	background: url(../../images/content-bg.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x #FFF;
 	background-position: 0 26px;
 	border: 1px solid #CCC;
 	margin-bottom: 10px;
@@ -716,7 +716,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	font-weight: bold;
 	margin: -10px -10px 10px;
 	padding: 5px 10px;
-	background: url(../../images/feed-title-white.jpg) repeat-x top #EFEFEF;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x top #EFEFEF;
 	border-bottom: 1px solid #FFF;
 	height: 19px;
 }
@@ -776,7 +776,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .multi-sidebar .widgetcontainer {
-	background: url(../../images/content-bg.jpg) top repeat-x #FFF;
+	background: url(../../images/legacy/content-bg.jpg) top repeat-x #FFF;
 	border: 1px solid #CCC;
 	margin-bottom: 10px;
 	padding: 10px;
@@ -813,7 +813,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	font-weight: 700;
 	margin: 0;
 	padding: 5px 9px;
-	background: url(../../images/feed-title-white.jpg) repeat-x top #EFEFEF;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x top #EFEFEF;
 	border: 1px solid #CCC;
 	text-align: center;
 }
@@ -841,14 +841,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #controls .prev {
-	background: url(../../images/prev.png) no-repeat;
+	background: url(../../images/legacy/prev.png) no-repeat;
 	float: left;
 	position: absolute;
 	left: 5px;
 }
 
 #controls .next {
-	background: url(../../images/next.png) no-repeat;
+	background: url(../../images/legacy/next.png) no-repeat;
 	float: right;
 	position: absolute;
 	left: 605px;
@@ -951,7 +951,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	margin: 0 8px 8px 0;
 	font-size: 12px;
 	padding: 5px 2px 10px;
-	background: url(../../images/content-bg.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x #FFF;
 	border: 1px solid #CCC;
 	overflow: hidden;
 	minheight: 100%;
@@ -1002,7 +1002,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 .posts-quick {
 	margin: 0 10px 10px 0;
 	padding: 10px;
-	background: url(../../images/content-bg.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x #FFF;
 	border: 1px solid #CCC;
 }
 
@@ -1081,7 +1081,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 .posts-default .entry-comments, .posts-quick .entry-comments {
 	float: right;
 	margin: 5px 5px 0;
-	background: url(../../images/comments.gif) no-repeat left center;
+	background: url(../../images/legacy/comments.gif) no-repeat left center;
 	padding: 0 0 0 12px;
 }
 
@@ -1095,7 +1095,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .posts-line {
-	background: url(../../images/content-bg.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 10px 0;
 	padding: 10px;
@@ -1142,7 +1142,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	font-weight: bold;
 	font-size: 11px;
 	padding: 6px 10px;
-	background: url(../../images/feed-title-white.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 10px 0;
 	color: #333;
@@ -1150,7 +1150,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 /* single post */
 .single .post, #main .single-post {
-	background: url(../../images/content-bg.jpg) repeat-x top #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x top #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 15px 0;
 	padding: 0 15px;
@@ -1234,7 +1234,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	float: right;
 	padding: 3px 3px 3px 17px;
 	margin-top: 20px;
-	background: url(../../images/comments.gif) no-repeat 3px 6px #0052A3;
+	background: url(../../images/legacy/comments.gif) no-repeat 3px 6px #0052A3;
 	display: inline-block;
 	color: #FFF;
 	font-size: 14px;
@@ -1303,7 +1303,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	font-weight: bold;
 	margin: 0 10px 0 0;
 	padding: 8px 10px;
-	background: url(../../images/feed-title-white.jpg) repeat-x top #EFEFEF;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x top #EFEFEF;
 	border: 1px solid #CCC;
 	display: block;
 }
@@ -1466,7 +1466,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 #commentlist #respond .module-title {
 	margin: 0;
-	background: url(../../images/feed-title-blue.jpg) top repeat-x;
+	background: url(../../images/legacy/feed-title-blue.jpg) top repeat-x;
 	color: #FFF;
 	border: 1px solid #0052A3;
 }
@@ -1504,7 +1504,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #commentlist .comment-controls a:link, #commentlist .comment-controls a:visited {
-	background: url(../../images/feed-title-white.jpg) top repeat-x #EFEFEF;
+	background: url(../../images/legacy/feed-title-white.jpg) top repeat-x #EFEFEF;
 	color: #000;
 	text-decoration: none;
 	padding: 5px 10px;
@@ -1519,7 +1519,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #commentlist .reply a, .comments-navigation a, .read-more, .navigation a {
-	background: url(../../images/feed-title-white.jpg) top repeat-x #EFEFEF;
+	background: url(../../images/legacy/feed-title-white.jpg) top repeat-x #EFEFEF;
 	color: #000;
 	text-decoration: none;
 	padding: 5px 10px;
@@ -1552,7 +1552,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .nocomments {
-	background: url(../../images/content-bg.jpg) repeat-x top #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x top #FFF;
 	border: solid #CCC;
 	border-width: 0 1px 1px;
 	padding: 15px 10px;
@@ -1561,7 +1561,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #commentform {
-	background: url(../../images/content-bg.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x #FFF;
 	border: solid #CCC;
 	border-width: 0 1px 1px;
 	margin-right: 10px;
@@ -1626,7 +1626,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	font-weight: bold;
 	margin: 0 10px 0 0;
 	padding: 6px 10px;
-	background: url(../../images/feed-title-white.jpg) repeat-x top #EFEFEF;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x top #EFEFEF;
 	border: 1px solid #CCC;
 }
 
@@ -1644,14 +1644,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 	font-weight: bold;
 	font-size: 11px;
 	padding: 6px 10px;
-	background: url(../../images/feed-title-white.jpg) repeat-x #FFF;
+	background: url(../../images/legacy/feed-title-white.jpg) repeat-x #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 10px 0;
 	color: #333;
 }
 
 .author-content .entry-content {
-	background: url(../../images/content-bg.jpg) repeat-x top #FFF;
+	background: url(../../images/legacy/content-bg.jpg) repeat-x top #FFF;
 	border: 1px solid #CCC;
 	margin: 0 10px 15px 0;
 	padding: 10px;
