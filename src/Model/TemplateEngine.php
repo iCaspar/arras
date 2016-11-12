@@ -70,7 +70,7 @@ class TemplateEngine {
 	 * @return mixed
 	 */
 	public function get_option( $option ) {
-		return $this->config->get_option( $option );
+		return $this->config->option( $option );
 	}
 
 	/**

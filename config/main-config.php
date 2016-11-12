@@ -71,9 +71,9 @@ return [
 		],
 	],
 
-	'options' => [
+	'option_defaults' => [
 		'footer-sidebars'     => 3,
-		'footer-message'      => __( 'This is a footer message.', 'arras' ),
+		'footer-message'      => __( 'Set your own footer message in the customizer.', 'arras' ),
 		'layout'              => '2c-r',
 		'display-author-page' => true,
 		'post_author'         => true,

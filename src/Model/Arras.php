@@ -63,7 +63,11 @@ class Arras {
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
 
+		add_action( 'customize_register', array( $this->config, 'customizer' ) );
+		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
+
 		add_filter( 'arras_template', array( $this, 'render' ) );
+
 	}
 
 
@@ -107,7 +111,7 @@ class Arras {
 			'after_title'   => '</h3>',
 		];
 
-		$footer_sidebars = $this->config->get_option( 'footer-sidebars' ) ?: 1;
+		$footer_sidebars = $this->config->option( 'footer-sidebars' ) ?: 1;
 
 		for ( $i = 1; $i <= $footer_sidebars; $i ++ ) {
 			$sidebars[] = [
@@ -132,14 +136,14 @@ class Arras {
 		global $paged;
 
 		wp_enqueue_script( 'arras-menu-helper', ARRAS_ASSETS_URL . 'scripts/min/menu.min.js', array( 'jquery' ), ARRAS_VERSION, true );
-/*
-		if ( is_home() && ! $paged && $this->config->get_option( 'enable_slideshow' ) !== false ) {
-			wp_enqueue_script( 'jquery-cycle', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2-min.js', array( 'jquery' ), ARRAS_VERSION, true );
-			wp_enqueue_script( 'slideshow-settings', ARRAS_ASSETS_URL . 'scripts/slideshowsettings.js', array( 'jquery-cycle' ), ARRAS_VERSION, true );
-			wp_enqueue_script( 'jquery-cycle-caption', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.caption2.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
-			wp_enqueue_script( 'jquery-cycle-swipe', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.swipe.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
-		}
-*/
+		/*
+				if ( is_home() && ! $paged && $this->config->get_option( 'enable_slideshow' ) !== false ) {
+					wp_enqueue_script( 'jquery-cycle', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2-min.js', array( 'jquery' ), ARRAS_VERSION, true );
+					wp_enqueue_script( 'slideshow-settings', ARRAS_ASSETS_URL . 'scripts/slideshowsettings.js', array( 'jquery-cycle' ), ARRAS_VERSION, true );
+					wp_enqueue_script( 'jquery-cycle-caption', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.caption2.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
+					wp_enqueue_script( 'jquery-cycle-swipe', ARRAS_ASSETS_URL . 'scripts/jquery.cycle2.swipe.min.js', array( 'slideshow-settings' ), ARRAS_VERSION, true );
+				}
+		*/
 		if ( is_singular() ) {
 			wp_enqueue_script( 'comment-reply' );
 		}

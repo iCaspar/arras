@@ -35,7 +35,7 @@ $arras = apply_filters( 'arras_template', 'footer' );
 
 	<div class="coda">
 		<div class="footer-message">
-			<?php echo stripslashes( $arras->get_option( 'footer-message' ) ); ?>
+			<?php echo esc_attr( $arras->get_option( 'footer-message' ) ); ?>
 		</div>
 		<div class="arras-info">
 			<a href="http://arrastheme.net/">Arras v<?php echo ARRAS_VERSION;?></a>

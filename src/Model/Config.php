@@ -27,7 +27,7 @@ class Config {
 	/**
 	 * @var array Theme options.
 	 */
-	protected $options;
+	protected $defaults;
 
 	/**
 	 * Config constructor.
@@ -43,17 +43,8 @@ class Config {
 			throw new \Exception( 'Arras Settings are unusable.' );
 		}
 
-		$options = get_option( 'arras-options' ) ?: [ ];
-
-		if ( ! is_array( $options ) ) {
-			// Todo: Offer an attempted fix. (For now just throw an exception.)
-			throw new \Exception( 'Arras Config are unusable.' );
-		}
-
-		if ( isset( $config['options'] ) && is_array( $config['options'] ) ) {
-			$this->options = array_merge_recursive( $config['options'], $options );
-		} else {
-			$this->options = $options;
+		if ( isset( $config['option_defaults'] ) && is_array( $config['option_defaults'] ) ) {
+			$this->defaults = $config['option_defaults'];
 		}
 	}
 
@@ -71,37 +62,56 @@ class Config {
 	/**
 	 * Get theme option(s).
 	 *
-	 * @param string|array|null $requested_options
-	 *          String to request a single option value,
-	 *          Array to request multiple option values at once,
-	 *          Null to request all current options.
+	 * @param string $requested_option Option to return.
 	 *
-	 * @param null|array $options For tests: a sample option array.
-	 *
-	 * @return mixed
-	 *          Request for all options returns an array.
-	 *          Request for a single option returns it's value, or null if not set.
-	 *          Request for multiple values returns an array: [ 'option' => value ], where value will be null
-	 *              for unset options,
+	 * @return mixed Option value or default.
 	 */
-	public function get_option( $requested_options = null ) {
-		if ( ! isset( $requested_options ) ) {
-			return $this->options;
+	public function option( $requested_option ) {
+		$options = get_option( 'arras-options' );
+		$option  = array_key_exists( $requested_option, $options ) ? $options[ $requested_option ] : '';
+
+		if ( ! $option ) {
+			$option = array_key_exists( $requested_option, $this->defaults )
+				? $this->defaults[ $requested_option ] : null;
 		}
 
-		if ( is_array( $requested_options ) ) {
-			foreach ( $requested_options as $option ) {
-				$options_array[ $option ] = array_key_exists( $option, $this->options ) ? $this->options[ $option ] : null;
-			}
-
-			return $options_array;
-		}
-
-		if ( is_string( $requested_options ) ) {
-			return array_key_exists( $requested_options, $this->options ) ? $this->options[ $requested_options ] : null;
-		}
-
-		return null;
+		return $option;
 	}
 
+	/**
+	 * Customize the WP customizer.
+	 *
+	 * @param $wp_customize The WP Customizer object/
+	 *
+	 * @return void
+	 */
+	public function customizer( $wp_customize ) {
+		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+
+		$wp_customize->add_setting( 'arras-options[footer-message]', array(
+			'default'           => $this->defaults['footer-message'],
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+
+		$wp_customize->add_control( 'footer-message', array(
+			'label'    => __( 'Footer Message', 'arras' ),
+			'section'  => 'title_tagline',
+			'settings' => 'arras-options[footer-message]',
+		) );
+	}
+
+	/**
+	 * Enqueue JavaScript to handle customizer postMessages.
+	 * @return void
+	 */
+	public function postmessage() {
+		wp_enqueue_script( 'arras-postmessage-handler',
+			ARRAS_ASSETS_URL . 'scripts/min/customizer-postmessages.min.js',
+			array( 'customize-preview', 'jquery' ),
+			ARRAS_VERSION
+		);
+	}
 }
