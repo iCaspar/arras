@@ -27,7 +27,7 @@ class Config {
 	/**
 	 * @var array Theme options.
 	 */
-	protected $defaults;
+	protected $defaults = [ ];
 
 	/**
 	 * Config constructor.
@@ -68,7 +68,10 @@ class Config {
 	 */
 	public function option( $requested_option ) {
 		$options = get_option( 'arras-options' );
-		$option  = array_key_exists( $requested_option, $options ) ? $options[ $requested_option ] : '';
+
+		if ( is_array( $options ) ) {
+			$option = array_key_exists( $requested_option, $options ) ? $options[ $requested_option ] : '';
+		}
 
 		if ( ! $option ) {
 			$option = array_key_exists( $requested_option, $this->defaults )
@@ -81,7 +84,7 @@ class Config {
 	/**
 	 * Customize the WP customizer.
 	 *
-	 * @param $wp_customize The WP Customizer object/
+	 * @param $wp_customize The WP Customizer object
 	 *
 	 * @return void
 	 */
