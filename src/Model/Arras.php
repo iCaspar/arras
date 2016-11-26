@@ -9,6 +9,7 @@
 
 namespace ICaspar\Arras\Model;
 
+use ICaspar\Arras\Theme\Layouts\Layout;
 use ICaspar\Arras\Views\Menu;
 use ICaspar\Arras\Views\View;
 
@@ -29,6 +30,11 @@ class Arras {
 	 */
 	protected $menus;
 
+	/**
+	 * @var Layout Theme layout.
+	 */
+	protected $layout;
+	
 	/**
 	 * @var The Template engine.
 	 */

@@ -9,9 +9,9 @@
 
 namespace ICaspar\Arras\Tests\Unit\Theme\Layouts;
 
-use ICaspar\Arras\Theme\Layouts\NoSidebarLayout;
+use ICaspar\Arras\Theme\Layouts\NoSidebarsLayout;
 
-class NoSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
+class NoSidebarsLayoutTest extends \PHPUnit_Framework_TestCase {
 
 	protected $layout;
 
@@ -22,7 +22,7 @@ class NoSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
 			'return' => 'Single column and no sidebars.'
 		] );
 
-		$this->layout = new NoSidebarLayout();
+		$this->layout = new NoSidebarsLayout();
 	}
 
 	public function tearDown() {

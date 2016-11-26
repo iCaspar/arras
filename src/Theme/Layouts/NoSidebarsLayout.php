@@ -13,7 +13,7 @@ namespace ICaspar\Arras\Theme\Layouts;
  * Class NoSidebarLayout
  * @package ICaspar\Arras\Theme\Layouts
  */
-class NoSidebarLayout implements Layout {
+class NoSidebarsLayout implements Layout {
 
 	/**
 	 * @var string Layout slug.
@@ -51,7 +51,7 @@ class NoSidebarLayout implements Layout {
 	}
 
 	/**
-	 * Get CSS classses for a theme element's position.
+	 * Get CSS classes for a theme element's position.
 	 *
 	 * @param string $position The element position.
 	 *
