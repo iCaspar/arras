@@ -35,9 +35,15 @@ class SingleRightSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame( 'Main content with a single right sidebar.', $this->layout->get_description() );
 	}
 
-	public function testGetClasses() {
+	public function testGetClassesForContent() {
 		$this->assertEquals( 'col span_2_of_3', $this->layout->get_classes( 'content' ) );
+	}
+
+	public function testGetClassesForPrimarySidebar() {
 		$this->assertEquals( 'col span_1_of_3 sidebar', $this->layout->get_classes( 'primary' ) );
+	}
+
+	public function testReturnEmptyForAllOther() {
 		$this->assertEquals( '', $this->layout->get_classes( 'anythingElse' ) );
 	}
 }
