@@ -1391,12 +1391,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "845620270f5b0714beeefd161efc0d7878d2a6d9"
+                "reference": "5795ffe5dc5b02460c3e34222fee8cbe245d8fac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/845620270f5b0714beeefd161efc0d7878d2a6d9",
-                "reference": "845620270f5b0714beeefd161efc0d7878d2a6d9",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/5795ffe5dc5b02460c3e34222fee8cbe245d8fac",
+                "reference": "5795ffe5dc5b02460c3e34222fee8cbe245d8fac",
                 "shasum": ""
             },
             "require": {
@@ -1433,7 +1433,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-10-03 07:36:49"
+            "time": "2016-11-26 07:53:53"
         },
         {
             "name": "sebastian/exporter",
