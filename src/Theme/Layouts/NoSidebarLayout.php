@@ -1,6 +1,6 @@
 <?php
 /**
- * Layout for main content with a single right sidebar.
+ * Layout for main content with no sidebars.
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
@@ -10,15 +10,15 @@
 namespace ICaspar\Arras\Theme\Layouts;
 
 /**
- * Class SingleRightSidebarLayout
+ * Class NoSidebarLayout
  * @package ICaspar\Arras\Theme\Layouts
  */
-class SingleRightSidebarLayout implements Layout {
+class NoSidebarLayout implements Layout {
 
 	/**
 	 * @var string Layout slug.
 	 */
-	protected $slug = 'single-right';
+	protected $slug = 'no-sidebars';
 
 	/**
 	 * @var string|void Layout description.
@@ -26,12 +26,12 @@ class SingleRightSidebarLayout implements Layout {
 	protected $description;
 
 	/**
-	 * SingleRightSidebarLayout constructor.
+	 * NoSidebarLayout constructor.
 	 *
 	 * @param null|string $description A description for the layout.
 	 */
 	public function __construct( $description = null ) {
-		$this->description = $description ?: __( 'Main content with a single right sidebar.', 'arras' );
+		$this->description = $description ?: __( 'Single column and no sidebars.', 'arras' );
 	}
 
 	/**
@@ -59,9 +59,9 @@ class SingleRightSidebarLayout implements Layout {
 	 */
 	public function get_classes( $position ) {
 		if ( 'content' == $position ) {
-			$class = 'col span_2_of_3';
+			$class = 'group';
 		} elseif ( 'primary' == $position ) {
-			$class = 'col span_1_of_3 sidebar';
+			$class = 'group sidebar';
 		} else {
 			$class = '';
 		}

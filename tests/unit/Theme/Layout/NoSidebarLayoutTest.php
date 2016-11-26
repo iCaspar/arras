@@ -9,13 +9,9 @@
 
 namespace ICaspar\Arras\Tests\Unit\Theme\Layouts;
 
-use ICaspar\Arras\Theme\Layouts\SingleRightSidebarLayout;
+use ICaspar\Arras\Theme\Layouts\NoSidebarLayout;
 
-/**
- * Class SingleRightSidebarLayoutTest
- * @package ICaspar\Arras\Tests\Unit\Theme\Layouts
- */
-class SingleRightSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
+class NoSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
 
 	protected $layout;
 
@@ -23,10 +19,10 @@ class SingleRightSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
 		\WP_Mock::setUp();
 		\WP_Mock::wpFunction( '__', [
 			'times'  => 1,
-			'return' => 'Main content with a single right sidebar.'
+			'return' => 'Single column and no sidebars.'
 		] );
 
-		$this->layout = new SingleRightSidebarLayout();
+		$this->layout = new NoSidebarLayout();
 	}
 
 	public function tearDown() {
@@ -35,19 +31,19 @@ class SingleRightSidebarLayoutTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testReturnsDescription() {
-		$this->assertSame( 'Main content with a single right sidebar.', $this->layout->get_description() );
+		$this->assertEquals( 'Single column and no sidebars.', $this->layout->get_description() );
 	}
 
 	public function testReturnsSlug() {
-		$this->assertEquals( 'single-right', $this->layout->get_slug() );
+		$this->assertEquals( 'no-sidebars', $this->layout->get_slug() );
 	}
 
 	public function testGetClassesForContent() {
-		$this->assertEquals( 'col span_2_of_3', $this->layout->get_classes( 'content' ) );
+		$this->assertEquals( 'group', $this->layout->get_classes( 'content' ) );
 	}
 
 	public function testGetClassesForPrimarySidebar() {
-		$this->assertEquals( 'col span_1_of_3 sidebar', $this->layout->get_classes( 'primary' ) );
+		$this->assertEquals( 'group sidebar', $this->layout->get_classes( 'primary' ) );
 	}
 
 	public function testReturnEmptyForAllOther() {
