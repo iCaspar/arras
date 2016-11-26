@@ -1,6 +1,6 @@
 <?php
 /**
- * Arras theme configuration model.
+ * Arras theme configuration.
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
@@ -18,7 +18,7 @@ class ArrasConfiguration extends ArrayObject implements Configuration {
 	/**
 	 * @var array Configuration parameters.
 	 */
-	protected $config = [ ];
+	protected $config;
 
 	/**
 	 * Create a new configuration repository.
@@ -123,7 +123,7 @@ class ArrasConfiguration extends ArrayObject implements Configuration {
 	 */
 	protected function validate_file( $file ) {
 		if ( ! $file ) {
-			throw new InvalidArgumentException( 'Must provide a config filename.' );
+			throw new InvalidArgumentException( __( 'Must provide a config filename.', 'arras' ) );
 		}
 
 		if ( ! is_readable( $file ) ) {
