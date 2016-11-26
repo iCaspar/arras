@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="tests/unit/bootstrap.php"
+         convertWarningsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertErrorsToExceptions="true"
+         backupStaticAttributes="false"
+         processIsolation="false"
+         stopOnFailure="false"
+         backupGlobals="false"
+         syntaxCheck="false"
+         colors="true">
+    <testsuites>
+        <testsuite name="Arras Suite">
+            <directory>./tests/unit/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
