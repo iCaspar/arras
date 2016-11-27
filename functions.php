@@ -9,8 +9,8 @@
 
 namespace ICaspar\Arras;
 
-use ICaspar\Arras\Model\Arras;
-use ICaspar\Arras\Model\Config;
+use ICaspar\Arras\Config\ArrasConfiguration;
+use ICaspar\Arras\Theme\Arras;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Sorry. This address is not accessible.' );
@@ -55,10 +55,10 @@ if ( version_compare( $GLOBALS['wp_version'], '4.6', '>' ) ) {
 function launch() {
 	require_once( __DIR__ . '/vendor/autoload.php' );
 
-	$config = apply_filters( 'arras_settings', include ARRAS_CONFIG_DIR . 'main-config.php' );
+	$config = apply_filters( 'arras_settings', include ARRAS_CONFIG_DIR . 'config.php' );
 
 	try {
-		$arras = new Arras( new Config( $config ) );
+		$arras = new Arras( new ArrasConfiguration( $config ) );
 		$arras->init();
 	} catch ( \Exception $e ) {
 		die( $e->getMessage() );

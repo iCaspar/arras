@@ -7,14 +7,16 @@
  * @since: 4.0.0
  */
 
-namespace ICaspar\Arras\Theme;
+namespace ICaspar\Arras\Options;
 
 class Options {
 
 	/**
-	 * @var Default option settings.
+	 * Default option settings.
+	 *
+	 * @var array
 	 */
-	protected $defaults = [ ];
+	protected $defaults;
 
 	public function __construct( array $defaults ) {
 		$this->defaults = $defaults;
@@ -23,9 +25,9 @@ class Options {
 	public function get( $option ) {
 		$options = get_option( 'arras-options' );
 
-		if ( isset( $options, $option ) ) {
+		if ( isset( $options[ $option ] ) ) {
 			return $options[ $option ];
-		} elseif ( isset( $this->defaults, $option ) ) {
+		} elseif ( isset( $this->defaults[ $option ] ) ) {
 			return $this->defaults[ $option ];
 		} else {
 			return null;
