@@ -22,6 +22,17 @@ class Options {
 		$this->defaults = $defaults;
 	}
 
+	/**
+	 * Get a requested option.
+	 *
+	 * Check for an option in the database first.
+	 * If no saved option is available, find a default option if available.
+	 * Otherwise return null.
+	 *
+	 * @param $option
+	 *
+	 * @return mixed|null
+	 */
 	public function get( $option ) {
 		$options = get_option( 'arras-options' );
 

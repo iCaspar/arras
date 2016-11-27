@@ -60,7 +60,12 @@ class LayoutFactory {
 	}
 
 	/**
-	 * Validate a Layout Classname
+	 * Validate a Layout Classname.
+	 *
+	 * Todo:
+	 * It's possible that a corrupted value for this could be stored in the Database.
+	 * Rather than throw an exception, we should offer an authorized user to reset to the default layout,
+	 * or just use the default layout for anyone else.
 	 *
 	 * @param $fullyQualifiedClassname
 	 *
