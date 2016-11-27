@@ -9,7 +9,9 @@ if ( is_front_page() && is_home() ) {
 	/**
 	 * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
 	 */
-	$arras = apply_filters( 'arras_template', 'front-page' );
+	$theme = apply_filters( 'arras_template', 'front-page' );
+	$arras = $theme[0];
+	$layout = $theme[1];
 	$paged = get_query_var( 'page' );
 	?>
 
@@ -32,7 +34,7 @@ if ( is_front_page() && is_home() ) {
 	/*/
 	?>
 
-	<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
+	<div id="content" class="<?php echo $layout->get_classes( 'content' ); ?>">
 		<?php arras_above_content(); // if the Slideshow is active it is loaded here ?>
 
 		<?php if ( ! $paged ) : ?>

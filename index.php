@@ -6,14 +6,16 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$arras = apply_filters( 'arras_template', 'index' );
+$theme = apply_filters( 'arras_template', 'index' );
+$arras = $theme[0];
+$layout = $theme[1];
 ?>
 
 <?php get_header(); ?>
 
 <?php arras_above_content(); ?>
 
-<div id="content" class="<?php echo $arras->layout_columns( 'content' ); ?>">
+<div id="content" class="<?php echo $layout->get_classes( 'content' ); ?>">
 
 	<?php if ( have_posts() ): ?>
 

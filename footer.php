@@ -6,7 +6,8 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$arras = apply_filters( 'arras_template', 'footer' );
+$theme = apply_filters( 'arras_template', 'footer' );
+$arras = $theme[0];
 ?>
 
 </div>

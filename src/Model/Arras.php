@@ -10,6 +10,7 @@
 namespace ICaspar\Arras\Model;
 
 use ICaspar\Arras\Theme\Layouts\Layout;
+use ICaspar\Arras\Theme\Layouts\LayoutFactory;
 use ICaspar\Arras\Views\Menu;
 use ICaspar\Arras\Views\View;
 
@@ -47,6 +48,8 @@ class Arras {
 	 */
 	public function __construct( Config $config ) {
 		$this->config = $config;
+		$layoutFactory = new LayoutFactory( 'SingleRightSidebar' );
+		$this->layout = $layoutFactory->build();
 	}
 
 	/**
@@ -178,9 +181,11 @@ class Arras {
 	public function render( $template_type ) {
 		$sub_template = in_array( $template_type, [ 'header', 'comments', 'sidebar', 'footer' ] );
 
-		$this->template_engine->set_template( $template_type, $sub_template );
-
-		return $this->template_engine;
+		$arras_template = [
+			$this->template_engine,
+			$this->layout,
+		];
+		return $arras_template;
 	}
 
 }
