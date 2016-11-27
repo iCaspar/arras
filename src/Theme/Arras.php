@@ -7,12 +7,12 @@
  * @version: 4.0.0
  */
 
-namespace ICaspar\Arras\Model;
+namespace ICaspar\Arras\Theme;
 
-use ICaspar\Arras\Theme\Layouts\Layout;
-use ICaspar\Arras\Theme\Layouts\LayoutFactory;
+use ICaspar\Arras\Config\Configuration;
+use ICaspar\Arras\Options\Options;
 use ICaspar\Arras\Views\Menu;
-use ICaspar\Arras\Views\View;
+use Pimple\Container;
 
 /**
  * Class Arras
@@ -22,34 +22,27 @@ use ICaspar\Arras\Views\View;
 class Arras {
 
 	/**
-	 * @var Config The theme configuration object.
+	 * Theme Configuration.
+	 *
+	 * @var Configuration
 	 */
 	protected $config;
 
 	/**
-	 * @var Menu Theme menus.
+	 * Container for theme parameters and services.
+	 *
+	 * @var Container
 	 */
-	protected $menus;
-
-	/**
-	 * @var Layout Theme layout.
-	 */
-	protected $layout;
-	
-	/**
-	 * @var The Template engine.
-	 */
-	protected $template_engine;
+	protected $arras;
 
 	/**
 	 * Arras constructor.
 	 *
-	 * @param Config $config Theme configuration manager.
+	 * @param Configuration $config Theme configuration manager.
 	 */
-	public function __construct( Config $config ) {
+	public function __construct( Configuration $config ) {
 		$this->config = $config;
-		$layoutFactory = new LayoutFactory( 'SingleRightSidebar' );
-		$this->layout = $layoutFactory->build();
+		$this->arras  = new Container();
 	}
 
 	/**
@@ -60,12 +53,61 @@ class Arras {
 	 * @return void
 	 */
 	public function init() {
+		$this->init_options();
+		$this->init_service_providers();
+		$this->init_hooks();
 
 		$this->menus = new Menu( $this->config->getSetting( 'menus' ) );
 		$this->menus->init();
 
 		$this->template_engine = new TemplateEngine( $this->config, $this->menus );
+	}
 
+	/**
+	 * Initialize theme options.
+	 *
+	 * These need to be loaded first so we can use them to configure our services.
+	 * @return void
+	 */
+	protected function init_options() {
+		$defaults = $this->config['defaults'];
+
+		$this->arras['options'] = function () use ( $defaults ) {
+			return new Options( $defaults );
+		};
+	}
+
+	/**
+	 * Initialize theme services.
+	 *
+	 * These classes provide all the services the theme will need for setup, render and admin.
+	 * @return void
+	 */
+	protected function init_service_providers() {
+		$providers = $this->config['service-providers'];
+
+		foreach ( $providers as $provider => $service ) {
+			$this->arras[ $provider ] = function ( $arras ) use ( $service ) {
+				if ( is_array( $service ) ) {
+					$class  = $service['class'];
+					$option = $service['option'];
+					$args   = $arras['options']->get( $option );
+
+					return new $class( $args );
+				} else {
+					return new $service();
+				}
+
+				return new $serviceProvider();
+			};
+		}
+	}
+
+	/**
+	 * Initialize theme actions and filters.
+	 * @return void
+	 */
+	protected function init_hooks() {
 		add_action( 'after_setup_theme', array( $this, 'i18n' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_support' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ) );
@@ -76,9 +118,7 @@ class Arras {
 		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
 
 		add_filter( 'arras_template', array( $this, 'render' ) );
-
 	}
-
 
 	/** ----- CALLBACKS ----- */
 
@@ -185,6 +225,7 @@ class Arras {
 			$this->template_engine,
 			$this->layout,
 		];
+
 		return $arras_template;
 	}
 

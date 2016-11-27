@@ -8,6 +8,12 @@
  */
 
 return [
+	/***** Service Providers *****/
+
+	'service-providers' => [
+
+	],
+
 	'settings' => [
 		'theme-support' => [
 			'title-tag'         => '',

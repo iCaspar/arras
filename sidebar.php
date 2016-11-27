@@ -6,10 +6,12 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$arras = apply_filters( 'arras_template', 'sidebar' );
+$theme = apply_filters( 'arras_template', 'sidebar' );
+$arras = $theme[0];
+$layout = $theme[1];
 ?>
 
-<?php if ( '1c' !== $arras->get_option( 'layout' ) ): // don't show sidebars on single column layout ?>
+<?php if ( 'NoSidebars' !== $layout->get_slug() ): // don't show sidebars on single column layout ?>
 
 	<?php arras_above_sidebar() ?>
 

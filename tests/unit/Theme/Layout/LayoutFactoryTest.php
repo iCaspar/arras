@@ -30,12 +30,12 @@ class LayoutFactoryTest extends \PHPUnit_Framework_TestCase {
 
 	public function testThrowsInvalidArgumentException() {
 		$this->expectException( \InvalidArgumentException::class );
-		$layoutFactory = new LayoutFactory( 'someClassName' );
+		$layoutFactory = new LayoutFactory( 'someBogusClass' );
 	}
 
 	public function testReturnsLayoutClass() {
 		$layoutFactory = new LayoutFactory( 'NoSidebars' );
-		$this->assertInstanceOf( 'ICaspar\\Arras\\Theme\\Layouts\\Layout', $layoutFactory->build() );
+		$this->assertInstanceOf( 'ICaspar\Arras\Theme\Layouts\Layout', $layoutFactory->build() );
 	}
 
 }

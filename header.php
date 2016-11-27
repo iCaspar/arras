@@ -8,7 +8,8 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$arras = apply_filters( 'arras_template', 'header' );
+$theme = apply_filters( 'arras_template', 'header' );
+$arras = $theme[0];
 ?>
 
 <!DOCTYPE html>
