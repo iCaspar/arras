@@ -29,9 +29,9 @@ return [
 	 * Service Providers
 	 */
 	'service-providers' => [
-		'layout' => [
+		'layoutFactory' => [
 			'class'     => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
-			'source'    => 'options',
+			'source'    => 'option',
 			'parameter' => 'layout',
 		],
 		'menus'  => [
@@ -48,14 +48,14 @@ return [
 		'main' => [
 			'name'      => __( 'Main Menu', 'arras' ),
 			'container' => 'nav',
-			'fallback'  => 'main',
+			/*'fallback'  => 'main',*/
 			'depth'     => 2,
 			'class'     => 'primary-nav wrap',
 		],
 		'top'  => [
 			'name'      => __( 'Top Menu', 'arras' ),
 			'container' => 'nav',
-			'fallback'  => false,
+			/*'fallback'  => false,*/
 			'depth'     => 1,
 			'class'     => 'secondary-nav wrap',
 		],

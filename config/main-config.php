@@ -33,18 +33,18 @@ return [
 
 		'menus' => [
 			'main' => [
-				'name'      => __( 'Main Menu', 'arras' ),
-				'container' => 'nav',
-				'fallback'  => 'main',
-				'depth'     => 2,
-				'class'     => 'primary-nav wrap',
+				'name'            => __( 'Main Menu', 'arras' ),
+				'container'       => 'nav',
+				'fallback'        => 'main',
+				'depth'           => 2,
+				'container_class' => 'primary-nav wrap',
 			],
 			'top'  => [
-				'name'      => __( 'Top Menu', 'arras' ),
-				'container' => 'nav',
-				'fallback'  => false,
-				'depth'     => 1,
-				'class'     => 'secondary-nav wrap',
+				'name'            => __( 'Top Menu', 'arras' ),
+				'container'       => 'nav',
+				'fallback'        => false,
+				'depth'           => 1,
+				'container_class' => 'secondary-nav wrap',
 			],
 		],
 

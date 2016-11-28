@@ -6,8 +6,7 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$theme = apply_filters( 'arras_template', 'footer' );
-$arras = $theme[0];
+$arras = apply_filters( 'arras_template', 'footer' );
 ?>
 
 </div>
@@ -17,7 +16,7 @@ $arras = $theme[0];
 <div id="page-footer" class="page-footer wrap group">
 	<div class="footer-sidebar-container group">
 		<?php
-		$footer_sidebars = $arras->get_option( 'footer-sidebars' );
+		$footer_sidebars = $arras['options']->get( 'footer-sidebars' );
 		if ( $footer_sidebars == '' ) {
 			$footer_sidebars = 1;
 		}
@@ -36,7 +35,7 @@ $arras = $theme[0];
 
 	<div class="coda">
 		<div class="footer-message">
-			<?php echo esc_attr( $arras->get_option( 'footer-message' ) ); ?>
+			<?php echo esc_attr( $arras['options']->get( 'footer-message' ) ); ?>
 		</div>
 		<div class="arras-info">
 			<a href="http://arrastheme.net/">Arras v<?php echo ARRAS_VERSION;?></a>

@@ -27,8 +27,8 @@ class MenuController {
 	 * @var array
 	 */
 	protected $defaults = [
-		'container' => 'nav',
-		'class'     => 'wrap',
+		'container'       => 'nav',
+		'container_class' => 'wrap',
 	];
 
 	/**
@@ -118,7 +118,6 @@ class MenuController {
 			$args                   = wp_parse_args( $this->menus[ $location ], $this->defaults );
 			$args['theme_location'] = $location;
 			$args['menu_class']     = 'menu-' . $location;
-
 			wp_nav_menu( $args );
 		}
 	}

@@ -48,6 +48,7 @@ class Arras {
 		$this->init_options();
 		$this->init_service_providers();
 		$this->init_hooks();
+		$this->init_templates();
 
 		//$this->template_engine = new TemplateEngine( $this->config, $this->menus );
 	}
@@ -79,6 +80,7 @@ class Arras {
 			$this->arras[ $provider ] = function ( $arras ) use ( $service ) {
 				if ( is_array( $service ) ) {
 					if ( 'option' == $service['source'] ) {
+						($service['class']);
 						$args = $arras['options']->get( $service['parameter'] );
 					}
 
@@ -103,6 +105,7 @@ class Arras {
 	protected function init_hooks() {
 		add_action( 'after_setup_theme', array( $this, 'i18n' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_support' ) );
+		add_action( 'after_setup_theme', array( $this, 'menus' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
@@ -111,6 +114,16 @@ class Arras {
 		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
 
 		add_filter( 'arras_template', array( $this, 'render' ) );
+	}
+
+	/**
+	 * Initialize Template Rendering Classes.
+	 * @return void
+	 */
+	protected function init_templates() {
+		$this->arras['layout'] = function ( $arras ) {
+			return $arras['layoutFactory']->build();
+		};
 	}
 
 	/** ----- CALLBACKS ----- */
@@ -171,6 +184,10 @@ class Arras {
 		}
 	}
 
+	public function menus() {
+		$this->arras['menus']->register_menus();
+	}
+
 	/**
 	 * Enqueue theme scripts.
 	 * @return void
@@ -213,14 +230,7 @@ class Arras {
 	 * @return TemplateEngine
 	 */
 	public function render( $template_type ) {
-		$sub_template = in_array( $template_type, [ 'header', 'comments', 'sidebar', 'footer' ] );
-
-		$arras_template = [
-			$this->template_engine,
-			$this->layout,
-		];
-
-		return $arras_template;
+		return $this->arras;
 	}
 
 }

@@ -6,24 +6,22 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$theme = apply_filters( 'arras_template', 'sidebar' );
-$arras = $theme[0];
-$layout = $theme[1];
+$arras = apply_filters( 'arras_template', 'sidebar' );
 ?>
 
-<?php if ( 'NoSidebars' !== $layout->get_slug() ): // don't show sidebars on single column layout ?>
+<?php if ( 'NoSidebars' !== $arras['layout']->get_slug() ): // don't show sidebars on single column layout ?>
 
 	<?php arras_above_sidebar() ?>
 
 	<?php if ( is_active_sidebar( 'primary-sidebar' ) ): ?>
-		<aside id="primary-sidebar" class="<?php echo $arras->layout_columns( 'primary' ); ?>" role="complementary">
+		<aside id="primary-sidebar" class="<?php echo $arras['layout']->get_classes( 'primary' ); ?>" role="complementary">
 			<?php dynamic_sidebar( 'primary-sidebar' ); ?>
 		</aside>
 	<?php endif; ?>
 
 
 
-	<?php if ( false !== strpos( $arras->get_option( 'layout' ), '3c' ) ): ?>
+	<?php if ( false !== strpos( $arras['options']->get( 'layout' ), '3c' ) ): ?>
 		<div id="secondary-sidebar" class="<?php echo arras_layout_columns( 'secondary' ); ?>">
 			<ul class="xoxo">
 				<!-- Widgetized sidebar, if you have the plugin installed.  -->
