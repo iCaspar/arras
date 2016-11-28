@@ -8,8 +8,7 @@
 /**
  * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
  */
-$theme = apply_filters( 'arras_template', 'header' );
-$arras = $theme[0];
+$arras = apply_filters( 'arras_template', 'header' );
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ $arras = $theme[0];
 	<?php arras_above_top_menu(); ?>
 
 	<div id="menu-top-container" class="menu-top-container">
-		<?php $arras->do_menu( 'top' ); ?>
+		<?php $arras['menus']->build( 'top' ); ?>
 	</div>
 
 	<?php arras_below_top_menu(); ?>
@@ -63,7 +62,7 @@ $arras = $theme[0];
 	<?php arras_above_nav(); ?>
 
 	<div id="menu-main-container" class="menu-main-container">
-		<?php $arras->do_menu( 'main' ); ?>
+		<?php $arras['menus']->build( 'main' ); ?>
 	</div>
 
 	<?php arras_below_nav(); ?>

@@ -11,7 +11,6 @@ namespace ICaspar\Arras\Theme;
 
 use ICaspar\Arras\Config\Configuration;
 use ICaspar\Arras\Options\Options;
-use ICaspar\Arras\Views\Menu;
 use Pimple\Container;
 
 /**
@@ -22,14 +21,7 @@ use Pimple\Container;
 class Arras {
 
 	/**
-	 * Theme Configuration.
-	 *
-	 * @var Configuration
-	 */
-	protected $config;
-
-	/**
-	 * Container for theme parameters and services.
+	 * Container for theme configuration and services.
 	 *
 	 * @var Container
 	 */
@@ -41,8 +33,8 @@ class Arras {
 	 * @param Configuration $config Theme configuration manager.
 	 */
 	public function __construct( Configuration $config ) {
-		$this->config = $config;
-		$this->arras  = new Container();
+		$this->arras           = new Container();
+		$this->arras['config'] = $config;
 	}
 
 	/**
@@ -56,21 +48,19 @@ class Arras {
 		$this->init_options();
 		$this->init_service_providers();
 		$this->init_hooks();
+		$this->init_templates();
 
-		$this->menus = new Menu( $this->config->getSetting( 'menus' ) );
-		$this->menus->init();
-
-		$this->template_engine = new TemplateEngine( $this->config, $this->menus );
+		//$this->template_engine = new TemplateEngine( $this->config, $this->menus );
 	}
 
 	/**
 	 * Initialize theme options.
 	 *
-	 * These need to be loaded first so we can use them to configure our services.
+	 * These need to be loaded first so we can use them to configure services.
 	 * @return void
 	 */
 	protected function init_options() {
-		$defaults = $this->config['defaults'];
+		$defaults = $this->arras['config']['defaults'];
 
 		$this->arras['options'] = function () use ( $defaults ) {
 			return new Options( $defaults );
@@ -84,16 +74,21 @@ class Arras {
 	 * @return void
 	 */
 	protected function init_service_providers() {
-		$providers = $this->config['service-providers'];
+		$providers = $this->arras['config']['service-providers'];
 
 		foreach ( $providers as $provider => $service ) {
 			$this->arras[ $provider ] = function ( $arras ) use ( $service ) {
 				if ( is_array( $service ) ) {
-					$class  = $service['class'];
-					$option = $service['option'];
-					$args   = $arras['options']->get( $option );
+					if ( 'option' == $service['source'] ) {
+						($service['class']);
+						$args = $arras['options']->get( $service['parameter'] );
+					}
 
-					return new $class( $args );
+					if ( 'config' == $service['source'] ) {
+						$args = $arras['config'][ $service['parameter'] ];
+					}
+
+					return new $service['class']( $args );
 				} else {
 					return new $service();
 				}
@@ -110,6 +105,7 @@ class Arras {
 	protected function init_hooks() {
 		add_action( 'after_setup_theme', array( $this, 'i18n' ) );
 		add_action( 'after_setup_theme', array( $this, 'theme_support' ) );
+		add_action( 'after_setup_theme', array( $this, 'menus' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
@@ -118,6 +114,16 @@ class Arras {
 		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
 
 		add_filter( 'arras_template', array( $this, 'render' ) );
+	}
+
+	/**
+	 * Initialize Template Rendering Classes.
+	 * @return void
+	 */
+	protected function init_templates() {
+		$this->arras['layout'] = function ( $arras ) {
+			return $arras['layoutFactory']->build();
+		};
 	}
 
 	/** ----- CALLBACKS ----- */
@@ -135,7 +141,7 @@ class Arras {
 	 * @return null
 	 */
 	public function theme_support() {
-		$supports = $this->config->getSetting( 'theme-support' );
+		$supports = $this->arras['config']['theme-support'];
 
 		foreach ( $supports as $support => $value ) {
 			if ( is_array( $value ) ) {
@@ -152,7 +158,8 @@ class Arras {
 	 * @return  null
 	 */
 	public function sidebars() {
-		$sidebars         = $this->config->getSetting( 'sidebars' );
+		$sidebars = $this->arras['config']['sidebars'];
+
 		$sidebar_defaults = [
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
@@ -160,7 +167,7 @@ class Arras {
 			'after_title'   => '</h3>',
 		];
 
-		$footer_sidebars = $this->config->option( 'footer-sidebars' ) ?: 1;
+		$footer_sidebars = $this->arras['options']->get( 'footer-sidebars' ) ?: 1;
 
 		for ( $i = 1; $i <= $footer_sidebars; $i ++ ) {
 			$sidebars[] = [
@@ -175,6 +182,10 @@ class Arras {
 
 			register_sidebar( $args );
 		}
+	}
+
+	public function menus() {
+		$this->arras['menus']->register_menus();
 	}
 
 	/**
@@ -219,14 +230,7 @@ class Arras {
 	 * @return TemplateEngine
 	 */
 	public function render( $template_type ) {
-		$sub_template = in_array( $template_type, [ 'header', 'comments', 'sidebar', 'footer' ] );
-
-		$arras_template = [
-			$this->template_engine,
-			$this->layout,
-		];
-
-		return $arras_template;
+		return $this->arras;
 	}
 
 }
