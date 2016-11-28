@@ -84,6 +84,7 @@ if ( is_front_page() && is_home() ) {
 			<?php if ( $arras['options']->get( 'enable-news' ) ) : ?>
 
 				<?php //$arras->do_the_news(); ?>
+				<p>Content goes here.</p>
 
 			<?php endif; ?>
 
