@@ -11,6 +11,7 @@ namespace ICaspar\Arras\Theme;
 
 use ICaspar\Arras\Config\Configuration;
 use ICaspar\Arras\Options\Options;
+use ICaspar\Arras\Theme\Templates\BaseTemplate;
 use Pimple\Container;
 
 /**
@@ -80,7 +81,7 @@ class Arras {
 			$this->arras[ $provider ] = function ( $arras ) use ( $service ) {
 				if ( is_array( $service ) ) {
 					if ( 'option' == $service['source'] ) {
-						($service['class']);
+						( $service['class'] );
 						$args = $arras['options']->get( $service['parameter'] );
 					}
 
@@ -113,7 +114,7 @@ class Arras {
 		add_action( 'customize_register', array( $this->config, 'customizer' ) );
 		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
 
-		add_filter( 'arras_template', array( $this, 'render' ) );
+		add_action( 'arras', array( $this, 'render' ) );
 	}
 
 	/**
@@ -229,8 +230,10 @@ class Arras {
 	 *
 	 * @return TemplateEngine
 	 */
-	public function render( $template_type ) {
-		return $this->arras;
+	public function render() {
+		$name     = 'Base';
+		$template = new BaseTemplate();
+		$template->render( $this->arras );
 	}
 
 }

@@ -4,7 +4,7 @@
  */
 
 if ( is_front_page() && is_home() ) {
-	include ARRAS_THEME_DIR . '/index.php';
+	do_action( 'arras' );
 } else {
 	/**
 	 * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
@@ -32,18 +32,18 @@ if ( is_front_page() && is_home() ) {
 	/*/
 	?>
 
-	<div id="content" class="<?php echo $arras['layout']->get_classes( 'content' ); ?>">
+    <div id="content" class="<?php echo $arras['layout']->get_classes( 'content' ); ?>">
 		<?php arras_above_content(); // if the Slideshow is active it is loaded here ?>
 
 		<?php if ( ! $paged ) : ?>
 
 			<?php if ( false !== $arras['options']->get( 'enable_featured1' ) ) : ?>
 				<?php arras_above_index_featured1_post() ?>
-				<!-- Featured Articles #1 -->
+                <!-- Featured Articles #1 -->
 
-				<div id="index-featured1" class="section group">
+                <div id="index-featured1" class="section group">
 					<?php if ( $arras['options']->get( 'featured1_title' ) != '' ) : ?>
-						<h2 class="home-title"><?php _e( $arras->get_option( 'featured1_title' ), 'arras' ) ?></h2>
+                        <h2 class="home-title"><?php _e( $arras->get_option( 'featured1_title' ), 'arras' ) ?></h2>
 					<?php endif;
 					/*					arras_featured_loop( $arras->get_option( 'featured1_display' ), apply_filters( 'arras_featured1_query', array(
 											'list'     => $featured1_cat,
@@ -56,15 +56,15 @@ if ( is_front_page() && is_home() ) {
 											)
 										) ) );
 										*/ ?>
-				</div><!-- #index-featured1 -->
+                </div><!-- #index-featured1 -->
 			<?php endif ?>
 
 			<?php if ( false !== $arras['options']->get( 'enable_featured2' ) ) : ?>
 				<?php arras_above_index_featured2_post() ?>
-				<!-- Featured Articles #2 -->
-				<div id="index-featured2">
+                <!-- Featured Articles #2 -->
+                <div id="index-featured2">
 					<?php if ( $arras['options']->get( 'featured2_title' ) != '' ) : ?>
-						<h2 class="home-title"><?php _e( $arras->get_option( 'featured2_title' ), 'arras' ) ?></h2>
+                        <h2 class="home-title"><?php _e( $arras->get_option( 'featured2_title' ), 'arras' ) ?></h2>
 					<?php endif;
 					/*					arras_featured_loop( $arras->get_option( 'featured2_display' ), apply_filters( 'arras_featured2_query', array(
 											'list'     => $featured2_cat,
@@ -78,13 +78,13 @@ if ( is_front_page() && is_home() ) {
 										) ) );
 										*/ ?>
 
-				</div><!-- #index-featured2 -->
+                </div><!-- #index-featured2 -->
 			<?php endif; ?>
 
 			<?php if ( $arras['options']->get( 'enable-news' ) ) : ?>
 
 				<?php //$arras->do_the_news(); ?>
-				<p>Content goes here.</p>
+                <p>Content goes here.</p>
 
 			<?php endif; ?>
 
@@ -92,13 +92,13 @@ if ( is_front_page() && is_home() ) {
 
 		<?php else: // We're on a second (or subsequent) page from the news section ?>
 
-			<?php// $arras->do_the_news(); ?>
+			<?php // $arras->do_the_news(); ?>
 
 			<?php arras_below_index_news_post() ?>
 
 		<?php endif; ?>
 
-	</div>
+    </div>
 
 	<?php arras_below_content() ?>
 
