@@ -20,5 +20,5 @@ interface Template {
 	 *
 	 * @return mixed
 	 */
-	public function render( Container $arras );
+	public function render();
 }

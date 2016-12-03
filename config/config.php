@@ -39,6 +39,8 @@ return [
 			'source'    => 'config',
 			'parameter' => 'menus',
 		],
+		'templateLoader' => 'ICaspar\Arras\Theme\Helpers\TemplateLoader',
+
 	],
 
 	/**

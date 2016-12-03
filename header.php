@@ -4,13 +4,7 @@
  *
  * @package Arras
  */
-
-/**
- * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
- */
-$arras = apply_filters( 'arras_template', 'header' );
 ?>
-
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 
@@ -31,7 +25,7 @@ $arras = apply_filters( 'arras_template', 'header' );
 	<?php arras_above_top_menu(); ?>
 
 	<div id="menu-top-container" class="menu-top-container">
-		<?php $arras['menus']->build( 'top' ); ?>
+		<?php $this->arras['menus']->build( 'top' ); ?>
 	</div>
 
 	<?php arras_below_top_menu(); ?>
@@ -62,7 +56,7 @@ $arras = apply_filters( 'arras_template', 'header' );
 	<?php arras_above_nav(); ?>
 
 	<div id="menu-main-container" class="menu-main-container">
-		<?php $arras['menus']->build( 'main' ); ?>
+		<?php $this->arras['menus']->build( 'main' ); ?>
 	</div>
 
 	<?php arras_below_nav(); ?>

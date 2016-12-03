@@ -11,7 +11,7 @@ namespace ICaspar\Arras\Theme;
 
 use ICaspar\Arras\Config\Configuration;
 use ICaspar\Arras\Options\Options;
-use ICaspar\Arras\Theme\Templates\BaseTemplate;
+use ICaspar\Arras\Theme\Templates\IndexTemplate;
 use Pimple\Container;
 
 /**
@@ -232,8 +232,8 @@ class Arras {
 	 */
 	public function render() {
 		$name     = 'Base';
-		$template = new BaseTemplate();
-		$template->render( $this->arras );
+		$template = new IndexTemplate( $this->arras );
+		$template->render();
 	}
 
 }
