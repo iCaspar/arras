@@ -3,12 +3,12 @@
  * Arras theme sidebar template.
  */
 
-if ( 'NoSidebars' !== $this->arras['layout']->get_slug() ): // don't show sidebars on single column layout ?>
+if ( 'NoSidebars' !== $this->layout->get_slug() ): // don't show sidebars on single column layout ?>
 
 	<?php arras_above_sidebar() ?>
 
 	<?php if ( is_active_sidebar( 'primary-sidebar' ) ): ?>
-		<aside id="primary-sidebar" class="<?php echo $this->arras['layout']->get_classes( 'primary' ); ?>" role="complementary">
+		<aside id="primary-sidebar" class="<?php echo $this->layout->get_classes( 'primary' ); ?>" role="complementary">
 			<?php dynamic_sidebar( 'primary-sidebar' ); ?>
 		</aside>
 	<?php endif; ?>

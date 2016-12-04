@@ -29,7 +29,7 @@ return [
 	 * Service Providers
 	 */
 	'service-providers' => [
-		'layoutFactory'  => [
+		'layout'  => [
 			'class'     => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
 			'source'    => 'option',
 			'parameter' => 'layout',

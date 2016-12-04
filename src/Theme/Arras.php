@@ -51,9 +51,6 @@ class Arras {
 		$this->init_options();
 		$this->init_service_providers();
 		$this->init_hooks();
-		$this->init_templates();
-
-		//$this->template_engine = new TemplateEngine( $this->config, $this->menus );
 	}
 
 	/**
@@ -139,7 +136,7 @@ class Arras {
 	 * @return mixed The resource or null if not available.
 	 */
 	public function inject_resource( $resource ) {
-		return ( isset( $this->arras[ $resource ] ) ? $this->arras[ $resource ] : null;
+		return ( isset( $this->arras[ $resource ] ) ) ? $this->arras[ $resource ] : null;
 	}
 
 	/**

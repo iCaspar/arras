@@ -15,8 +15,11 @@ abstract class BaseTemplate implements Template {
 
 	protected $arras;
 
+	protected $layout;
+
 	public function __construct( Container $arras ) {
 		$this->arras = $arras;
+		$this->get_layout();
 	}
 
 	public function render() {
@@ -38,10 +41,14 @@ abstract class BaseTemplate implements Template {
 		$this->afterContent();
 	}
 
+	protected function get_layout() {
+	    $this->layout = $this->arras['layout']->build();
+    }
+
 	protected function beforeContent() {
 		include( $this->arras['templateLoader']->get_header() );
 		arras_above_content(); ?>
-    <div id="content" class="<?php echo $this->arras['layout']->get_classes( 'content' ); ?>">
+    <div id="content" class="<?php echo $this->layout->get_classes( 'content' ); ?>">
 		<?php
 	}
 
