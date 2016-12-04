@@ -11,9 +11,6 @@ namespace ICaspar\Arras\Theme;
 
 use ICaspar\Arras\Config\Configuration;
 use ICaspar\Arras\Options\Options;
-use ICaspar\Arras\Theme\Templates\IndexTemplate;
-use ICaspar\Arras\Theme\Templates\PageTemplate;
-use ICaspar\Arras\Theme\Templates\SingleTemplate;
 use Pimple\Container;
 
 /**
@@ -222,13 +219,7 @@ class Arras {
 	 * Render the web page.
 	 */
 	public function render() {
-		if ( is_page() ) {
-			$template = new PageTemplate( $this->arras );
-		} elseif ( is_single() ) {
-			$template = new SingleTemplate( $this->arras );
-		} else {
-			$template = new IndexTemplate( $this->arras );
-		}
+		$template = $this->arras['templateLoader']->get_template( $this->arras );
 		$template->render();
 	}
 
