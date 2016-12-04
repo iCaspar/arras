@@ -4,9 +4,9 @@
  */
 
 /**
- * @hooked ICaspar\Arras\Model\Arras::render(), priority 10
+ * @hooked ICaspar\Arras\Theme\Arras::inject_resource(), priority 10
  */
-$arras = apply_filters( 'arras_template', 'comments' );
+$arras_comments = apply_filters( 'arras_inject', 'comments' );
 
 if ( post_password_required() ) {
 	return;
@@ -30,9 +30,9 @@ if ( have_comments() ) : ?>
 			<ol id="comment-list" class="comment-list group">
 				<?php wp_list_comments( [
 					'type'     => 'comment',
-					'callback' => array( $arras, 'list_comments' ),
+					'callback' => array( $arras_comments, 'list_comments' ),
 				] ); ?>
-				<?php $arras->comments_page_links(); ?>
+				<?php $arras_comments->comments_page_links(); ?>
 			</ol>
 		</div>
 	<?php endif; ?>
@@ -43,9 +43,9 @@ if ( have_comments() ) : ?>
 				<?php _e( 'Trackbacks / Pings', 'arras' ) ?></h3>
 			<ol class="pingbacks"><?php wp_list_comments( [
 					'type'     => 'pings',
-					'callback' => array( $arras, 'list_trackbacks' ),
+					'callback' => array( $arras_comments, 'list_trackbacks' ),
 				] ); ?>
-				<?php $arras->comments_page_links(); ?>
+				<?php $arras_comments->comments_page_links(); ?>
 			</ol>
 		</div>
 	<?php endif; ?>

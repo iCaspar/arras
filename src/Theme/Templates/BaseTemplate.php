@@ -186,4 +186,5 @@ abstract class BaseTemplate implements Template {
 		include ARRAS_VIEWS_DIR . 'post-nav.php';
 	}
 
+
 }

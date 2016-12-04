@@ -29,24 +29,24 @@ return [
 	 * Service Providers
 	 */
 	'service-providers' => [
-		'layoutFactory' => [
+		'layoutFactory'  => [
 			'class'     => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
 			'source'    => 'option',
 			'parameter' => 'layout',
 		],
-		'menus'  => [
+		'menus'          => [
 			'class'     => 'ICaspar\Arras\Theme\Menus\MenuController',
 			'source'    => 'config',
 			'parameter' => 'menus',
 		],
 		'templateLoader' => 'ICaspar\Arras\Theme\Helpers\TemplateLoader',
-
+		'comments'       => 'ICaspar\Arras\Theme\Comments\ArrasComments',
 	],
 
 	/**
 	 * Menu Definitions
 	 */
-	'menus' => [
+	'menus'             => [
 		'main' => [
 			'name'      => __( 'Main Menu', 'arras' ),
 			'container' => 'nav',
@@ -66,7 +66,7 @@ return [
 	/**
 	 * Theme supports.
 	 */
-	'theme-support' => [
+	'theme-support'     => [
 		'title-tag'         => '',
 		'post-thumbnails'   => '',
 		'custom-background' => [
@@ -85,7 +85,7 @@ return [
 	/**
 	 * Sidebar configurations.
 	 */
-	'sidebars' => [
+	'sidebars'          => [
 		[
 			'name'        => _x( 'Primary Sidebar', 'Sidebar name', 'arras' ),
 			'id'          => 'primary-sidebar',

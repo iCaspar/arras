@@ -4,7 +4,7 @@
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
- * @version: 4.0.0
+ * @since: 4.0.0
  */
 ?>
 

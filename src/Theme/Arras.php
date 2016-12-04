@@ -117,6 +117,8 @@ class Arras {
 		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
 
 		add_action( 'arras', array( $this, 'render' ) );
+
+		add_filter( 'arras_inject', array( $this, 'inject_resource' ) );
 	}
 
 	/**
@@ -130,6 +132,10 @@ class Arras {
 	}
 
 	/** ----- CALLBACKS ----- */
+
+	public function inject_resource( $resource ) {
+		return $this->arras[ $resource ];
+	}
 
 	/**
 	 * Make Arras translatable.
