@@ -20,39 +20,34 @@ abstract class BaseTemplate implements Template {
 	}
 
 	public function render() {
+		$this->beforeContent();
+
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+				include ARRAS_VIEWS_DIR . 'entry.php';
+			}
+			the_posts_navigation( [
+				'prev_text' => '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> ' . _x( 'Older Posts', 'Previous post link', 'arras' ),
+				'next_text' => _x( 'Newer Posts', 'Next post link', 'arras' ) . ' <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>',
+			] );
+		} else {
+			$this->no_posts();
+		}
+
+		$this->afterContent();
+	}
+
+	protected function beforeContent() {
 		include( $this->arras['templateLoader']->get_header() );
-
 		arras_above_content(); ?>
+    <div id="content" class="<?php echo $this->arras['layout']->get_classes( 'content' ); ?>">
+		<?php
+	}
 
-        <div id="content" class="<?php echo $this->arras['layout']->get_classes( 'content' ); ?>">
-
-			<?php if ( have_posts() ): ?>
-
-				<?php while ( have_posts() ) : the_post(); ?>
-
-                    <div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
-						<?php $this->postheader(); ?>
-                        <div class="entry-content">
-							<?php the_content( __( 'Read the rest of this entry &raquo;', 'arras' ) ); ?>
-                        </div>
-						<?php $this->postfooter(); ?>
-                    </div>
-
-				<?php endwhile; ?>
-
-				<?php the_posts_navigation( [
-					'prev_text' => '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> ' . _x( 'Older Posts', 'Previous post link', 'arras' ),
-					'next_text' => _x( 'Newer Posts', 'Next post link', 'arras' ) . ' <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>',
-				] ); ?>
-
-			<?php else: ?>
-				<?php $this->no_posts() ?>
-			<?php endif; ?>
-
-        </div>
-
-		<?php arras_below_content();
-
+	protected function afterContent() {
+		echo '</div>';
+		arras_below_content();
 		include( $this->arras['templateLoader']->get_sidebar() );
 		include( $this->arras['templateLoader']->get_footer() );
 	}
@@ -124,7 +119,11 @@ abstract class BaseTemplate implements Template {
 			$postfooter = '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
 		}
 
-		echo apply_filters( 'arras_postfooter', $postfooter );
+		if ( is_page() && $this->arras['options']->get( 'display-author-page' ) ) {
+			include ARRAS_VIEWS_DIR . 'author-profile.php';
+		}
+
+        echo apply_filters( 'arras_postfooter', $postfooter );
 	}
 
 	protected function posted_on() {
@@ -151,4 +150,15 @@ abstract class BaseTemplate implements Template {
 
 		echo apply_filters( 'arras_post_notfound', $postcontent );
 	}
+
+	/**
+	 * Customize link pages links.
+	 * @return void
+	 */
+	public function link_pages() {
+		wp_link_pages( [
+			'before' => '<p><span class="link-pages">' . __( 'Pages:' ) . '</span>',
+		] );
+	}
+
 }

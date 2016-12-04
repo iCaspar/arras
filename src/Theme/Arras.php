@@ -12,6 +12,7 @@ namespace ICaspar\Arras\Theme;
 use ICaspar\Arras\Config\Configuration;
 use ICaspar\Arras\Options\Options;
 use ICaspar\Arras\Theme\Templates\IndexTemplate;
+use ICaspar\Arras\Theme\Templates\PageTemplate;
 use Pimple\Container;
 
 /**
@@ -219,20 +220,15 @@ class Arras {
 		}
 	}
 
-	/* Todo: Load and instantiate color scheme controller class */
-
 	/**
-	 * Return the template engine with the appropriate template type.
-	 *
-	 * This is hooked to the 'arras_templates' action and called from template files.
-	 *
-	 * @param string $template_type Template type to set.
-	 *
-	 * @return TemplateEngine
+	 * Render the web page.
 	 */
 	public function render() {
-		$name     = 'Base';
-		$template = new IndexTemplate( $this->arras );
+		if ( is_page() ) {
+			$template = new PageTemplate( $this->arras);
+		} else {
+			$template = new IndexTemplate( $this->arras );
+		}
 		$template->render();
 	}
 
