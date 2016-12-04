@@ -12,7 +12,6 @@ if ( post_password_required() ) {
 	return;
 }
 
-
 if ( have_comments() ) : ?>
 	<?php arras_above_comments();
 	$comments_by_type = separate_comments( $comments );

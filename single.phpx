@@ -29,7 +29,7 @@ $arras = apply_filters( 'arras_template', 'single' );
 
 				<?php $arras->postfooter() ?>
 
-				<?php if ( $arras->get_option( 'display-author-page' ) ) : ?>
+				<?php if ( $arras->get_option( 'display-author-post' ) ) : ?>
 					<?php include ARRAS_VIEWS_DIR . 'author-profile.php'; ?>
 				<?php endif; ?>
 			</div>

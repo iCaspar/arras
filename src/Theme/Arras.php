@@ -13,6 +13,7 @@ use ICaspar\Arras\Config\Configuration;
 use ICaspar\Arras\Options\Options;
 use ICaspar\Arras\Theme\Templates\IndexTemplate;
 use ICaspar\Arras\Theme\Templates\PageTemplate;
+use ICaspar\Arras\Theme\Templates\SingleTemplate;
 use Pimple\Container;
 
 /**
@@ -195,7 +196,6 @@ class Arras {
 	 * @return void
 	 */
 	public function load_scripts() {
-		global $paged;
 
 		wp_enqueue_script( 'arras-menu-helper', ARRAS_ASSETS_URL . 'scripts/min/menu.min.js', array( 'jquery' ), ARRAS_VERSION, true );
 		/*
@@ -225,7 +225,9 @@ class Arras {
 	 */
 	public function render() {
 		if ( is_page() ) {
-			$template = new PageTemplate( $this->arras);
+			$template = new PageTemplate( $this->arras );
+		} elseif ( is_single() ) {
+			$template = new SingleTemplate( $this->arras );
 		} else {
 			$template = new IndexTemplate( $this->arras );
 		}

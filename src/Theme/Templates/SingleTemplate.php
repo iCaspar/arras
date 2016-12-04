@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for a WordPress page.
+ * Template for a WordPress single post.
  *
  * @author: Caspar Green <https://caspar.green/>
  * @package: Arras
@@ -11,7 +11,7 @@ namespace ICaspar\Arras\Theme\Templates;
 
 use Pimple\Container;
 
-class PageTemplate extends BaseTemplate implements Template {
+class SingleTemplate extends BaseTemplate implements Template {
 
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );

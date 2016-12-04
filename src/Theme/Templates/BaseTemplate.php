@@ -123,7 +123,15 @@ abstract class BaseTemplate implements Template {
 			include ARRAS_VIEWS_DIR . 'author-profile.php';
 		}
 
-        echo apply_filters( 'arras_postfooter', $postfooter );
+		if ( is_single() && $this->arras['options']->get( 'display-author-post' ) ) {
+			include ARRAS_VIEWS_DIR . 'author-profile.php';
+		}
+
+		if ( is_single() && $this->arras['options']->get( 'show-post-nav' ) ) {
+			$this->post_nav();
+		}
+
+		echo apply_filters( 'arras_postfooter', $postfooter );
 	}
 
 	protected function posted_on() {
@@ -159,6 +167,23 @@ abstract class BaseTemplate implements Template {
 		wp_link_pages( [
 			'before' => '<p><span class="link-pages">' . __( 'Pages:' ) . '</span>',
 		] );
+	}
+
+	/**
+	 * Display navigation to next/previous post when applicable.
+	 *
+	 * @return void
+	 */
+	protected function post_nav() {
+		// Don't print empty markup if there's nowhere to navigate.
+		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
+		$next     = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', false );
+
+		if ( ! $next && ! $previous ) {
+			return;
+		}
+
+		include ARRAS_VIEWS_DIR . 'post-nav.php';
 	}
 
 }
