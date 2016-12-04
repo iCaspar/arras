@@ -95,8 +95,6 @@ class Arras {
 				} else {
 					return new $service();
 				}
-
-				return new $serviceProvider();
 			};
 		}
 	}
@@ -133,8 +131,15 @@ class Arras {
 
 	/** ----- CALLBACKS ----- */
 
+	/**
+	 * Inject a specific theme resource into a template.
+	 *
+	 * @param string $resource The resource to inject
+	 *
+	 * @return mixed The resource or null if not available.
+	 */
 	public function inject_resource( $resource ) {
-		return $this->arras[ $resource ];
+		return ( isset( $this->arras[ $resource ] ) ? $this->arras[ $resource ] : null;
 	}
 
 	/**
