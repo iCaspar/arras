@@ -7,7 +7,7 @@
  * @version: 1.0.0
  */
 
-namespace ICaspar\Arras\Theme\Helpers;
+namespace ICaspar\Arras\Theme\Templates;
 
 class TemplateLoader {
 

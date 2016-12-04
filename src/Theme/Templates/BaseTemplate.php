@@ -20,6 +20,7 @@ abstract class BaseTemplate implements Template {
 	public function __construct( Container $arras ) {
 		$this->arras = $arras;
 		$this->get_layout();
+		$this->init_filters();
 	}
 
 	public function render() {
@@ -43,6 +44,10 @@ abstract class BaseTemplate implements Template {
 
 	protected function get_layout() {
 	    $this->layout = $this->arras['layout']->build();
+    }
+
+    protected function init_filters() {
+	    add_filter( 'post_class', [$this, 'post_classes'] );
     }
 
 	protected function beforeContent() {
@@ -193,5 +198,27 @@ abstract class BaseTemplate implements Template {
 		include ARRAS_VIEWS_DIR . 'post-nav.php';
 	}
 
+	/***** CALLBACKS *****/
+
+	/**
+	 * Customize a post class.
+	 *
+	 * @param array $classes Default Post classes.
+	 *
+	 * @return array Custom classes.
+	 */
+	public function post_classes( array $classes ) {
+	    $classes[] = 'group';
+
+		if ( is_page() ) {
+			$classes = array_diff( $classes, [ 'hentry' ] );
+		}
+
+		if ( ! is_page() && ! is_single() ) {
+		    $classes[] = 'traditional';
+        }
+
+		return $classes;
+	}
 
 }

@@ -116,16 +116,6 @@ class Arras {
 		add_filter( 'arras_inject', array( $this, 'inject_resource' ) );
 	}
 
-	/**
-	 * Initialize Template Rendering Classes.
-	 * @return void
-	 */
-	protected function init_templates() {
-		$this->arras['layout'] = function ( $arras ) {
-			return $arras['layoutFactory']->build();
-		};
-	}
-
 	/** ----- CALLBACKS ----- */
 
 	/**

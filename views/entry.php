@@ -8,7 +8,7 @@
  */
 ?>
 <?php arras_above_post(); ?>
-<div id="post-<?php the_ID() ?>" <?php post_class( [ 'traditional', 'group' ] ) ?>>
+<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
 	<?php $this->postheader(); ?>
     <div class="entry-content">
 		<?php the_content( __( 'Read the rest of this entry &raquo;', 'arras' ) ); ?>

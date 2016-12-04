@@ -15,7 +15,8 @@ return [
 		'footer-sidebars'     => 3,
 		'footer-message'      => __( 'Set your own footer message in the customizer.', 'arras' ),
 		'layout'              => 'SingleRightSidebar',
-		'display-author-page' => true,
+		'display-author-page' => false,
+		'display-author-post' => true,
 		'post_author'         => true,
 		'post_date'           => true,
 		'post_cats'           => true,
@@ -39,7 +40,7 @@ return [
 			'source'    => 'config',
 			'parameter' => 'menus',
 		],
-		'templateLoader' => 'ICaspar\Arras\Theme\Helpers\TemplateLoader',
+		'templateLoader' => 'ICaspar\Arras\Theme\Templates\TemplateLoader',
 		'comments'       => 'ICaspar\Arras\Theme\Comments\ArrasComments',
 	],
 
