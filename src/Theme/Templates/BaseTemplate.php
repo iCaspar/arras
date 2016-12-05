@@ -138,6 +138,10 @@ abstract class BaseTemplate implements Template {
 			$postfooter = '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
 		}
 
+		if ( is_attachment() && $this->arras['options']->get( 'display-author-page' ) ) {
+			include ARRAS_VIEWS_DIR . 'author-profile.php';
+		}
+
 		if ( is_page() && $this->arras['options']->get( 'display-author-page' ) ) {
 			include ARRAS_VIEWS_DIR . 'author-profile.php';
 		}
@@ -146,7 +150,7 @@ abstract class BaseTemplate implements Template {
 			include ARRAS_VIEWS_DIR . 'author-profile.php';
 		}
 
-		if ( is_single() && $this->arras['options']->get( 'show-post-nav' ) ) {
+		if ( is_single() || is_attachment() && $this->arras['options']->get( 'show-post-nav' ) ) {
 			$this->post_nav();
 		}
 
@@ -216,6 +220,10 @@ abstract class BaseTemplate implements Template {
 	 */
 	public function post_classes( array $classes ) {
 	    $classes[] = 'group';
+
+	    if ( is_attachment() ) {
+	        $classes[] = 'attachment';
+        }
 
 		if ( is_page() ) {
 			$classes = array_diff( $classes, [ 'hentry' ] );

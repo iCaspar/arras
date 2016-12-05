@@ -48,6 +48,8 @@ class TemplateLoader {
 			$type = 'NotFound';
 		} elseif ( is_search() ) {
 			$type = 'Search';
+		} elseif ( is_attachment() ) {
+			$type = 'Attachment';
 		} elseif ( is_single() ) {
 			$type = 'Single';
 		} elseif ( is_page() ) {
