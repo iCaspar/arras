@@ -54,6 +54,8 @@ class TemplateLoader {
 			$type = 'Page';
 		} elseif ( is_author() ) {
 			$type = 'Author';
+		} elseif ( is_archive() ) {
+			$type = 'Archive';
 		} else {
 			$type = 'Index';
 		}
