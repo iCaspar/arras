@@ -17,6 +17,13 @@ abstract class BaseTemplate implements Template {
 
 	protected $layout;
 
+	/**
+     * A flag we can set when we need a post to ignore the tapestry.
+     *
+	 * @var bool
+	 */
+	protected $ignore_tapestry = false;
+
 	public function __construct( Container $arras ) {
 		$this->arras = $arras;
 		$this->get_layout();
@@ -214,8 +221,12 @@ abstract class BaseTemplate implements Template {
 			$classes = array_diff( $classes, [ 'hentry' ] );
 		}
 
-		if ( ! is_page() && ! is_single() ) {
+		if ( ! is_page() && ! is_single() && ! $this->ignore_tapestry ) {
 		    $classes[] = 'traditional';
+        }
+
+        if ( is_author() ) {
+		    $classes[] = 'profile';
         }
 
 		return $classes;

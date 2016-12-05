@@ -17,27 +17,27 @@ class TemplateLoader {
 	 * Get the correct template for the current page load.
 	 * Here's the order from the wp templateloader:
 	 *
-	if     ( is_embed()          && $template = get_embed_template()          ) :
-	elseif ( is_404()            && $template = get_404_template()            ) :
-	elseif ( is_search()         && $template = get_search_template()         ) :
-	elseif ( is_front_page()     && $template = get_front_page_template()     ) :
-	elseif ( is_home()           && $template = get_home_template()           ) :
-	elseif ( is_post_type_archive() && $template = get_post_type_archive_template() ) :
-	elseif ( is_tax()            && $template = get_taxonomy_template()       ) :
-	elseif ( is_attachment()     && $template = get_attachment_template()     ) :
-	remove_filter('the_content', 'prepend_attachment');
-	elseif ( is_single()         && $template = get_single_template()         ) :
-	elseif ( is_page()           && $template = get_page_template()           ) :
-	elseif ( is_singular()       && $template = get_singular_template()       ) :
-	elseif ( is_category()       && $template = get_category_template()       ) :
-	elseif ( is_tag()            && $template = get_tag_template()            ) :
-	elseif ( is_author()         && $template = get_author_template()         ) :
-	elseif ( is_date()           && $template = get_date_template()           ) :
-	elseif ( is_archive()        && $template = get_archive_template()        ) :
-	elseif ( is_paged()          && $template = get_paged_template()          ) :
-	else :
-	$template = get_index_template();
-	endif;
+	 * if     ( is_embed()          && $template = get_embed_template()          ) :
+	 * elseif ( is_404()            && $template = get_404_template()            ) :
+	 * elseif ( is_search()         && $template = get_search_template()         ) :
+	 * elseif ( is_front_page()     && $template = get_front_page_template()     ) :
+	 * elseif ( is_home()           && $template = get_home_template()           ) :
+	 * elseif ( is_post_type_archive() && $template = get_post_type_archive_template() ) :
+	 * elseif ( is_tax()            && $template = get_taxonomy_template()       ) :
+	 * elseif ( is_attachment()     && $template = get_attachment_template()     ) :
+	 * remove_filter('the_content', 'prepend_attachment');
+	 * elseif ( is_single()         && $template = get_single_template()         ) :
+	 * elseif ( is_page()           && $template = get_page_template()           ) :
+	 * elseif ( is_singular()       && $template = get_singular_template()       ) :
+	 * elseif ( is_category()       && $template = get_category_template()       ) :
+	 * elseif ( is_tag()            && $template = get_tag_template()            ) :
+	 * elseif ( is_author()         && $template = get_author_template()         ) :
+	 * elseif ( is_date()           && $template = get_date_template()           ) :
+	 * elseif ( is_archive()        && $template = get_archive_template()        ) :
+	 * elseif ( is_paged()          && $template = get_paged_template()          ) :
+	 * else :
+	 * $template = get_index_template();
+	 * endif;
 	 *
 	 * @param Container $arras Theme services to pass into the template.
 	 *
@@ -52,12 +52,15 @@ class TemplateLoader {
 			$type = 'Single';
 		} elseif ( is_page() ) {
 			$type = 'Page';
+		} elseif ( is_author() ) {
+			$type = 'Author';
 		} else {
 			$type = 'Index';
 		}
 
 		$templateName = __NAMESPACE__ . '\\' . $type . 'Template';
-		$template = new $templateName( $arras );
+		$template     = new $templateName( $arras );
+
 		return $template;
 	}
 

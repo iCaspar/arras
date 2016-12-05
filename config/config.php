@@ -30,7 +30,7 @@ return [
 	 * Service Providers
 	 */
 	'service-providers' => [
-		'layout'  => [
+		'layout'         => [
 			'class'     => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
 			'source'    => 'option',
 			'parameter' => 'layout',
@@ -42,6 +42,7 @@ return [
 		],
 		'templateLoader' => 'ICaspar\Arras\Theme\Templates\TemplateLoader',
 		'comments'       => 'ICaspar\Arras\Theme\Comments\ArrasComments',
+		'queries'        => 'ICaspar\Arras\Queries\ArrasQuery',
 	],
 
 	/**
