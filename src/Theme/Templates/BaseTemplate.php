@@ -30,24 +30,7 @@ abstract class BaseTemplate implements Template {
 		$this->init_filters();
 	}
 
-	public function render() {
-		$this->beforeContent();
-
-		if ( have_posts() ) {
-			while ( have_posts() ) {
-				the_post();
-				include ARRAS_VIEWS_DIR . 'entry.php';
-			}
-			the_posts_navigation( [
-				'prev_text' => '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> ' . _x( 'Older Posts', 'Previous post link', 'arras' ),
-				'next_text' => _x( 'Newer Posts', 'Next post link', 'arras' ) . ' <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>',
-			] );
-		} else {
-			$this->no_posts();
-		}
-
-		$this->afterContent();
-	}
+	abstract public function render();
 
 	protected function get_layout() {
 	    $this->layout = $this->arras['layout']->build();
@@ -76,7 +59,7 @@ abstract class BaseTemplate implements Template {
 
 		$postheader = '';
 
-		if ( is_single() || is_page() ) {
+		if ( is_single() || is_page() & ! is_front_page() ) {
 
 			if ( is_attachment() ) {
 				$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rel="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h1>';
@@ -96,7 +79,7 @@ abstract class BaseTemplate implements Template {
 			}
 		}
 
-		if ( ! is_page() ) {
+		if ( ! is_page() || is_front_page() ) {
 			$postheader .= '<div class="entry-meta">';
 
 			if ( $this->arras['options']->get( 'post_author' ) ) {
@@ -225,11 +208,11 @@ abstract class BaseTemplate implements Template {
 	        $classes[] = 'attachment';
         }
 
-		if ( is_page() ) {
+		if ( is_page() && ! is_archive() ) {
 			$classes = array_diff( $classes, [ 'hentry' ] );
 		}
 
-		if ( ! is_page() && ! is_single() && ! $this->ignore_tapestry ) {
+		if ( is_front_page() || ! is_page() && ! is_single() && ! $this->ignore_tapestry ) {
 		    $classes[] = 'traditional';
         }
 

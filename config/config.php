@@ -24,25 +24,26 @@ return [
 		'show-post-nav'       => true,
 		'single-thumbs'       => true,
 		'enable-news'         => true,
+		'news-title'          => 'Latest Headlines',
 	],
 
 	/**
 	 * Service Providers
 	 */
 	'service-providers' => [
-		'layout'         => [
+		'layout'          => [
 			'class'     => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
 			'source'    => 'option',
 			'parameter' => 'layout',
 		],
-		'menus'          => [
+		'menus'           => [
 			'class'     => 'ICaspar\Arras\Theme\Menus\MenuController',
 			'source'    => 'config',
 			'parameter' => 'menus',
 		],
-		'templateLoader' => 'ICaspar\Arras\Theme\Templates\TemplateLoader',
-		'comments'       => 'ICaspar\Arras\Theme\Comments\ArrasComments',
-		'queries'        => 'ICaspar\Arras\Queries\ArrasQuery',
+		'templateLoader'  => 'ICaspar\Arras\Theme\Templates\TemplateLoader',
+		'comments'        => 'ICaspar\Arras\Theme\Comments\ArrasComments',
+		'queryController' => 'ICaspar\Arras\Queries\ArrasQuery',
 	],
 
 	/**

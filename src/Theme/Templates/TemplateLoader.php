@@ -48,6 +48,10 @@ class TemplateLoader {
 			$type = 'NotFound';
 		} elseif ( is_search() ) {
 			$type = 'Search';
+		} elseif ( is_front_page() && is_home() ) {
+			$type = 'Index';
+		} elseif ( is_front_page() ) {
+			$type = 'FrontPage';
 		} elseif ( is_attachment() ) {
 			$type = 'Attachment';
 		} elseif ( is_single() ) {

@@ -21,11 +21,10 @@
 			<?php the_excerpt(); ?>
         </div>
 	<?php endif; ?>
-		<?php if ( is_single() || is_page() || is_attachment() ): ?>
+		<?php if ( is_single() || is_page() && ! is_front_page() && ! is_home() || is_attachment() ): ?>
 			<?php $this->link_pages(); ?>
 		<?php endif; ?>
     </div>
 		<?php $this->postfooter(); ?>
 </div>
 <?php arras_below_post(); ?>
-
