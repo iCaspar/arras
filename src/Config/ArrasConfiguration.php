@@ -13,15 +13,24 @@ use ArrayObject;
 use InvalidArgumentException;
 use RuntimeException;
 
+/**
+ * Class ArrasConfiguration
+ * @package ICaspar\Arras\Config
+ */
 class ArrasConfiguration extends ArrayObject implements Configuration {
 
 	/**
-	 * @var array Configuration parameters.
+	 * Configuration parameters.
+	 *
+	 * @var array
 	 */
 	protected $config;
 
 	/**
 	 * Create a new configuration repository.
+	 *
+	 * @param array|null|object $config
+	 * @param array|null $defaults
 	 */
 	public function __construct( $config, $defaults = null ) {
 		$this->config = $this->resolve_to_array( $config );
@@ -52,7 +61,7 @@ class ArrasConfiguration extends ArrayObject implements Configuration {
 	/**
 	 * Get a parameter or return a default if one is given.
 	 *
-	 * @param $key Parameter to get.
+	 * @param string $key Parameter to get.
 	 * @param null $default Optional. A value to return if the parameter is not set.
 	 *
 	 * @return mixed|null
@@ -137,7 +146,7 @@ class ArrasConfiguration extends ArrayObject implements Configuration {
 	/**
 	 * Load a file.
 	 *
-	 * @param $file Fully qualified name of file to load.
+	 * @param string $file Fully qualified name of file to load.
 	 *
 	 * @return mixed Contents of file.
 	 */
@@ -145,12 +154,13 @@ class ArrasConfiguration extends ArrayObject implements Configuration {
 		if ( $this->validate_file( $file ) ) {
 			return include $file;
 		}
+		return null;
 	}
 
 	/**
 	 * Resolve whether to use an array as is or to load a file.
 	 *
-	 * @param $file_or_array An array or name of a file containing an array.
+	 * @param string|array $file_or_array An array or name of a file containing an array.
 	 *
 	 * @throws InvalidArgumentException
 	 *
@@ -174,7 +184,7 @@ class ArrasConfiguration extends ArrayObject implements Configuration {
 	/**
 	 * Initialize defaults if we have any.
 	 *
-	 * @param $defaults Defaults or name of file with defaults.
+	 * @param string|array $defaults Defaults or name of file with defaults.
 	 *
 	 * @return void
 	 */

@@ -9,14 +9,14 @@
 
 namespace ICaspar\Arras\Theme\Templates;
 
-use Pimple\Container;
-
+/**
+ * Interface Template
+ * @package ICaspar\Arras\Theme\Templates
+ */
 interface Template {
 
 	/**
-	 * Renders a theme template.
-	 *
-	 * @param Container $arras The Arras Theme container.
+	 * Render a WordPress page.
 	 *
 	 * @return mixed
 	 */

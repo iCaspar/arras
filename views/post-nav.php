@@ -6,8 +6,8 @@
  * @package: Arras
  * @version: 4.0.0
  */
-?>
 
+?>
 <nav class="post-navigation" role="navigation">
 	<?php if ( $previous ) {?>
 		<div class="post-nav"><?php previous_post_link( '%link', _x( '<i class="fa fa-arrow-circle-left" aria-hidden="true"></i> %title', 'Previous post link', 'arras' ) ); ?></div>

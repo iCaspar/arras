@@ -18,4 +18,3 @@
 		<?php the_author_meta( 'description' ); ?>
 	</div>
 </div>
-

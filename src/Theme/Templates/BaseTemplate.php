@@ -9,44 +9,83 @@
 
 namespace ICaspar\Arras\Theme\Templates;
 
+use ICaspar\Arras\Theme\Layouts\Layout;
 use Pimple\Container;
 
+/**
+ * Class BaseTemplate
+ * @package ICaspar\Arras\Theme\Templates
+ */
 abstract class BaseTemplate implements Template {
 
+	/**
+	 * The Arras service container.
+	 *
+	 * @var Container
+	 */
 	protected $arras;
 
+	/**
+	 * The layout class.
+	 *
+	 * @var Layout
+	 */
 	protected $layout;
 
 	/**
-     * A flag we can set when we need a post to ignore the tapestry.
-     *
+	 * A flag we can set when we need a post to ignore the tapestry.
+	 *
 	 * @var bool
 	 */
 	protected $ignore_tapestry = false;
 
+	/**
+	 * BaseTemplate constructor.
+	 *
+	 * @param Container $arras The theme service container.
+	 */
 	public function __construct( Container $arras ) {
 		$this->arras = $arras;
 		$this->get_layout();
 		$this->init_filters();
 	}
 
+	/**
+	 * Render a WordPress page.
+	 * @return mixed
+	 */
 	abstract public function render();
 
+	/**
+	 * Get a layout object for the template.
+	 * @return void
+	 */
 	protected function get_layout() {
-	    $this->layout = $this->arras['layout']->build();
-    }
-
-    protected function init_filters() {
-	    add_filter( 'post_class', [$this, 'post_classes'] );
-    }
-
-	protected function beforeContent() {
-		include( $this->arras['templateLoader']->get_header() );
-		arras_above_content(); ?>
-    <div id="content" class="<?php echo $this->layout->get_classes( 'content' ); ?>">
-		<?php
+		$this->layout = $this->arras['layout']->build();
 	}
 
+	/**
+	 * Set filters for template callbacks.
+	 * @return void
+	 */
+	protected function init_filters() {
+		add_filter( 'post_class', [ $this, 'post_classes' ] );
+	}
+
+	/**
+	 * Render HTML before main template content.
+	 * @return void
+	 */
+	protected function beforeContent() {
+		include( $this->arras['templateLoader']->get_header() );
+		arras_above_content();
+		include ARRAS_VIEWS_DIR . 'template-componants/before-content.php';
+	}
+
+	/**
+	 * Render HTML after main template content.
+	 * @return void
+	 */
 	protected function afterContent() {
 		echo '</div>';
 		arras_below_content();
@@ -54,6 +93,10 @@ abstract class BaseTemplate implements Template {
 		include( $this->arras['templateLoader']->get_footer() );
 	}
 
+	/**
+	 * Render entry content header HTML.
+	 * @return void
+	 */
 	protected function postheader() {
 		global $post, $id;
 
@@ -114,22 +157,20 @@ abstract class BaseTemplate implements Template {
 		echo apply_filters( 'arras_postheader', $postheader );
 	}
 
+	/**
+	 * Render entry content footer HTML.
+	 * @return void
+	 */
 	protected function postfooter() {
-		global $id, $post;
+		$postfooter = '';
 
 		if ( $this->arras['options']->get( 'post_tags' ) && ! is_attachment() && is_array( get_the_tags() ) ) {
 			$postfooter = '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
 		}
 
-		if ( is_attachment() && $this->arras['options']->get( 'display-author-page' ) ) {
-			include ARRAS_VIEWS_DIR . 'author-profile.php';
-		}
-
-		if ( is_page() && $this->arras['options']->get( 'display-author-page' ) ) {
-			include ARRAS_VIEWS_DIR . 'author-profile.php';
-		}
-
-		if ( is_single() && $this->arras['options']->get( 'display-author-post' ) ) {
+		if ( is_page() && $this->arras['options']->get( 'display-author-page' ) ||
+		     is_single() && $this->arras['options']->get( 'display-author-post' )
+		) {
 			include ARRAS_VIEWS_DIR . 'author-profile.php';
 		}
 
@@ -140,10 +181,18 @@ abstract class BaseTemplate implements Template {
 		echo apply_filters( 'arras_postfooter', $postfooter );
 	}
 
+	/**
+	 * Generate the "posted on" meta for an entry.
+	 * @return string
+	 */
 	protected function posted_on() {
 		return sprintf( __( 'on %s', 'arras' ), get_the_time( get_option( 'date_format' ) ) );
 	}
 
+	/**
+	 * Render HTML for templates where no content is returned from the query.
+	 * @return void
+	 */
 	protected function no_posts() {
 		$postcontent = '<div class="single-post">';
 		$postcontent .= '<h1 class="entry-title">' . __( 'That \'something\' you are looking for isn\'t here!', 'arras' ) . '</h1>';
@@ -153,7 +202,9 @@ abstract class BaseTemplate implements Template {
 		$postcontent .= '<form method="get" class="clearfix" action="' . home_url() . '">
 	' . __( 'Perhaps searching for it might help?', 'arras' ) . '<br />
 	<input type="text" value="" name="s" class="s" size="30" onfocus="this.value=\'\'" />
-	<input type="submit" class="searchsubmit" value="' . __( 'Search', 'arras' ) . '" title="' . sprintf( __( 'Search %s', 'arras' ), esc_html( get_bloginfo( 'name' ), 1 ) ) . '" />
+	<input type="submit" class="searchsubmit" value="' .
+		                __( 'Search', 'arras' ) . '" title="' .
+		                sprintf( __( 'Search %s', 'arras' ), esc_html( get_bloginfo( 'name' ) ) ) . '" />
 	</form>';
 
 		$postcontent .= '<h3>' . __( 'Latest Posts', 'arras' ) . '</h3>';
@@ -181,7 +232,6 @@ abstract class BaseTemplate implements Template {
 	 * @return void
 	 */
 	protected function post_nav() {
-		// Don't print empty markup if there's nowhere to navigate.
 		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 		$next     = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', false );
 
@@ -202,25 +252,24 @@ abstract class BaseTemplate implements Template {
 	 * @return array Custom classes.
 	 */
 	public function post_classes( array $classes ) {
-	    $classes[] = 'group';
+		$classes[] = 'group';
 
-	    if ( is_attachment() ) {
-	        $classes[] = 'attachment';
-        }
+		if ( is_attachment() ) {
+			$classes[] = 'attachment';
+		}
 
 		if ( is_page() && ! is_archive() ) {
 			$classes = array_diff( $classes, [ 'hentry' ] );
 		}
 
 		if ( is_front_page() || ! is_page() && ! is_single() && ! $this->ignore_tapestry ) {
-		    $classes[] = 'traditional';
-        }
+			$classes[] = 'traditional';
+		}
 
-        if ( is_author() ) {
-		    $classes[] = 'profile';
-        }
+		if ( is_author() ) {
+			$classes[] = 'profile';
+		}
 
 		return $classes;
 	}
-
 }

@@ -76,13 +76,14 @@ class Arras {
 		foreach ( $providers as $provider => $service ) {
 			$this->arras[ $provider ] = function ( $arras ) use ( $service ) {
 				if ( is_array( $service ) ) {
+					$args = null;
 					if ( 'option' == $service['source'] ) {
 						( $service['class'] );
-						$args = $arras['options']->get( $service['parameter'] );
+						$args = $this->arras['options']->get( $service['parameter'] );
 					}
 
 					if ( 'config' == $service['source'] ) {
-						$args = $arras['config'][ $service['parameter'] ];
+						$args = $this->arras['config'][ $service['parameter'] ];
 					}
 
 					return new $service['class']( $args );
@@ -105,8 +106,9 @@ class Arras {
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
 
-		add_action( 'customize_register', array( $this->config, 'customizer' ) );
-		add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
+		// Todo: Refactor Customizer
+		//add_action( 'customize_register', array( $this->config, 'customizer' ) );
+		//add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
 
 		add_action( 'arras', array( $this, 'render' ) );
 
@@ -128,7 +130,7 @@ class Arras {
 
 	/**
 	 * Make Arras translatable.
-	 * @return null
+	 * @return void
 	 */
 	public function i18n() {
 		load_theme_textdomain( 'arras', get_template_directory() . '/languages' );
@@ -136,7 +138,7 @@ class Arras {
 
 	/**
 	 * Register theme supports for WP and plugins.
-	 * @return null
+	 * @return void
 	 */
 	public function theme_support() {
 		$supports = $this->arras['config']['theme-support'];
@@ -153,7 +155,7 @@ class Arras {
 
 	/**
 	 * Register widgetized areas.
-	 * @return  null
+	 * @return  void
 	 */
 	public function sidebars() {
 		$sidebars = $this->arras['config']['sidebars'];
@@ -182,6 +184,10 @@ class Arras {
 		}
 	}
 
+	/**
+	 * Register menus.
+	 * @return void
+	 */
 	public function menus() {
 		$this->arras['menus']->register_menus();
 	}
@@ -206,12 +212,16 @@ class Arras {
 		}
 	}
 
+	/**
+	 * Load theme styles.
+	 * @return void
+	 */
 	public function load_styles() {
 		wp_enqueue_style( 'arras-base', ARRAS_ASSETS_URL . 'styles/css/base.css', false, ARRAS_VERSION, 'all' );
-		wp_enqueue_style( 'font-awesome', ARRAS_ASSETS_URL . 'styles/css/font-awesome.min.css', '4.6.3', ARRAS_VERSION, 'all' );
+		wp_enqueue_style( 'font-awesome', ARRAS_ASSETS_URL . 'styles/css/font-awesome.min.css', false, '4.6.3', 'all' );
 
 		if ( is_child_theme() ) {
-			wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), false, ARRAS_VERSION, 'all' );
+			wp_enqueue_style( 'arras-child', get_stylesheet_uri(), array( 'arras-base' ), ARRAS_VERSION, 'all' );
 		}
 	}
 

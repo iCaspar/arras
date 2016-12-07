@@ -11,12 +11,25 @@ namespace ICaspar\Arras\Theme\Templates;
 
 use Pimple\Container;
 
+/**
+ * Class SearchTemplate
+ * @package ICaspar\Arras\Theme\Templates
+ */
 class SearchTemplate extends BaseTemplate implements Template {
 
+	/**
+	 * SearchTemplate constructor.
+	 *
+	 * @param Container $arras
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 	}
 
+	/**
+	 * Render a WordPress search page.
+	 * @return void
+	 */
 	public function render() {
 		$this->beforeContent();
 

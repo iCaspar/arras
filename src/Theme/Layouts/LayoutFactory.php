@@ -51,6 +51,8 @@ class LayoutFactory {
 	/**
 	 * Get the fully qualified classname.
 	 *
+	 * @param string $layout_type Layout type to build.
+	 *
 	 * @return string Fully qualified classname.
 	 */
 	protected function get_classname( $layout_type ) {

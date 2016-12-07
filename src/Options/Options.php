@@ -9,6 +9,10 @@
 
 namespace ICaspar\Arras\Options;
 
+/**
+ * Class Options
+ * @package ICaspar\Arras\Options
+ */
 class Options {
 
 	/**
@@ -18,6 +22,11 @@ class Options {
 	 */
 	protected $defaults;
 
+	/**
+	 * Options constructor.
+	 *
+	 * @param array $defaults
+	 */
 	public function __construct( array $defaults ) {
 		$this->defaults = $defaults;
 	}

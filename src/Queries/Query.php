@@ -9,6 +9,10 @@
 
 namespace ICaspar\Arras\Queries;
 
+/**
+ * Interface Query
+ * @package ICaspar\Arras\Queries
+ */
 interface Query {
 
 	/**

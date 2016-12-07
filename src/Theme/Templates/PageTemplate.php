@@ -11,12 +11,25 @@ namespace ICaspar\Arras\Theme\Templates;
 
 use Pimple\Container;
 
+/**
+ * Class PageTemplate
+ * @package ICaspar\Arras\Theme\Templates
+ */
 class PageTemplate extends BaseTemplate implements Template {
 
+	/**
+	 * PageTemplate constructor.
+	 *
+	 * @param Container $arras
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 	}
 
+	/**
+	 * Render a WordPress page.
+	 * @return void
+	 */
 	public function render() {
 		$this->beforeContent();
 

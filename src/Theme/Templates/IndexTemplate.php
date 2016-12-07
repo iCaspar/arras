@@ -8,6 +8,7 @@
  */
 
 namespace ICaspar\Arras\Theme\Templates;
+
 use Pimple\Container;
 
 /**
@@ -16,10 +17,19 @@ use Pimple\Container;
  */
 class IndexTemplate extends BaseTemplate implements Template {
 
+	/**
+	 * IndexTemplate constructor.
+	 *
+	 * @param Container $arras The service container.
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 	}
 
+	/**
+	 * Render a WordPress page.
+	 * @return void
+	 */
 	public function render() {
 		$this->beforeContent();
 

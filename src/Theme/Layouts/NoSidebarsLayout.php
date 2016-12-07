@@ -44,7 +44,7 @@ class NoSidebarsLayout implements Layout {
 
 	/**
 	 * Get the layout description.
-	 * @return string|void The description.
+	 * @return string The description.
 	 */
 	public function get_description() {
 		return $this->description;

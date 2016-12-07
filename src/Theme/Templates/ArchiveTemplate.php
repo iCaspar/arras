@@ -11,12 +11,25 @@ namespace ICaspar\Arras\Theme\Templates;
 
 use Pimple\Container;
 
+/**
+ * Class ArchiveTemplate
+ * @package ICaspar\Arras\Theme\Templates
+ */
 class ArchiveTemplate extends BaseTemplate implements Template {
 
+	/**
+	 * BaseTemplate constructor.
+	 *
+	 * @param Container $arras The theme service container.
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 	}
 
+	/**
+	 * Render a WordPress archive page.
+	 * @return void
+	 */
 	public function render() {
 		$this->beforeContent();
 

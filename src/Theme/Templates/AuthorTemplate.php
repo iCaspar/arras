@@ -17,12 +17,17 @@ use Pimple\Container;
  */
 class AuthorTemplate extends BaseTemplate implements Template {
 
+	/**
+	 * BaseTemplate constructor.
+	 *
+	 * @param Container $arras The theme service container.
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 	}
 
 	/**
-	 * Render an author page.
+	 * Render a WordPress author page.
 	 * @return void
 	 */
 	public function render() {

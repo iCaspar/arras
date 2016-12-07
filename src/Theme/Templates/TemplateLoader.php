@@ -11,6 +11,10 @@ namespace ICaspar\Arras\Theme\Templates;
 
 use Pimple\Container;
 
+/**
+ * Class TemplateLoader
+ * @package ICaspar\Arras\Theme\Templates
+ */
 class TemplateLoader {
 
 	/**

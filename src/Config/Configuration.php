@@ -9,6 +9,10 @@
 
 namespace ICaspar\Arras\Config;
 
+/**
+ * Interface Configuration
+ * @package ICaspar\Arras\Config
+ */
 interface Configuration {
 	/**
 	 * Get all configuration parameters.
@@ -27,6 +31,10 @@ interface Configuration {
 
 	/**
 	 * Get a specific configuration parameter's value or return a default value.
+	 *
+	 * @param string $key
+	 * @param null $default
+	 *
 	 * @return mixed
 	 */
 	public function get( $key, $default = null );

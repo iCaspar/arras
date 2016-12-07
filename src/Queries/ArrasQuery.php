@@ -9,6 +9,10 @@
 
 namespace ICaspar\Arras\Queries;
 
+/**
+ * Class ArrasQuery
+ * @package ICaspar\Arras\Queries
+ */
 class ArrasQuery implements Query {
 
 	/**

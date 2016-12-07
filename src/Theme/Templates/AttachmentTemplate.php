@@ -11,12 +11,25 @@ namespace ICaspar\Arras\Theme\Templates;
 
 use Pimple\Container;
 
+/**
+ * Class AttachmentTemplate
+ * @package ICaspar\Arras\Theme\Templates
+ */
 class AttachmentTemplate extends BaseTemplate implements Template {
 
+	/**
+	 * AttachmentTemplate constructor.
+	 *
+	 * @param Container $arras
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 	}
 
+	/**
+	 * Render a WordPress attachment page.
+	 * @return void
+	 */
 	public function render() {
 		$this->beforeContent();
 

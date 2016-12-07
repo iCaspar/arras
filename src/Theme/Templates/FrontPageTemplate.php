@@ -12,6 +12,10 @@ namespace ICaspar\Arras\Theme\Templates;
 use ICaspar\Arras\Queries\ArrasQuery;
 use Pimple\Container;
 
+/**
+ * Class FrontPageTemplate
+ * @package ICaspar\Arras\Theme\Templates
+ */
 class FrontPageTemplate extends BaseTemplate implements Template {
 
 	/**
@@ -21,11 +25,20 @@ class FrontPageTemplate extends BaseTemplate implements Template {
 	 */
 	protected $queryController;
 
+	/**
+	 * FrontPageTemplate constructor.
+	 *
+	 * @param Container $arras
+	 */
 	public function __construct( Container $arras ) {
 		parent::__construct( $arras );
 		$this->queryController = $this->arras['queryController'];
 	}
 
+	/**
+	 * Render the theme frontpage.
+	 * @return void
+	 */
 	public function render() {
 		global $paged;
 		$paged = get_query_var( 'page' );
@@ -53,6 +66,13 @@ class FrontPageTemplate extends BaseTemplate implements Template {
 		$this->afterContent();
 	}
 
+	/**
+	 * Do "The Loop" for news posts.
+	 *
+	 * @param int $paged The current WP_Query's page number.
+	 *
+	 * @return void
+	 */
 	protected function news_loop( $paged ) {
 		$section_header_title = $this->arras['options']->get( 'news-title' ) ?: 'Latest Headlines';
 
