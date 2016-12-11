@@ -44,6 +44,7 @@ return [
 		'templateLoader'  => 'ICaspar\Arras\Theme\Templates\TemplateLoader',
 		'comments'        => 'ICaspar\Arras\Theme\Comments\ArrasComments',
 		'queryController' => 'ICaspar\Arras\Queries\ArrasQuery',
+		'customizer'      => 'ICaspar\Arras\Customizer\ArrasCustomizer',
 	],
 
 	/**

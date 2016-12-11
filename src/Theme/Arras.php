@@ -106,9 +106,8 @@ class Arras {
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
 
-		// Todo: Refactor Customizer
-		//add_action( 'customize_register', array( $this->config, 'customizer' ) );
-		//add_action( 'customize_preview_init', array( $this->config, 'postmessage' ) );
+		add_action( 'customize_register', array( $this->arras['customizer'], 'customizer' ) );
+		add_action( 'customize_preview_init', array( $this->arras['customizer'], 'postmessage' ) );
 
 		add_action( 'arras', array( $this, 'render' ) );
 
