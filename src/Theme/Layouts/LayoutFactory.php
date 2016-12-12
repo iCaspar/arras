@@ -33,7 +33,20 @@ class LayoutFactory {
 	 *
 	 * @param string $layout_type Name of the layout to build.
 	 */
-	public function __construct( $layout_type) {
+	public function __construct( $layout_type = '' ) {
+		if ( $layout_type ) {
+			$this->set( $layout_type );
+		}
+	}
+
+	/**
+	 * Set the layout type tp build.
+	 *
+	 * @param string $layout_type  Name of the layout to build.
+	 *
+	 * @return void
+	 */
+	public function set( $layout_type ) {
 		$layoutClass = $this->get_classname( $layout_type );
 		$this->validate_classname( $layoutClass );
 		$this->layoutClass = $layoutClass;

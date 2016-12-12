@@ -8,6 +8,7 @@
  */
 
 namespace ICaspar\Arras\Options;
+use ICaspar\Arras\Theme\Arras;
 
 /**
  * Class OptionsFactory
@@ -22,7 +23,12 @@ class OptionsFactory {
 	 *
 	 * @return Options
 	 */
-	public function build( array $defaults ) {
+	public function build( array $defaults = [] ) {
+		if ( empty( $defaults ) ) {
+			$arras    = Arras::get_arras();
+			$defaults = $arras['config']['defaults'];
+		}
+
 		return new Options( $defaults );
 	}
 }

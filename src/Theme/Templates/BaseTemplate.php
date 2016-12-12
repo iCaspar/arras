@@ -61,7 +61,9 @@ abstract class BaseTemplate implements Template {
 	 * @return void
 	 */
 	protected function get_layout() {
-		$this->layout = $this->arras['layout']->build();
+		$layoutFactory = $this->arras['layoutFactory'];
+		$layoutFactory->set( $this->arras['options']->get('layout'));
+		$this->layout = $layoutFactory->build();
 	}
 
 	/**

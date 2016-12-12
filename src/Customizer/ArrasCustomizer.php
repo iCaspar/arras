@@ -8,12 +8,29 @@
  */
 
 namespace ICaspar\Arras\Customizer;
+use ICaspar\Arras\Options\Options;
 
 /**
  * Class ArrasCustomizer
  * @package ICaspar\Arras\Customizer
  */
 class ArrasCustomizer {
+
+	/**
+	 * Theme options.
+	 *
+	 * var Options
+	 */
+	protected $options;
+
+	/**
+	 * ArrasCustomizer constructor.
+	 *
+	 * @param Options $options Theme options.
+	 */
+	public function __construct( Options $options) {
+		$this->options = $options;
+	}
 
 	/***** CALLBACKS *****/
 

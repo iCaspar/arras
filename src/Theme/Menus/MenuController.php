@@ -9,6 +9,8 @@
 
 namespace ICaspar\Arras\Theme\Menus;
 
+use ICaspar\Arras\Theme\Arras;
+
 /**
  * Class MenuController
  * @package ICaspar\Arras\Theme\Menus
@@ -36,8 +38,10 @@ class MenuController {
 	 *
 	 * @param array $menus Menu configurations.
 	 */
-	public function __construct( array $menus = [ ] ) {
-		$this->menus = $menus;
+	public function __construct( array $menus = [] ) {
+		if ( ! empty( $menus ) ) {
+			$this->add = $menus;
+		}
 	}
 
 	/**
@@ -80,7 +84,7 @@ class MenuController {
 	/**
 	 * Register menus into the theme.
 	 *
-	 * @return null
+	 * @return void
 	 */
 	public function register_menus() {
 		foreach ( $this->menus as $menu => $properties ) {
@@ -120,5 +124,18 @@ class MenuController {
 			$args['menu_class']     = 'menu-' . $location;
 			wp_nav_menu( $args );
 		}
+	}
+
+	/***** CALLBACKS *****/
+
+	/**
+	 * Initialize the menus.
+	 *
+	 * @return void
+	 */
+	public function init() {
+		$arras = Arras::get_arras();
+		$this->add( $arras['config']['menus'] );
+		$this->register_menus();
 	}
 }

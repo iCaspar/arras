@@ -31,20 +31,16 @@ return [
 	 * Service Providers
 	 */
 	'service-providers' => [
-		'layout'          => [
-			'class'     => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
-			'source'    => 'option',
-			'parameter' => 'layout',
-		],
-		'menus'           => [
-			'class'     => 'ICaspar\Arras\Theme\Menus\MenuController',
-			'source'    => 'config',
-			'parameter' => 'menus',
-		],
+		'language'        => 'ICaspar\Arras\Languages\ArrasLanguage',
+		'themeSupport'    => 'ICaspar\Arras\Support\ArrasThemeSupport',
+		'menuController'  => 'ICaspar\Arras\Theme\Menus\MenuController',
+		'sidebars'        => 'ICaspar\Arras\Widgets\ArrasSidebars',
+		'assets'          => 'ICaspar\Arras\Assets\ArrasAssets',
+		'optionsFactory'  => 'ICaspar\Arras\Options\OptionsFactory',
+		'layoutFactory'   => 'ICaspar\Arras\Theme\Layouts\LayoutFactory',
 		'templateLoader'  => 'ICaspar\Arras\Theme\Templates\TemplateLoader',
 		'comments'        => 'ICaspar\Arras\Theme\Comments\ArrasComments',
 		'queryController' => 'ICaspar\Arras\Queries\ArrasQuery',
-		'customizer'      => 'ICaspar\Arras\Customizer\ArrasCustomizer',
 	],
 
 	/**

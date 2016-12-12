@@ -25,7 +25,7 @@
 	<?php arras_above_top_menu(); ?>
 
 	<div id="menu-top-container" class="menu-top-container">
-		<?php $this->arras['menus']->build( 'top' ); ?>
+		<?php $this->arras['menuController']->build( 'top' ); ?>
 	</div>
 
 	<?php arras_below_top_menu(); ?>
@@ -56,7 +56,7 @@
 	<?php arras_above_nav(); ?>
 
 	<div id="menu-main-container" class="menu-main-container">
-		<?php $this->arras['menus']->build( 'main' ); ?>
+		<?php $this->arras['menuController']->build( 'main' ); ?>
 	</div>
 
 	<?php arras_below_nav(); ?>
