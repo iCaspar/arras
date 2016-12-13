@@ -8,6 +8,7 @@
  */
 
 namespace ICaspar\Arras\Customizer;
+
 use ICaspar\Arras\Options\Options;
 
 /**
@@ -28,7 +29,7 @@ class ArrasCustomizer {
 	 *
 	 * @param Options $options Theme options.
 	 */
-	public function __construct( Options $options) {
+	public function __construct( Options $options ) {
 		$this->options = $options;
 	}
 
@@ -46,7 +47,7 @@ class ArrasCustomizer {
 		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
 		$wp_customize->add_setting( 'arras-options[footer-message]', array(
-			'default'           => $this->defaults['footer-message'],
+			'default'           => $this->options->get( 'footer-message' ),
 			'type'              => 'option',
 			'transport'         => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field',
