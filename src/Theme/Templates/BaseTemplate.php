@@ -62,7 +62,7 @@ abstract class BaseTemplate implements Template {
 	 */
 	protected function get_layout() {
 		$layoutFactory = $this->arras['layoutFactory'];
-		$layoutFactory->set( $this->arras['options']->get('layout'));
+		$layoutFactory->set( $this->arras['options']->get( 'layout' ) );
 		$this->layout = $layoutFactory->build();
 	}
 
@@ -81,7 +81,7 @@ abstract class BaseTemplate implements Template {
 	protected function beforeContent() {
 		include( $this->arras['templateLoader']->get_header() );
 		arras_above_content();
-		include ARRAS_VIEWS_DIR . 'template-componants/before-content.php';
+		include ARRAS_VIEWS_DIR . 'template-components/before-content.php';
 	}
 
 	/**
@@ -102,60 +102,48 @@ abstract class BaseTemplate implements Template {
 	protected function postheader() {
 		global $post, $id;
 
-		$postheader = '';
+		ob_start();
 
-		if ( is_single() || is_page() & ! is_front_page() ) {
-
+		if ( is_single() || is_page() || is_attachment() ) {
+			the_title( '<h1 class="entry-title">', '</h1>' );
 			if ( is_attachment() ) {
-				$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rel="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h1>';
-			} else {
-				$postheader .= '<h1 class="entry-title">' . get_the_title() . '</h1>';
+				include ARRAS_VIEWS_DIR . 'template-components/post-parent-link.php';
 			}
-
 		} else {
+			include ARRAS_VIEWS_DIR . 'template-components/linked-title.php';
+		}
 
-			if ( is_attachment() ) {
-				$postheader .= '<h3 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rel="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h3>';
-			} else {
-				$postheader .= '<h3 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h3>';
-				if ( ! is_page() && ! is_front_page() ) {
-					$postheader .= '<a class="entry-comments-number" href="' . get_comments_link() . '"><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;' . get_comments_number() . '</a>';
-				}
-			}
+		if ( ! is_page() && ! is_front_page() && ! is_single() ) {
+			include ARRAS_VIEWS_DIR . 'template-components/comment-count.php';
 		}
 
 		if ( ! is_page() || is_front_page() ) {
-			$postheader .= '<div class="entry-meta">';
+			echo '<div class="entry-meta">';
 
-			if ( $this->arras['options']->get( 'post_author' ) ) {
-				$postheader .= sprintf( __( '<div class="entry-author">By %s</div>', 'arras' ), '<address class="author vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" rel="author" title="' . esc_attr( get_the_author() ) . '">' . get_the_author() . '</a></address>' );
+			if ( $this->arras['options']->get( 'post-author-meta' ) ) {
+				include ARRAS_VIEWS_DIR . 'template-components/post-author-meta.php';
 			}
 
-			if ( $this->arras['options']->get( 'post_date' ) ) {
-				$postheader .= ' &ndash; <span class="published" title="' . get_the_time( 'c' ) . '">' . sprintf( __( 'Posted %s', 'arras' ), $this->posted_on() ) . '</span>';
+			if ( $this->arras['options']->get( 'post-date' ) ) {
+				include ARRAS_VIEWS_DIR . 'template-components/date-meta.php';
 			}
 
 			if ( current_user_can( 'edit_post', $id ) ) {
-				$postheader .= '<a class="post-edit-link" href="' . get_edit_post_link( $id ) . '" title="' . __( 'Edit Post', 'arras' ) . '">' . __( '(Edit Post)', 'arras' ) . '</a>';
+				include ARRAS_VIEWS_DIR . 'template-components/edit-post-link.php';
 			}
 
-			if ( ! is_attachment() && $this->arras['options']->get( 'post_cats' ) ) {
-				$post_cats = array();
-				$cats      = get_the_category();
-				foreach ( $cats as $c ) {
-					$post_cats[] = '<a href="' . get_category_link( $c->cat_ID ) . '">' . $c->cat_name . '</a>';
-				}
-
-				$postheader .= sprintf( __( '<span class="entry-cat"><strong>Posted in: </strong>%s</span>', 'arras' ), implode( ', ', $post_cats ) );
+			if ( ! is_attachment() && $this->arras['options']->get( 'post-cats' ) ) {
+				$this->the_categories();
 			}
 
-			$postheader .= '</div>';
+			echo '</div>';
 		}
 
 		if ( $this->arras['options']->get( 'single-thumbs' ) && has_post_thumbnail( $post->ID ) ) {
-			$postheader .= '<div class="entry-image">' . get_the_post_thumbnail() . '</div>';
+			echo '<div class="entry-image" > ' . the_post_thumbnail() . '</div >';
 		}
 
+		$postheader = ob_get_clean();
 		echo apply_filters( 'arras_postheader', $postheader );
 	}
 
@@ -164,10 +152,10 @@ abstract class BaseTemplate implements Template {
 	 * @return void
 	 */
 	protected function postfooter() {
-		$postfooter = '';
+		ob_start();
 
-		if ( $this->arras['options']->get( 'post_tags' ) && ! is_attachment() && is_array( get_the_tags() ) ) {
-			$postfooter = '<div class="entry-meta-footer"><span class="entry-tags">' . __( 'Tags:', 'arras' ) . '</span>' . get_the_tag_list( ' ', ', ', ' ' ) . '</div>';
+		if ( $this->arras['options']->get( 'post-tags' ) && ! is_attachment() && is_array( get_the_tags() ) ) {
+			include ARRAS_VIEWS_DIR . 'template-components/post-tags.php';
 		}
 
 		if ( is_page() && $this->arras['options']->get( 'display-author-page' ) ||
@@ -179,6 +167,8 @@ abstract class BaseTemplate implements Template {
 		if ( is_single() || is_attachment() && $this->arras['options']->get( 'show-post-nav' ) ) {
 			$this->post_nav();
 		}
+
+		$postfooter = ob_get_clean();
 
 		echo apply_filters( 'arras_postfooter', $postfooter );
 	}
@@ -196,26 +186,12 @@ abstract class BaseTemplate implements Template {
 	 * @return void
 	 */
 	protected function no_posts() {
-		$postcontent = '<div class="single-post">';
-		$postcontent .= '<h1 class="entry-title">' . __( 'That \'something\' you are looking for isn\'t here!', 'arras' ) . '</h1>';
-		$postcontent .= '<div class="entry-content"><p>' . __( '<strong>We\'re very sorry, but the page that you are looking for doesn\'t exist or has been moved.</strong>', 'arras' ) . '</p>';
+		ob_start();
 
+		include ARRAS_VIEWS_DIR . 'no-posts.php';
 
-		$postcontent .= '<form method="get" class="clearfix" action="' . home_url() . '">
-	' . __( 'Perhaps searching for it might help?', 'arras' ) . '<br />
-	<input type="text" value="" name="s" class="s" size="30" onfocus="this.value=\'\'" />
-	<input type="submit" class="searchsubmit" value="' .
-		                __( 'Search', 'arras' ) . '" title="' .
-		                sprintf( __( 'Search %s', 'arras' ), esc_html( get_bloginfo( 'name' ) ) ) . '" />
-	</form>';
-
-		$postcontent .= '<h3>' . __( 'Latest Posts', 'arras' ) . '</h3>';
-		$postcontent .= '<ul>';
-		$postcontent .= wp_get_archives( 'type=postbypost&limit=10&format=custom&before=<li>&after=</li>&echo=0' );
-		$postcontent .= '</ul>';
-		$postcontent .= '</div></div>';
-
-		echo apply_filters( 'arras_post_notfound', $postcontent );
+		$no_posts_found = ob_get_clean();
+		echo apply_filters( 'arras_post_notfound', $no_posts_found );
 	}
 
 	/**
@@ -253,7 +229,9 @@ abstract class BaseTemplate implements Template {
 	 *
 	 * @return array Custom classes.
 	 */
-	public function post_classes( array $classes ) {
+	public function post_classes(
+		array $classes
+	) {
 		$classes[] = 'group';
 
 		if ( is_attachment() ) {
@@ -273,5 +251,33 @@ abstract class BaseTemplate implements Template {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Get post category list and optionally echo it.
+	 *
+	 * @param bool $echo (Optional) Whether to echo the list.
+	 *
+	 * @return string|void
+	 */
+	protected function the_categories( $echo = true ) {
+		$post_categories = array();
+		$categories      = get_the_category();
+		foreach ( $categories as $category ) {
+			$post_categories[] = '<a href="' . get_category_link( $category->cat_ID ) . '">' . $category->cat_name . '</a>';
+		}
+		$post_categories = implode( ',', $post_categories );
+
+		$categoryList = '<span class="entry-cat"><strong>' .
+		                _x( 'Posted in: ', 'Category list introduction', 'arras' ) .
+		                '</strong>' .
+		                $post_categories .
+		                '</span>';
+
+		if ( $echo ) {
+			echo $categoryList;
+		} else {
+			return $categoryList;
+		}
 	}
 }
