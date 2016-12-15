@@ -1,3 +1,13 @@
+### 4.0.0-alpha2
+
+* Add PHPUnit
+* Refactor layouts, customizer, menus, theme supports, language into classes
+* Add Configuration class and refactor configuration file
+* Add Pimple DI container
+* Add Template classes
+* Refactor Options and Customizer classes
+* Refactor all for use with DI container
+
 ### 4.0.0-alpha1
 
 * Implement Object Oriented structure with PSR-4 autoloading via Composer
