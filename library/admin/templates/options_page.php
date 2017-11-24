@@ -2,7 +2,6 @@
 
 <div class="wrap clearfix">
 
-<?php screen_icon('themes') ?>
 <h2 id="arras-header"><?php _e('Arras Options', 'arras') ?></h2>
 
 <?php 
