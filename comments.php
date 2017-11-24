@@ -6,7 +6,7 @@ if ( !empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER[
 if ( post_password_required() ) {
 	?> <h4 class="module-title"><?php _e('Password Required', 'arras') ?></h4>
     <p class="nocomments"><?php _e('This post is password protected. Enter the password to view comments.', 'arras'); ?></p>'
-	return;
+	<?php return;
 }
 
 $comments_by_type = &separate_comments($comments);   
