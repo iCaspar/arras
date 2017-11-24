@@ -2,21 +2,15 @@
 $notices = ''; // store notices here so that options_page.php will echo it out later
 
 function arras_addmenu() {
-	$options_page = add_menu_page( '', __('Arras', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin', get_template_directory_uri() . '/images/icon.png', 63);
-	add_submenu_page( 'arras-options', __('Arras Options', 'arras'), __('Theme Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin' );
-	
-	$posttax_page = add_submenu_page( 'arras-options', __('Post Types & Taxonomies', 'arras'), __('Post Types & Tax.', 'arras'), 'edit_theme_options', 'arras-posttax', 'arras_posttax' );
-	
-	// $custom_background_page = add_submenu_page( 'arras-options', __('Custom Background', 'arras'), __('Custom Background', 'arras'), 'edit_theme_options', 'arras-custom-background', 'arras_custom_background' );
+	$options_page = add_theme_page( '', __('Arras Options', 'arras'), 'edit_theme_options', 'arras-options', 'arras_admin' );
+
+	$posttax_page = add_theme_page(  __('Arras Post Types & Taxonomies', 'arras'), __('Post Types & Tax.', 'arras'),'edit_theme_options',  'arras-posttax', 'arras_posttax' );
 
 	add_action('admin_print_scripts-'. $options_page, 'arras_admin_scripts');
 	add_action('admin_print_styles-'. $options_page, 'arras_admin_styles');
 	
 	add_action('admin_print_scripts-' . $posttax_page, 'arras_admin_scripts');
 	add_action('admin_print_styles-' . $posttax_page, 'arras_admin_styles');
-	
-	// add_action('admin_print_scripts-' . $custom_background_page, 'arras_custom_background_scripts');
-	// add_action('admin_print_styles-' . $custom_background_page, 'arras_custom_background_styles');
 }
 
 function arras_admin() {
