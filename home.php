@@ -26,7 +26,7 @@ $post_blacklist = array();
 <!-- Featured Articles #1 -->
 <div id="index-featured1">
 <?php if ( arras_get_option('featured1_title') != '' ) : ?>
-	<div class="home-title"><?php _e( arras_get_option('featured1_title'), 'arras' ) ?></div>
+	<div class="home-title"><?php echo esc_html( arras_get_option('featured1_title') ); ?></div>
 <?php endif;
 
 arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras_featured1_query', array(
@@ -47,7 +47,7 @@ arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras
 <!-- Featured Articles #2 -->
 <div id="index-featured2">
 <?php if ( arras_get_option('featured2_title') != '' ) : ?>
-	<div class="home-title"><?php _e( arras_get_option('featured2_title'), 'arras' ) ?></div>
+	<div class="home-title"><?php echo esc_html( arras_get_option('featured2_title') ) ?></div>
 <?php endif;
 
 arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras_featured2_query', array(
@@ -69,7 +69,7 @@ arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras
 <!-- News Articles -->
 <div id="index-news">
 <?php if ( arras_get_option('news_title') != '' ) : ?>
-<div class="home-title"><?php _e( arras_get_option('news_title') ) ?></div>
+<div class="home-title"><?php echo esc_html( arras_get_option('news_title') ) ?></div>
 <?php endif ?>
 <?php
 $news_query_args = apply_filters('arras_news_query', array(
@@ -124,7 +124,7 @@ if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 <?php else: ?>
 
 <?php if ( arras_get_option('news_title') != '' ) : ?>
-<div class="home-title"><?php _e( arras_get_option('news_title') ) ?></div>
+<div class="home-title"><?php echo esc_html( arras_get_option('news_title') ) ?></div>
 <?php endif ?>
 
 <div id="archive-posts">
