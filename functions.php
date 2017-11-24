@@ -2,7 +2,7 @@
 
 define ( 'ARRAS_CHILD', is_child_theme() );
 define ( 'ARRAS_VERSION' , '1.5.3' );
-define ( 'ARRAS_LIB', TEMPLATEPATH . '/library' );
+define ( 'ARRAS_LIB', get_template_directory() . '/library' );
 
 do_action('arras_init');
 
@@ -45,10 +45,10 @@ function arras_setup() {
 	define( 'ARRAS_CUSTOM_FIELDS', false );
 	
 	/* Langauge support */
-	load_theme_textdomain( 'arras', TEMPLATEPATH . '/language' );
+	load_theme_textdomain( 'arras', get_template_directory() . '/language' );
 	
 	$locale = get_locale();
-	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
+	$locale_file = get_template_directory() . "/languages/$locale.php";
 	if ( is_readable( $locale_file ) )
 		require_once( $locale_file );
 	
@@ -84,7 +84,7 @@ function arras_setup() {
 		register_alternate_layout( '3c-fixed', __('3 Column Layout (Left & Right Sidebars)', 'arras') );
 		register_alternate_layout( '3c-r-fixed', __('3 Column Layout (Right Sidebars)', 'arras') );
 		
-		register_style_dir( TEMPLATEPATH . '/css/styles/' );
+		register_style_dir( get_template_directory() . '/css/styles/' );
 	}
 	
 	/* Header actions */
