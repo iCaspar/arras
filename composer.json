@@ -1,0 +1,43 @@
+{
+  "name": "icaspar/arras",
+  "description": "Arras, rebuilt from the ground up.",
+  "type": "theme",
+  "keywords": [
+    "wordpress",
+    "wp",
+    "theme",
+    "arras"
+  ],
+  "homepage": "https://caspar.green",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Caspar Green",
+      "email": "cg@caspar.green"
+    }
+  ],
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4",
+    "phpunit/php-invoker": "^1.1",
+    "brain/monkey": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {"Arras\\": "src/"}
+  },
+  "autoload-dev": {
+    "psr-4": {"Arras\\": "tests/"}
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "config": {
+    "vendor-dir": "vendor",
+    "bin-dir": "bin"
+  },
+  "minimum-stability": "dev"
+}
