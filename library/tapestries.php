@@ -245,6 +245,7 @@ function arras_defaults_tapestry_default() {
 	$_tapestry_default_settings = array(
 		'height' => 225,
 		'nodes'	=> 3,
+        'excerpt' => false,
 	);
 	add_option('arras_tapestry_default', $_tapestry_default_settings, '', 'yes');
 	
