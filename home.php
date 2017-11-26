@@ -72,7 +72,7 @@ arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras
 <div class="home-title"><?php echo esc_html( arras_get_option('news_title') ) ?></div>
 <?php endif ?>
 <?php
-$news_query_args = apply_filters('arras_news_query', array(
+arras_featured_loop( arras_get_option('news_display'), apply_filters('arras_news_query', array(
 	'list' 				=> $news_cat,
 	'taxonomy'			=> arras_get_option('news_tax'),
 	'query'				=> array(
@@ -81,12 +81,7 @@ $news_query_args = apply_filters('arras_news_query', array(
 		'post_type'			=> arras_get_option('news_posttype'),
 		'paged'				=> $paged
 	)
-) );
-
-$news_query = arras_prep_query($news_query_args);
-
-query_posts($news_query);
-arras_featured_loop( arras_get_option('news_display'), $news_query_args, true );
+) ) );
 
 if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 	<div class="navigation clearfix">

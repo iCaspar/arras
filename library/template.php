@@ -110,16 +110,11 @@ function arras_render_posts($args = null, $display_type = 'default', $taxonomy =
 	wp_reset_query();
 }
 
-function arras_featured_loop( $display_type = 'default', $arras_args = array(), $query_posts = false ) {
-	global $wp_query;
+function arras_featured_loop( $display_type = 'default', $arras_args = array() ) {
 
-	if ($query_posts) {
-		$q = $wp_query;
-	} else {
 		$arras_args = arras_prep_query($arras_args);
 		$q = new WP_Query($arras_args);
-	}
-	
+
 	if ($q->have_posts()) {
 		if ( !isset($arras_args['taxonomy']) ) $arras_args['taxonomy'] = 'category';
 		arras_get_tapestry_callback($display_type, $q, $arras_args['taxonomy']);
