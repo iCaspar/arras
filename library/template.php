@@ -83,11 +83,9 @@ function arras_body_class() {
 	if ( function_exists('body_class') ) {
 		$body_class = array('layout-' . arras_get_option('layout'), 'no-js');
 		
-		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 			$body_class[] = 'style-' . arras_get_option('style');
-		}	
-		
-		return body_class( apply_filters('arras_body_class', $body_class) );
+
+		body_class( apply_filters('arras_body_class', $body_class) );
 	}
 }
 

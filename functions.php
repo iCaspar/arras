@@ -71,22 +71,15 @@ function arras_setup() {
 	/* Register sidebars */
 	arras_add_sidebars();
 	
-	/* Custom layouts & styles */
-	if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
-		add_action( 'arras_custom_styles', 'arras_layout_styles' );
-	}
-	
-	if ( !defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
-		// Alternate Styles & Layouts
-		register_alternate_layout( '1c-fixed', __('1 Column Layout (No Sidebars)', 'arras') );
-		register_alternate_layout( '2c-r-fixed', __('2 Column Layout (Right Sidebar)', 'arras') );
-		register_alternate_layout( '2c-l-fixed', __('2 Column Layout (Left Sidebar)', 'arras') );
-		register_alternate_layout( '3c-fixed', __('3 Column Layout (Left & Right Sidebars)', 'arras') );
-		register_alternate_layout( '3c-r-fixed', __('3 Column Layout (Right Sidebars)', 'arras') );
-		
-		register_style_dir( get_template_directory() . '/css/styles/' );
-	}
-	
+	// Alternate Styles & Layouts
+	register_alternate_layout( '1c-fixed', __( '1 Column Layout (No Sidebars)', 'arras' ) );
+	register_alternate_layout( '2c-r-fixed', __( '2 Column Layout (Right Sidebar)', 'arras' ) );
+	register_alternate_layout( '2c-l-fixed', __( '2 Column Layout (Left Sidebar)', 'arras' ) );
+	register_alternate_layout( '3c-fixed', __( '3 Column Layout (Left & Right Sidebars)', 'arras' ) );
+	register_alternate_layout( '3c-r-fixed', __( '3 Column Layout (Right Sidebars)', 'arras' ) );
+
+	register_style_dir( get_template_directory() . '/css/styles/' );
+
 	/* Header actions */
 	remove_action( 'wp_head', 'pagenavi_css' );
 	
@@ -94,7 +87,8 @@ function arras_setup() {
 	
 	add_action( 'arras_custom_styles', 'arras_add_custom_logo' );
 	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
-	
+	add_action( 'arras_custom_styles', 'arras_layout_styles' );
+
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	
 	add_action( 'wp_head', 'arras_load_styles', 1 );

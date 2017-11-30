@@ -21,31 +21,18 @@ foreach ($arras_registered_style_dirs as $style_dir) {
 <tr valign="top">
 <th scope="row"><label for="arras-layout-col"><?php _e('Overall Layout', 'arras') ?></label></th>
 <td>
-<?php if ( !defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
-echo arras_form_dropdown('arras-layout-col', $arras_registered_alt_layouts, arras_get_option('layout')) ?><br />
-<?php 
-	echo arras_form_checkbox('arras-reset-thumbs', 'show', false, 'id="arras-reset-thumbs"') . ' '; 
+<?php echo arras_form_dropdown('arras-layout-col', $arras_registered_alt_layouts, arras_get_option('layout')) ?>
+    <br />
+    <?php echo arras_form_checkbox('arras-reset-thumbs', 'show', false, 'id="arras-reset-thumbs"') . ' ';
 	_e('Reset thumbnail sizes accordingly based on selected layout.', 'arras');
 ?>
-<?php
-} else {
-	echo '<span class="grey">' . __('The developer of the child theme has disabled layout settings.', 'arras') . '</span>';
-}
-?>
-
 </td>
 </tr>
 
 <tr valign="top">
 <th scope="row"><label for="arras-style"><?php _e('Default Style', 'arras') ?></label></th>
 <td>
-<?php if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
-echo arras_form_dropdown('arras-style', $styles, arras_get_option('style') ) ?><br />
-<?php printf( __('Alternate stylesheets can be placed in %s.', 'arras'), '<code>wp-content/themes/' .get_stylesheet(). '/css/styles/</code>' );
-} else {
-	echo '<span class="grey">' . __('The developer of the child theme has disabled alternate stylesheets.', 'arras') . '</span>';
-}
-?>
+<?php echo arras_form_dropdown('arras-style', $styles, arras_get_option('style') ) ?><br />
 </td>
 </tr>
 
