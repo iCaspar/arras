@@ -58,7 +58,13 @@ function arras_setup() {
 	add_theme_support('nav-menus');
 	add_theme_support('automatic-feed-links');
 	add_theme_support('custom-background');
-	
+	add_theme_support( 'custom-logo', [
+		'height' => 125,
+		'width' => 400,
+		'flex-width' => true,
+		'header-text' => [ 'blog-name' ],
+	] );
+
 	/* Menus locations */
 	register_nav_menus(array(
 		'main-menu'	=> __('Main Menu', 'arras'),
@@ -85,7 +91,6 @@ function arras_setup() {
 	
 	add_action( 'arras_head', 'arras_override_styles' );
 	
-	add_action( 'arras_custom_styles', 'arras_add_custom_logo' );
 	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
 	add_action( 'arras_custom_styles', 'arras_layout_styles' );
 

@@ -59,37 +59,6 @@ function arras_admin_save() {
 			$notices = '<div class="updated fade"><p>' . __('Your settings have been successfully imported.', 'arras') . '</p></div>';
 		}
 	} else {
-		if (!isset($_POST['arras-delete-logo'])) {
-			if ($_FILES['arras-logo']['error'] != 4) {
-				$overrides = array('test_form' => false);
-				$file = wp_handle_upload($_FILES['arras-logo'], $overrides);
-
-				if ( isset($file['error']) )
-				die( $file['error'] );
-				
-				$url = $file['url'];
-				$type = $file['type'];
-				$file = $file['file'];
-				$filename = basename($file);
-
-				// Construct the object array
-				$object = array(
-				'post_title' => $filename,
-				'post_content' => $url,
-				'post_mime_type' => $type,
-				'guid' => $url);
-
-				// Save the data
-				$arras_options->logo = wp_insert_attachment($object, $file);
-				
-				// Force generate the logo thumbnail
-				$fullsizepath = get_attached_file($arras_options->logo);
-				wp_update_attachment_metadata($arras_options->logo, wp_generate_attachment_metadata($arras_options->logo, $fullsizepath));
-			}
-		} else {
-			$arras_options->logo = '';
-		}
-		
 		// Hack!
 		$arras_options->layout = (string)$_POST['arras-layout-col'];
 		$arras_image_sizes = array();

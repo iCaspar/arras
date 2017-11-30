@@ -25,15 +25,6 @@ function arras_override_styles() {
 	<?php
 }
 
-function arras_add_custom_logo() {
-	$arras_logo_id = arras_get_option( 'logo' );
-	if ( $arras_logo_id != 0 ) {
-		$arras_logo = wp_get_attachment_image_src( $arras_logo_id, 'full' );
-
-		echo '.blog-name a { background: url(' . $arras_logo[0] . ') no-repeat; text-indent: -9000px; width: ' . $arras_logo[1] . 'px; height: ' . $arras_logo[2] . 'px; display: block; }' . "\n";
-	}
-}
-
 function arras_layout_styles() {
 	$sidebar_size   = arras_get_image_size( 'sidebar-thumb' );
 	$sidebar_size_w = $sidebar_size['w'];

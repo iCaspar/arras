@@ -62,7 +62,8 @@ document.body.className = c;
 <div id="header">
 	<div id="branding" class="clearfix">
 	<div class="logo">
-		<?php if ( is_home() || is_front_page() ) : ?>
+        <?php the_custom_logo(); ?>
+        <?php if ( is_home() || is_front_page() ) : ?>
 		<h1 class="blog-name"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
 		<h2 class="blog-description"><?php bloginfo('description'); ?></h2>
 		<?php else: ?>
