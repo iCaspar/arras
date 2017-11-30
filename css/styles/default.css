@@ -26,6 +26,7 @@ dl dd  { margin: 0 0 10px 0; line-height: 1.5em; }
 
 /* common classes */
 img.aligncenter, img.alignright, img.alignleft  { border: 1px solid #DDD; text-align: center; background: #F3F3F3; padding: 4px; }
+.screen-reader-text {clip: rect(0,0,0,0); }
 
 .wp-caption { border: 1px solid #DDD; text-align: center; background: #F3F3F3; padding-top: 4px; margin: 10px }
 .wp-caption img { margin: 0; padding: 0; border: none }
@@ -47,6 +48,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 /* header */
 #header					{ background: #1e1b1a; border-bottom: 5px solid #383332; }
 .logo					{ max-width: 590px; float: left; font-weight: 700; font-family: 'Segoe UI', Arial, Helvetica, sans-serif; text-transform: uppercase; }
+.custom-logo { margin-bottom: 3px; }
 .blog-name				{ font-size: 22px; letter-spacing: 1px;  }
 .blog-name a:link, .blog-name a:visited	{ color: #FFF; text-decoration: none; }
 .blog-description		{ font-size: 11px; color: #7d716d; }
