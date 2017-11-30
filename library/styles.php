@@ -27,7 +27,7 @@ function arras_override_styles() {
 
 function arras_load_styles() {
 	$layout = arras_get_option( 'layout' );
-	wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, '2011-12-12', 'all' );
+	wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, ARRAS_VERSION, 'all' );
 
 	$scheme = arras_get_option( 'style' );
 	if ( ! isset( $scheme ) ) {
@@ -40,7 +40,7 @@ function arras_load_styles() {
 		$css_path .= '-rtl';
 	}
 
-	wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, '2011-12-12', 'all' );
+	wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, ARRAS_VERSION, 'all' );
 
 	do_action( 'arras_load_styles' );
 }

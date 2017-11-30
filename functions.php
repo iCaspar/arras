@@ -1,8 +1,19 @@
 <?php
 
-define ( 'ARRAS_CHILD', is_child_theme() );
-define ( 'ARRAS_VERSION' , '1.5.3' );
-define ( 'ARRAS_LIB', get_template_directory() . '/library' );
+arras_init_constants();
+
+function arras_init_constants() {
+	$theme = wp_get_theme();
+
+	define( 'ARRAS_VERSION', $theme->get( 'Version' ) );
+	define( 'ARRAS_URL', $theme->get( 'ThemeURI' ) );
+	define( 'ARRAS_LIB', get_template_directory() . '/library' );
+	define( 'ARRAS_REVIEW_SCORE', 'score' );
+	define( 'ARRAS_REVIEW_PROS', 'pros' );
+	define( 'ARRAS_REVIEW_CONS', 'cons' );
+	define( 'ARRAS_CUSTOM_FIELDS', false );
+	define( 'ARRAS_CHILD', is_child_theme() );
+}
 
 do_action('arras_init');
 
@@ -38,12 +49,7 @@ function arras_setup() {
 	//require_once ARRAS_LIB . '/admin/background.php';
 	
 	/* Post meta fields */
-	define( 'ARRAS_REVIEW_SCORE', 'score' );
-	define( 'ARRAS_REVIEW_PROS', 'pros' );
-	define( 'ARRAS_REVIEW_CONS', 'cons' );
-	
-	define( 'ARRAS_CUSTOM_FIELDS', false );
-	
+
 	/* Langauge support */
 	load_theme_textdomain( 'arras', get_template_directory() . '/language' );
 	
