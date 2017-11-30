@@ -92,7 +92,6 @@ function arras_setup() {
 	add_action( 'arras_head', 'arras_override_styles' );
 	
 	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
-	add_action( 'arras_custom_styles', 'arras_layout_styles' );
 
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	

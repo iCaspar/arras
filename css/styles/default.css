@@ -178,7 +178,7 @@ label.error				{ border: 1px solid #D8000C; color: #D8000C; background: #FFBABA;
 .single .post .entry-author address, .single-post .entry-author address	{ font-style: normal; }
 #main .single .post .tags, #main .single-post .tags { color: #848485; border-top: 1px dotted #CCC; line-height: 1.5em; }
 #main .single .post .tags strong, #main .single-post .tags strong { text-transform: uppercase; font-size: 11px; }
-.single .post .entry-photo img, .single-post .entry-photo img	{ border: 1px solid #CCC; }
+.single .post .entry-photo img, .single-post .entry-photo img	{ border: 1px solid #CCC; width: calc(100% - 2px); }
 .single .post .entry-comments, .single-post .entry-comments  { float: right; padding: 3px 3px 3px 17px; margin-top: 20px; background: url(../../images/comments.gif) no-repeat 3px 6px #383331; display: inline-block; color: #FFF; font-size: 14px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 
 .post-edit-link:link, .post-edit-link:visited	{ text-decoration: none; }

@@ -25,17 +25,6 @@ function arras_override_styles() {
 	<?php
 }
 
-function arras_layout_styles() {
-	$sidebar_size   = arras_get_image_size( 'sidebar-thumb' );
-	$sidebar_size_w = $sidebar_size['w'];
-
-	$single_thumb_size = arras_get_image_size( 'single-thumb' );
-	?>
-    .featured-stories-summary  { margin-left: <?php echo $sidebar_size_w + 15 ?>px; }
-    .single .post .entry-photo img, .single-post .entry-photo img  { width: <?php echo $single_thumb_size['w'] ?>px; height: <?php echo $single_thumb_size['h'] ?>px; }
-	<?php
-}
-
 function arras_load_styles() {
 	$layout = arras_get_option( 'layout' );
 	wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, '2011-12-12', 'all' );
