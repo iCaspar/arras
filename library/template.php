@@ -420,5 +420,53 @@ function arras_add_facebook_share_meta() {
 	}
 }
 
-/* End of file template.php */
-/* Location: ./library/template.php */
+function arras_add_sidebars() {
+	register_sidebar( array(
+		'name'          => 'Primary Sidebar',
+		'id'            => 'primary',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+	register_sidebar( array(
+		'name'          => 'Secondary Sidebar #1',
+		'id'            => 'secondary',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+	register_sidebar( array(
+		'name'          => 'Bottom Content #1',
+		'id'            => 'bottom-1',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+	register_sidebar( array(
+		'name'          => 'Bottom Content #2',
+		'id'            => 'bottom-2',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+
+	$footer_sidebars = arras_get_option( 'footer_sidebars' );
+	if ( $footer_sidebars == '' ) {
+		$footer_sidebars = 1;
+	}
+
+	for ( $i = 1; $i < $footer_sidebars + 1; $i ++ ) {
+		register_sidebar( array(
+			'name'          => 'Footer Sidebar #' . $i,
+			'id'            => 'footer-' . $i,
+			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+			'after_widget'  => '</li>',
+			'before_title'  => '<h5 class="widgettitle">',
+			'after_title'   => '</h5>'
+		) );
+	}
+}
