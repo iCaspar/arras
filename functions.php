@@ -89,9 +89,6 @@ function arras_setup() {
 	if ( is_admin() ) {
 		add_action( 'admin_menu', 'arras_addmenu' );
 	}
-
-	$max_image_size = arras_get_single_thumbs_size();
-	$content_width  = $max_image_size[0];
-
+	
 	do_action( 'arras_setup' );
 }
