@@ -2,20 +2,19 @@
 /*
  * Template Name: Redirect Page
  */
-?>
 
-<?php if (have_posts()) : the_post(); ?>
-<?php $URL = get_the_excerpt(); if (!preg_match('/^http:\/\//', $URL)) $URL = 'http://' . $URL; ?>
+if ( have_posts() ) {
+	the_post();
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+	$URL = get_the_excerpt();
 
-<head>
-<meta http-equiv="Refresh" content="0;url=<?php echo $URL; ?>">
-</head>
-
-<body>
-</body>
-</html>
-
-<?php endif; ?>
+	if ( preg_match( '/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/', $URL ) ) {
+		$URL = esc_url( $URL );
+		if ( wp_redirect( $URL ) ) {
+			exit();
+		}
+	} else {
+		wp_reset_postdata();
+		include 'page.php';
+	}
+}
