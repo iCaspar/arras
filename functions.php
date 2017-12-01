@@ -11,7 +11,6 @@ function arras_init_constants() {
 	define( 'ARRAS_REVIEW_SCORE', 'score' );
 	define( 'ARRAS_REVIEW_PROS', 'pros' );
 	define( 'ARRAS_REVIEW_CONS', 'cons' );
-	define( 'ARRAS_CUSTOM_FIELDS', false );
 	define( 'ARRAS_CHILD', is_child_theme() );
 }
 
@@ -89,6 +88,6 @@ function arras_setup() {
 	if ( is_admin() ) {
 		add_action( 'admin_menu', 'arras_addmenu' );
 	}
-	
+
 	do_action( 'arras_setup' );
 }
