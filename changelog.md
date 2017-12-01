@@ -4,19 +4,19 @@
 
 ### Fixes
 
-* Missing Sidebar ID's throwing PHP Notices
+* Missing Sidebar ID's throwing PHP Warnings
 * Widgets throwing PHP Notices
 * Broken translation functions
-* Excerpt sometimes not set in default tapestry settings
-* Using non-existant capability in `arras_postheader()`
-* Incorrect assignment of comments by type
+* Excerpt sometimes not setting in default tapestry settings
+* Using non-existent capability in `arras_postheader()`
+* Incorrect assigning of comments by type
 * Search icon on admin bar blocked when viewed on front end
-* Featured image width overflows on single posts
-* Redirect Page template renders "white screen of death" when no url supplied
-* Redirect Page doesn't recognize `https`
-* Redirect Page template uses insecure url assignment and redirect
+* Featured image width overflowing on single posts
+* Redirect Page template rendering "white screen of death" when no url supplied
+* Redirect Page not recognizing `https`
+* Redirect Page template using insecure url assignment and redirect
 
-### Adds
+### Additions
 
 * `.screen-reader-text` CSS class for WP Accessibility Standards
 * WP Native Title Tag support
@@ -34,7 +34,7 @@
 * *Arras Options* and *Post Types &amp; Taxonomy* Options are now located under the *Appearances* section of the Admin menu
 * `ARRAS_VERSION` now set from the theme object headers instead of hard-coded.
 
-### Removes
+### Removals
 
 * Deprecated header tags in `style.css`
 * Dead links on Arras Options pages
