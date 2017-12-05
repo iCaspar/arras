@@ -20,9 +20,3 @@ In the past, Arras has been translated for many languages. Recent and current ch
 ## Support
 
 Support is currently limited. If you have a question or issue, please consult the [project website](https://arrastheme.net/), and the [project wiki](https://github.com/iCaspar/arras/wiki). If you can't find what you're looking for, you can [open an issue](https://github.com/iCaspar/arras/issues).
-
-## Change Log
-
-### Version 1.5.3-RC1
-
-Last version available from the former developer, [Melvin Lee](https://github.com/zyml/arras-theme).
