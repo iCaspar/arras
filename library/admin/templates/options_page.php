@@ -2,7 +2,6 @@
 
 <div class="wrap clearfix">
 
-<?php screen_icon('themes') ?>
 <h2 id="arras-header"><?php _e('Arras Options', 'arras') ?></h2>
 
 <?php 
@@ -15,7 +14,6 @@ do_action('arras_admin_notices');
 
 <ul id="arras-tabs" class="clearfix">
 	<li><a href="#general-settings"><?php _e('General', 'arras') ?></a></li>
-	<?php if (!function_exists('wp_nav_menu')) : ?><li><a href="#navigation"><?php _e('Navigation', 'arras') ?></a></li><?php endif; ?>
 	<li><a href="#home"><?php _e('Home', 'arras') ?></a></li>
 	<li><a href="#layout"><?php _e('Layout', 'arras') ?></a></li>
 	<li><a href="#design"><?php _e('Design', 'arras') ?></a></li>

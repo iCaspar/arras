@@ -9,12 +9,12 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 	var $commentcount, $postcount;
 
 	// Constructor
-	function Arras_Tabbed_Sidebar() {
+	function __construct() {
 		$widget_args = array(
 			'classname'		=> 'arras_tabbed_sidebar',
 			'description'	=> __('Sidebar containing tabs that displays posts, comments and tags.', 'arras'),
 		);
-		$this->WP_Widget('arras_tabbed_sidebar', __('Tabbed Sidebar', 'arras'), $widget_args);
+		parent::__construct('arras_tabbed_sidebar', __('Tabbed Sidebar', 'arras'), $widget_args);
 		
 		add_action('arras_tabbed_sidebar_tab-featured', array(&$this, 'featured_tab'));
 		add_action('arras_tabbed_sidebar_tab-latest', array(&$this, 'latest_tab'));
@@ -263,12 +263,12 @@ class Arras_Tabbed_Sidebar extends WP_Widget {
 class Arras_Featured_Stories extends WP_Widget {
 	
 	// Constructor
-	function Arras_Featured_Stories() {
+	function __construct() {
 		$widget_args = array(
 			'classname'		=> 'arras_featured_stories',
 			'description'	=> __('Featured stories containing post thumbnails and the excerpt based on categories.', 'arras'),
 		);
-		$this->WP_Widget('arras_featured_stories', __('Featured Stories', 'arras'), $widget_args);
+		parent::__construct('arras_featured_stories', __('Featured Stories', 'arras'), $widget_args);
 	}
 	
 	function widget($args, $instance) {
@@ -363,7 +363,7 @@ class Arras_Featured_Stories extends WP_Widget {
 }
 
 class Arras_Widget_Tag_Cloud extends WP_Widget_Tag_Cloud {
-	function Arras_Widget_Tag_Cloud() {
+	function __construct() {
 		parent::__construct();
 	}
 	
@@ -408,9 +408,9 @@ class Arras_Widget_Tag_Cloud extends WP_Widget_Tag_Cloud {
 
 class Arras_Widget_Search extends WP_Widget {
 
-	function Arras_Widget_Search() {
+	function __construct() {
 		$widget_ops = array('classname' => 'widget_search', 'description' => __( "A search form for your site", 'arras' ) );
-		$this->WP_Widget('search', __('Search', 'arras'), $widget_ops);
+		parent::__construct('search', __('Search', 'arras'), $widget_ops);
 	}
 
 	function widget( $args, $instance ) {
@@ -500,7 +500,4 @@ function arras_widgets_init() {
 	register_widget('Arras_Widget_Search');
 }
 
-add_action('widgets_init', 'arras_widgets_init', 1);	
-/* End of file widgets.php */
-/* Location: ./library/widgets.php */
-?>
+add_action('widgets_init', 'arras_widgets_init', 1);

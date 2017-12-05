@@ -3,7 +3,6 @@
 
 <div class="wrap clearfix">
 
-<?php screen_icon('themes') ?>
 <h2 id="arras-header"><?php _e('Post Types & Taxonomies Options', 'arras') ?></h2>
 
 <?php echo $notices ?>

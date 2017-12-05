@@ -4,81 +4,6 @@ function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
 }
 
-/**
- * SEO-Friendly title tag, based on Thematic Framework, which is based on Tarski :)
- */
-function arras_document_title() {
-	$site_name = get_bloginfo('name');
-	$separator = '|';
-	
-	if ( is_single() ) {
-      $content = single_post_title('', FALSE);
-    }
-    elseif ( is_home() || is_front_page() ) { 
-      $content = get_bloginfo('description');
-    }
-    elseif ( is_page() ) { 
-      $content = single_post_title('', FALSE); 
-    }
-    elseif ( is_search() ) { 
-      $content = __('Search Results for:', 'arras'); 
-      $content .= ' ' . esc_html(stripslashes(get_search_query()), true);
-    }
-    elseif ( is_category() ) {
-      $content = __('Category Archives:', 'arras');
-      $content .= ' ' . single_cat_title("", false);;
-    }
-    elseif ( is_tag() ) { 
-      $content = __('Tag Archives:', 'arras');
-      $content .= ' ' . arras_tag_query();
-    }
-    elseif ( is_404() ) { 
-      $content = __('Not Found', 'arras'); 
-    }
-    else { 
-      $content = get_bloginfo('description');
-    }
-
-    if (get_query_var('paged')) {
-      $content .= ' ' .$separator. ' ';
-      $content .= 'Page';
-      $content .= ' ';
-      $content .= get_query_var('paged');
-    }
-
-    if($content) {
-      if ( is_home() || is_front_page() ) {
-          $elements = array(
-            'site_name' => $site_name,
-            'separator' => $separator,
-            'content' => $content
-          );
-      }
-      else {
-          $elements = array(
-            'content' => $content
-          );
-      }  
-    } else {
-      $elements = array(
-        'site_name' => $site_name
-      );
-    }
-
-    // Filters should return an array
-    $elements = apply_filters('arras_doctitle', $elements);
-	
-    // But if they don't, it won't try to implode
-    if(is_array($elements)) {
-      $doctitle = implode(' ', $elements);
-    }
-    else {
-      $doctitle = $elements;
-    }
-    
-	echo $doctitle;
-}
-
 function arras_add_header_js() {
 	?>
 	<script type="text/javascript">
@@ -158,11 +83,9 @@ function arras_body_class() {
 	if ( function_exists('body_class') ) {
 		$body_class = array('layout-' . arras_get_option('layout'), 'no-js');
 		
-		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
 			$body_class[] = 'style-' . arras_get_option('style');
-		}	
-		
-		return body_class( apply_filters('arras_body_class', $body_class) );
+
+		body_class( apply_filters('arras_body_class', $body_class) );
 	}
 }
 
@@ -185,16 +108,11 @@ function arras_render_posts($args = null, $display_type = 'default', $taxonomy =
 	wp_reset_query();
 }
 
-function arras_featured_loop( $display_type = 'default', $arras_args = array(), $query_posts = false ) {
-	global $wp_query;
+function arras_featured_loop( $display_type = 'default', $arras_args = array() ) {
 
-	if ($query_posts) {
-		$q = $wp_query;
-	} else {
 		$arras_args = arras_prep_query($arras_args);
 		$q = new WP_Query($arras_args);
-	}
-	
+
 	if ($q->have_posts()) {
 		if ( !isset($arras_args['taxonomy']) ) $arras_args['taxonomy'] = 'category';
 		arras_get_tapestry_callback($display_type, $q, $arras_args['taxonomy']);
@@ -502,5 +420,53 @@ function arras_add_facebook_share_meta() {
 	}
 }
 
-/* End of file template.php */
-/* Location: ./library/template.php */
+function arras_add_sidebars() {
+	register_sidebar( array(
+		'name'          => 'Primary Sidebar',
+		'id'            => 'primary',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+	register_sidebar( array(
+		'name'          => 'Secondary Sidebar #1',
+		'id'            => 'secondary',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+	register_sidebar( array(
+		'name'          => 'Bottom Content #1',
+		'id'            => 'bottom-1',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+	register_sidebar( array(
+		'name'          => 'Bottom Content #2',
+		'id'            => 'bottom-2',
+		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h5 class="widgettitle">',
+		'after_title'   => '</h5>'
+	) );
+
+	$footer_sidebars = arras_get_option( 'footer_sidebars' );
+	if ( $footer_sidebars == '' ) {
+		$footer_sidebars = 1;
+	}
+
+	for ( $i = 1; $i < $footer_sidebars + 1; $i ++ ) {
+		register_sidebar( array(
+			'name'          => 'Footer Sidebar #' . $i,
+			'id'            => 'footer-' . $i,
+			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
+			'after_widget'  => '</li>',
+			'before_title'  => '<h5 class="widgettitle">',
+			'after_title'   => '</h5>'
+		) );
+	}
+}

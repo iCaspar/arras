@@ -4,12 +4,13 @@ if ( !empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER[
 }
 
 if ( post_password_required() ) {
-	?> <h4 class="module-title"><?php _e('Password Required', 'arras') ?></h4> <?php
-	_e('<p class="nocomments">This post is password protected. Enter the password to view comments.</p>', 'arras');
-	return;
+	?> <h4 class="module-title"><?php _e('Password Required', 'arras') ?></h4>
+    <p class="nocomments"><?php _e('This post is password protected. Enter the password to view comments.', 'arras'); ?></p>'
+	<?php return;
 }
 
-$comments_by_type = &separate_comments($comments);   
+
+$comments_by_type = separate_comments($comments);
 
 if ( have_comments() ) : ?>
 
@@ -49,14 +50,14 @@ if ( have_comments() ) : ?>
 	comment_form( 
 		array(
 			'fields' => array(
-				'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
+				'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'arras' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
 				'<input id="author" class="required" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
-				'email' => '<p class="comment-form-email"><label for="email">' . __( 'Email' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
+				'email' => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'arras' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
 				'<input id="email" class="required email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>',
-				'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website' ) . '</label>' .
+				'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'arras' ) . '</label>' .
 				'<input id="url" class="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>'
 			),
-			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>'
+			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'arras' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>'
 		) 
 	); 
 	?>

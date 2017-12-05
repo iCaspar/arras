@@ -245,6 +245,7 @@ function arras_defaults_tapestry_default() {
 	$_tapestry_default_settings = array(
 		'height' => 225,
 		'nodes'	=> 3,
+        'excerpt' => false,
 	);
 	add_option('arras_tapestry_default', $_tapestry_default_settings, '', 'yes');
 	
@@ -252,8 +253,6 @@ function arras_defaults_tapestry_default() {
 }
 
 function arras_style_tapestry_default() {
-	$tapestry_settings = get_option('arras_tapestry_default');
-	
 	$node_based_size = arras_get_image_size('node-based-thumb');
 	$node_based_w = $node_based_size['w'];
 	$node_based_h = $node_based_size['h'];

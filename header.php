@@ -1,7 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-<title><?php arras_document_title() ?></title>
+<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo('charset'); ?>" />
 <?php arras_document_description() ?>
 
 <?php if ( is_search() || is_author() ) : ?>
@@ -63,7 +62,8 @@ document.body.className = c;
 <div id="header">
 	<div id="branding" class="clearfix">
 	<div class="logo">
-		<?php if ( is_home() || is_front_page() ) : ?>
+        <?php the_custom_logo(); ?>
+        <?php if ( is_home() || is_front_page() ) : ?>
 		<h1 class="blog-name"><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
 		<h2 class="blog-description"><?php bloginfo('description'); ?></h2>
 		<?php else: ?>

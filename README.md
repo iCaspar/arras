@@ -1,15 +1,22 @@
-# Arras WordPress Theme (1.x)
-Theme Website: http://www.arrastheme.com/
+# Arras WordPress Theme
+
+Theme Website: https://arrastheme.net/
 
 ## Overview
-Arras is a sophisticated, yet simple and clean WordPress theme for magazine/news blogs. Homepage comes with a featured slideshow and 3 featured post areas with 4 different customisable layouts. Comes with in one, two and three column layouts and 7 different alternate styles. WordPress 3.0-ready with two menu locations, custom post types and custom taxonomies support. Child theme ready with numerous action and filter hooks available for use. Community support available at theme forums.
 
-## Other Languages
-Please visit our Transifex page if you require the PO files for your language:
+Arras is a sophisticated, yet simple and clean WordPress theme for magazine and news blogs.
 
-https://www.transifex.net/projects/p/arras-theme/
+* The homepage has a featured slideshow and 3 featured post areas with 4 different customizable layouts
+* One, two and three column layouts
+* 7 different alternate color/style schemes
+* Two menu locations
+* Custom post type and custom taxonomy support
+* Child theme ready with numerous action and filter hooks available for use
+
+## Language Support
+
+In the past, Arras has been translated for many languages. Recent and current changes will require translations to be updated in the near future.
 
 ## Support
-Please ask questions in the Community Forums before proceeding to create a New Issue here:
 
-http://www.arrastheme.com/forums
+Support is currently limited. If you have a question or issue, please consult the [project website](https://arrastheme.net/), and the [project wiki](https://github.com/iCaspar/arras/wiki). If you can't find what you're looking for, you can [open an issue](https://github.com/iCaspar/arras/issues).

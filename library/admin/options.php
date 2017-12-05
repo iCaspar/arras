@@ -196,14 +196,8 @@ class ArrasOptions {
 			$this->single_custom_fields = (string)$_POST['arras-single-custom-fields'];
 		}
 		
-		if ( !defined('ARRAS_INHERIT_LAYOUT') || ARRAS_INHERIT_LAYOUT == true ) {
-			$this->layout = (string)$_POST['arras-layout-col'];
-		}
-		
-		if ( !defined('ARRAS_INHERIT_STYLES') || ARRAS_INHERIT_STYLES == true ) {
-			$this->style = (string)$_POST['arras-style'];
-		}
-		
+		$this->layout = (string)$_POST['arras-layout-col'];
+		$this->style = (string)$_POST['arras-style'];
 		$this->auto_thumbs = isset($_POST['arras-thumbs-auto']);
 	}
 	
