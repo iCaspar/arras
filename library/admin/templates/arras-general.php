@@ -16,7 +16,7 @@
         <th scope="row"><label for="arras-auto-update"><?php _e( 'Enable Automatic Updates', 'arras' ) ?></label></th>
         <td>
 			<?php echo arras_form_checkbox( 'arras-auto-update', 'disable', arras_get_option( 'auto_update' ), 'id="arras-auto-update"' ) ?>
-			<?php _e( 'WordPress will automatically check for Arras updates along with other Themes and Plugins.', 'arras' ) ?>
+			<?php _e( 'WordPress will automatically check for Arras updates along with other themes and plugins.', 'arras' ) ?>
         </td>
     </tr>
     <tr valign="top">

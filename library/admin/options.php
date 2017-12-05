@@ -4,7 +4,7 @@ class ArrasOptions {
 	var $defaults;
 	
 	// General Settings
-	var $version, $donate, $feed_url, $comments_feed_url, $twitter_username, $facebook_profile, $footer_title, $footer_message;
+	var $version, $auto_update, $donate, $feed_url, $comments_feed_url, $twitter_username, $facebook_profile, $footer_title, $footer_message;
 	// Navigation
 	var $topnav_home, $topnav_display, $topnav_linkcat;
 	// Home
@@ -113,7 +113,7 @@ class ArrasOptions {
 	function save_options() {
 		$this->version = ARRAS_VERSION;
 		$this->donate = !isset($_POST['arras-credits']);
-		$this->auto_update = isset( $_POST['arras_update'] );
+		$this->auto_update = isset( $_POST['arras-auto-update'] );
 		$this->twitter_username = (string)$_POST['arras-twitter'];
 		$this->facebook_profile = esc_url( $_POST['arras-facebook'] );
 		$this->gplus_profile = esc_url( $_POST['arras-gplus'] );
