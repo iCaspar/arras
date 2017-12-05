@@ -42,7 +42,7 @@ class ArrasOptions {
 	function default_options() {
 		$this->defaults = array(
 			'version' => ARRAS_VERSION,
-			'donate' => false,
+			'auto_update' => false,
 			'footer_sidebars' => 1,
 			'footer_title' => __('Copyright', 'arras'),
 			'footer_message' => '<p>' . sprintf( __('Copyright %s. All Rights Reserved.', 'arras'), get_bloginfo('name') ) . '</p>',
@@ -113,7 +113,7 @@ class ArrasOptions {
 	function save_options() {
 		$this->version = ARRAS_VERSION;
 		$this->donate = !isset($_POST['arras-credits']);
-		
+		$this->auto_update = isset( $_POST['arras_update'] );
 		$this->twitter_username = (string)$_POST['arras-twitter'];
 		$this->facebook_profile = esc_url( $_POST['arras-facebook'] );
 		$this->gplus_profile = esc_url( $_POST['arras-gplus'] );
