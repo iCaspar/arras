@@ -19,8 +19,8 @@
 ### Additions
 
 * `.screen-reader-text` CSS class for WP Accessibility Standards
-* WP Native Title Tag support
 * WP Native Navigation support
+* WP Native Title Tag support
 * WP Native Custom Background support
 * WP Native Custom Logo support
 * `ARRAS_URL` constant (used to generate links to theme url in footer)
@@ -42,6 +42,10 @@
 * `ARRAS_CUSTOM_FIELDS` definition, to allow child themes to define
 * `ARRAS_INHERIT_LAYOUT` and `ARRAS_FORCE_LAYOUT` constants. Layouts in child themes can be set from *Arras Options*
 * Admin screen icons (no longer supported by WP)
+* Pre-WP 3.0 navigation handling
+* Pre-WP 4.1 title tag handling
+* Pre-WP 4.3 custom background handling
+* Pre-WP 4.5 custom logo handling
 * Unused `$content_width` setting
 
 ## (Versions 1.6.x -- Discontinued)
