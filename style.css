@@ -19,11 +19,6 @@ For questions or to report an issue, please visit the theme's issues page at
 https://github.com/iCaspar/arras/issues/
 */
 
-/* Default Stylesheet */
-@import url('css/default.css');
-/* User Override Stylesheet */
-@import url('user.css');
-
 /* Trick the WordPress Theme Bot *Evil* */
 .aligncenter			{ display: block; margin: 0 auto !important; }
 .alignright				{ float: right; margin: 0 0 1em 1em; }
