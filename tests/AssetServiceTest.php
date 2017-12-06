@@ -33,6 +33,16 @@ class AssetServiceTest extends TestCase {
 		$service->registerStyles();
 	}
 
+	public function testRegisterStyleFailsBadConfig(): void {
+		Functions\when( 'wp_register_style' )->justReturn( false );
+		$service = $this->getSampleService();
+
+		$result = $service->registerStyles();
+
+		self::assertEquals( [ '' ], $result );
+
+	}
+
 	public function testRegisterProdStyles(): void {
 		Functions\when( 'wp_register_style' )->justReturn( true );
 		$service = $this->getSampleService();
