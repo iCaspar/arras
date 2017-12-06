@@ -40,7 +40,13 @@ class AssetServiceTest extends TestCase {
 		$result = $service->registerStyles();
 
 		self::assertEquals( [ '' ], $result );
+	}
 
+	public function testRegisterNoStyles(): void {
+		Functions\when( 'wp_register_style' )->justReturn( false );
+		$service = new AssetService( [ 'styles' => [ 'test-style' => [] ] ], 'http://example.com' );
+
+		self::assertEquals( [], $service->registerStyles() );
 	}
 
 	public function testRegisterProdStyles(): void {

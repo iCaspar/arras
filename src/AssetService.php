@@ -60,6 +60,8 @@ class AssetService {
 			throw new \RuntimeException( 'Missing styles in configuration.' );
 		}
 
+		$result = [];
+
 		foreach ( $this->config['styles'] as $handle => $args ) {
 			if ( ! isset ( $args['filename'] ) ) {
 				continue;
