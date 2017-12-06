@@ -5,8 +5,8 @@
 
 return [
 	'styles' => [
-		'grid' => [
-			'filename' => 'grid',
+		'arras-nova' => [
+			'filename' => 'style',
 		],
 	],
 ];

@@ -26,20 +26,22 @@ function arras_override_styles() {
 }
 
 function arras_load_styles() {
-	$layout = arras_get_option( 'layout' );
-	wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, ARRAS_VERSION, 'all' );
+    wp_enqueue_style( 'arras-nova' );
 
-	$scheme = arras_get_option( 'style' );
-	if ( ! isset( $scheme ) ) {
-		$scheme = 'default';
-	}
-
-	$css_path = '/css/styles/' . $scheme;
-
-	if ( is_rtl() ) {
-		$css_path .= '-rtl';
-	}
-
-	wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, ARRAS_VERSION, 'all' );
+//	$layout = arras_get_option( 'layout' );
+//	wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, ARRAS_VERSION, 'all' );
+//
+//	$scheme = arras_get_option( 'style' );
+//	if ( ! isset( $scheme ) ) {
+//		$scheme = 'default';
+//	}
+//
+//	$css_path = '/css/styles/' . $scheme;
+//
+//	if ( is_rtl() ) {
+//		$css_path .= '-rtl';
+//	}
+//
+//	wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, ARRAS_VERSION, 'all' );
 	do_action( 'arras_load_styles' );
 }

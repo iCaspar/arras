@@ -1,0 +1,52 @@
+#main {
+  margin: 0 auto;
+  position: relative;
+  width: 960px;
+
+  .module,
+  .single-post {
+    margin-right: 10px;
+  }
+}
+
+#container {
+  float: left;
+  width: 660px;
+}
+
+#content {
+  margin: 0;
+  overflow: hidden;
+  width: 660px;
+}
+
+.main-aside {
+  float: right;
+  position: relative;
+  width: 300px;
+}
+
+#secondary {
+  clear: right;
+}
+
+#subsidiary {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 960px;
+
+  .aside {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 300px;
+  }
+
+  #third {
+    margin: 0;
+  }
+}
+
+.fixed {
+  margin: 0 auto;
+  width: 960px;
+}
