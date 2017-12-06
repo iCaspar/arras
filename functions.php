@@ -1,24 +1,37 @@
 <?php
 
-arras_init_constants();
+use Arras\Theme;
 
-function arras_init_constants() {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Oops! Something went wrong.' );
+}
+
+init_constants();
+require_once 'vendor/autoload.php';
+init();
+
+function init_constants() {
 	$theme = wp_get_theme();
 
 	define( 'ARRAS_VERSION', $theme->get( 'Version' ) );
 	define( 'ARRAS_URL', $theme->get( 'ThemeURI' ) );
+	define( 'ARRAS_CONFIG_DIR', get_template_directory() . '/config' );
 	define( 'ARRAS_LIB', get_template_directory() . '/library' );
+	define( 'ARRAS_ASSET_URL', get_template_directory_uri() . '/assets' );
 	define( 'ARRAS_REVIEW_SCORE', 'score' );
 	define( 'ARRAS_REVIEW_PROS', 'pros' );
 	define( 'ARRAS_REVIEW_CONS', 'cons' );
 	define( 'ARRAS_CHILD', is_child_theme() );
 }
 
-require_once 'vendor/autoload.php';
+function init() {
+	$theme = new Theme( include ARRAS_CONFIG_DIR . '/config.php' );
+	$theme->init();
+}
 
 do_action( 'arras_init' );
 
-add_action( 'after_setup_theme', 'arras_setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . 'arras_setup' );
 
 function arras_setup() {
 
