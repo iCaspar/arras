@@ -430,7 +430,7 @@ function arras_add_sidebars() {
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
-		'name'          => 'Secondary Sidebar #1',
+		'name'          => 'Secondary Sidebar',
 		'id'            => 'secondary',
 		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
 		'after_widget'  => '</li>',
