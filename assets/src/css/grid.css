@@ -1,5 +1,7 @@
 @supports (display: grid) {
-    #main {
-        display: grid;
-    }
+  #main {
+    display: grid;
+  }
 }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdyaWQuc2NzcyIsImdyaWQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUF5QjtFQUNyQjtJQUNJLGNBQWE7R0FDaEI7Q0NDSiIsImZpbGUiOiJncmlkLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIkBzdXBwb3J0cyAoZGlzcGxheTogZ3JpZCkge1xuICAgICNtYWluIHtcbiAgICAgICAgZGlzcGxheTogZ3JpZDtcbiAgICB9XG59IiwiQHN1cHBvcnRzIChkaXNwbGF5OiBncmlkKSB7XG4gICNtYWluIHtcbiAgICBkaXNwbGF5OiBncmlkO1xuICB9XG59XG4iXX0= */
