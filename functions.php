@@ -1,4 +1,5 @@
 <?php
+namespace Arras;
 
 use Arras\Theme;
 
@@ -31,7 +32,7 @@ function init() {
 
 do_action( 'arras_init' );
 
-add_action( 'after_setup_theme', __NAMESPACE__ . 'arras_setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\arras_setup' );
 
 function arras_setup() {
 
