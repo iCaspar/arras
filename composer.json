@@ -21,7 +21,6 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^6.4",
-    "phpunit/php-invoker": "^1.1",
     "brain/monkey": "^2.1"
   },
   "autoload": {

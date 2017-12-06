@@ -19,6 +19,8 @@ do_action( 'arras_init' );
 add_action( 'after_setup_theme', 'arras_setup' );
 
 function arras_setup() {
+	require_once 'vendor/autoload.php';
+
 	require_once ARRAS_LIB . '/admin/options.php';
 	require_once ARRAS_LIB . '/admin/templates/functions.php';
 	require_once ARRAS_LIB . '/admin/update.php';

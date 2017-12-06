@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1965a187b6ccf458e1ea50ed297f9f25",
+    "content-hash": "10ec69639b67249539e1fa23b1bf63b3",
     "packages": [],
     "packages-dev": [
         {
@@ -218,12 +218,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "a52824b01527b2e74a47d747773394ee7624068b"
+                "reference": "f19bfd86dacffb409fa5c105be6edd473c6ca81d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/a52824b01527b2e74a47d747773394ee7624068b",
-                "reference": "a52824b01527b2e74a47d747773394ee7624068b",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/f19bfd86dacffb409fa5c105be6edd473c6ca81d",
+                "reference": "f19bfd86dacffb409fa5c105be6edd473c6ca81d",
                 "shasum": ""
             },
             "require": {
@@ -275,7 +275,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2017-12-01T17:58:37+00:00"
+            "time": "2017-12-01T18:02:58+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -489,12 +489,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "c19b4d170c5a9cc9d93d3d63d7125f894f2726b1"
+                "reference": "bab88701ea52d718b4d56728670f43a456720e6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/c19b4d170c5a9cc9d93d3d63d7125f894f2726b1",
-                "reference": "c19b4d170c5a9cc9d93d3d63d7125f894f2726b1",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bab88701ea52d718b4d56728670f43a456720e6b",
+                "reference": "bab88701ea52d718b4d56728670f43a456720e6b",
                 "shasum": ""
             },
             "require": {
@@ -506,6 +506,7 @@
             "require-dev": {
                 "doctrine/instantiator": "^1.0",
                 "mockery/mockery": "^1.0",
+                "phpstan/phpstan": "^0.9.0",
                 "phpunit/phpunit": "^6.4"
             },
             "type": "library",
@@ -530,7 +531,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-30T09:27:01+00:00"
+            "time": "2017-12-02T18:12:29+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -644,16 +645,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "5.2.x-dev",
+            "version": "5.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "7d7739ff9e07475ba0eb1a46dfd6eb98c2fd04bc"
+                "reference": "661f34d0bd3f1a7225ef491a70a020ad23a057a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/7d7739ff9e07475ba0eb1a46dfd6eb98c2fd04bc",
-                "reference": "7d7739ff9e07475ba0eb1a46dfd6eb98c2fd04bc",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/661f34d0bd3f1a7225ef491a70a020ad23a057a1",
+                "reference": "661f34d0bd3f1a7225ef491a70a020ad23a057a1",
                 "shasum": ""
             },
             "require": {
@@ -677,7 +678,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2.x-dev"
+                    "dev-master": "5.3.x-dev"
                 }
             },
             "autoload": {
@@ -703,7 +704,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-11-28T06:05:44+00:00"
+            "time": "2017-12-06T09:29:45+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -751,52 +752,6 @@
                 "iterator"
             ],
             "time": "2017-11-27T13:52:08+00:00"
-        },
-        {
-            "name": "phpunit/php-invoker",
-            "version": "1.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-invoker.git",
-                "reference": "86074bf0fc2caf02ec8819a93f65a37cd0b44c8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-invoker/zipball/86074bf0fc2caf02ec8819a93f65a37cd0b44c8e",
-                "reference": "86074bf0fc2caf02ec8819a93f65a37cd0b44c8e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcntl": "*",
-                "php": ">=5.3.3",
-                "phpunit/php-timer": ">=1.0.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Utility class for invoking callables with a timeout.",
-            "homepage": "https://github.com/sebastianbergmann/php-invoker/",
-            "keywords": [
-                "process"
-            ],
-            "time": "2015-06-21T13:32:55+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -943,12 +898,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b1c47346a17dfff5635125bffa20a34be9a09b83"
+                "reference": "882e886cc928a0abd3c61282b2a64026237d14a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b1c47346a17dfff5635125bffa20a34be9a09b83",
-                "reference": "b1c47346a17dfff5635125bffa20a34be9a09b83",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/882e886cc928a0abd3c61282b2a64026237d14a4",
+                "reference": "882e886cc928a0abd3c61282b2a64026237d14a4",
                 "shasum": ""
             },
             "require": {
@@ -962,11 +917,11 @@
                 "phar-io/version": "^1.0",
                 "php": "^7.0",
                 "phpspec/prophecy": "^1.7",
-                "phpunit/php-code-coverage": "^5.2.3",
+                "phpunit/php-code-coverage": "^5.3",
                 "phpunit/php-file-iterator": "^1.4.3",
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^1.0.9",
-                "phpunit/phpunit-mock-objects": "^5.0",
+                "phpunit/phpunit-mock-objects": "^5.0.4",
                 "sebastian/comparator": "^2.1",
                 "sebastian/diff": "^2.0",
                 "sebastian/environment": "^3.1",
@@ -1019,7 +974,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-12-01T11:07:51+00:00"
+            "time": "2017-12-06T09:42:03+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1027,12 +982,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "a58b8fc03ca12d8bf6122ea942bc72c99c7cda4a"
+                "reference": "c785d2b2ce990b4f569b2492e10c569afd2123aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/a58b8fc03ca12d8bf6122ea942bc72c99c7cda4a",
-                "reference": "a58b8fc03ca12d8bf6122ea942bc72c99c7cda4a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/c785d2b2ce990b4f569b2492e10c569afd2123aa",
+                "reference": "c785d2b2ce990b4f569b2492e10c569afd2123aa",
                 "shasum": ""
             },
             "require": {
@@ -1078,7 +1033,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-12-01T16:12:08+00:00"
+            "time": "2017-12-06T09:45:14+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
