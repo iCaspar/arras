@@ -37,7 +37,7 @@ function arrasCheckUpdate() {
 	}
 
 	if ( ! $arrasUpdate ) {
-		$url  = 'https://api.arrastheme.net/v1/update/theme/';
+		$url  = 'https://api.arrastheme.net/v1/updates/theme';
 		$data = [
 			'body' => [
 				'arras_version' => ARRAS_VERSION,
@@ -63,7 +63,7 @@ function arrasCheckUpdate() {
 		set_transient( 'arras_update', $arrasUpdate, DAY_IN_SECONDS );
 	}
 
-	if ( version_compare( ARRAS_VERSION, $arrasUpdate['new_version'] ) ) {
+	if ( version_compare( ARRAS_VERSION, $arrasUpdate['new_version'], '>=' ) ) {
 		return [];
 	}
 
