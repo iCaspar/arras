@@ -1,8 +1,9 @@
-/* Global Styles */
+// sass-lint:disable no-ids
+
 html, body {
   height: 100%;
-  min-height: 100%;
   margin: 0;
+  min-height: 100%;
   padding: 0;
 }
 
@@ -43,7 +44,11 @@ a:focus, a:hover, a:active {
 }
 
 /* Headings */
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 1em 0;
 }
 
@@ -124,8 +129,8 @@ th, td {
 /* Structure */
 #wrapper {
   min-height: 100%;
-  position: relative;
   padding: 20px 0;
+  position: relative;
 }
 
 #main {
@@ -139,26 +144,26 @@ th, td {
 }
 
 #branding {
-  width: 980px;
   margin: 0 auto;
   padding: 0;
+  width: 980px;
 }
 
 .logo {
-  max-width: 590px;
   float: left;
+  max-width: 590px;
   padding: 30px 0 34px 10px;
 }
 
 .blog-name {
-  margin: 0 0 3px;
-  line-height: 1em;
   display: block;
+  line-height: 1em;
+  margin: 0 0 3px;
 }
 
 .blog-description {
-  line-height: 1em;
   display: block;
+  line-height: 1em;
   margin: 0;
   padding: 3px 0 0;
 }
@@ -175,8 +180,8 @@ th, td {
 }
 
 .sf-menu ul {
-  position: absolute;
   left: -999em;
+  position: absolute;
   width: 11em;
   z-index: 100;
 }
@@ -224,12 +229,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .sf-shadow ul {
-  background: url(../images/shadow.png) no-repeat bottom right;
+  background: url('../images/shadow.png') no-repeat bottom right;
+  border-radius: 0 17px;
   padding: 0 8px 9px 0;
-  -moz-border-radius-bottomleft: 17px;
-  -moz-border-radius-topright: 17px;
-  -webkit-border-top-right-radius: 17px;
-  -webkit-border-bottom-left-radius: 17px;
 }
 
 .sf-shadow ul.sf-shadow-off {
@@ -258,27 +260,27 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .quick-nav li {
-  float: left;
   display: inline;
+  float: left;
 }
 
 /* Search Bar */
 #searchbar {
   float: right;
-  overflow: hidden;
   margin: 25px 10px 0 0;
+  overflow: hidden;
 }
 
 /* Sidebar */
 .sidebar .xoxo {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .widgetcontainer {
-  padding: 10px;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .widgetcontainer ul, .widgetcontainer .xoxo, .widgetcontainer ol {
@@ -298,14 +300,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 .multi-sidebar .tabs {
   list-style: none;
   margin: 0 0 5px;
-  padding: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 .multi-sidebar .tabs li {
   float: left;
-  padding: 5px;
   margin: 0 3px 5px 0;
+  padding: 5px;
 }
 
 .multi-sidebar .widgetcontainer {
@@ -319,8 +321,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .multi-sidebar .widgetcontainer li, .featured-stories li, .related-posts li {
-  padding: 0 0 10px;
   margin: 0 0 10px;
+  padding: 0 0 10px;
 }
 
 #wp-calendar {
@@ -334,33 +336,33 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #controls {
-  position: relative;
   float: left;
-  z-index: 90;
+  position: relative;
   top: 90px;
+  z-index: 90;
 }
 
 #controls .next, #controls .prev {
+  display: block;
+  height: 30px;
+  opacity: 0.7;
   text-indent: -9000px;
   width: 30px;
-  height: 30px;
-  display: block;
   z-index: 1000;
-  opacity: 0.7;
 }
 
 #controls .prev {
   background: url(../images/prev.png) no-repeat;
   float: left;
-  position: absolute;
   left: 10px;
+  position: absolute;
 }
 
 #controls .next {
   background: url(../images/next.png) no-repeat;
   float: right;
-  position: absolute;
   left: 610px;
+  position: absolute;
 }
 
 #controls .next:hover, #controls .prev:hover {
@@ -377,12 +379,12 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .featured-entry {
-  position: relative;
-  top: -85px;
-  overflow: hidden;
-  padding: 0;
   display: block;
   opacity: 0.8;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  top: -85px;
 }
 
 .featured-entry .entry-title {
@@ -390,19 +392,19 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .featured-entry .entry-summary {
-  padding: 0 15px;
-  margin: 0;
   display: block;
+  margin: 0;
+  padding: 0 15px;
 }
 
 /* Bottom Content */
 #bottom-content-1, #bottom-content-2 {
-  list-style: none;
   float: left;
-  width: 320px;
+  list-style: none;
   margin: 0 10px 10px 0;
   overflow: hidden;
   padding: 0;
+  width: 320px;
 }
 
 .layout-3c-r-fixed #bottom-content-1, .layout-3c-r-fixed #bottom-content-2, .layout-3c-fixed #bottom-content-1, .layout-3c-fixed #bottom-content-2 {
@@ -416,15 +418,15 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .entry-thumbnails-link {
-  float: left;
   display: block;
+  float: left;
 }
 
 .posts-default, .posts-quick, .posts-line {
   list-style: none;
   margin: 0 0 10px;
-  padding: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 .posts-default {
@@ -433,20 +435,20 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 .posts-default .entry, .posts-default img {
   float: left;
-  padding: 0;
   overflow: hidden;
+  padding: 0;
 }
 
 .posts-default .entry-title {
-  margin: 5px;
   line-height: 1.4em;
+  margin: 5px;
 }
 
 .posts-default .entry-summary {
-  overflow: hidden;
-  margin: 0 5px;
-  padding-bottom: 10px;
   line-height: 1.4em;
+  margin: 0 5px;
+  overflow: hidden;
+  padding-bottom: 10px;
 }
 
 .posts-default .entry-thumbnails-link {
@@ -464,14 +466,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .posts-quick li {
-  padding: 0 10px 0 0;
   margin: 0 0 10px;
+  padding: 0 10px 0 0;
 }
 
 .posts-quick .entry-title {
-  padding: 5px 0 0;
-  margin: 0;
   line-height: 1.3em;
+  margin: 0;
+  padding: 5px 0 0;
 }
 
 .posts-quick .entry-summary {
@@ -502,22 +504,22 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .posts-default .entry-meta, .posts-quick .entry-meta {
-  float: left;
   display: block;
+  float: left;
   margin: -25px 0 0;
 }
 
 .posts-default .entry-comments, .posts-quick .entry-comments {
+  background: url('../images/comments.gif') no-repeat left center;
   float: right;
   margin: 5px 5px 0;
-  background: url(../images/comments.gif) no-repeat left center;
   padding: 0 0 0 12px;
 }
 
 .posts-line {
+  line-height: 1.4em;
   margin: 0 10px 10px 0;
   padding: 10px;
-  line-height: 1.4em;
 }
 
 .posts-line li {
@@ -526,15 +528,15 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 .posts-line .entry-cat {
   float: left;
-  width: 100px;
   overflow: hidden;
+  width: 100px;
 }
 
 .posts-line .entry-title {
   float: left;
+  line-height: 1.4em;
   margin: 0;
   max-width: 450px;
-  line-height: 1.4em;
 }
 
 .layout-3c-fixed .posts-line .entry-title, .layout-3c-r-fixed .posts-line .entry-title {
@@ -557,14 +559,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .single .post .entry-title, .single-post .entry-title {
-  padding: 0;
-  margin: 15px 0 5px;
   line-height: 1.3em;
+  margin: 15px 0 5px;
+  padding: 0;
 }
 
 .single .post .entry-info, .single-post .entry-info {
-  padding-bottom: 10px;
   margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .single .post .entry-cat, .single-post .entry-cat {
@@ -573,8 +575,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .single .post .entry-author, .single-post .entry-author {
-  margin: 0;
   display: inline;
+  margin: 0;
 }
 
 .single .post .entry-author address, .single-post .entry-author address {
@@ -606,9 +608,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .entry-content {
-  margin: 10px 0;
   font-size: 12px;
   line-height: 1.5em;
+  margin: 10px 0;
   overflow: hidden;
 }
 
@@ -649,8 +651,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 .gallery-item {
   float: left;
   margin-right: 10px;
-  width: 31%;
   text-align: center;
+  width: 31%;
 }
 
 .gallery-icon img {
@@ -662,9 +664,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .about-author {
-  padding: 10px;
-  margin: 0 0 10px;
   line-height: 1.5em;
+  margin: 0 0 10px;
+  padding: 10px;
 }
 
 .about-author .avatar {
@@ -683,8 +685,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 /* Comments */
 #commentlist {
   list-style: none;
-  padding: 10px 10px 0;
   margin: 0 10px 0 0;
+  padding: 10px 10px 0;
 }
 
 #commentlist li {
@@ -706,8 +708,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 
 #commentlist .children {
   clear: right;
-  margin-left: 20px;
   list-style: none;
+  margin-left: 20px;
   padding: 0;
 }
 
@@ -753,9 +755,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #commentform textarea {
-  width: 98%;
   height: 150px;
   padding: 5px;
+  width: 98%;
 }
 
 #commentform .error {
@@ -779,14 +781,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 /* Footer */
 #footer {
   margin: 20px auto 0;
-  width: 980px;
   padding-bottom: 10px;
+  width: 980px;
 }
 
 #footer .widgetcontainer {
-  padding: 5px 10px;
-  margin-right: 10px;
   float: left;
+  margin-right: 10px;
+  padding: 5px 10px;
 }
 
 #footer .footer-message {
@@ -795,7 +797,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 #footer .footer-message p {
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
 }
 
 #footer .footer-message .floatright {
@@ -807,8 +809,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 }
 
 .footer-sidebar {
-  overflow: hidden;
   float: left;
   margin: 0;
+  overflow: hidden;
   padding: 0 0 10px;
 }
