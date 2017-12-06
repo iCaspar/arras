@@ -41,6 +41,5 @@ function arras_load_styles() {
 	}
 
 	wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, ARRAS_VERSION, 'all' );
-	wp_enqueue_style( 'grid' );
 	do_action( 'arras_load_styles' );
 }
