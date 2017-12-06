@@ -18,4 +18,4 @@ logs
 .AppleDB
 
 /assets/dist
-/assets/src/css/style.css
+/assets/src/css/*.css
