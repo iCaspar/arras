@@ -79,7 +79,7 @@ gulp.task('sass:postcss', function () {
 gulp.task('sass:lint', ['css:minify'], function () {
   gulp.src([
     'assets/src/sass/**/*.scss',
-    '!assets/src/sass/03-generic/_normalize.scss'
+    '!assets/src/sass/base/_normalize.scss'
   ])
     .pipe(sassLint())
     .pipe(sassLint.format())

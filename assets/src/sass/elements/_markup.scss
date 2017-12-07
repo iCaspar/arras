@@ -1,0 +1,41 @@
+hr {
+  border: 0;
+  border-collapse: collapse;
+  border-top: 1px solid $text-color--base;
+  clear: both;
+  margin: 1em 0;
+}
+
+b,
+strong {
+  font-weight: $font-weight--bold;
+}
+
+blockquote,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+mark {
+  background: $highlighter;
+}
+
+blockquote {
+  border-left: 2px solid $silver;
+  color: $dark-gray;
+  margin: 10px;
+  padding: 5px 10px 1px;
+}
+
+pre {
+  max-width: 100%;
+  overflow: scroll;
+  padding: 5px;
+}
+
+code {
+  background-color: $code-bg;
+  font-family: $font-family--mono;
+}

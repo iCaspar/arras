@@ -1,28 +1,5 @@
-// sass-lint:disable class-name-format, no-ids
+// sass-lint:disable-all
 @import 'base';
-
-body {
-  background-color: $dark-trace;
-  color: $dark-slate;
-  font: 12px Helvetica, Arial, sans-serif;
-}
-
-a, a:link, a:visited {
-  color: $darker-rust;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #CC0000;
-}
-
-blockquote {
-  border-left: 2px solid $silver;
-  color: #666;
-  font-style: normal;
-  margin: 10px;
-  padding: 5px 10px 1px;
-}
 
 code {
   background: #EAEAEA;
@@ -42,8 +19,10 @@ pre code {
   padding: 1.5em 1.75em;
 }
 
-input[type=text], input[type=password], textarea {
-  background: url(../../images/form.jpg) repeat-x top $white;
+input[type=text],
+input[type=password],
+textarea {
+  background: url(../images/form.jpg) repeat-x top $white;
   border: 1px solid $silver;
   padding: 5px 3px;
 }
@@ -68,18 +47,22 @@ input[type=submit]:hover {
   color: $white;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid $silver;
 }
 
-th, thead th {
+th,
+thead th {
   background: $light-silver;
   color: $dark-slate;
   font-weight: 700;
 }
 
-td, tbody td {
-  background: $dark-trace;
+td,
+tbody td {
+  background: $cloud;
 }
 
 dl {
@@ -88,7 +71,7 @@ dl {
 }
 
 dl dt {
-  color: #666;
+  color: $dark-gray;
   padding-bottom: 3px;
 }
 
@@ -97,8 +80,9 @@ dl dd {
   margin: 0 0 10px 0;
 }
 
-/* common classes */
-img.aligncenter, img.alignright, img.alignleft {
+img.aligncenter,
+img.alignright,
+img.alignleft {
   background: #F3F3F3;
   border: 1px solid $light-silver;
   padding: 4px;
@@ -115,19 +99,18 @@ img.aligncenter, img.alignright, img.alignleft {
   margin: 10px;
   padding-top: 4px;
   text-align: center;
-}
 
-.wp-caption img {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.wp-caption .wp-caption-text {
-  font-size: 11px;
-  line-height: 17px;
-  margin: 0;
-  padding: 0 4px 5px;
+  img {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+  }
 }
 
 .sub {
@@ -438,15 +421,14 @@ label.error {
 }
 
 .searchform .searchsubmit:hover {
-  background: url(../../images/searchsubmit.gif) no-repeat;
+  background: url(../images/searchsubmit.gif) no-repeat;
   opacity: 1;
 }
 
 /* sidebar */
 .widgetcontainer {
   background: repeat-x $white;
-  border: solid $silver;
-  border-width: 1px;
+  border: 1px solid $silver;
   line-height: 1.4em;
 }
 
@@ -494,7 +476,7 @@ label.error {
 }
 
 .sidebar-read-more:hover {
-  background: #CC0000;
+  background: $deep-red;
 }
 
 .multi-sidebar .tabs li {
@@ -530,7 +512,7 @@ label.error {
 }
 
 .multi-sidebar .recentcomments .author {
-  color: #666;
+  color: $dark-gray;
   font-size: 11px;
 }
 
@@ -578,7 +560,7 @@ label.error {
 
 /* bottom content */
 #bottom-content-1 .widgettitle, #bottom-content-2 .widgettitle {
-  background: $dark-trace;
+  background: $cloud;
 }
 
 /* tapestries */
@@ -633,7 +615,7 @@ label.error {
 
 .posts-quick .entry-info {
   border: none;
-  color: #666;
+  color: $dark-gray;
   font-size: 11px;
 }
 
@@ -643,7 +625,7 @@ label.error {
 }
 
 .posts-quick .quick-read-more a:link, .posts-quick .quick-read-more a:visited {
-  background: url(../../images/feed-title-white.jpg) top repeat-x $wisp;
+  background: url(../../../images/feed-title-white.jpg) top repeat-x $wisp;
   border: 1px solid $silver;
   border-radius: 3px;
   color: $black;
@@ -735,7 +717,7 @@ label.error {
 }
 
 .single-post .entry-info a:link, .single-post .entry-info a:visited {
-  color: #666;
+  color: $dark-gray;
   text-decoration: none;
 }
 
@@ -769,7 +751,7 @@ label.error {
 }
 
 .single .post .entry-comments, .single-post .entry-comments {
-  background: url(../../images/comments.gif) no-repeat 3px 6px $dark-rust;
+  background: url(../images/comments.gif) no-repeat 3px 6px $dark-rust;
   border-radius: 3px;
   color: $white;
   display: inline-block;
@@ -793,7 +775,7 @@ label.error {
 }
 
 .single-post-meta-value {
-  background: $dark-trace;
+  background: $cloud;
   border: 1px solid $silver;
   display: block;
   padding: 5px 10px;
@@ -866,7 +848,7 @@ label.error {
 }
 
 #commentlist {
-  background: $dark-trace;
+  background: $cloud;
   border: solid $silver;
   border-width: 0 1px;
 }
@@ -912,7 +894,7 @@ label.error {
 }
 
 #commentlist .comment-controls a:link, #commentlist .comment-controls a:visited {
-  background: url(../../images/feed-title-white.jpg) top repeat-x $wisp;
+  background: url(../../../images/feed-title-white.jpg) top repeat-x $wisp;
   border: 1px solid $silver;
   border-radius: 3px;
   color: $black;
@@ -969,7 +951,7 @@ label.error {
 }
 
 .comments-navigation {
-  background: $dark-trace;
+  background: $cloud;
   border: solid $silver;
   border-width: 0 1px 1px;
   padding: 0 10px 10px;

@@ -1,0 +1,19 @@
+// sass-lint:disable no-duplicate-properties
+
+// Manage responsive breakpoints.
+// @param {string} $breakpoint - Breakpoint name.
+// @require $breakpoints
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+// Font sizing.
+// Based on a base-font size of 16px.
+@mixin font-size($size: 16) {
+  font-size: ($size) + px;
+  font-size: ($size / 16) + rem;
+}
