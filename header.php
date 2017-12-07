@@ -43,21 +43,19 @@ document.body.className = c;
 </script>
 <?php arras_body() ?>
 
-<div id="top-menu" class="clearfix">
+<?php if ( has_nav_menu('top-menu' ) ): ?>
+<div id="secondary-nav" class="secondary-nav">
 <?php arras_above_top_menu() ?>
-	<?php 
-	if ( function_exists('wp_nav_menu') ) {
-		wp_nav_menu( array( 
+	<?php wp_nav_menu( array(
 			'sort_column' => 'menu_order', 
 			'menu_class' => 'sf-menu menu clearfix', 
 			'theme_location' => 'top-menu',
-			'container_id' => 'top-menu-content',
-			'fallback_cb' => ''
-		) );
-	}
-	?>
+			'container' => 'nav',
+			'fallback_cb' => false
+		) ); ?>
 <?php arras_below_top_menu() ?>
-</div><!-- #top-menu -->
+</div>
+<?php endif; ?>
 
 <div id="header">
 	<div id="branding" class="clearfix">
@@ -76,19 +74,16 @@ document.body.className = c;
 </div><!-- #header -->
 
 <?php arras_above_nav() ?>
-<div id="nav">
-	<div id="nav-content" class="clearfix">
-	<?php 
-	if ( function_exists('wp_nav_menu') ) {
-		wp_nav_menu( array( 
+<div id="primary-nav" class="primary-nav">
+	<div id="main-nav-wrap" class="main-nav-wrap">
+	<?php wp_nav_menu( array(
 			'sort_column' => 'menu_order', 
 			'menu_class' => 'sf-menu menu clearfix', 
-			'theme_location' => 'main-menu', 
+			'theme_location' => 'main-menu',
+			'container' => 'nav',
 			'fallback_cb' => 'arras_nav_fallback_cb' 
 		) );
-	}
-	arras_beside_nav(); 
-	?>
+	arras_beside_nav(); ?>
 	</div><!-- #nav-content -->
 </div><!-- #nav -->
 <?php arras_below_nav() ?>

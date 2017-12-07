@@ -1,10 +1,12 @@
 //Grayscales
 
 $black: #000;
+$off-black: #111;
 $dark-slate: #333;
 $slate: #444;
 $dark-gray: #666;
 $gray: #999;
+$light-gray: #aaa;
 $silver: #ccc;
 $light-silver: #ddd;
 $shade: #eaeaea;
@@ -31,6 +33,8 @@ $bluesy-red: #d8000c;
 // Semantic
 
 $page-bg--base: $cloud;
+$top-nav-bg: $off-black;
+
 $code-bg: $shade;
 $code-bg--alt: $lighter-rust;
 $tile-bg: $white;
@@ -47,5 +51,4 @@ $link-color--base: $darker-rust;
 $link-color--hovered: $deep-red;
 
 $border-color--base: $silver;
-
-
+$border-color--top-nav: $dark-slate;
