@@ -18,6 +18,7 @@ $white: #fff;
 
 $dark-rust: #383331;
 $darker-rust: #313428;
+$lighter-rust: #322e2c;
 
 
 // Reds
@@ -26,17 +27,25 @@ $red: #f00;
 $deep-red: #c00;
 $bluesy-red: #d8000c;
 
-// Yellows
-$yellow: #bbe967;
-
 
 // Semantic
 
 $page-bg--base: $cloud;
 $code-bg: $shade;
+$code-bg--alt: $lighter-rust;
+$tile-bg: $white;
+$table-header-bg: $light-silver;
+
 $text-color--base: $dark-slate;
+$text-color--alt: $black;
+$text-color--light: $dark-gray;
+$text-color--inverse: $white;
+$text-color--inactive: $silver;
+$text-color--codeblock: $lighter-rust;
 
 $link-color--base: $darker-rust;
 $link-color--hovered: $deep-red;
 
-$highlighter: $yellow;
+$border-color--base: $silver;
+
+

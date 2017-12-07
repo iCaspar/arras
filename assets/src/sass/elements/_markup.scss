@@ -18,13 +18,9 @@ i {
   font-style: italic;
 }
 
-mark {
-  background: $highlighter;
-}
-
 blockquote {
-  border-left: 2px solid $silver;
-  color: $dark-gray;
+  border-left: 2px solid $border-color--base;
+  color: $text-color--light;
   margin: 10px;
   padding: 5px 10px 1px;
 }
@@ -33,9 +29,21 @@ pre {
   max-width: 100%;
   overflow: scroll;
   padding: 5px;
+
+  code {
+    background: $code-bg--alt;
+    color: $text-color--inverse;
+    display: block;
+    overflow: scroll;
+    padding: 1.5em 1.75em;
+  }
 }
 
 code {
+  @include font-size(11);
   background-color: $code-bg;
   font-family: $font-family--mono;
+  margin: 1px 0;
+  padding: 1px 3px;
+
 }

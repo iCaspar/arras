@@ -1,83 +1,18 @@
 // sass-lint:disable-all
 @import 'base';
 
-code {
-  background: #EAEAEA;
-  color: $dark-slate;
-  font-family: Consolas, Monaco, Courier, monospace;
-  font-size: 11px;
-  margin: 1px 0;
-  padding: 1px 3px;
-}
-
-pre code {
-  background: #322E2C;
-  border: 1px solid #635957;
-  color: $white;
-  display: block;
-  overflow: scroll;
-  padding: 1.5em 1.75em;
-}
-
 input[type=text],
 input[type=password],
 textarea {
-  background: url(../images/form.jpg) repeat-x top $white;
-  border: 1px solid $silver;
-  padding: 5px 3px;
-}
-
-input.adminbar-input {
-  background-image: none;
+  background: url('../images/form.jpg') repeat-x top $white;
 }
 
 input[type=submit] {
   background: url('../images/feed-title-white.jpg') repeat-x;
-  border: 1px solid $silver;
-  border-radius: 3px;
-  color: $black;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px 10px;
 }
 
-input[type=submit]:hover {
-  background: $darker-rust;
-  color: $white;
-}
-
-table,
-th,
-td {
-  border: 1px solid $silver;
-}
-
-th,
-thead th {
-  background: $light-silver;
-  color: $dark-slate;
-  font-weight: 700;
-}
-
-td,
-tbody td {
-  background: $cloud;
-}
-
-dl {
-  font-size: 14px;
-  margin: 10px 0;
-}
-
-dl dt {
-  color: $dark-gray;
-  padding-bottom: 3px;
-}
-
-dl dd {
-  line-height: 1.5em;
-  margin: 0 0 10px 0;
+input.adminbar-input {
+  background-image: none;
 }
 
 img.aligncenter,

@@ -21,20 +21,6 @@ html[xmlns] .clearfix {
   height: 1%;
 }
 
-/* Hyperlinks */
-a img {
-  border: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-th, td {
-  padding: 5px;
-}
-
 /* Common Classes */
 .aligncenter {
   display: block;
@@ -565,15 +551,6 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
   line-height: 1.5em;
   margin: 10px 0;
   overflow: hidden;
-}
-
-.entry-content ul, .entry-content ol {
-  margin: 0 20px;
-  padding: 0 0 1.5em;
-}
-
-.entry-content ul ul, .entry-content ol ol, .entry-content ol ul, .entry-content ul ol {
-  padding: 0;
 }
 
 .entry-content form {
