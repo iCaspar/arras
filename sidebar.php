@@ -34,7 +34,7 @@
 							<?php endwhile ?>
                         </ul>
 						<?php
-						wp_reset_query();
+						wp_reset_postdata();
 					endif;
 					?>
                 </div>
