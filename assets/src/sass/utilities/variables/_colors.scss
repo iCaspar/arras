@@ -17,11 +17,15 @@ $white: #fff;
 
 
 // Darks
-
+$near-black: #1e1b1a;
 $dark-rust: #383331;
 $darker-rust: #313428;
 $lighter-rust: #322e2c;
 
+// Mediums
+
+$off-gray: #7d716d;
+$fade: #d3d1c7;
 
 // Reds
 
@@ -34,6 +38,7 @@ $bluesy-red: #d8000c;
 
 $page-bg--base: $cloud;
 $top-nav-bg: $off-black;
+$bg-color--page-header: $near-black;
 
 $code-bg: $shade;
 $code-bg--alt: $lighter-rust;
@@ -45,6 +50,7 @@ $text-color--alt: $black;
 $text-color--light: $dark-gray;
 $text-color--inverse: $white;
 $text-color--inactive: $silver;
+$text-color--header-alt: $off-gray;
 $text-color--codeblock: $lighter-rust;
 
 $link-color--base: $darker-rust;
@@ -52,3 +58,5 @@ $link-color--hovered: $deep-red;
 
 $border-color--base: $silver;
 $border-color--top-nav: $dark-slate;
+$border-color--page-header: $dark-rust;
+$border-color--main-outline: $fade;

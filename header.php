@@ -57,8 +57,8 @@ document.body.className = c;
 </div>
 <?php endif; ?>
 
-<div id="header">
-	<div id="branding" class="clearfix">
+<div id="page-header" class="page-header">
+	<div id="branding" class="site-banner">
 	<div class="logo">
         <?php the_custom_logo(); ?>
         <?php if ( is_home() || is_front_page() ) : ?>
@@ -70,8 +70,8 @@ document.body.className = c;
 		<?php endif ?>
 	</div>
 	<div id="searchbar"><?php get_search_form() ?></div>
-	</div><!-- #branding -->
-</div><!-- #header -->
+	</div>
+</div>
 
 <?php arras_above_nav() ?>
 <div id="primary-nav" class="primary-nav">
@@ -84,13 +84,13 @@ document.body.className = c;
 			'fallback_cb' => 'arras_nav_fallback_cb' 
 		) );
 	arras_beside_nav(); ?>
-	</div><!-- #nav-content -->
-</div><!-- #nav -->
+	</div>
+</div>
 <?php arras_below_nav() ?>
 
-<div id="wrapper">
+<div id="wrapper" class="wrap">
 	
 	<?php arras_above_main() ?>
   
-	<div id="main" class="clearfix">
-    <div id="container" class="clearfix">
+	<div id="main" class="main">
+    <div id="container" class="primary-content-container">

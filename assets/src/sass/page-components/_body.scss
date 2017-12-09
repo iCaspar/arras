@@ -1,0 +1,12 @@
+.wrap {
+  min-height: 100%;
+  padding: 20px 0;
+  position: relative;
+}
+
+.main {
+  background: $trace;
+  border: 1px solid $border-color--main-outline;
+  overflow: hidden;
+  padding: 10px 10px 0;
+}
