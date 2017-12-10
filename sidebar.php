@@ -1,4 +1,4 @@
-</div><!-- #container -->
+</div>
 
 <div id="primary" class="aside main-aside sidebar primary-sidebar">
 	<?php arras_above_sidebar() ?>

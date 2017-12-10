@@ -813,38 +813,3 @@ label.error {
   padding: 0 3px 8px;
   text-transform: uppercase;
 }
-
-#footer {
-  background: $trace;
-  border: 1px solid $silver;
-
-  .widgetcontainer {
-    background: none;
-    border: 0;
-  }
-
-  .widgettitle {
-    background: none;
-    border: 0;
-    color: $slate;
-    font-size: 14px;
-    letter-spacing: -1px;
-    margin: 0;
-    padding: 0 0 10px;
-  }
-
-  .widgetcontent {
-    background: none;
-    border: 0;
-    font-size: 12px;
-    padding: 0;
-  }
-
-  .footer-message {
-    font-size: 11px;
-  }
-}
-
-.footer-sidebar-container {
-  border-bottom: 1px solid $silver;
-}
