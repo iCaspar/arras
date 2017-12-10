@@ -58,24 +58,6 @@ function arras_tag_query() {
 }
 
 /**
- * SEO-Friendly META description, based on Thematic Framework.
- */
-function arras_document_description() {
-	if ( class_exists('All_in_One_SEO_Pack') || class_exists('Platinum_SEO_Pack') ) return false;
-	
-	if ( is_single() || is_page() ) {
-		if ( have_posts() ) {
-			while( have_posts() ) {
-				the_post();
-				echo '<meta name="description" content="' . get_the_excerpt() . '" />';
-			}
-		}
-	} else {
-		echo '<meta name="description" content="' . get_bloginfo('description') . '" />';
-	}
-}
-
-/**
  * Generates semantic classes for BODY element.
  * Sandbox's version was removed from 1.4 onwards.
  */

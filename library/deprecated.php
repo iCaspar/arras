@@ -149,5 +149,21 @@ function arras_strip_content($content, $limit) {
 	}
 }
 
-/* End of file deprecated.php */
-/* Location: ./library/deprecated.php */
+/**
+ * SEO-Friendly META description, based on Thematic Framework.
+ * @deprecated as of 1.8
+ */
+function arras_document_description() {
+	if ( class_exists('All_in_One_SEO_Pack') || class_exists('Platinum_SEO_Pack') ) return false;
+
+	if ( is_single() || is_page() ) {
+		if ( have_posts() ) {
+			while( have_posts() ) {
+				the_post();
+				echo '<meta name="description" content="' . get_the_excerpt() . '" />';
+			}
+		}
+	} else {
+		echo '<meta name="description" content="' . get_bloginfo('description') . '" />';
+	}
+}
