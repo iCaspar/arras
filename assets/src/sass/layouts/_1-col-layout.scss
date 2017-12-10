@@ -1,0 +1,21 @@
+.main {
+  margin: 0 auto;
+  min-height: 960px;
+  overflow: hidden;
+  position: relative;
+  width: 960px;
+}
+
+.primary-content-container {
+  margin: 0 auto;
+  width: 970px;
+}
+
+.section {
+  margin: 0;
+}
+
+.primary-sidebar,
+.secondary-sidebar {
+  clear: both;
+}
