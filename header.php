@@ -8,12 +8,6 @@
 
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-<?php if ( !file_exists(ABSPATH . 'favicon.ico') ) : ?>
-<link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/images/favicon.ico" />
-<?php else: ?>
-<link rel="shortcut icon" href="<?php echo home_url() ?>/favicon.ico" />
-<?php endif; ?>
-
 <meta name="viewport" content="width=1000" />
 
 <?php
