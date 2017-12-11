@@ -1,6 +1,12 @@
 # Arras Theme Change Log
 
-## Version 1.7-beta
+## Version 1.7.1
+
+### Fixes
+
+* Unescaped HTML getting echoed into the `<meta description>` content attribute.
+
+## Version 1.7
 
 ### Fixes
 
