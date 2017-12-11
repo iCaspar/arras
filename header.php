@@ -44,7 +44,7 @@ document.body.className = c;
 <?php arras_body() ?>
 
 <?php if ( has_nav_menu('top-menu' ) ): ?>
-<div id="secondary-nav" class="secondary-nav">
+<div id="top-menu" class="secondary-nav">
 <?php arras_above_top_menu() ?>
 	<?php wp_nav_menu( array(
 			'sort_column' => 'menu_order', 
@@ -57,7 +57,7 @@ document.body.className = c;
 </div>
 <?php endif; ?>
 
-<div id="page-header" class="page-header">
+<div id="header" class="page-header">
 	<div id="branding" class="site-banner">
 	<div class="logo">
         <?php the_custom_logo(); ?>
@@ -74,7 +74,7 @@ document.body.className = c;
 </div>
 
 <?php arras_above_nav() ?>
-<div id="primary-nav" class="primary-nav">
+<div id="nav" class="primary-nav">
 	<div id="main-nav-wrap" class="main-nav-wrap">
 	<?php wp_nav_menu( array(
 			'sort_column' => 'menu_order', 
