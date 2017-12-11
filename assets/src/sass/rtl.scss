@@ -1,0 +1,96 @@
+// sass-lint:disable-all
+
+.logo {
+  float: right;
+}
+
+.primary-nav .sf-menu {
+  float: right;
+}
+
+ul {
+  &.sf-menu {
+    li {
+      float: right;
+
+      &:hover ul,
+      &.sfHover ul {
+        left: auto;
+        right: 0
+      }
+    }
+
+    li li:hover ul,
+    li li.sfHover ul,
+    li li li:hover ul,
+    li li li.sfHover ul {
+      left: auto;
+      right: 11em
+    }
+  }
+}
+
+.quick-nav {
+  float: left;
+
+  li {
+    float: right;
+  }
+}
+
+#searchbar {
+  float: left;
+}
+
+.widgetcontainer {
+  ul,
+  ol,
+  .xoxo {
+    margin: 0 15px 0 0;
+  }
+}
+
+.multi-sidebar .tabs li {
+  float: right;
+}
+
+.posts-default {
+  .entry,
+  .published,
+  .entry-meta,
+  img {
+    float: right;
+  }
+
+  .entry-comments {
+    float: left;
+    padding: 0 12px 0 0;
+  }
+}
+
+.posts-quick {
+  .entry-thumbnails,
+  .entry-meta {
+    float: right;
+  }
+
+  .entry-thumbnails {
+    margin: 0 0 10px 20px;
+  }
+
+  .entry-comments {
+    float: left;
+    padding: 0 12px 0 0;
+  }
+}
+
+.posts-line {
+  .entry-cat,
+  .entry-title {
+    float: right;
+  }
+
+  .entry-comments {
+    float: left;
+  }
+}

@@ -34,9 +34,9 @@ function arras_load_styles() {
 
     wp_enqueue_style( 'arras' . $style );
 
-    //	if ( is_rtl() ) {
-    //		$css_path .= '-rtl';
-    //	}
+    	if ( is_rtl() ) {
+    		wp_enqueue_style( 'arras-rtl' );
+    	}
 
 	do_action( 'arras_load_styles' );
 }

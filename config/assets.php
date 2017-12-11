@@ -26,5 +26,8 @@ return [
 		'arras-legacy' => [
 			'filename' => 'legacy',
 		],
+		'arras-rtl' => [
+			'filename' => 'rtl',
+		],
 	],
 ];
