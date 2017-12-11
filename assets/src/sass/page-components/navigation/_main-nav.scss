@@ -1,12 +1,12 @@
 // sass-lint:disable-all
 
 .primary-nav {
-  background: url('../images/topnav.jpg') repeat-x bottom #322C2C;
+  background: $bg-color--main-nav;
   width: 100%;
 
 
   .main-nav-wrap {
-    height: 35px;
+    height: 36px;
     margin: 0 auto;
     width: 978px;
   }
@@ -17,7 +17,7 @@
     max-width: 770px;
 
     a {
-      color: #AAA;
+      color: $link-color--main-nav;
       display: block;
       font-size: 14px;
       padding: 8px 12px 11px;
@@ -25,7 +25,7 @@
     }
 
     ul li {
-      border: 1px solid #474331;
+      border: 1px solid $border-color--main-nav;
       margin-top: 0;
     }
 
@@ -34,14 +34,14 @@
     li.sfHover,
     ul li {
       color: $white;
-      background: #373331;
+      background: $bg-color--main-nav-hover;
     }
 
     ul a:hover,
     ul li.sfHover,
     ul li:hover {
       background: $white;
-      color: #373331;
+      color: $border-color--main-nav;
     }
 
     ul li.sfHover a.sf-with-ul {

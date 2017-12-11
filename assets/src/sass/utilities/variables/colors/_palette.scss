@@ -1,3 +1,5 @@
+/// -- DEFAULT Colors
+
 //Grayscales
 
 $black: #000;
@@ -15,20 +17,94 @@ $cloud: #f0f0f0;
 $trace: #f5f5f5;
 $white: #fff;
 
-
-// Darks
 $near-black: #1e1b1a;
 $dark-rust: #383331;
 $darker-rust: #313428;
 $lighter-rust: #322e2c;
-
-// Mediums
-
+$dust: #474331;
 $off-gray: #7d716d;
 $fade: #d3d1c7;
-
-// Reds
 
 $red: #f00;
 $deep-red: #c00;
 $bluesy-red: #d8000c;
+
+
+/// -- BLUE Colors
+
+$link-blue: #2c445e;
+$link-hovered-blue: #bf511f;
+$header-bg-blue: #091e36;
+$header-border-blue: #0f3158;
+$description-blue: #19508c;
+$top-menu-bg-blue: #061424;
+$top-menu-border-blue: #0c2845;
+$top-menu-inner-border-blue: #061321;
+$top-menu-hover-blue: #103259;
+$main-menu-bg-blue: #003773;
+$main-menu-border-blue: #0f3158;
+$main-menu-hover-blue: #0f3158;
+$sidebar-tab-blue: #144275;
+
+/// -- GREEN Colors
+
+$link-green: #2e5912;
+$link-hovered-green: #993a17;
+$header-bg-green: #204000;
+$header-border-green: #407e19;
+$description-green: #50a100;
+$top-menu-bg-green: #0d1900;
+$top-menu-border-green: #1c3600;
+$top-menu-inner-border-green: #330800;
+$top-menu-hover-green: #1a3300;
+$main-menu-bg-green: #336500;
+$main-menu-border-green: #3e7a00;
+$main-menu-hover-green: #3e7a00;
+$sidebar-tab-selected-green: #50a100;
+
+/// -- ORANGE Colors
+
+$link-orange: #bd4606;
+$link-hovered-orange: #06bdb6;
+$header-bg-orange: #5c2203;
+$header-border-orange: #6e2a0b;
+$description-orange: #94390f;
+$top-menu-bg-orange: #2e1101;
+$top-menu-border-orange: #3b1602;
+$top-menu-inner-border-orange: #542004;
+$top-menu-hover-orange: #642503;
+$main-menu-bg-orange: #87340e;
+$main-menu-border-orange: #cb4c08;
+$main-menu-hover-orange: #bd4606;
+$sidebar-tab-selected-orange: #87340e;
+
+/// -- RED Colors
+
+$link-red: #8c1600;
+$link-hovered-red: #0b4fd8;
+$header-bg-red: #3d0a00;
+$header-border-red: #721b12;
+$description-red: #bc2d1e;
+$top-menu-bg-red: #330800;
+$top-menu-border-red: #4a0c00;
+$top-menu-inner-border-red: #330800;
+$top-menu-hover-red: #4f0c00;
+$main-menu-bg-red: #7e1e14;
+$main-menu-border-red: #a91b00;
+$main-menu-hover-red: #a91b00;
+$sidebar-tab-red: #7e1e14;
+
+/// -- VIOLET Colors
+
+$link-violet: #671569;
+$link-hovered-violet: #4b5928;
+$header-bg-violet: #320a33;
+$header-border-violet: #4b0f4c;
+$description-violet: #961e98;
+$top-menu-bg-violet: #2d092e;
+$top-menu-border-violet: #390b3b;
+$top-menu-inner-border-violet: #340b36;
+$top-menu-hover-violet: #430e45;
+$main-menu-bg-violet: #581259;
+$main-menu-border-violet: #7e1a80;
+$main-menu-hover-violet: #961e98;

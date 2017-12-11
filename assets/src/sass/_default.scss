@@ -1,4 +1,5 @@
 // sass-lint:disable-all
+
 @import 'base';
 
 input[type=text],
@@ -94,7 +95,7 @@ label.error {
 
 .searchform {
   background: $wisp;
-  border: 3px solid #383332;
+  border: 3px solid $border-color--page-header;
   margin: 0;
 }
 
@@ -145,9 +146,9 @@ label.error {
 }
 
 .widgettitle {
-  background: url('../images/feed-title-white.jpg') repeat-x top $wisp;
+  background: $bg-color--widgettitle;
   border-bottom: 1px solid $silver;
-  color: $dark-slate;
+  color: $text-color--widgettitle;
   font-size: 12px;
   font-weight: 700;
   margin: -10px -10px 10px;
@@ -155,7 +156,7 @@ label.error {
 }
 
 .widgettitle a {
-  color: $dark-slate;
+  color: $text-color--widgettitle;
 }
 
 .multi-sidebar .thumb, .multi-sidebar .recentcomments .avatar, .featured-stories .thumb {
@@ -341,7 +342,7 @@ label.error {
 }
 
 .posts-quick .quick-read-more a:hover {
-  background: #383332;
+  background: $link-color--base;
   color: $white;
 }
 
@@ -608,7 +609,7 @@ label.error {
 }
 
 #commentlist .comment-controls a:hover {
-  background: $darker-rust;
+  background: $link-color--base;
   color: $white;
 }
 
@@ -630,7 +631,7 @@ label.error {
 #commentlist {
   .reply a {
     &:hover {
-      background: $darker-rust;
+      background: $link-color--base;
       color: $white;
     }
   }
@@ -640,7 +641,7 @@ label.error {
 .navigation {
   a {
     &:hover {
-      background: $darker-rust;
+      background: $link-color--base;
       color: $white;
     }
   }
@@ -648,7 +649,7 @@ label.error {
 
 .read-more {
   &:hover {
-    background: $darker-rust;
+    background: $link-color--base;
     color: $white;
   }
 }
@@ -660,7 +661,7 @@ label.error {
   padding: 0 10px 10px;
 
   .current {
-    background: $darker-rust;
+    background: $link-color--base;
     border: 1px solid $silver;
     border-radius: 3px;
     color: $white;

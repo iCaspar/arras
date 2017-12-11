@@ -10,8 +10,8 @@
     line-height: 1.1;
 
     a {
-      border-right: 1px solid $dark-slate;
-      color: $light-gray;
+      border-right: 1px solid $border-color--top-nav;
+      color: $link-color--top-nav;
       display: block;
       padding: 7px 10px 8px;
       font-size: 10px;
@@ -23,7 +23,7 @@
     }
 
     ul li {
-      border: 1px solid $dark-slate;
+      border: 1px solid $border-color--top-nav;
       margin-top: -1px;
     }
 
@@ -42,8 +42,8 @@
     li:hover,
     li.sfHover,
     ul li {
-      background: $top-nav-bg;
-      color: $text-color--inverse;
+      background: $top-nav-bg--hover;
+      color: $link-color--top-nav;
     }
 
     ul .sf-sub-indicator {
@@ -53,8 +53,8 @@
     ul a:hover,
     ul li.sfHover,
     ul li:hover {
-      background: $white;
-      color: #373331;
+      background: $top-nav-bg;
+      color: $link-color--top-nav;
     }
 
     li:hover ul,
