@@ -1,0 +1,26 @@
+@import 'palette';
+
+$page-bg--base: #0ff;
+$top-nav-bg: $off-black;
+$bg-color--page-header: $near-black;
+
+$code-bg: $shade;
+$code-bg--alt: $lighter-rust;
+$tile-bg: $white;
+$table-header-bg: $light-silver;
+
+$text-color--base: $dark-slate;
+$text-color--alt: $black;
+$text-color--light: $dark-gray;
+$text-color--inverse: $white;
+$text-color--inactive: $silver;
+$text-color--header-alt: $off-gray;
+$text-color--codeblock: $lighter-rust;
+
+$link-color--base: $darker-rust;
+$link-color--hovered: $deep-red;
+
+$border-color--base: $silver;
+$border-color--top-nav: $dark-slate;
+$border-color--page-header: $dark-rust;
+$border-color--main-outline: $fade;

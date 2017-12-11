@@ -26,22 +26,17 @@ function arras_override_styles() {
 }
 
 function arras_load_styles() {
-    wp_enqueue_style( 'arras-nova' );
+    $style = '-' . arras_get_option( 'style' );
 
-//	$layout = arras_get_option( 'layout' );
-//	wp_enqueue_style( 'arras-layout', get_template_directory_uri() . '/css/layouts/' . $layout . '.css', false, ARRAS_VERSION, 'all' );
-//
-//	$scheme = arras_get_option( 'style' );
-//	if ( ! isset( $scheme ) ) {
-//		$scheme = 'default';
-//	}
-//
-//	$css_path = '/css/styles/' . $scheme;
-//
-//	if ( is_rtl() ) {
-//		$css_path .= '-rtl';
-//	}
-//
-//	wp_enqueue_style( 'arras', get_template_directory_uri() . $css_path . '.css', false, ARRAS_VERSION, 'all' );
+    if ( ! isset( $style ) || '-default' == $style ) {
+        $style = '';
+    }
+
+    wp_enqueue_style( 'arras' . $style );
+
+    //	if ( is_rtl() ) {
+    //		$css_path .= '-rtl';
+    //	}
+
 	do_action( 'arras_load_styles' );
 }
