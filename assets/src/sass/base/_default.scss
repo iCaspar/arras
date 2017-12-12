@@ -5,11 +5,11 @@
 input[type=text],
 input[type=password],
 textarea {
-  background: url('../images/form.jpg') repeat-x top $white;
+  background: url('../../images/form.jpg') repeat-x top $white;
 }
 
 input[type=submit] {
-  background: url('../images/feed-title-white.jpg') repeat-x;
+  background: url('../../images/feed-title-white.jpg') repeat-x;
 }
 
 input.adminbar-input {
@@ -111,7 +111,7 @@ label.error {
 }
 
 .searchform .searchsubmit {
-  background: url('../images/searchsubmit.gif') no-repeat;
+  background: url('../../images/searchsubmit.gif') no-repeat;
   border: 0;
   cursor: pointer;
   float: right;
@@ -125,7 +125,7 @@ label.error {
 }
 
 .searchform .searchsubmit:hover {
-  background: url(../images/searchsubmit.gif) no-repeat;
+  background: url(../../images/searchsubmit.gif) no-repeat;
   opacity: 1;
 }
 
@@ -229,7 +229,7 @@ label.error {
 }
 
 #wp-calendar caption {
-  background: url('../images/feed-title-white.jpg') repeat-x top $wisp;
+  background: url('../../images/feed-title-white.jpg') repeat-x top $wisp;
   border: 1px solid $silver;
   color: $dark-slate;
   font-size: 12px;
@@ -329,7 +329,7 @@ label.error {
 }
 
 .posts-quick .quick-read-more a:link, .posts-quick .quick-read-more a:visited {
-  background: url(../../../images/feed-title-white.jpg) top repeat-x $wisp;
+  background: url(../../../../images/feed-title-white.jpg) top repeat-x $wisp;
   border: 1px solid $silver;
   border-radius: 3px;
   color: $black;
@@ -455,7 +455,7 @@ label.error {
 }
 
 .single .post .entry-comments, .single-post .entry-comments {
-  background: url(../images/comments.gif) no-repeat 3px 6px $dark-rust;
+  background: url(../../images/comments.gif) no-repeat 3px 6px $dark-rust;
   border-radius: 3px;
   color: $white;
   display: inline-block;
@@ -486,7 +486,7 @@ label.error {
 }
 
 .module-title, .feed-title, #reply-title {
-  background: url('../images/feed-title-white.jpg') repeat-x top $wisp;
+  background: url('../../images/feed-title-white.jpg') repeat-x top $wisp;
   border: 1px solid $silver;
   color: $dark-slate;
   display: block;
@@ -598,7 +598,7 @@ label.error {
 }
 
 #commentlist .comment-controls a:link, #commentlist .comment-controls a:visited {
-  background: url(../../../images/feed-title-white.jpg) top repeat-x $wisp;
+  background: url(../../../../images/feed-title-white.jpg) top repeat-x $wisp;
   border: 1px solid $silver;
   border-radius: 3px;
   color: $black;
@@ -618,7 +618,7 @@ label.error {
 .read-more,
 .navigation a,
 .wp-pagenavi a {
-  background: url('../images/feed-title-white.jpg') top repeat-x $wisp;
+  background: url('../../images/feed-title-white.jpg') top repeat-x $wisp;
   border: 1px solid $silver;
   border-radius: 3px;
   color: $black;
@@ -772,7 +772,7 @@ label.error {
 
 .search-results {
   h2 {
-    background: url('../images/feed-title-white.jpg') repeat-x top $wisp;
+    background: url('../../images/feed-title-white.jpg') repeat-x top $wisp;
     border: 1px solid $silver;
     color: $dark-slate;
     font-size: 12px;
