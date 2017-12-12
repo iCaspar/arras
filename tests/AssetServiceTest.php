@@ -71,6 +71,14 @@ class AssetServiceTest extends TestCase {
 		], $result );
 	}
 
+	public function testStyleNames(): void {
+		Functions\when( 'wp_register_style' )->justReturn( true );
+		$service = $this->getSampleService( true );
+
+		$service->registerStyles();
+		self::assertEquals( ['Style'], $service->getStyleSchemes() );
+	}
+
 	private function getSampleService( bool $isDevEnv = false ): AssetService {
 		return new AssetService( [
 			'styles' => [
@@ -78,7 +86,8 @@ class AssetServiceTest extends TestCase {
 					'filename' => 'style',
 					'deps'     => [],
 					'version'  => '1.2.3',
-					'media'    => 'all'
+					'media'    => 'all',
+					'scheme'   => true,
 				]
 			],
 		], 'https://example.com/wp-content/themes/arras/assets', $isDevEnv );

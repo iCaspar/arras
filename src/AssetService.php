@@ -28,6 +28,11 @@ class AssetService {
 	private $isDevEnv = false;
 
 	/**
+	 * @var array
+	 */
+	private $styleSchemes = [];
+
+	/**
 	 * AssetService constructor.
 	 *
 	 * @param array $config
@@ -35,11 +40,11 @@ class AssetService {
 	 * @param bool $isDevEnv
 	 */
 	public function __construct( array $config, $baseUrl, $isDevEnv = false ) {
-		$this->config  = $config;
-		$this->baseUrl = $baseUrl;
+		$this->config   = $config;
+		$this->baseUrl  = $baseUrl;
 		$this->isDevEnv = $isDevEnv;
 	}
-	
+
 	/**
 	 * @throws \RuntimeException
 	 * @return array URLs of registered styles.
@@ -64,6 +69,10 @@ class AssetService {
 				isset( $args['version'] ) ? $args['version'] : '',
 				isset( $args['media'] ) ? $args['media'] : 'all'
 			) ? $src : '';
+
+			if ( $this->isSelectableScheme( $args ) ) {
+				$this->styleSchemes[] = ucfirst( $args['filename'] );
+			}
 		}
 
 		return $result;
@@ -90,4 +99,19 @@ class AssetService {
 		}
 	}
 
+	/**
+	 * @param array $styleArgs Style config arguments.
+	 *
+	 * @return bool
+	 */
+	private function isSelectableScheme( array $styleArgs ) {
+		return isset( $styleArgs['scheme'] ) && true == $styleArgs['scheme'];
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getStyleSchemes() {
+		return $this->styleSchemes;
+	}
 }
