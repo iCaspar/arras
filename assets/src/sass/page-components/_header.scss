@@ -1,0 +1,51 @@
+// sass-lint:disable force-pseudo-nesting
+
+.page-header {
+  background: $bg-color--page-header;
+  border-bottom: 5px solid $border-color--page-header;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+.site-banner {
+  margin: 0 auto;
+  padding: 0;
+  width: 980px;
+}
+
+.logo {
+  float: left;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  max-width: 590px;
+  padding: 30px 0 34px 10px;
+  text-transform: uppercase;
+}
+
+.custom-logo {
+  margin-bottom: 3px;
+}
+
+.blog-name {
+  display: block;
+  font-size: 22px;
+  letter-spacing: 1px;
+  line-height: 1em;
+  margin: 0 0 3px;
+
+  a:link,
+  a:visited {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.blog-description {
+  color: $text-color--header-alt;
+  display: block;
+  font-size: 11px;
+  line-height: 1em;
+  margin: 0;
+  padding: 3px 0 0;
+}

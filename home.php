@@ -136,7 +136,7 @@ if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 <?php endif; ?>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
+</div>
     
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -1,0 +1,80 @@
+// sass-lint:disable-all
+
+.primary-nav {
+  background: $bg-color--main-nav;
+  width: 100%;
+
+
+  .main-nav-wrap {
+    height: 36px;
+    margin: 0 auto;
+    width: 978px;
+  }
+
+  .sf-menu {
+    float: left;
+    line-height: 1.2;
+    max-width: 770px;
+
+    a {
+      color: $link-color--main-nav;
+      display: block;
+      font-size: 14px;
+      padding: 8px 12px 11px;
+      text-decoration: none;
+    }
+
+    ul li {
+      border: 1px solid $border-color--main-nav;
+      margin-top: 0;
+    }
+
+    a:hover,
+    li:hover,
+    li.sfHover,
+    ul li {
+      color: $white;
+      background: $bg-color--main-nav-hover;
+    }
+
+    ul a:hover,
+    ul li.sfHover,
+    ul li:hover {
+      background: $white;
+      color: $border-color--main-nav;
+    }
+
+    ul li.sfHover a.sf-with-ul {
+      color: #373331;
+    }
+
+    li li a {
+      font-size: 12px;
+      height: auto;
+      line-height: 1;
+      padding: 7px 10px;
+    }
+
+    .sf-with-ul {
+      padding-right: 15px;
+    }
+
+    ul .sf-sub-indicator {
+      display: none;
+    }
+
+  }
+
+  .sf-sub-indicator {
+    background: url('../images/dropdown.png') no-repeat;
+    display: inline-block;
+    height: 5px;
+    left: 7px;
+    position: relative;
+    text-indent: -9999px;
+    top: 0;
+    vertical-align: middle;
+    width: 5px;
+  }
+
+}

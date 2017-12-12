@@ -1,0 +1,21 @@
+ol,
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+dl {
+  @include font-size(14);
+  margin: 10px 0;
+
+  dt {
+    color: $dark-gray;
+    padding-bottom: 3px;
+  }
+
+  dd {
+    line-height: 1.5;
+    margin: 0 0 10px 10px;
+  }
+}

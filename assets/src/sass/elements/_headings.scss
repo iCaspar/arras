@@ -1,0 +1,35 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family--base;
+  font-weight: $font-weight--bold;
+  line-height: 1.2;
+  margin: 1em 0;
+}
+
+h1 {
+  @include font-size(24);
+}
+
+h2 {
+  @include font-size(20);
+}
+
+h3 {
+  @include font-size(18);
+}
+
+h4 {
+  @include font-size(16);
+}
+
+h5 {
+  @include font-size(14);
+}
+
+h6 {
+  @include font-size(12);
+}

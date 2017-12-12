@@ -1,0 +1,68 @@
+.layout-2c-r-fixed,
+.layout-2c-l-fixed {
+  .main {
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+
+    .module,
+    .single-post {
+      margin-right: 10px;
+    }
+  }
+
+  .section {
+    overflow: hidden;
+    width: 660px;
+  }
+
+  .primary-sidebar {
+    position: relative;
+    width: 300px;
+  }
+
+  .secondary-sidebar {
+    width: 300px;
+  }
+}
+
+.layout-2c-r-fixed {
+  .primary-content-container {
+    float: left;
+    width: 660px;
+
+    .section {
+      margin: 0;
+    }
+  }
+
+  .primary-sidebar {
+    float: right;
+  }
+
+  .secondary-sidebar {
+    clear: right;
+    float: right;
+  }
+}
+
+.layout-2c-l-fixed {
+  .primary-content-container {
+    float: right;
+    margin: 0 0 0 -300px;
+    width: 960px;
+
+    .section {
+      margin: 0 0 0 310px;
+    }
+  }
+
+  .primary-sidebar {
+    float: left;
+  }
+
+  .secondary-sidebar {
+    clear: left;
+    float: left;
+  }
+}

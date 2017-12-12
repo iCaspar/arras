@@ -1,0 +1,49 @@
+hr {
+  border: 0;
+  border-collapse: collapse;
+  border-top: 1px solid $text-color--base;
+  clear: both;
+  margin: 1em 0;
+}
+
+b,
+strong {
+  font-weight: $font-weight--bold;
+}
+
+blockquote,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  border-left: 2px solid $border-color--base;
+  color: $text-color--light;
+  margin: 10px;
+  padding: 5px 10px 1px;
+}
+
+pre {
+  max-width: 100%;
+  overflow: scroll;
+  padding: 5px;
+
+  code {
+    background: $code-bg--alt;
+    color: $text-color--inverse;
+    display: block;
+    overflow: scroll;
+    padding: 1.5em 1.75em;
+  }
+}
+
+code {
+  @include font-size(11);
+  background-color: $code-bg;
+  font-family: $font-family--mono;
+  margin: 1px 0;
+  padding: 1px 3px;
+
+}

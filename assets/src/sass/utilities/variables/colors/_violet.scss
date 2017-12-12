@@ -1,0 +1,34 @@
+@import 'palette';
+
+$page-bg--base: $cloud;
+$top-nav-bg: $top-menu-bg-violet;
+$top-nav-bg--hover: $top-menu-hover-violet;
+$bg-color--main-nav: $main-menu-bg-violet;
+$bg-color--main-nav-hover: $main-menu-hover-violet;
+$bg-color--page-header: $header-bg-violet;
+$bg-color--widgettitle: $main-menu-bg-violet;
+
+$code-bg: $shade;
+$code-bg--alt: $lighter-rust;
+$tile-bg: $white;
+$table-header-bg: $light-silver;
+
+$text-color--base: $dark-slate;
+$text-color--alt: $black;
+$text-color--light: $dark-gray;
+$text-color--inverse: $white;
+$text-color--inactive: $silver;
+$text-color--header-alt: $description-violet;
+$text-color--widgettitle: $white;
+$text-color--codeblock: $lighter-rust;
+
+$link-color--base: $link-violet;
+$link-color--hovered: $link-hovered-violet;
+$link-color--top-nav: $white;
+$link-color--main-nav: $white;
+
+$border-color--base: $silver;
+$border-color--top-nav: $top-menu-border-violet;
+$border-color--main-nav: $main-menu-border-violet;
+$border-color--page-header: $header-border-violet;
+$border-color--main-outline: $fade;

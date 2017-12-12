@@ -37,24 +37,22 @@ document.body.className = c;
 </script>
 <?php arras_body() ?>
 
-<div id="top-menu" class="clearfix">
+<?php if ( has_nav_menu('top-menu' ) ): ?>
+<div id="top-menu" class="secondary-nav">
 <?php arras_above_top_menu() ?>
-	<?php 
-	if ( function_exists('wp_nav_menu') ) {
-		wp_nav_menu( array( 
+	<?php wp_nav_menu( array(
 			'sort_column' => 'menu_order', 
 			'menu_class' => 'sf-menu menu clearfix', 
 			'theme_location' => 'top-menu',
-			'container_id' => 'top-menu-content',
-			'fallback_cb' => ''
-		) );
-	}
-	?>
+			'container' => 'nav',
+			'fallback_cb' => false
+		) ); ?>
 <?php arras_below_top_menu() ?>
-</div><!-- #top-menu -->
+</div>
+<?php endif; ?>
 
-<div id="header">
-	<div id="branding" class="clearfix">
+<div id="header" class="page-header">
+	<div id="branding" class="site-banner">
 	<div class="logo">
         <?php the_custom_logo(); ?>
         <?php if ( is_home() || is_front_page() ) : ?>
@@ -66,30 +64,27 @@ document.body.className = c;
 		<?php endif ?>
 	</div>
 	<div id="searchbar"><?php get_search_form() ?></div>
-	</div><!-- #branding -->
-</div><!-- #header -->
+	</div>
+</div>
 
 <?php arras_above_nav() ?>
-<div id="nav">
-	<div id="nav-content" class="clearfix">
-	<?php 
-	if ( function_exists('wp_nav_menu') ) {
-		wp_nav_menu( array( 
+<div id="nav" class="primary-nav">
+	<div id="main-nav-wrap" class="main-nav-wrap">
+	<?php wp_nav_menu( array(
 			'sort_column' => 'menu_order', 
 			'menu_class' => 'sf-menu menu clearfix', 
-			'theme_location' => 'main-menu', 
+			'theme_location' => 'main-menu',
+			'container' => 'nav',
 			'fallback_cb' => 'arras_nav_fallback_cb' 
 		) );
-	}
-	arras_beside_nav(); 
-	?>
-	</div><!-- #nav-content -->
-</div><!-- #nav -->
+	arras_beside_nav(); ?>
+	</div>
+</div>
 <?php arras_below_nav() ?>
 
-<div id="wrapper">
+<div id="wrapper" class="wrap">
 	
 	<?php arras_above_main() ?>
   
-	<div id="main" class="clearfix">
-    <div id="container" class="clearfix">
+	<div id="main" class="main">
+    <div id="container" class="primary-content-container">

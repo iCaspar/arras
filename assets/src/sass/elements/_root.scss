@@ -1,0 +1,23 @@
+html {
+  font-size: 100%; // 16px browser default
+}
+
+// Chrome fix
+body > div {
+  @include font-size(12);
+}
+
+body {
+  @include font-size(12);
+  background-color: $page-bg--base;
+  color: $text-color--base;
+  font-family: $font-family--base;
+  font-weight: $font-weight--base;
+  line-height: 1.5;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 15px;
+  padding: 0;
+}
