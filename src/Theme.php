@@ -18,6 +18,11 @@ class Theme {
 	private $config = [];
 
 	/**
+	 * @var AssetService
+	 */
+	private $assets;
+
+	/**
 	 * Theme constructor.
 	 *
 	 * @param array $config
@@ -32,7 +37,10 @@ class Theme {
 	public function init() {
 		if ( isset( $this->config['assets'] ) && is_array( $this->config['assets'] ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'initAssets' ] );
+			add_action( 'admin_enqueue_scripts', [ $this, 'initAssets' ] );
 		}
+
+		add_filter( 'arras_theme', [ $this, 'getTheme' ] );
 	}
 
 	/**
@@ -43,13 +51,27 @@ class Theme {
 			return;
 		}
 
-		$isDevEnv = defined( 'SCRIPT_DEBUG' ) && true == SCRIPT_DEBUG;
-		$assets   = new AssetService( $this->config['assets'], ARRAS_ASSET_URL, $isDevEnv );
+		$isDevEnv     = defined( 'SCRIPT_DEBUG' ) && true == SCRIPT_DEBUG;
+		$this->assets = new AssetService( $this->config['assets'], ARRAS_ASSET_URL, $isDevEnv );
 
 		try {
-			$result = $assets->registerStyles();
+			$result = $this->assets->registerStyles();
 		} catch ( \RuntimeException $e ) {
 			die( $e->getMessage() );
 		}
+	}
+
+	/**
+	 * @return Theme The Arras Main Theme Object.
+	 */
+	public function getTheme() {
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getStyleSchemes() {
+		return $this->assets->getStyleSchemes();
 	}
 }

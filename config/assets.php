@@ -5,28 +5,35 @@
 
 return [
 	'styles' => [
-		'arras' => [
-			'filename' => 'style',
+		'arras'        => [
+			'filename' => 'default',
+			'scheme'   => true,
 		],
-		'arras-blue' => [
+		'arras-blue'   => [
 			'filename' => 'blue',
+			'scheme'   => true,
 		],
-		'arras-green' => [
+		'arras-green'  => [
 			'filename' => 'green',
+			'scheme'   => true,
 		],
 		'arras-orange' => [
 			'filename' => 'orange',
+			'scheme'   => true,
 		],
-		'arras-red' => [
+		'arras-red'    => [
 			'filename' => 'red',
+			'scheme'   => true,
 		],
 		'arras-violet' => [
 			'filename' => 'violet',
+			'scheme'   => true,
 		],
 		'arras-legacy' => [
 			'filename' => 'legacy',
+			'scheme'   => true,
 		],
-		'arras-rtl' => [
+		'arras-rtl'    => [
 			'filename' => 'rtl',
 		],
 	],

@@ -1,15 +1,13 @@
 <?php if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); } ?>
-<?php global $arras_registered_alt_layouts, $arras_registered_style_dirs; ?>
+<?php global $arras_registered_alt_layouts ?>
 
 <?php
-$styles = array();
-foreach ($arras_registered_style_dirs as $style_dir) {
-	$style_dir = dir($style_dir);
-	if ($style_dir) {
-		while(($file = $style_dir->read()) !== false) {
-			if(is_valid_arras_style($file)) $styles[substr($file, 0, -4)] = $file;
-		}
-	}
+$arras = apply_filters( 'arras_theme', null );
+$styleSchemes = $arras->getStyleSchemes();
+$stylesMenuOpts = [];
+
+foreach ($styleSchemes as $scheme) {
+    $stylesMenuOpts[strtolower($scheme)] = $scheme;
 }
 ?>
 
@@ -32,7 +30,7 @@ foreach ($arras_registered_style_dirs as $style_dir) {
 <tr valign="top">
 <th scope="row"><label for="arras-style"><?php _e('Default Style', 'arras') ?></label></th>
 <td>
-<?php echo arras_form_dropdown('arras-style', $styles, arras_get_option('style') ) ?><br />
+<?php echo arras_form_dropdown('arras-style', $stylesMenuOpts, arras_get_option('style') ) ?><br />
 </td>
 </tr>
 
@@ -40,4 +38,4 @@ foreach ($arras_registered_style_dirs as $style_dir) {
 
 <?php do_action('arras_admin_settings-design'); ?>
 
-</div><!-- #design -->
+</div>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Arras;
 
 use Arras\Theme;
