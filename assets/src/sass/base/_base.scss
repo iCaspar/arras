@@ -153,14 +153,14 @@ html[xmlns] .clearfix {
 }
 
 #controls .prev {
-  background: url(../../images/prev.png) no-repeat;
+  background: url('../images/prev.png') no-repeat;
   float: left;
   left: 10px;
   position: absolute;
 }
 
 #controls .next {
-  background: url(../../images/next.png) no-repeat;
+  background: url('../images/next.png') no-repeat;
   float: right;
   left: 610px;
   position: absolute;
@@ -311,7 +311,7 @@ html[xmlns] .clearfix {
 }
 
 .posts-default .entry-comments, .posts-quick .entry-comments {
-  background: url('../../images/comments.gif') no-repeat left center;
+  background: url('../images/comments.gif') no-repeat left center;
   float: right;
   margin: 5px 5px 0;
   padding: 0 0 0 12px;

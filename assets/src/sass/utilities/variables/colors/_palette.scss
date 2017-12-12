@@ -108,3 +108,11 @@ $top-menu-hover-violet: #430e45;
 $main-menu-bg-violet: #581259;
 $main-menu-border-violet: #7e1a80;
 $main-menu-hover-violet: #961e98;
+
+/// RGBa Colors
+
+$half-white: rgba(255, 255, 255, .5);
+$zero-white: rgba(255, 255, 255, 0);
+
+/// GRADIENTS
+$gradient--whitefadeaway: linear-gradient(to bottom, $half-white, $zero-white)
