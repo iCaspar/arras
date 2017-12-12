@@ -27,6 +27,15 @@ ul {
       left: auto;
       right: 11em
     }
+
+    .sf-with-ul {
+      padding: 0 0 0 15px;
+    }
+
+    .sf-sub-indicator {
+      left: auto;
+      right: 7px;
+    }
   }
 }
 
@@ -35,11 +44,22 @@ ul {
 
   li {
     float: right;
+    padding: 5px 8px 0 0;
   }
 }
 
 #searchbar {
   float: left;
+}
+
+.searchform {
+  .s {
+    float: right;
+  }
+
+  .searchsubmit {
+    float: left;
+  }
 }
 
 .widgetcontainer {
@@ -50,8 +70,23 @@ ul {
   }
 }
 
-.multi-sidebar .tabs li {
-  float: right;
+.multi-sidebar {
+  .tabs li {
+    float: right;
+  }
+
+  .thumb,
+  .recentcomments {
+    float: right;
+    margin: 0 0 0 10px;
+  }
+}
+
+.featured-stories {
+  .thumb {
+    float: right;
+    margin: 0 0 0 10px;
+  }
 }
 
 .posts-default {
@@ -91,6 +126,73 @@ ul {
   }
 
   .entry-comments {
+    float: left;
+  }
+}
+
+.single-post-meta {
+  clear: left;
+  float: left;
+}
+
+.post-edit-link {
+  display: block;
+  padding: 0;
+}
+
+.gallery-item {
+  float: right;
+}
+
+.about-author {
+  .author-meta {
+    float: right;
+  }
+}
+
+.avatar {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+
+.single .post .entry-comments,
+.single-post .entry-comments {
+  float: left;
+  padding: 3px 17px 3px 17px;
+}
+
+#commentlist {
+  p {
+    clear: right;
+  }
+
+  .comment-controls,
+  .reply {
+    float: left;
+  }
+
+  .avatar {
+    float: right;
+    margin: 0 5px 10px;
+  }
+}
+
+.pingbacks {
+  padding: 15px 30px 15px 10px;
+}
+
+#cancel-comment-reply-link {
+  float: left;
+  padding: 0 10px 0 0;
+}
+
+.site-footer {
+  .widgetcontainer,
+  .footer-sidebar {
+    float: right;
+  }
+
+  .footer-message .floatright {
     float: left;
   }
 }
