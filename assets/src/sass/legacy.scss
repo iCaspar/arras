@@ -30,6 +30,7 @@ code					{ background: #EAEAEA; color: #333; font-family: Consolas, Monaco, Cour
 pre code				{ background: #322E2C; border: 1px solid #635957; color: #FFF; display: block; overflow: scroll; padding: 1.5em 1.75em; }
 
 input[type=text], input[type=password], textarea	{ background: url('../images/form.jpg') repeat-x top #FFF; border: 1px solid #CCC; padding: 3px; }
+imput.adminbar-input {backgroun-image: none; }
 input[type=submit], #wp-email-submit    { font-family: Helvetica, Arial, sans-serif; background: url('../images/feed-title-white.jpg') repeat-x; border: 1px solid #CCC; padding: 5px 10px; font-size: 12px; color: #000; font-weight: bold; }
 input[type=submit]:hover, #wp-email-submit:hover    { background: #314E6A; color: #FFF; }
 
