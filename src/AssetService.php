@@ -39,18 +39,7 @@ class AssetService {
 		$this->baseUrl = $baseUrl;
 		$this->isDevEnv = $isDevEnv;
 	}
-
-	/**
-	 * @return string
-	 */
-	private function getEnvironment() {
-		if ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) {
-			return 'development';
-		}
-
-		return 'production';
-	}
-
+	
 	/**
 	 * @throws \RuntimeException
 	 * @return array URLs of registered styles.
