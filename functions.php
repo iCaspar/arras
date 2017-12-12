@@ -92,7 +92,6 @@ function arras_setup() {
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	add_action( 'wp_head', 'arras_load_styles', 1 );
 	add_action( 'wp_head', 'arras_head' );
-	add_action( 'wp_head', 'arras_add_facebook_share_meta' );
 	add_action( 'wp_head', 'arras_add_header_js' );
 	add_action( 'wp_footer', 'arras_add_footer_js' );
 

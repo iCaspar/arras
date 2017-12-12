@@ -1,6 +1,6 @@
 <?php
 /**
- * Deprecated in Arras 1.5.1. Use arras_prep_query() instead
+ * @deprecated 1.5.1 Use arras_prep_query().
  */
 function arras_parse_query($list, $count, $exclude = null, $post_type = '', $taxonomy = '') {
 	$query = array();
@@ -65,7 +65,9 @@ function arras_parse_query($list, $count, $exclude = null, $post_type = '', $tax
 }
 
 
-/* Deprecated - use arras_render_posts() instead */ 
+/**
+ * @deprecated 1.5.1 Use arras_render_posts().
+ */
 function arras_get_posts($page_type, $query = null) {
 	global $post, $wp_query;
 	
@@ -105,7 +107,7 @@ function arras_get_posts($page_type, $query = null) {
 	<?php while ($query->have_posts()) : $query->the_post() ?>
 	<li <?php arras_post_class() ?>>
 		
-		<?php arras_newsheader($page_type) ?>
+		<?php // arras_newsheader($page_type) ?>
 		<div class="entry-summary">
 			<?php 
 			if ( arras_get_option($page_type . '_display') == 'default' ) {
@@ -121,7 +123,7 @@ function arras_get_posts($page_type, $query = null) {
 			}
 			?>
 		</div>
-		<?php arras_newsfooter($page_type) ?>		
+		<?php // arras_newsfooter($page_type) ?>
 	</li>
 	<?php endwhile; ?>
 	</ul>
@@ -132,6 +134,9 @@ function arras_get_posts($page_type, $query = null) {
 <?php
 }
 
+/**
+ * @deprecated 1.5.1 Use esc_html( get_the_excerpt() ).
+ */
 function arras_strip_content($content, $limit) {
 	$content = apply_filters('the_content', $content);
 	
@@ -150,8 +155,7 @@ function arras_strip_content($content, $limit) {
 }
 
 /**
- * SEO-Friendly META description, based on Thematic Framework.
- * @deprecated as of 1.8
+ * @deprecated 1.8 SEO descriptions should be handled by a plugin.
  */
 function arras_document_description() {
 	if ( class_exists('All_in_One_SEO_Pack') || class_exists('Platinum_SEO_Pack') ) return false;
@@ -160,10 +164,33 @@ function arras_document_description() {
 		if ( have_posts() ) {
 			while( have_posts() ) {
 				the_post();
-				echo '<meta name="description" content="' . get_the_excerpt() . '" />';
+				echo '<meta name="description" content="' . esc_attr( get_the_excerpt() ) . '" />';
 			}
 		}
 	} else {
-		echo '<meta name="description" content="' . get_bloginfo('description') . '" />';
+		echo '<meta name="description" content="' . esc_attr( get_bloginfo('description') ) . '" />';
+	}
+}
+
+/**
+ * @deprecated 1.8 OpenGraph meta should be handled by a plugin.
+ */
+function arras_add_facebook_share_meta() {
+	global $post;
+	if ( is_single() ) {
+		if ( has_post_thumbnail( $post->ID ) )
+			$thumb_id = get_post_thumbnail_id( $post->ID );
+        elseif ( arras_get_option( 'auto_thumbs' ) )
+			$thumb_id = arras_get_first_post_image_id();
+
+		if ( !$thumb_id ) return false;
+
+		$image = wp_get_attachment_image_src( $thumb_id );
+		$src = $image[0];
+		?>
+        <meta property="og:title" content="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>" />
+        <meta property="og:description" content="<?php echo esc_attr( get_the_excerpt() ); ?>" />
+        <meta property="og:image" content="<?php echo esc_attr( $image[0] ); ?>" />
+		<?php
 	}
 }
