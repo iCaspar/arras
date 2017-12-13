@@ -46,6 +46,14 @@ class AssetService {
 	}
 
 	/**
+	 * @return void
+	 */
+	public function init() {
+		add_action( 'wp_enqueue_scripts', [ $this, 'registerStyles' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
+	}
+
+	/**
 	 * @throws \RuntimeException
 	 * @return array URLs of registered styles.
 	 */

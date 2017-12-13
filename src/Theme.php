@@ -34,37 +34,24 @@ class Theme {
 	 */
 	public function __construct( array $config ) {
 		$this->config = $config;
-		self::$arras = $this;
+		self::$arras  = $this;
 	}
 
 	/**
 	 * @return void
 	 */
 	public function init() {
-		if ( isset( $this->config['assets'] ) && is_array( $this->config['assets'] ) ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'initAssets' ] );
-			add_action( 'admin_enqueue_scripts', [ $this, 'initAssets' ] );
-		}
-
-		add_filter( 'arras_theme', [ $this, 'getTheme' ] );
+		$this->initAssets();
 	}
 
 	/**
 	 * @return void
 	 */
 	public function initAssets() {
-		if ( ! isset( $this->config['assets'] ) ) {
-			return;
-		}
-
+		$config = isset( $this->config['assets'] ) ? $this->config['assets'] : [];
 		$isDevEnv     = defined( 'SCRIPT_DEBUG' ) && true == SCRIPT_DEBUG;
-		$this->assets = new AssetService( $this->config['assets'], ARRAS_ASSET_URL, $isDevEnv );
-
-		try {
-			$result = $this->assets->registerStyles();
-		} catch ( \RuntimeException $e ) {
-			die( $e->getMessage() );
-		}
+		$this->assets = new AssetService( $config, ARRAS_ASSET_URL, $isDevEnv );
+		$this->assets->init();
 	}
 
 	/**
