@@ -83,9 +83,7 @@ function arras_setup() {
 	register_alternate_layout( '2c-l-fixed', __( '2 Column Layout (Left Sidebar)', 'arras' ) );
 	register_alternate_layout( '3c-fixed', __( '3 Column Layout (Left & Right Sidebars)', 'arras' ) );
 	register_alternate_layout( '3c-r-fixed', __( '3 Column Layout (Right Sidebars)', 'arras' ) );
-
-	register_style_dir( get_template_directory() . '/css/styles/' );
-
+	
 	remove_action( 'wp_head', 'pagenavi_css' );
 	add_action( 'arras_head', 'arras_override_styles' );
 	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
