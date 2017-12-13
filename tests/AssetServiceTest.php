@@ -3,7 +3,7 @@
  * AssetServiceTest.php
  */
 
-namespace Arras;
+namespace Arras\Services;
 
 use PHPUnit\Framework\TestCase;
 use Brain\Monkey;
@@ -23,7 +23,7 @@ class AssetServiceTest extends TestCase {
 	}
 
 	public function test__construct(): void {
-		self::assertInstanceOf( 'Arras\AssetService', new AssetService( [], '' ) );
+		self::assertInstanceOf( 'Arras\Services\AssetService', new AssetService( [], '' ) );
 	}
 
 	public function testRegisterStylesFailNoConfig(): void {
@@ -71,12 +71,34 @@ class AssetServiceTest extends TestCase {
 		], $result );
 	}
 
-	public function testStyleNames(): void {
+	public function testBuildStyleSchemeChooser(): void {
 		Functions\when( 'wp_register_style' )->justReturn( true );
-		$service = $this->getSampleService( true );
+		Functions\when( 'arras_get_option' )->justReturn( true );
+		Functions\when( 'arras_form_dropdown' )->returnArg( 2 );
+
+		$service    = new AssetService( [
+			'styles' => [
+				'arras'      => [
+					'filename' => 'default',
+					'version'  => '',
+					'scheme'   => true,
+				],
+				'arras-blue' => [
+					'filename' => 'blue',
+					'version'  => '',
+					'scheme'   => true,
+				],
+				'arras-rtl'  => [
+					'filename' => 'rtl',
+					'version'  => '',
+				],
+			],
+		], '' );
+
+		$expectedStyleSchemeArray = [ 'default' => 'Default', 'blue' => 'Blue' ];
 
 		$service->registerStyles();
-		self::assertEquals( ['Style'], $service->getStyleSchemes() );
+		self::assertEquals( $expectedStyleSchemeArray, $service->buildStyleSchemeChooser() );
 	}
 
 	private function getSampleService( bool $isDevEnv = false ): AssetService {

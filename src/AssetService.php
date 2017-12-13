@@ -117,9 +117,15 @@ class AssetService {
 	}
 
 	/**
-	 * @return array
+	 * @return string HTML for style chooser select.
 	 */
-	public function getStyleSchemes() {
-		return $this->styleSchemes;
+	public function buildStyleSchemeChooser() {
+		$menuOpts = [];
+
+		foreach ( $this->styleSchemes as $scheme ) {
+			$menuOpts[ strtolower( $scheme ) ] = $scheme;
+		}
+
+		return arras_form_dropdown( 'arras-style', $menuOpts, arras_get_option( 'style' ) );
 	}
 }
