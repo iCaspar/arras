@@ -8,11 +8,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Oops! Something went wrong.' );
 }
 
-init_constants();
 require_once 'vendor/autoload.php';
-init();
 
-function init_constants() {
+initConstants();
+initArras();
+
+function initConstants() {
 	$theme = wp_get_theme();
 
 	define( 'ARRAS_VERSION', $theme->get( 'Version' ) );
@@ -26,15 +27,13 @@ function init_constants() {
 	define( 'ARRAS_CHILD', is_child_theme() );
 }
 
-function init() {
+function initArras() {
 	$theme = new Theme( include ARRAS_CONFIG_DIR . '/config.php' );
+	do_action( 'arras_init', $theme );
 	$theme->init();
 }
 
-do_action( 'arras_init' );
-
 add_action( 'after_setup_theme', __NAMESPACE__ . '\arras_setup' );
-
 function arras_setup() {
 
 	require_once ARRAS_LIB . '/admin/options.php';
