@@ -2,8 +2,7 @@
 <?php global $arras_registered_alt_layouts ?>
 
 <?php
-$arras = apply_filters( 'arras_theme', null );
-$styleSchemes = $arras->getStyleSchemes();
+$styleSchemes = $arras->assets->getStyleSchemes();
 $stylesMenuOpts = [];
 
 foreach ($styleSchemes as $scheme) {

@@ -18,9 +18,14 @@ class Theme {
 	private $config = [];
 
 	/**
+	 * @var Theme
+	 */
+	private static $arras;
+
+	/**
 	 * @var AssetService
 	 */
-	private $assets;
+	public $assets;
 
 	/**
 	 * Theme constructor.
@@ -29,6 +34,7 @@ class Theme {
 	 */
 	public function __construct( array $config ) {
 		$this->config = $config;
+		self::$arras = $this;
 	}
 
 	/**
@@ -64,14 +70,7 @@ class Theme {
 	/**
 	 * @return Theme The Arras Main Theme Object.
 	 */
-	public function getTheme() {
-		return $this;
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getStyleSchemes() {
-		return $this->assets->getStyleSchemes();
+	public static function getArras() {
+		return self::$arras;
 	}
 }
