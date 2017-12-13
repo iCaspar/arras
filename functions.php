@@ -90,7 +90,6 @@ function arras_setup() {
 	add_action( 'arras_head', 'arras_override_styles' );
 	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
-	add_action( 'wp_head', 'arras_load_styles', 1 );
 	add_action( 'wp_head', 'arras_head' );
 	add_action( 'wp_head', 'arras_add_header_js' );
 	add_action( 'wp_footer', 'arras_add_footer_js' );
