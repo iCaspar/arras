@@ -33,6 +33,11 @@ class AssetService {
 	private $styleSchemes = [];
 
 	/**
+	 * @var string
+	 */
+	private $inlineCSS = '';
+
+	/**
 	 * AssetService constructor.
 	 *
 	 * @param array $config
@@ -51,7 +56,7 @@ class AssetService {
 	public function init() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
-		add_action( 'wp_enqueue_scripts', [$this, 'enqueueStyles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueStyles' ] );
 	}
 
 	/**
@@ -97,13 +102,25 @@ class AssetService {
 			$style = '';
 		}
 
-		wp_enqueue_style( 'arras' . $style );
+		$handle = 'arras' . $style;
+
+		wp_enqueue_style( $handle );
+		wp_add_inline_style( $handle, $this->inlineCSS );
 
 		if ( is_rtl() ) {
 			wp_enqueue_style( 'arras-rtl' );
 		}
 
 		do_action( 'arras_load_styles' );
+	}
+
+	/**
+	 * @param string $css CSS to be inlined.
+	 *
+	 * @return void
+	 */
+	public function addInlineStyle( $css ) {
+		$this->inlineCSS .= $css;
 	}
 
 	/**
