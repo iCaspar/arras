@@ -55,8 +55,9 @@ class AssetService {
 	 */
 	public function init() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'registerStyles' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueStyles' ], 15 );
+		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminStyles' ], 15 );
 	}
 
 	/**
@@ -115,6 +116,24 @@ class AssetService {
 		}
 
 		do_action( 'arras_load_styles' );
+	}
+
+	/**
+	 * @return void
+	 */
+	public function enqueueAdminStyles( $hook ) {
+		$arrasPages = [ 'appearance_page_arras-options', 'appearance_page_arras-posttax' ];
+		if ( ! in_array( $hook, $arrasPages ) ) {
+			return;
+		}
+
+		wp_enqueue_style( 'jquery-smoothness' );
+		wp_enqueue_style( 'arras-admin' );
+
+		if ( is_rtl() ) {
+			wp_enqueue_style( 'arras-admin-rtl' );
+		}
+
 	}
 
 	/**
