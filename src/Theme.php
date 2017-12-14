@@ -42,6 +42,7 @@ class Theme {
 	 */
 	public function init() {
 		$this->initAssets();
+		$this->registerLayouts();
 	}
 
 	/**
@@ -52,6 +53,14 @@ class Theme {
 		$isDevEnv     = defined( 'SCRIPT_DEBUG' ) && true == SCRIPT_DEBUG;
 		$this->assets = new AssetService( $config, ARRAS_ASSET_URL, $isDevEnv );
 		$this->assets->init();
+	}
+
+	private function registerLayouts() {
+		$config = isset( $this->config['layouts'] ) ? $this->config['layouts'] : [];
+
+		foreach ( $config as $slug -> $layout ) {
+			register_alternate_layout( $slug, $layout );
+		}
 	}
 
 	/**
