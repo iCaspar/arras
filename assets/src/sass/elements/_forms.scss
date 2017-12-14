@@ -1,0 +1,73 @@
+// sass-lint:disable-all
+
+input,
+select,
+textarea {
+  background-color: $tile-bg;
+  border: 1px solid $border-color--base;
+  color: $text-color--base;
+  font-weight: $font-weight--base;
+  padding: 5px 3px;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid $border-color--base;
+  outline: none;
+}
+
+input[type="checkbox"],
+input[type="image"],
+input[type="radio"] {
+  width: auto;
+}
+
+::-moz-placeholder {
+  color: $text-color--inactive;
+  opacity: 1;
+}
+
+::-webkit-input-placeholder {
+  color: $text-color--inactive;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.button {
+  background-color: $tile-bg;
+  border: 1px solid $border-color--base;
+  border-radius: 3px;
+  color: $text-color--alt;
+  cursor: pointer;
+  font-weight: $font-weight--bold;
+  padding: 5px 10px;
+  text-decoration: none;
+  white-space: normal;
+  width: auto;
+
+  &:focus,
+  &:hover {
+    background: $link-color--base;
+    color: $text-color--inverse;
+  }
+}
+
+.button {
+  display: inline-block;
+}
+
+a.button.small,
+button.small,
+input[type="button"].small,
+input[type="reset"].small,
+input[type="submit"].small {
+  padding: 8px 16px;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button {
+  display: none;
+}

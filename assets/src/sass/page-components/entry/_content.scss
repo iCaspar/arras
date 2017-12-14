@@ -1,0 +1,33 @@
+// sass-lint:disable force-element-nesting
+
+.entry-content {
+  ul {
+    list-style-type: disc;
+    margin: 0 20px;
+    padding: 0 0 1.5em;
+
+    ul {
+      list-style-type: circle;
+      padding: 0;
+    }
+
+    ol {
+      padding: 0;
+    }
+
+    ul ul {
+      list-style-type: square;
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin: 0 20px;
+    padding: 0 0 1.5em;
+
+    ol,
+    ul {
+      padding: 0;
+    }
+  }
+}

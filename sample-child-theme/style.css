@@ -1,10 +1,10 @@
 /*
-Theme Name: Child Theme of Arras
-Theme URI: http://www.arrastheme.com/
-Description: Child theme for the Arras for WordPress
-Author: Creature
-Author URI: http://www.arrastheme.com/
-Template: arras-theme
+Theme Name: Sample Arras Child
+Theme URI: https://www.arrastheme.net/
+Description: Sample child theme of Arras for WordPress
+Author: Awesome Arras User
+Author URI: http://www.arrastheme.net/
+Template: arras
 Version: 1.0
 .
 For more information on how to create and use child themes:
@@ -14,3 +14,7 @@ Any CSS code written below will override any existing
 declarations from the theme itself.
 .
 */
+
+.page-header {
+    background-color: aquamarine;
+}

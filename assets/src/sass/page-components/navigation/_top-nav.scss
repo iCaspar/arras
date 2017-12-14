@@ -1,0 +1,96 @@
+// sass-lint:disable-all
+
+.secondary-nav {
+  background-color: $top-nav-bg;
+  border-bottom: 1px solid $border-color--top-nav;
+  min-width: 100%;
+
+  .sf-menu {
+    float: left;
+    line-height: 1.1;
+
+    a {
+      border-right: 1px solid $border-color--top-nav;
+      color: $link-color--top-nav;
+      display: block;
+      padding: 7px 10px 8px;
+      font-size: 10px;
+      text-decoration: none;
+    }
+
+    ul a {
+      border: none;
+    }
+
+    ul li {
+      border: 1px solid $border-color--top-nav;
+      margin-top: -1px;
+    }
+
+    li li a {
+      font-size: 10px;
+      height: auto;
+      line-height: 1;
+      padding: 7px 10px;
+    }
+
+    .sf-with-ul {
+      padding-right: 15px;
+    }
+
+    a:hover,
+    li:hover,
+    li.sfHover,
+    ul li {
+      background: $top-nav-bg--hover;
+      color: $link-color--top-nav;
+    }
+
+    ul .sf-sub-indicator {
+      display: none;
+    }
+
+    ul a:hover,
+    ul li.sfHover,
+    ul li:hover {
+      background: $top-nav-bg;
+      color: $link-color--top-nav;
+    }
+
+    li:hover ul,
+    li.sfHover ul {
+      top: 2.4em;
+    }
+
+    li li:hover ul,
+    li li.sfHover ul,
+    li li li:hover ul,
+    li li li.sfHover ul {
+      top: 0;
+    }
+  }
+
+  .sf-sub-indicator {
+    background: url('../images/dropdown.png') no-repeat;
+    display: inline-block;
+    height: 5px;
+    left: 7px;
+    position: relative;
+    text-indent: -9999px;
+    top: 0;
+    vertical-align: middle;
+    width: 5px;
+  }
+
+  nav {
+    height: 25px;
+    margin: 0 auto;
+    padding: 3px 0;
+    width: 978px;
+
+    .sf-menu {
+      margin: 0 2px;
+      text-transform: uppercase;
+    }
+  }
+}

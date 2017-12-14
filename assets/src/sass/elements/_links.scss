@@ -1,0 +1,12 @@
+a {
+  &:link,
+  &:visited {
+    color: $link-color--base;
+    text-decoration: none;
+  }
+
+  &:focus,
+  &:hover {
+    color: $link-color--hovered;
+  }
+}

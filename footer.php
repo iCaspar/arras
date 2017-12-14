@@ -1,8 +1,8 @@
-	</div><!-- #main -->
-	
+	</div>
+
 	<?php arras_before_footer() ?>
     
-    <div id="footer">
+    <div id="footer" class="site-footer">
 		<div class="footer-sidebar-container clearfix">
 			<?php 
 				$footer_sidebars = arras_get_option('footer_sidebars');

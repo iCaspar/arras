@@ -12,8 +12,14 @@
 <p><?php _e('If you have recently upgraded Arras to a new release, it is <span style="color: red">highly recommended</span> that you reset your theme options, clear your browser cache and restart your browser before proceeding.', 'arras') ?></p>
 </td>
 </tr>
-
-<tr valign="top">
+    <tr>
+        <th scope="row"><label for="arras-auto-update"><?php _e( 'Enable Automatic Updates', 'arras' ) ?></label></th>
+        <td>
+			<?php echo arras_form_checkbox( 'arras-auto-update', 'disable', arras_get_option( 'auto_update' ), 'id="arras-auto-update"' ) ?>
+			<?php _e( 'WordPress will automatically check for Arras updates along with other themes and plugins.', 'arras' ) ?>
+        </td>
+    </tr>
+    <tr valign="top">
 <th scope="row"><label for="arras-credits"><?php _e('Display Credits', 'arras') ?></label></th>
 <td>
 <?php echo arras_form_checkbox('arras-credits', 'show', !arras_get_option('donate'), 'id="arras-credits"') ?> 
@@ -29,16 +35,14 @@
 <tr valign="top">
 <th scope="row"><label for="arras-rss-feed-url"><?php _e('RSS Feed (URL)', 'arras') ?></label></th>
 <td>
-<code><?php echo get_bloginfo( 'rss2_url' ) ?></code><br />
-<?php _e( 'Custom feed URLs are no longer allowed due to support for automatic feed links.', 'arras' ) ?>
+<code><?php echo get_bloginfo( 'rss2_url' ) ?></code>
 </td>
 </tr>
 
 <tr valign="top">
 <th scope="row"><label for="arras-rss-comments-url"><?php _e('RSS Comments Feed (URL)', 'arras') ?></label></th>
 <td>
-<code><?php echo get_bloginfo( 'comments_rss2_url' ) ?></code><br />
-<?php _e( 'Custom feed URLs are no longer allowed due to support for automatic feed links.', 'arras' ) ?>
+<code><?php echo get_bloginfo( 'comments_rss2_url' ) ?></code>
 </td>
 </tr>
 

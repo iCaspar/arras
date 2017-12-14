@@ -1,0 +1,7 @@
+@supports (display: grid) {
+  .grid {
+    display: grid;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdyaWQuc2NzcyIsImdyaWQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUF5QjtFQUN2QjtJQUNFLGNBQWE7R0FDZDtDQ0NGIiwiZmlsZSI6ImdyaWQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQHN1cHBvcnRzIChkaXNwbGF5OiBncmlkKSB7XG4gIC5ncmlkIHtcbiAgICBkaXNwbGF5OiBncmlkO1xuICB9XG59XG4iLCJAc3VwcG9ydHMgKGRpc3BsYXk6IGdyaWQpIHtcbiAgLmdyaWQge1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gIH1cbn1cbiJdfQ== */

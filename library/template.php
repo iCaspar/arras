@@ -58,24 +58,6 @@ function arras_tag_query() {
 }
 
 /**
- * SEO-Friendly META description, based on Thematic Framework.
- */
-function arras_document_description() {
-	if ( class_exists('All_in_One_SEO_Pack') || class_exists('Platinum_SEO_Pack') ) return false;
-	
-	if ( is_single() || is_page() ) {
-		if ( have_posts() ) {
-			while( have_posts() ) {
-				the_post();
-				echo '<meta name="description" content="' . get_the_excerpt() . '" />';
-			}
-		}
-	} else {
-		echo '<meta name="description" content="' . get_bloginfo('description') . '" />';
-	}
-}
-
-/**
  * Generates semantic classes for BODY element.
  * Sandbox's version was removed from 1.4 onwards.
  */
@@ -335,31 +317,31 @@ function arras_posted_on( $echo = 1 ) {
 function arras_social_nav() {
 ?>
 	<ul class="quick-nav clearfix">
-		<li><a id="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
+		<li><a class="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
 		
 		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>
 		<?php if ($facebook_profile != '') : ?>
-			<li><a id="facebook" title="<?php printf( __( '%s Facebook', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $facebook_profile ?>" target="_blank"><?php _e('Facebook', 'arras') ?></a></li>
+			<li><a class="facebook" title="<?php printf( __( '%s Facebook', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $facebook_profile ?>" target="_blank"><?php _e('Facebook', 'arras') ?></a></li>
 		<?php endif ?>
 		
 		<?php $flickr_profile = arras_get_option('flickr_profile'); ?>
 		<?php if ($flickr_profile != '') : ?>
-			<li><a id="flickr" title="<?php printf( __( '%s Flickr', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $flickr_profile ?>" target="_blank"><?php _e('Flickr', 'arras') ?></a></li>
+			<li><a class="flickr" title="<?php printf( __( '%s Flickr', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $flickr_profile ?>" target="_blank"><?php _e('Flickr', 'arras') ?></a></li>
 		<?php endif ?>
 		
 		<?php $gplus_profile = arras_get_option('gplus_profile'); ?>
 		<?php if ($gplus_profile != '') : ?>
-			<li><a id="gplus" title="<?php printf( __( '%s Google+', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $gplus_profile ?>" target="_blank"><?php _e('Google+', 'arras') ?></a></li>
+			<li><a class="gplus" title="<?php printf( __( '%s Google+', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $gplus_profile ?>" target="_blank"><?php _e('Google+', 'arras') ?></a></li>
 		<?php endif ?>
 		
 		<?php $twitter_username = arras_get_option('twitter_username'); ?>
 		<?php if ($twitter_username != '') : ?>
-			<li><a id="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="http://www.twitter.com/<?php echo $twitter_username ?>/" target="_blank"><?php _e('Twitter', 'arras') ?></a></li>
+			<li><a class="twitter" title="<?php printf( __( '%s Twitter', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="http://www.twitter.com/<?php echo $twitter_username ?>/" target="_blank"><?php _e('Twitter', 'arras') ?></a></li>
 		<?php endif ?>
 		
 		<?php $youtube_profile = arras_get_option('youtube_profile'); ?>
 		<?php if ($youtube_profile != '') : ?>
-			<li><a id="youtube" title="<?php printf( __( '%s YouTube', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $youtube_profile ?>" target="_blank"><?php _e('YouTube', 'arras') ?></a></li>
+			<li><a class="youtube" title="<?php printf( __( '%s YouTube', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $youtube_profile ?>" target="_blank"><?php _e('YouTube', 'arras') ?></a></li>
 		<?php endif ?>
 		
 		<?php do_action('arras_quick_nav'); // hook to include additional social icons, etc. ?>
@@ -378,14 +360,19 @@ function arras_blacklist_duplicates() {
 	}
 }
 
+add_action( 'wp_enqueue_scripts', 'arras_constrain_footer_sidebars' );
 function arras_constrain_footer_sidebars() {
-	$footer_sidebars = arras_get_option('footer_sidebars');
-	if ($footer_sidebars == '') $footer_sidebars = 1;
-	
-	$width = ceil(920 / $footer_sidebars);
-	?>
-	.footer-sidebar  { width: <?php echo $width ?>px; }
-	<?php
+	$arras           = Arras\Theme::getArras();
+	$footer_sidebars = arras_get_option( 'footer_sidebars' );
+
+	if ( $footer_sidebars == '' ) {
+		$footer_sidebars = 1;
+	}
+
+	$width = ceil( 920 / $footer_sidebars );
+	$css   = '.footer-sidebar{width:' . $width . 'px;}';
+
+	$arras->assets->addInlineStyle( $css );
 }
 
 function arras_nav_fallback_cb() {
@@ -400,26 +387,6 @@ function arras_debug($exp) {
 	//}
 }
 
-function arras_add_facebook_share_meta() {
-	global $post;
-	if ( is_single() ) {
-		if ( has_post_thumbnail( $post->ID ) )
-			$thumb_id = get_post_thumbnail_id( $post->ID );			
-		elseif ( arras_get_option( 'auto_thumbs' ) )
-			$thumb_id = arras_get_first_post_image_id();
-		
-		if ( !$thumb_id ) return false;
-		
-		$image = wp_get_attachment_image_src( $thumb_id );
-		$src = $image[0];
-	?>
-	<meta property="og:title" content="<?php echo get_the_title( $post->ID ) ?>" />
-	<meta property="og:description" content="<?php echo get_the_excerpt() ?>" />
-	<meta property="og:image" content="<?php echo $image[0] ?>" />
-	<?php
-	}
-}
-
 function arras_add_sidebars() {
 	register_sidebar( array(
 		'name'          => 'Primary Sidebar',
@@ -430,7 +397,7 @@ function arras_add_sidebars() {
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
-		'name'          => 'Secondary Sidebar #1',
+		'name'          => 'Secondary Sidebar',
 		'id'            => 'secondary',
 		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
 		'after_widget'  => '</li>',
@@ -469,4 +436,9 @@ function arras_add_sidebars() {
 			'after_title'   => '</h5>'
 		) );
 	}
+}
+
+function register_alternate_layout( $id, $name ) {
+	global $arras_registered_alt_layouts;
+	$arras_registered_alt_layouts[ $id ] = $name;
 }

@@ -1,0 +1,36 @@
+{
+  "name": "arras",
+  "version": "1.0.0",
+  "description": "Arras Theme for WordPress",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iCaspar/arras.git"
+  },
+  "author": "Caspar Green",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/iCaspar/arras/issues"
+  },
+  "homepage": "https://github.com/iCaspar/icaspar-starter#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "bourbon": "^4.2.6",
+    "bourbon-neat": "^1.7.2",
+    "css-mqpacker": "^6.0.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0"
+  }
+}

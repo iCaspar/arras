@@ -7,10 +7,7 @@ function arras_addmenu() {
 	$posttax_page = add_theme_page(  __('Arras Post Types & Taxonomies', 'arras'), __('Post Types & Tax.', 'arras'),'edit_theme_options',  'arras-posttax', 'arras_posttax' );
 
 	add_action('admin_print_scripts-'. $options_page, 'arras_admin_scripts');
-	add_action('admin_print_styles-'. $options_page, 'arras_admin_styles');
-	
 	add_action('admin_print_scripts-' . $posttax_page, 'arras_admin_scripts');
-	add_action('admin_print_styles-' . $posttax_page, 'arras_admin_styles');
 }
 
 function arras_admin() {
@@ -130,14 +127,6 @@ function arras_posttax() {
 function arras_admin_scripts() {
 	wp_enqueue_script( 'jquery-multiselect', get_template_directory_uri() . '/js/jquery.multiselect.min.js', null, 'jquery' );
 	wp_enqueue_script( 'arras-admin-js', get_template_directory_uri() . '/js/admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-tabs') );
-}
-
-function arras_admin_styles() {
-	wp_enqueue_style( 'jquery-smoothness', get_template_directory_uri() . '/css/smoothness/jquery-ui-1.8.2.custom.css', false, '2011-12-12', 'all' );
-	if ( is_rtl() )
-		wp_enqueue_style( 'arras-admin', get_template_directory_uri() . '/css/admin-rtl.css', false, '2011-12-12', 'all' );
-	else
-		wp_enqueue_style( 'arras-admin', get_template_directory_uri() . '/css/admin.css', false, '2011-12-12', 'all' );
 }
 
 function get_remote_array($url) {
