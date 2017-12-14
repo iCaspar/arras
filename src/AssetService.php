@@ -97,14 +97,7 @@ class AssetService {
 	 * @return void
 	 */
 	public function enqueueStyles() {
-		$style = '-' . arras_get_option( 'style' );
-
-		if ( ! isset( $style ) || '-default' == $style ) {
-			$style = '';
-		}
-
-		$handle = 'arras' . $style;
-
+		$handle = $this->getCurrentStyleHandle();
 		wp_enqueue_style( $handle );
 
 		if ( $this->inlineCSS ) {
@@ -116,6 +109,19 @@ class AssetService {
 		}
 
 		do_action( 'arras_load_styles' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCurrentStyleHandle() {
+		$style = '-' . arras_get_option( 'style' );
+
+		if ( ! isset( $style ) || '-default' == $style ) {
+			$style = '';
+		}
+
+		return 'arras' . $style;
 	}
 
 	/**
