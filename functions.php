@@ -85,8 +85,6 @@ function arras_setup() {
 	register_alternate_layout( '3c-r-fixed', __( '3 Column Layout (Right Sidebars)', 'arras' ) );
 	
 	remove_action( 'wp_head', 'pagenavi_css' );
-	add_action( 'arras_head', 'arras_override_styles' );
-	add_action( 'arras_custom_styles', 'arras_constrain_footer_sidebars' );
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	add_action( 'wp_head', 'arras_head' );
 	add_action( 'wp_head', 'arras_add_header_js' );

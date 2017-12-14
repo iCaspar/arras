@@ -189,7 +189,6 @@ if (!function_exists('arras_tapestry_default')) {
 	add_action('arras_admin_settings-layout', 'arras_admin_tapestry_default');
 	add_action('arras_admin_save', 'arras_save_tapestry_default');
 	add_action('arras_options_defaults', 'arras_defaults_tapestry_default');
-	add_action('arras_custom_styles', 'arras_style_tapestry_default');
 }
 
 function arras_add_tapestry_default_thumbs() {
@@ -252,17 +251,21 @@ function arras_defaults_tapestry_default() {
 	return $_tapestry_default_settings;
 }
 
+add_action( 'wp_enqueue_scripts', 'arras_style_tapestry_default' );
 function arras_style_tapestry_default() {
-	$node_based_size = arras_get_image_size('node-based-thumb');
-	$node_based_w = $node_based_size['w'];
-	$node_based_h = $node_based_size['h'];
-	
-	?>
-	.posts-default .entry  { width: <?php echo $node_based_w + 10 ?>px; }
-	.posts-default img, .posts-default .entry-thumbnails-link { width: <?php echo $node_based_w ?>px; height: <?php echo $node_based_h ?>px; }
-	.posts-default .entry-meta { width: <?php echo $node_based_w ?>px; }
-	.posts-default .entry-thumbnails { width: <?php echo $node_based_w + 10 ?>px; height: <?php echo $node_based_h + 10 ?>px; }
-	<?php
+	$arras           = Arras\Theme::getArras();
+	$node_based_size = arras_get_image_size( 'node-based-thumb' );
+	$innerWidth      = $node_based_size['w'];
+	$outerWidth      = $node_based_size['w'] + 10;
+	$innerHeight     = $node_based_size['h'];
+	$outerHeight     = $node_based_size['h'] + 10;
+
+	$css = '.posts-default .entry{ width:' . $outerWidth . 'px;}.posts-default img,.posts-default .entry-thumbnails-link{width:'
+	       . $innerWidth . 'px;height:' . $innerHeight . 'px; }.posts-default .entry-meta{ width:'
+	       . $innerWidth . 'px;}.posts-default .entry-thumbnails{ width:' . $outerWidth . 'px; height:'
+	       . $outerHeight . 'px;}';
+
+	$arras->assets->addInlineStyle( $css );
 }
 
 /**
@@ -295,18 +298,19 @@ if (!function_exists('arras_tapestry_quick')) {
 		arras_add_image_size( 'quick-preview-thumb', __('Tapestry: Quick Preview', 'arras'), 115, 115 );
 	}
 	add_action('arras_add_default_thumbnails', 'arras_add_tapestry_quick_thumbs');
-	
+
+	add_action( 'wp_enqueue_scripts', 'arras_style_tapestry_quick' );
 	function arras_style_tapestry_quick() {
-		$quick_preview_size = arras_get_image_size('quick-preview-thumb');
-		$quick_preview_w = $quick_preview_size['w'];
-		$quick_preview_h = $quick_preview_size['h'];
-		
-		?>
-		.posts-quick .entry-thumbnails img { width: <?php echo $quick_preview_w ?>px; height: <?php echo $quick_preview_h ?>px; }
-		.posts-quick .entry-meta { width: <?php echo $quick_preview_w ?>px; }
-		<?php
+		$arras              = \Arras\Theme::getArras();
+		$quick_preview_size = arras_get_image_size( 'quick-preview-thumb' );
+		$quick_preview_w    = $quick_preview_size['w'];
+		$quick_preview_h    = $quick_preview_size['h'];
+
+		$css = '.posts-quick .entry-thumbnails img{width:' . $quick_preview_w . 'px;height:'
+		       . $quick_preview_h . 'px;}.posts-quick .entry-meta{ width:' . $quick_preview_w . 'px;}';
+
+		$arras->assets->addInlineStyle( $css );
 	}
-	add_action('arras_custom_styles', 'arras_style_tapestry_quick');
 }
 
 /**

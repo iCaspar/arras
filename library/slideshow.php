@@ -98,21 +98,22 @@ function arras_add_slideshow_thumb_size() {
 }
 add_action('arras_add_default_thumbnails', 'arras_add_slideshow_thumb_size', 5);
 
+add_action( 'wp_enqueue_scripts', 'arras_slideshow_styles' );
 function arras_slideshow_styles() {
-	$slideshow_size = arras_get_image_size('featured-slideshow-thumb');
-	$slideshow_size_w = $slideshow_size['w'];
-	$slideshow_size_h = $slideshow_size['h'];
-	?>
-	.featured { height: <?php echo $slideshow_size_h + 10 ?>px; }
-	.featured-article { width: <?php echo $slideshow_size_w ?>px; height: <?php echo $slideshow_size_h ?>px; }
-	.featured-article img { width: <?php echo $slideshow_size_w ?>px; height: <?php echo $slideshow_size_h ?>px; }
-	#controls { width: <?php echo $slideshow_size_w - 30 ?>px; top: <?php echo ($slideshow_size_h / 2) - 15 ?>px; }
-	#controls .next { left: <?php echo $slideshow_size_w - 30 ?>px; }
-	.featured-entry { height: <?php echo ceil($slideshow_size_h / 3) ?>px; top: -<?php echo ceil($slideshow_size_h / 3) ?>px; }
-	.featured-slideshow-inner { height: <?php echo $slideshow_size_h ?>px }
-	<?php
-}
-add_action('arras_custom_styles', 'arras_slideshow_styles');
+	$arras               = \Arras\Theme::getArras();
+	$slideshow_size      = arras_get_image_size( 'featured-slideshow-thumb' );
+	$innerWidth          = $slideshow_size['w'];
+	$innerHeight         = $slideshow_size['h'];
+	$outerHeight         = $slideshow_size['h'] + 10;
+	$entryHeight         = ceil( $slideshow_size['h'] / 3 );
+	$controlOffesetWidth = $slideshow_size['w'] - 30;
+	$controlOffsetHeight = ( $slideshow_size['h'] / 2 ) - 15;
 
-/* End of file slideshow.php */
-/* Location: ./library/slideshow.php */
+	$css = '.featured{height:' . $outerHeight . 'px; }.featured-article{width:' . $innerWidth . 'px; height:'
+	       . $innerHeight . 'px;}.featured-article img{width:' . $innerWidth . 'px; height:'
+	       . $innerHeight . 'px;}#controls{width:' . $controlOffesetWidth . 'px;top:' .
+	       $controlOffsetHeight . 'px;}#controls .next{left:' . $controlOffesetWidth . 'px;}.featured-entry{height:'
+	       . $entryHeight . 'px;top:' . - $entryHeight . 'px;}.featured-slideshow-inner{height:' . $innerHeight . 'px }';
+
+	$arras->assets->addInlineStyle( $css );
+}

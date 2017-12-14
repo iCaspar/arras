@@ -56,7 +56,7 @@ class AssetService {
 	public function init() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueStyles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueStyles' ], 15 );
 	}
 
 	/**
@@ -105,7 +105,10 @@ class AssetService {
 		$handle = 'arras' . $style;
 
 		wp_enqueue_style( $handle );
-		wp_add_inline_style( $handle, $this->inlineCSS );
+
+		if ( $this->inlineCSS ) {
+			wp_add_inline_style( $handle, $this->inlineCSS );
+		}
 
 		if ( is_rtl() ) {
 			wp_enqueue_style( 'arras-rtl' );

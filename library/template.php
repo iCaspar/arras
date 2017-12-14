@@ -360,14 +360,19 @@ function arras_blacklist_duplicates() {
 	}
 }
 
+add_action( 'wp_enqueue_scripts', 'arras_constrain_footer_sidebars' );
 function arras_constrain_footer_sidebars() {
-	$footer_sidebars = arras_get_option('footer_sidebars');
-	if ($footer_sidebars == '') $footer_sidebars = 1;
-	
-	$width = ceil(920 / $footer_sidebars);
-	?>
-	.footer-sidebar  { width: <?php echo $width ?>px; }
-	<?php
+	$arras           = Arras\Theme::getArras();
+	$footer_sidebars = arras_get_option( 'footer_sidebars' );
+
+	if ( $footer_sidebars == '' ) {
+		$footer_sidebars = 1;
+	}
+
+	$width = ceil( 920 / $footer_sidebars );
+	$css   = '.footer-sidebar{width:' . $width . 'px;}';
+
+	$arras->assets->addInlineStyle( $css );
 }
 
 function arras_nav_fallback_cb() {
