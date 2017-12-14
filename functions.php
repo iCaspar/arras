@@ -47,7 +47,6 @@ function arras_setup() {
 	require_once ARRAS_LIB . '/tapestries.php';
 	require_once ARRAS_LIB . '/template.php';
 	require_once ARRAS_LIB . '/thumbnails.php';
-	require_once ARRAS_LIB . '/styles.php';
 	require_once ARRAS_LIB . '/slideshow.php';
 	require_once ARRAS_LIB . '/widgets.php';
 
