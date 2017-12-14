@@ -4,7 +4,7 @@ Theme URI: https://www.arrastheme.net/
 Description: A sophisticated, yet simple and clean WordPress theme for magazine/news blogs. Homepage comes with a featured slideshow and 3 featured post areas with 4 different customisable layouts. Comes with in one, two and three column layouts and 7 different alternate styles. WordPress 4.9.1-ready with two menu locations, custom post types and custom taxonomies support. Child theme ready with numerous action and filter hooks available for use. Community support available at <a href="http://www.arrastheme.com/forums/">theme forums</a>.
 Author: Caspar Green
 Author URI: https://caspar.green/
-Version: 1.7.1
+Version: 1.8
 Tags: two-columns,three-columns,left-sidebar,right-sidebar,theme-options,threaded-comments,sticky-post,microformats,translation-ready,custom-menu,rtl-language-support
 Text Domain: arras
 
@@ -18,22 +18,3 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 For questions or to report an issue, please visit the theme's issues page at
 https://github.com/iCaspar/arras/issues/
 */
-
-/* Trick the WordPress Theme Bot *Evil* */
-.aligncenter			{ display: block; margin: 0 auto !important; }
-.alignright				{ float: right; margin: 0 0 1em 1em; }
-.alignleft				{ float: left; margin: 0 1em 1em 0; }
-.floatleft				{ float: left; }
-.floatright				{ float: right; }
-img.aligncenter, img.alignright, img.alignleft  { border: 1px solid #DDD; text-align: center; background: #F3F3F3; padding: 4px; }
-
-.textcenter				{ text-align: center; }
-.textright				{ text-align: right; }
-.textleft				{ text-align: left; }
-
-.wp-caption { border: 1px solid #DDD; text-align: center; background: #F3F3F3; padding-top: 4px; margin: 10px }
-.wp-caption img { margin: 0; padding: 0; border: none }
-.wp-caption .wp-caption-text { font-size: 11px; line-height: 17px; padding: 0 4px 5px; margin: 0 }
-
-.sticky { }
-.bypostauthor { }

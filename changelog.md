@@ -1,5 +1,48 @@
 # Arras Theme Change Log
 
+## Version 1.8
+
+### Fixes
+
+* Un-escaped HTML being output into header via facebook sharing functionality
+* CSS errors preventing alternate color schemas from being fully implemented
+* CSS errors causing mis-alignments in RTL display
+* CSS errors causing box sizing issues on various elements on Arras admin pages
+
+### Additions
+
+* Use of namespaces
+* Automatic Updates
+* Composer dependency management
+* Unit tests
+* Arras Theme class
+* AssetService class
+* Configuration files for styles and layouts
+* Gulp build process automation
+* SASS CSS Pre-processing
+* Minified versions of all CSS to run on production sites
+* Expanded versions of all CSS to run on test sites
+* Compressed versions of all image files to run on production sites
+
+### Updates
+
+* Some CSS selectors using IDs refactored to use classes
+* Handling of style loading and style scheme options moved into AssetService class
+* Handling of layout registrations moved into Arras Theme class
+* Child Theme Sample now shows how to access Arras Theme object functions and how to load custom styles in the child theme.
+
+### Deprecations
+
+* `arras_document_description()` -- leaving SEO Meta tags to SEO plugins
+* `arras_add_facebook_share_meta()` -- leaving OG Meta to social media/SEO plugins
+
+### Removals
+
+* Unused legacy background functions
+* Unused legacy favicon functions -- now handled natively by WP Customizer.
+* `$arras_registered_style_dirs` global
+* "Trick the WordPress Theme-bot" CSS removed from style.css
+
 ## Version 1.7.1
 
 ### Fixes
