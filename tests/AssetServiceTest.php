@@ -3,7 +3,7 @@
  * AssetServiceTest.php
  */
 
-namespace Arras\Services;
+namespace Arras;
 
 use PHPUnit\Framework\TestCase;
 use Brain\Monkey;
@@ -23,7 +23,7 @@ class AssetServiceTest extends TestCase {
 	}
 
 	public function test__construct(): void {
-		self::assertInstanceOf( 'Arras\Services\AssetService', new AssetService( [], '' ) );
+		self::assertInstanceOf( 'Arras\AssetService', new AssetService( [], '' ) );
 	}
 
 	public function testRegisterStylesFailNoConfig(): void {
