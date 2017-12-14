@@ -133,7 +133,6 @@ class AssetService {
 		if ( is_rtl() ) {
 			wp_enqueue_style( 'arras-admin-rtl' );
 		}
-
 	}
 
 	/**
