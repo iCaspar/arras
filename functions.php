@@ -11,6 +11,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'vendor/autoload.php';
 
 initConstants();
+
+require_once ARRAS_LIB . '/admin/options.php';
+require_once ARRAS_LIB . '/admin/templates/functions.php';
+require_once ARRAS_LIB . '/admin/update.php';
+arras_flush_options();
+
+require_once ARRAS_LIB . '/actions.php';
+require_once ARRAS_LIB . '/deprecated.php';
+require_once ARRAS_LIB . '/filters.php';
+require_once ARRAS_LIB . '/tapestries.php';
+require_once ARRAS_LIB . '/template.php';
+require_once ARRAS_LIB . '/thumbnails.php';
+require_once ARRAS_LIB . '/slideshow.php';
+require_once ARRAS_LIB . '/widgets.php';
+
+if ( is_admin() ) {
+	require_once ARRAS_LIB . '/admin/admin.php';
+}
+
 initArras();
 
 function initConstants() {
@@ -35,25 +54,6 @@ function initArras() {
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\arras_setup' );
 function arras_setup() {
-
-	require_once ARRAS_LIB . '/admin/options.php';
-	require_once ARRAS_LIB . '/admin/templates/functions.php';
-	require_once ARRAS_LIB . '/admin/update.php';
-	arras_flush_options();
-
-	require_once ARRAS_LIB . '/actions.php';
-	require_once ARRAS_LIB . '/deprecated.php';
-	require_once ARRAS_LIB . '/filters.php';
-	require_once ARRAS_LIB . '/tapestries.php';
-	require_once ARRAS_LIB . '/template.php';
-	require_once ARRAS_LIB . '/thumbnails.php';
-	require_once ARRAS_LIB . '/slideshow.php';
-	require_once ARRAS_LIB . '/widgets.php';
-
-	if ( is_admin() ) {
-		require_once ARRAS_LIB . '/admin/admin.php';
-	}
-
 	load_theme_textdomain( 'arras', get_template_directory() . '/language' );
 
 	add_theme_support( 'title-tag' );
@@ -77,12 +77,6 @@ function arras_setup() {
 
 	arras_add_sidebars();
 
-	register_alternate_layout( '1c-fixed', __( '1 Column Layout (No Sidebars)', 'arras' ) );
-	register_alternate_layout( '2c-r-fixed', __( '2 Column Layout (Right Sidebar)', 'arras' ) );
-	register_alternate_layout( '2c-l-fixed', __( '2 Column Layout (Left Sidebar)', 'arras' ) );
-	register_alternate_layout( '3c-fixed', __( '3 Column Layout (Left & Right Sidebars)', 'arras' ) );
-	register_alternate_layout( '3c-r-fixed', __( '3 Column Layout (Right Sidebars)', 'arras' ) );
-	
 	remove_action( 'wp_head', 'pagenavi_css' );
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	add_action( 'wp_head', 'arras_head' );
