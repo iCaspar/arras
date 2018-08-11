@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Beans">
-    <description>The code standard for Beans.</description>
+<ruleset name="arras">
+    <description>The code standard for Arras.</description>
 
     <file>.</file>
 
