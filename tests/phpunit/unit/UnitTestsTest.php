@@ -14,7 +14,7 @@ class UnitTestsTest extends ArrasUnitTestCase {
 	/**
 	 * Test that unit tests are working.
 	 *
-	 * @since 4.0
+	 * @since 4.0.0
 	 *
 	 * @throws \PHPUnit\Framework\ExpectationFailedException
 	 * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException

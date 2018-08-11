@@ -22,18 +22,14 @@
 
     <!-- PHP Rules -->
     <rule ref="PHPCompatibility">
-        <!-- Tests are at PHP 5.6. -->
+        <!-- Tests are at PHP 7.1 -->
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
-    <config name="testVersion" value="5.2-"/>
+    <config name="testVersion" value="5.6-"/>
 
     <!-- WordPress Rules -->
     <rule ref="WordPress">
         <exclude name="WordPress.VIP"/>
-
-        <!-- Exclude until v2 as this applies after WP 4.4 with upgrades in PHP 5.3 -->
-        <exclude name="WordPress.WP.AlternativeFunctions.parse_url_parse_url"/>
-        <exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital"/>
     </rule>
 
     <rule ref="WordPress.Files.FileName">
@@ -46,7 +42,7 @@
 
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
-            <property name="prefixes" type="array" value="beans,_beans,_Beans" />
+            <property name="prefixes" type="array" value="arras,_arras,_Arras" />
         </properties>
     </rule>
 
@@ -67,7 +63,7 @@
 
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="tm-beans" />
+            <property name="text_domain" type="array" value="arras" />
         </properties>
     </rule>
 </ruleset>
