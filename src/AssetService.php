@@ -86,7 +86,10 @@ class AssetService {
 			) ? $src : '';
 
 			if ( $this->isSelectableScheme( $args ) ) {
-				$this->styleSchemes[] = ucfirst( $args['filename'] );
+				$scheme_name = isset ( $args['nicename'] )
+					? $args['nicename']
+					: ucfirst( $args['filename'] );
+				$this->styleSchemes[$args['filename'] ] = $scheme_name;
 			}
 		}
 
@@ -186,8 +189,8 @@ class AssetService {
 	public function buildStyleSchemeChooser() {
 		$menuOpts = [];
 
-		foreach ( $this->styleSchemes as $scheme ) {
-			$menuOpts[ strtolower( $scheme ) ] = $scheme;
+		foreach ( $this->styleSchemes as $scheme => $file ) {
+			$menuOpts[ $scheme ] = $file;
 		}
 
 		return arras_form_dropdown( 'arras-style', $menuOpts, arras_get_option( 'style' ) );

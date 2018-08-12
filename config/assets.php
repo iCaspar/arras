@@ -5,12 +5,13 @@
 
 return [
 	'styles' => [
-		'arras'             => [
+		'arras'                    => [
+			'nicename' => 'Arras Base',
 			'filename' => 'style',
 			'version'  => ARRAS_VERSION,
-			'schem'    => true,
+			'scheme'   => true,
 		],
-		'arras-legacy/default'           => [
+		'arras-legacy/default'     => [
 			'filename' => 'legacy/default',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
