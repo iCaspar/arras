@@ -6,54 +6,59 @@
 return [
 	'styles' => [
 		'arras'             => [
-			'filename' => 'default',
+			'filename' => 'style',
+			'version'  => ARRAS_VERSION,
+			'schem'    => true,
+		],
+		'arras-legacy/default'           => [
+			'filename' => 'legacy/default',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-blue'        => [
-			'filename' => 'blue',
+		'arras-legacy/blue'        => [
+			'filename' => 'legacy/blue',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-green'       => [
-			'filename' => 'green',
+		'arras-legacy/green'       => [
+			'filename' => 'legacy/green',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-orange'      => [
-			'filename' => 'orange',
+		'arras-legacy/orange'      => [
+			'filename' => 'legacy/orange',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-red'         => [
-			'filename' => 'red',
+		'arras-legacy/red'         => [
+			'filename' => 'legacy/red',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-violet'      => [
-			'filename' => 'violet',
+		'arras-legacy/violet'      => [
+			'filename' => 'legacy/violet',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy'      => [
-			'filename' => 'legacy',
+		'arras-legacy/legacy'      => [
+			'filename' => 'legacy/legacy',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-rtl'         => [
-			'filename' => 'rtl',
+		'arras-legacy/rtl'         => [
+			'filename' => 'legacy/rtl',
 			'version'  => ARRAS_VERSION,
 		],
-		'arras-admin'       => [
-			'filename' => 'admin',
+		'arras-legacy/admin'       => [
+			'filename' => 'legacy/admin',
 			'version'  => ARRAS_VERSION,
 		],
-		'arras-admin-rtl'   => [
-			'filename' => 'admin-rtl',
+		'arras-legacy/admin-rtl'   => [
+			'filename' => 'legacy/admin-rtl',
 			'version'  => ARRAS_VERSION,
 		],
-		'jquery-smoothness' => [
-			'filename' => 'jquery-ui-1.8.2.custom',
+		'jquery-legacy/smoothness' => [
+			'filename' => 'legacy/jquery-ui-1.8.2.custom',
 			'version'  => ARRAS_VERSION,
 		],
 	],

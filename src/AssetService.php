@@ -117,7 +117,7 @@ class AssetService {
 	public function getCurrentStyleHandle() {
 		$style = '-' . arras_get_option( 'style' );
 
-		if ( ! isset( $style ) || '-default' == $style ) {
+		if ( ! isset( $style ) || '-style' == $style ) {
 			$style = '';
 		}
 
