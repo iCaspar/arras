@@ -46,7 +46,7 @@ class AssetService {
 	 */
 	public function __construct( array $config, $baseUrl, $isDevEnv = false ) {
 		$this->config   = $config;
-		$this->baseUrl  = $baseUrl;
+		$this->baseUrl  = $baseUrl . '/';
 		$this->isDevEnv = $isDevEnv;
 	}
 
@@ -185,9 +185,9 @@ class AssetService {
 	 */
 	private function getAssetUrl( $filename, $filetype ) {
 		if ( $this->isDevEnv ) {
-			return $this->baseUrl . '/src/' . $filetype . '/' . $filename . '.' . $filetype;
+			return $this->baseUrl . $filetype . '/' . $filename . '.' . $filetype;
 		} else {
-			return $this->baseUrl . '/dist/' . $filetype . '/' . $filename . '.min.' . $filetype;
+			return $this->baseUrl . $filetype . '/' . $filename . '.min.' . $filetype;
 		}
 	}
 
