@@ -86,10 +86,10 @@ class AssetService {
 			) ? $src : '';
 
 			if ( $this->isSelectableScheme( $args ) ) {
-				$scheme_name = isset ( $args['nicename'] )
+				$scheme_name                             = isset ( $args['nicename'] )
 					? $args['nicename']
 					: ucfirst( $args['filename'] );
-				$this->styleSchemes[$args['filename'] ] = $scheme_name;
+				$this->styleSchemes[ $args['filename'] ] = $scheme_name;
 			}
 		}
 
@@ -150,6 +150,23 @@ class AssetService {
 	 * @return void
 	 */
 	public function addInlineStyle( $css ) {
+		$this->maybe_add_inline_styles( $css );
+	}
+
+	/**
+	 * Add inline styles for legacy style sets.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param string $css CSS to be inlined.
+	 *
+	 * @return void
+	 */
+	protected function maybe_add_inline_styles( $css ) {
+		if ( 'arras' == $this->getCurrentStyleHandle() ) {
+			return;
+		}
+
 		$this->inlineCSS .= $css;
 	}
 
