@@ -1,142 +1,197 @@
-'use strict'
+/**
+ * Modeled mostly after WebDevStudios
+ * @see https://github.com/WebDevStudios/wd_s/blob/master/Gulpfile.js
+ */
 
-var gulp = require('gulp'),
+'use strict';
 
-  // Sass and CSS modules.
-  bourbon = require('bourbon').includePaths,
-  neat = require('bourbon-neat').includePaths,
-  sass = require('gulp-sass'),
-  sassLint = require('gulp-sass-lint'),
-  postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  mqCSSpacker = require('css-mqpacker'),
-  sourcemaps = require('gulp-sourcemaps'),
-  cssnano = require('gulp-cssnano'),
+const gulp = require('gulp');
 
-  // Script modules.
-  uglify = require('gulp-uglify'),
-  concat = require('gulp-concat'),
+// Style modules.
+const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const mqCSSpacker = require('css-mqpacker');
+const sourcemaps = require('gulp-sourcemaps');
+const cssnano = require('gulp-cssnano');
+//const bourbon = require('bourbon').includePaths;
+//const neat = require('bourbon-neat').includePaths;
 
-  // Image modules.
-  imagemin = require('gulp-imagemin'),
+// Script modules.
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 
-  // Utilities
-  rename = require('gulp-rename'),
-//    plumber = require('gulp-plumber'),
-  notify = require('gulp-notify')
+// Image modules.
+const imagemin = require('gulp-imagemin');
 
-/** Utility Tasks */
+// Utility Modules
+const del = require('del');
+const beeper = require('beeper');
+const notify = require('gulp-notify');
+const plumber = require('gulp-plumber');
+const rename = require('gulp-rename');
+
+/** ---------- Utility Tasks ---------- */
 
 /**
- * Error handling.
- *
- * @function
+ * Handle errors and alert the user.
  */
-// function handleErrors() {
-//     var args = Array.prototype.slice.call(arguments);
-//
-//     notify.onError({
-//         title: 'Task Failed [<%= error.message %>',
-//         message: 'See Console',
-//         sound: 'Sosumi'
-//     }).apply(this.args);
-//
-//     gutil.beep();
-//
-//     // Prevent watch from stopping.
-//     this.emit('end');
-// }
+function handleErrors() {
+    const args = Array.prototype.slice.call(arguments);
+
+    notify.onError({
+        'title': 'Task Failed [<%= error.message %>',
+        'message': 'See console.',
+        'sound': 'Sosumi' // See: https://github.com/mikaelbr/node-notifier#all-notification-options-with-their-defaults
+    }).apply(this, args);
+
+    beeper(); // Beep
+
+    // Prevent the 'watch' task from stopping.
+    this.emit('end');
+}
 
 /** CSS Tasks */
 
-gulp.task('sass:postcss', function () {
+/**
+ * Minify and optimize CSS.
+ *
+ * https://www.npmjs.com/package/gulp-cssnano
+ */
+gulp.task('cssminify', ['postcss'], () =>
+    gulp.src([
+        'assets/css/**/*.css',
+        '!assets/css/**/*.min*'
+    ])
+        .pipe(plumber({'errorHandler': handleErrors}))
 
-  return gulp.src('assets/src/sass/**/*.scss')
+        .pipe(cssnano({
+            safe: true
+        }))
 
-    .pipe(sourcemaps.init())
+        .pipe(rename({suffix: '.min'}))
 
-    .pipe(sass({
-      //includePaths: [].concat( bourbon, neat ),
-      errLogToConsole: true,
-      outputStyle: 'expanded' // Options: nested, expanded, compact, compressed
-    }))
+        .pipe(gulp.dest('assets/css'))
+);
 
-    .pipe(postcss([
-      autoprefixer({
-        browsers: ['last 2 versions'],
-        cascade: false
-      }),
-      mqCSSpacker({
-        sort: true
-      })
-    ]))
+gulp.task('postcss', ['clean:styles'], () =>
+    gulp.src('assets/sass/**/*.scss')
+        .pipe(plumber({'errorHandler': handleErrors}))
 
-    .pipe(sourcemaps.write())
+        .pipe(sourcemaps.init())
 
-    .pipe(gulp.dest('assets/src/css'))
-})
+        .pipe(sass({
+            //includePaths: [].concat( bourbon, neat ),
+            errLogToConsole: true,
+            outputStyle: 'expanded' // Options: nested, expanded, compact, compressed
+        }))
 
+        .pipe(postcss([
+            autoprefixer({
+                browsers: [
+                    'last 2 version',
+                    '> 1%',
+                    'IE 10'
+                ],
+                cascade: false
+            }),
+            mqCSSpacker({
+                sort: true
+            })
+        ]))
+
+        .pipe(sourcemaps.write())
+
+        .pipe(gulp.dest('assets/css'))
+);
+
+/**
+ * Delete style.css and style.min.css before we minify and optimize.
+ *
+ * (If there are styles we don't want cleaned, put it in a subdir.)
+ */
+gulp.task('clean:styles', () =>
+    del(['assets/css/**/*.css'])
+);
+
+/**
+ * Clean up SASS.
+ */
 gulp.task('sass:lint', ['css:minify'], function () {
-  gulp.src([
-    'assets/src/sass/**/*.scss',
-    '!assets/src/sass/base/_normalize.scss'
-  ])
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
-})
+    gulp.src([
+        'assets/sass/**/*style.scss',
+        '!assets/sass/**/_normalize.scss'
+    ])
+        .pipe(sassLint())
 
-gulp.task('css:minify', ['sass:postcss'], function () {
-  return gulp.src('assets/src/css/**/*.css')
-    .pipe(cssnano({
-      safe: true
-    }))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest('assets/dist/css'))
-})
+        .pipe(sassLint.format())
 
-/** Script tasks */
+        .pipe(sassLint.failOnError());
+});
+
+/** ---------- Script tasks ---------- */
 gulp.task('uglify', ['concat'], function () {
-  return gulp.src('assets/src/js/*')
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(uglify({
-      mangle: false
-    }))
-    .pipe(gulp.dest('assets/dist/js'))
-})
+    return gulp.src([
+        'assets/js/*',
+        '!assets/js/*.min*'
+    ])
+        .pipe(plumber({'errorHandler': handleErrors}))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(babel({
+            'presets': [
+                ['env', {
+                    'targets': {
+                        'browsers': ['last 2 versions']
+                    }
+                }]
+            ]
+        }))
+        .pipe(uglify({
+            mangle: false
+        }))
+        .pipe(gulp.dest('assets/js'));
+});
 
 gulp.task('concat', function () {
-  return gulp.src('assets/src/js/concat/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(concat('project.js'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('assets/dist/js'))
-})
+    return gulp.src('assets/js/concat/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(concat('project.js'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('assets/js'));
+});
 
-/** Image Tasks */
+/** ---------- Image Tasks ---------- */
 gulp.task('imagemin', function () {
-  return gulp.src('assets/src/images/*')
-    .pipe(imagemin({
-      'optimizationLevel': 5,
-      'progressive': true,
-      'interlaced': true
-    }))
-    .pipe(gulp.dest('assets/dist/images'))
-})
+    return gulp.src('assets/images/*')
+        .pipe(imagemin({
+            'optimizationLevel': 5,
+            'progressive': true,
+            'interlaced': true
+        }))
+        .pipe(gulp.dest('assets/images'));
+});
 
 // Individual tasks.
-gulp.task('styles', ['sass:lint'])
-gulp.task('scripts', ['uglify'])
-gulp.task('images', ['imagemin'])
+gulp.task('styles', ['cssminify']);
+gulp.task('scripts', ['uglify']);
+gulp.task('images', ['imagemin']);
+gulp.task('lint', ['sass:lint']);
 
 // Builder.
-gulp.task('build', ['styles', 'scripts', 'images'])
+gulp.task('build', ['styles', 'scripts', 'images']);
 
-// Watcher.
-gulp.task('watch', ['build'], function () {
-  gulp.watch('assets/src/sass/**/*.scss', ['styles'])
-})
+/**
+ * Process tasks when changes happen (Watch).
+ */
+gulp.task('watch', function () {
+    gulp.watch('assets/sass/**/*.scss', ['styles']);
+    gulp.watch('assets/js/*.js', ['scripts']);
+    gulp.watch('assets/images/*', ['images']);
+});
+
+// Default Task
+gulp.task('default', ['build', 'watch']);
