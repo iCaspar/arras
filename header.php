@@ -24,7 +24,7 @@
 <?php arras_body(); ?>
 
 <?php if ( has_nav_menu( 'top-menu' ) ) : ?>
-	<div id="top-menu" class="secondary-nav">
+	<div class="secondary-nav-container secondary-nav">
 		<?php arras_above_top_menu(); ?>
 		<?php
 		wp_nav_menu( [
@@ -57,7 +57,7 @@
 
 <?php arras_above_nav(); ?>
 
-<div id="nav" class="primary-nav">
+<div class="primary-nav-container primary-nav">
 	<div id="main-nav-wrap" class="main-nav-wrap">
 		<?php
 		wp_nav_menu( [
