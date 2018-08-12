@@ -17,5 +17,5 @@ logs
 
 .AppleDB
 
-/assets/css/*.css
-/assets/js/*.min.js
+/assets/css/**/*.css
+/assets/js/**/*.min.js
