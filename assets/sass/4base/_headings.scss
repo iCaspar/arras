@@ -1,0 +1,38 @@
+// Headings
+// ------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family__alternate;
+  font-weight: $font-weight__bold;
+  line-height: 1.2;
+  margin: 0 0 15px;
+}
+
+h1 {
+  @include font-size(30);
+}
+
+h2 {
+  @include font-size(27);
+}
+
+h3 {
+  @include font-size(24);
+}
+
+h4 {
+  @include font-size(20);
+}
+
+h5 {
+  @include font-size(18);
+}
+
+h6 {
+  @include font-size(16);
+}

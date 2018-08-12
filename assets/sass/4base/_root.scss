@@ -1,0 +1,26 @@
+// Page root elements
+// ------------------------------
+
+html {
+  font-size: 100%; /* 16px browser default */
+}
+
+/* Chrome fix */
+body > div {
+  @include font-size(16);
+}
+
+body {
+  @include font-size(16);
+  background-color: $page-background-color__base;
+  color: $text-color__base;
+  font-family: $font-family__base;
+  font-weight: $font-weight__base;
+  line-height: 1.625;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 30px;
+  padding: 0;
+}

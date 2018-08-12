@@ -1,0 +1,53 @@
+// Markup elements
+// ------------------------------
+
+hr {
+  border: 0;
+  border-collapse: collapse;
+  border-top: 1px solid $border-color__base;
+  clear: both;
+  margin: 30px;
+}
+
+b,
+strong {
+  font-weight: $font-weight__bold;
+}
+
+blockquote,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 30px;
+
+  &::before {
+    @include font-size(30);
+    content: "\201C";
+    display: block;
+    height: 0;
+    left: -20px;
+    position: relative;
+    top: -10px;
+  }
+}
+
+mark {
+  background-color: $text-background-color__inverse;
+  color: $text-color__inverse;
+}
+
+code,
+pre {
+  background-color: $text-background-color__code;
+  font-family: $font-family__monospace;
+}
+
+pre {
+  max-width: 100%;
+  overflow: scroll;
+  padding: 5px;
+}

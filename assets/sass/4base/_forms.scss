@@ -1,0 +1,51 @@
+// Form elements
+// ------------------------------
+
+input,
+select,
+textarea {
+  @include font-size(18);
+  background-color: $page-background-color__base;
+  border: 1px solid $border-color__base;
+  color: $text-color__base;
+  font-weight: $font-weight__base;
+  padding: 15px;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid $border-color__focus;
+  outline: none;
+}
+
+input[type="checkbox"],
+input[type="image"],
+input[type="radio"] {
+  width: auto;
+}
+
+input[type="search"] {
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button {
+    display: none;
+  }
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  @include button;
+  @include all-transition;
+
+  &.small {
+    @include font-size(14);
+    padding: 8px 16px;
+  }
+}
+
+@include placeholder {
+  color: $text-color__inactive;
+  opacity: 1;
+}

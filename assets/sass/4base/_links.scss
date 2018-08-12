@@ -1,0 +1,26 @@
+// Links
+// ------------------------------
+
+a {
+  &:link {
+    @include color-transition;
+    color: $link-color__base;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $link-color__visited;
+  }
+
+  &:focus {
+    color: $link-color__focus;
+  }
+
+  &:hover {
+    color: $link_color__hover;
+  }
+
+  &:active {
+    color: $link-color__active;
+  }
+}

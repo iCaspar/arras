@@ -1,0 +1,37 @@
+// Semantic colors
+// ------------------------------
+
+// Backgrounds
+// ---------------
+$page-background-color__base: $white;
+$page-background-color__alternate: $light-gray;
+$text-background-color__code: $off-white;
+$text-background-color__inverse: $carbon;
+
+// Text
+// ---------------
+$text-color__base: $slate;
+$text-color__inactive: $medium-gray;
+$text-color__inverse: $off-white;
+
+// Links
+// ---------------
+$link-color__base: $standard-blue;
+$link-color__visited: $standard-purple;
+$link-color__hover: $brick;
+$link-color__active: brick;
+$link-color__focus: $brick;
+
+// Borders
+// ---------------
+$border-color__base: $medium-gray;
+$border-color__focus: $light-gray;
+
+// Buttons
+// ---------------
+$button-background-color__base: $standard-blue;
+$button-background-color__hover: $silver;
+$button-background-color__disabled: $light-gray;
+$button-text-color__base: $text-color__inverse;
+$button-text-color__hover: $text-color__base;
+$button-text-color__disabled: $dark-gray;
