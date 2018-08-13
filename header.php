@@ -79,4 +79,4 @@
 	<?php arras_above_main(); ?>
 
 	<div id="main" class="main">
-		<div id="container" class="primary-content-container">
+		<div id="container" class="content-container primary-content-container">

@@ -3,8 +3,9 @@
 
 // Backgrounds
 // ---------------
-$page-background-color__base: $white;
-$page-background-color__alternate: $light-gray;
+$page-background-color__base: $cloud;
+$page-background-color__secondary: $off-white;
+$content-background-color__base: $white;
 $text-background-color__code: $off-white;
 $text-background-color__inverse: $carbon;
 
@@ -24,7 +25,7 @@ $link-color__focus: $brick;
 
 // Borders
 // ---------------
-$border-color__base: $medium-gray;
+$border-color__base: $fade;
 $border-color__focus: $light-gray;
 
 // Buttons
