@@ -80,8 +80,6 @@ function arras_setup() {
 	remove_action( 'wp_head', 'pagenavi_css' );
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	add_action( 'wp_head', 'arras_head' );
-	add_action( 'wp_head', 'arras_add_header_js' );
-	add_action( 'wp_footer', 'arras_add_footer_js' );
 
 	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
 	add_filter( 'gallery_style', 'remove_gallery_css' );

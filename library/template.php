@@ -4,30 +4,6 @@ function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
 }
 
-function arras_add_header_js() {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		$('.sf-menu').superfish({autoArrows: true, speed: 'fast', dropShadows: 'true'});
-		<?php if ( is_single() ) : ?>
-			$( '#commentform' ).validate();
-		<?php endif ?>
-		<?php do_action( 'arras_custom_js-header' ) ?>
-	} );
-	</script>
-	<?php
-}
-
-function arras_add_footer_js() {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		<?php do_action( 'arras_custom_js-footer' ) ?>
-	} );
-	</script>
-	<?php	
-}
-
 /**
  * Based on Thematic's thematic_tag_query()
  */
