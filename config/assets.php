@@ -5,60 +5,67 @@
 
 return [
 	'styles' => [
-		'arras'                    => [
-			'nicename' => 'Arras Base',
+		'arras-nova'               => [
+			'nicename' => __( 'Arras Nova', 'arras' ),
 			'filename' => 'style',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/default'     => [
+		'arras'                    => [
+			'nicename' => __( 'Arras 1.x', 'arras' ),
 			'filename' => 'legacy/default',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/blue'        => [
+		'blue'        => [
+			'nicename' => __( 'Legacy Blue', 'arras' ),
 			'filename' => 'legacy/blue',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/green'       => [
+		'green'       => [
+			'nicename' => __( 'Legacy Green', 'arras' ),
 			'filename' => 'legacy/green',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/orange'      => [
+		'orange'      => [
+			'nicename' => __( 'Legacy Orange', 'arras' ),
 			'filename' => 'legacy/orange',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/red'         => [
+		'red'         => [
+			'nicename' => __( 'Legacy Red', 'arras' ),
 			'filename' => 'legacy/red',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/violet'      => [
+		'violet'      => [
+			'nicename' => __( 'Legacy Violet', 'arras' ),
 			'filename' => 'legacy/violet',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/legacy'      => [
+		'legacy'      => [
+			'nicename' => __( 'Legacy', 'arras' ),
 			'filename' => 'legacy/legacy',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy/rtl'         => [
+		'rtl'         => [
 			'filename' => 'legacy/rtl',
 			'version'  => ARRAS_VERSION,
 		],
-		'arras-legacy/admin'       => [
+		'admin'       => [
 			'filename' => 'legacy/admin',
 			'version'  => ARRAS_VERSION,
 		],
-		'arras-legacy/admin-rtl'   => [
+		'admin-rtl'   => [
 			'filename' => 'legacy/admin-rtl',
 			'version'  => ARRAS_VERSION,
 		],
-		'jquery-legacy/smoothness' => [
+		'smoothness' => [
 			'filename' => 'legacy/jquery-ui-1.8.2.custom',
 			'version'  => ARRAS_VERSION,
 		],
