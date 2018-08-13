@@ -56,6 +56,7 @@ class AssetService {
 	public function init() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueStyles' ], 15 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminStyles' ], 15 );
 	}
@@ -112,6 +113,23 @@ class AssetService {
 		}
 
 		do_action( 'arras_load_styles' );
+	}
+
+	public function enqueue_scripts() {
+		wp_enqueue_script(
+			'superfish',
+			$this->getAssetUrl( 'superfish', 'js' ),
+			['jquery'],
+			false,
+			true
+			);
+		wp_enqueue_script(
+			'arras-superfish',
+			$this->getAssetUrl( 'superfish-config', 'js' ),
+			['superfish'],
+		ARRAS_VERSION,
+		true
+		);
 	}
 
 	/**
