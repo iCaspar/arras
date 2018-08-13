@@ -181,7 +181,7 @@ class AssetService {
 	 * @return void
 	 */
 	protected function maybe_add_inline_styles( $css ) {
-		if ( 'arras' == $this->getCurrentStyleHandle() ) {
+		if ( 'arras-nova' == $this->getCurrentStyleHandle() ) {
 			return;
 		}
 
