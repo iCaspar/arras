@@ -84,13 +84,13 @@ class AssetService {
 				isset( $args['deps'] ) ? $args['deps'] : [],
 				isset( $args['version'] ) ? $args['version'] : '',
 				isset( $args['media'] ) ? $args['media'] : 'all'
-			) ? $src : '';
+			) ? [$handle => $src] : '';
 
 			if ( $this->isSelectableScheme( $args ) ) {
 				$scheme_name                             = isset ( $args['nicename'] )
 					? $args['nicename']
 					: ucfirst( $args['filename'] );
-				$this->styleSchemes[ $args['filename'] ] = $scheme_name;
+				$this->styleSchemes[ $handle ] = $scheme_name;
 			}
 		}
 
@@ -136,13 +136,13 @@ class AssetService {
 	 * @return string
 	 */
 	public function getCurrentStyleHandle() {
-		$style = '-' . arras_get_option( 'style' );
+		$style = arras_get_option( 'style' );
 
-		if ( ! isset( $style ) || '-style' == $style ) {
+		if ( ! isset( $style ) ) {
 			$style = '';
 		}
 
-		return 'arras' . $style;
+		return $style;
 	}
 
 	/**
