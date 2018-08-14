@@ -7,6 +7,8 @@
  * @since 1.0.0
  */
 
+use Arras\Components\Footer;
+
 ?>
 
 </div>
@@ -14,21 +16,7 @@
 
 <div id="footer" class="site-footer">
 	<div class="footer-sidebar-container">
-		<?php
-		$arras_footer_sidebars = arras_get_option( 'footer_sidebars' );
-
-		if ( ! $arras_footer_sidebars ) {
-			$arras_footer_sidebars = 1;
-		}
-
-		for ( $arras_footer_sidebar_count = 1; $arras_footer_sidebar_count < $arras_footer_sidebars + 1; $arras_footer_sidebar_count ++ ) :
-			?>
-			<ul id="footer-sidebar-<?php echo esc_attr( $arras_footer_sidebar_count ); ?>" class="footer-sidebar clearfix xoxo">
-				<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'Footer Sidebar #' . $arras_footer_sidebar_count ) ) : ?>
-					<li></li>
-				<?php endif; ?>
-			</ul>
-		<?php endfor; ?>
+		<?php Footer::do_footer_widgets(); ?>
 	</div>
 
 	<div class="footer-message">
