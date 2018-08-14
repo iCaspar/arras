@@ -5,6 +5,7 @@
   background-color: $header-background-color__base;
   border-bottom: 5px solid $border-color__dark;
   padding: 15px 0;
+  text-align: center;
 
   .site-banner {
     @include inner-wrap;
