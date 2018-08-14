@@ -1,10 +1,10 @@
-// Main Content
+// Footer
 // ---------------
 
-.main {
+.site-footer {
   @include inner-wrap;
   background-color: $page-background-color__secondary;
   border: 1px solid $border-color__base;
-  margin: 0 auto;
-  padding: 10px;
+  margin: 20px auto 0;
+  padding-bottom: 10px;
 }

@@ -97,6 +97,12 @@
   }
 }
 
+// Inner wrap for page containers.
+@mixin inner-wrap {
+  max-width: 1280px;
+  width: 96%;
+}
+
 // Clearfix
 @mixin clearfix {
   &:before,
