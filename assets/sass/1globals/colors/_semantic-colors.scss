@@ -5,7 +5,13 @@
 // ---------------
 $page-background-color__base: $cloud;
 $page-background-color__secondary: $off-white;
+
+$before-header-background-color__base: $off-black;
+$header-background-color__base: $deep-red;
+$after-header_background-color__base: $light-rust;
+
 $content-background-color__base: $white;
+
 $text-background-color__code: $off-white;
 $text-background-color__inverse: $carbon;
 
@@ -14,6 +20,8 @@ $text-background-color__inverse: $carbon;
 $text-color__base: $slate;
 $text-color__inactive: $medium-gray;
 $text-color__inverse: $off-white;
+$text-color__bright: $white;
+$text-color__muted: $light-brown;
 
 // Links
 // ---------------

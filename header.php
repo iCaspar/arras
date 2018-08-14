@@ -24,7 +24,7 @@
 <?php arras_body(); ?>
 
 <?php if ( has_nav_menu( 'top-menu' ) ) : ?>
-	<div class="secondary-nav-container secondary-nav">
+	<div class="before-header secondary-nav-container secondary-nav">
 		<?php arras_above_top_menu(); ?>
 		<?php
 		wp_nav_menu( [
@@ -44,20 +44,19 @@
 		<div class="logo">
 			<?php the_custom_logo(); ?>
 			<?php if ( is_home() || is_front_page() ) : ?>
-				<h1 class="blog-name"><a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-				<h2 class="blog-description"><?php bloginfo( 'description' ); ?></h2>
+				<h1 class="site-name blog-name"><a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+				<h2 class="site-description blog-description"><?php bloginfo( 'description' ); ?></h2>
 			<?php else : ?>
-				<span class="blog-name"><a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></span>
-				<span class="blog-description"><?php bloginfo( 'description' ); ?></span>
+				<p class="site-name blog-name"><a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+				<p class="site-description blog-description"><?php bloginfo( 'description' ); ?></p>
 			<?php endif ?>
 		</div>
-		<div id="searchbar"><?php get_search_form(); ?></div>
 	</div>
 </div>
 
 <?php arras_above_nav(); ?>
 
-<div class="primary-nav-container primary-nav">
+<div class="after-header primary-nav-container primary-nav">
 	<div id="main-nav-wrap" class="main-nav-wrap">
 		<?php
 		wp_nav_menu( [

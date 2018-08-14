@@ -1,0 +1,30 @@
+// Page Header
+// ---------------
+
+.page-header {
+  background-color: $header-background-color__base;
+  padding: 15px 0;
+
+  .site-banner {
+    @include inner-wrap;
+  }
+}
+
+.site-name {
+  @include font-size(26);
+  color: $text-color__bright;
+  margin: 5px 0;
+  font-variant: small-caps;
+
+  a {
+    color: $text-color__bright;
+    text-decoration: none;
+  }
+}
+
+.site-description {
+  @include font-size(14);
+  color: $text-color__muted;
+  margin: 5px 0;
+  text-transform: uppercase;
+}

@@ -13,11 +13,12 @@ $medium-gray: #7f7f7f;
 $carbon: #666;
 $dark-gray: #4c4c4c;
 $slate: #323232;
-$off-black: #191919;
+$off-black: #111;
 $black: #000;
 
 // Reds
 // ---------------
+$deep-red: #1e1b1a;
 $brick: #ee2c2c;
 
 // Blues
@@ -34,6 +35,13 @@ $standard-blue: #00e;
 // ---------------
 $standard-purple: #551a8b;
 
+// Browns
+// ---------------
+$light-brown: #7d716d;
+$rust: #383331;
+$dark-rust: #313428;
+$light-rust: #322e2c;
+
 // Transparencies
 // ---------------
 $shadow: rgba(0,0,0,.6);
@@ -42,8 +50,6 @@ $shadow-light: rgba(0, 0, 0, 0.05);
 // From Legacy Default Palette
 //Grayscales
 
-$black: #000;
-$off-black: #111;
 $dark-slate: #333;
 $slate: #444;
 $dark-gray: #666;
@@ -53,16 +59,10 @@ $silver: #ccc;
 $light-silver: #ddd;
 $shade: #eaeaea;
 $wisp: #efefef;
-$white: #fff;
 
-$near-black: #1e1b1a;
-$dark-rust: #383331;
-$darker-rust: #313428;
-$lighter-rust: #322e2c;
 $dust: #474331;
-$off-gray: #7d716d;
 $fade: #d3d1c7;
 
 $red: #f00;
-$deep-red: #c00;
+$muted-red: #c00;
 $bluesy-red: #d8000c;

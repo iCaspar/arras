@@ -1,0 +1,10 @@
+// Before Header
+// ---------------
+
+.before-header {
+  background-color: $before-header-background-color__base;
+
+  nav {
+    @include inner-wrap;
+  }
+}

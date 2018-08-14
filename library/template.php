@@ -367,33 +367,33 @@ function arras_add_sidebars() {
 	register_sidebar( array(
 		'name'          => 'Primary Sidebar',
 		'id'            => 'primary',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
 		'name'          => 'Secondary Sidebar',
 		'id'            => 'secondary',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
 		'name'          => 'Bottom Content #1',
 		'id'            => 'bottom-1',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
 		'name'          => 'Bottom Content #2',
 		'id'            => 'bottom-2',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 
@@ -406,9 +406,9 @@ function arras_add_sidebars() {
 		register_sidebar( array(
 			'name'          => 'Footer Sidebar #' . $i,
 			'id'            => 'footer-' . $i,
-			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-			'after_widget'  => '</li>',
-			'before_title'  => '<h5 class="widgettitle">',
+			'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h5 class="widget-title widgettitle">',
 			'after_title'   => '</h5>'
 		) );
 	}
