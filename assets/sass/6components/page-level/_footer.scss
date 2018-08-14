@@ -7,4 +7,18 @@
   border: 1px solid $border-color__base;
   margin: 20px auto 0;
   padding-bottom: 10px;
+
+  .footer-sidebar-container {
+    border-bottom: 1px solid $border-color__base;
+    margin: 10px;
+  }
+
+  .footer-message {
+    @include font-size(12);
+    padding: 10px 15px 0;
+
+    p {
+      margin: 0;
+    }
+  }
 }
