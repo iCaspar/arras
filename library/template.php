@@ -292,9 +292,7 @@ function arras_posted_on( $echo = 1 ) {
 
 function arras_social_nav() {
 ?>
-	<ul class="quick-nav clearfix">
-		<li><a class="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
-		
+	<ul class="quick-icons quick-nav clearfix">
 		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>
 		<?php if ($facebook_profile != '') : ?>
 			<li><a class="facebook" title="<?php printf( __( '%s Facebook', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $facebook_profile ?>" target="_blank"><?php _e('Facebook', 'arras') ?></a></li>

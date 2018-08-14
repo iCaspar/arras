@@ -1,0 +1,25 @@
+// Primary Navigation
+// ---------------
+
+.primary-nav-menu {
+  padding: 10px;
+
+  .menu-item {
+    @include font-size(18);
+    text-align: center;
+
+    a {
+      color: $text-color__inverse;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $text-color__bright;
+      }
+    }
+  }
+
+  .menu-item-has-children > a::after {
+    content: ' *';
+  }
+}

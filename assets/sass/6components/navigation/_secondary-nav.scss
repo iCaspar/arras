@@ -1,0 +1,22 @@
+// Secondary (above header) Navigation
+// ---------------
+
+.secondary-nav-menu {
+  padding: 10px;
+
+  .menu-item {
+    @include font-size(14);
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+      color: $text-color__inverse;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $text-color__bright;
+      }
+    }
+  }
+}

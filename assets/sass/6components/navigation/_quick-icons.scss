@@ -1,0 +1,49 @@
+// Quick Icons Navigation
+// ---------------
+
+.quick-icons {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+  li {
+    @include font-size(14);
+    margin: 5px;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 6px;
+      color: $text-color__inverse;
+      display: block;
+      height: 36px;
+      text-decoration: none;
+      text-indent: -9999px;
+      width: 36px;
+
+      &:hover,
+      &:focus {
+        color: $text-color__bright;
+      }
+    }
+  }
+
+  .facebook {
+    background-image: url(../images/social/facebook.png);
+  }
+
+  .flickr {
+    background-image: url(../images/social/flickr.png);
+  }
+
+  .twitter {
+    background-image: url(../images/social/twitter.png);
+  }
+
+  .youtube {
+    background-image: url(../images/social/youtube.png);
+  }
+}

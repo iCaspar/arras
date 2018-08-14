@@ -3,6 +3,7 @@
 
 .before-header {
   background-color: $before-header-background-color__base;
+  border-bottom: 1px solid $border-color__dark;
 
   nav {
     @include inner-wrap;

@@ -29,8 +29,9 @@
 		<?php
 		wp_nav_menu( [
 			'sort_column'    => 'menu_order',
-			'menu_class'     => 'sf-menu menu clearfix',
+			'menu_class'     => 'secondary-nav-menu sf-menu menu clearfix',
 			'theme_location' => 'top-menu',
+			'depth'          => 1,
 			'container'      => 'nav',
 			'fallback_cb'    => false,
 		] );
@@ -44,10 +45,12 @@
 		<div class="logo">
 			<?php the_custom_logo(); ?>
 			<?php if ( is_home() || is_front_page() ) : ?>
-				<h1 class="site-name blog-name"><a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="site-name blog-name"><a
+						href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 class="site-description blog-description"><?php bloginfo( 'description' ); ?></h2>
 			<?php else : ?>
-				<p class="site-name blog-name"><a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+				<p class="site-name blog-name"><a
+						href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 				<p class="site-description blog-description"><?php bloginfo( 'description' ); ?></p>
 			<?php endif ?>
 		</div>
@@ -61,11 +64,12 @@
 		<?php
 		wp_nav_menu( [
 			'sort_column'    => 'menu_order',
-			'menu_class'     => 'sf-menu menu clearfix',
+			'menu_class'     => 'primary-nav-menu sf-menu menu clearfix',
 			'theme_location' => 'main-menu',
 			'container'      => 'nav',
 			'fallback_cb'    => 'arras_nav_fallback_cb',
 		] );
+
 		arras_beside_nav();
 		?>
 	</div>
