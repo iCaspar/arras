@@ -5,9 +5,9 @@
 
 namespace Arras;
 
-
 /**
  * Class AssetService
+ *
  * @package Arras
  */
 class AssetService {
@@ -40,9 +40,9 @@ class AssetService {
 	/**
 	 * AssetService constructor.
 	 *
-	 * @param array $config
+	 * @param array  $config
 	 * @param string $baseUrl
-	 * @param bool $isDevEnv
+	 * @param bool   $isDevEnv
 	 */
 	public function __construct( array $config, $baseUrl, $isDevEnv = false ) {
 		$this->config   = $config;
@@ -73,7 +73,7 @@ class AssetService {
 		$result = [];
 
 		foreach ( $this->config['styles'] as $handle => $args ) {
-			if ( ! isset ( $args['filename'] ) ) {
+			if ( ! isset( $args['filename'] ) ) {
 				continue;
 			}
 
@@ -84,10 +84,10 @@ class AssetService {
 				isset( $args['deps'] ) ? $args['deps'] : [],
 				isset( $args['version'] ) ? $args['version'] : '',
 				isset( $args['media'] ) ? $args['media'] : 'all'
-			) ? [$handle => $src] : '';
+			) ? [ $handle => $src ] : '';
 
 			if ( $this->isSelectableScheme( $args ) ) {
-				$scheme_name                             = isset ( $args['nicename'] )
+				$scheme_name                   = isset( $args['nicename'] )
 					? $args['nicename']
 					: ucfirst( $args['filename'] );
 				$this->styleSchemes[ $handle ] = $scheme_name;
@@ -116,19 +116,20 @@ class AssetService {
 	}
 
 	public function enqueue_scripts() {
+		wp_enqueue_script( 'hoverIntent' );
 		wp_enqueue_script(
 			'superfish',
 			$this->getAssetUrl( 'superfish', 'js' ),
-			['jquery'],
-			false,
+			[ 'jquery' ],
+			'1.7.10',
 			true
-			);
+		);
 		wp_enqueue_script(
 			'arras-superfish',
 			$this->getAssetUrl( 'superfish-config', 'js' ),
-			['superfish'],
-		ARRAS_VERSION,
-		true
+			[ 'superfish' ],
+			ARRAS_VERSION,
+			true
 		);
 	}
 
