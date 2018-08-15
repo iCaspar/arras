@@ -14,6 +14,7 @@
 
 .site-name {
   @include font-size(26);
+  @include title-font;
   color: $text-color__bright;
   margin: 5px 0;
   font-variant: small-caps;
@@ -25,6 +26,7 @@
 }
 
 .site-description {
+  @include title-font;
   @include font-size(14);
   color: $text-color__muted;
   margin: 5px 0;
