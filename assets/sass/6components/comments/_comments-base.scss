@@ -1,0 +1,18 @@
+// Comments Base
+// ---------------
+
+.comments {
+  background-color: $content-background-color__base;
+  border: 1px solid $border-color__base;
+  margin: 20px 0;
+  padding: 10px;
+
+  .comments-title {
+    @include font-size(18);
+    @include title-font;
+    background-color: $page-background-color__base;
+    border-bottom: 1px solid $border-color__base;
+    margin: -10px -10px 10px;
+    padding: 5px 10px;
+  }
+}

@@ -48,6 +48,7 @@ if ( have_posts() ) {
 
 		<?php
 		comments_template( '', true );
+
 		arras_below_comments();
 	}
 } else {
