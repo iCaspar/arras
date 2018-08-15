@@ -1,4 +1,3 @@
-    jQuery(document).ready( function($) {
-        $('.sf-menu').superfish({
-        });
-    } );
+jQuery(document).ready(function ($) {
+    $('.sf-menu').superfish();
+});
