@@ -186,11 +186,11 @@ function arras_list_comments($comment, $args, $depth) {
 }
 
 function arras_post_class() {
-	return post_class( apply_filters('arras_post_class', array( 'entry', 'clearfix' ) ) );
+	post_class( apply_filters('arras_post_class', array( 'entry', 'clearfix' ) ) );
 }
 
 function arras_single_post_class() {
-	return post_class( apply_filters('arras_single_post_class', array('clearfix', 'single-post')) );
+	post_class( apply_filters('arras_single_post_class', array( 'singular', 'clearfix', 'single-post')) );
 }
 
 function arras_parse_single_custom_fields() {
