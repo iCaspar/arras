@@ -109,8 +109,6 @@ gulp.task('postcss', ['clean:styles'], () =>
 
 /**
  * Delete style.css and style.min.css before we minify and optimize.
- *
- * (If there are styles we don't want cleaned, put it in a subdir.)
  */
 gulp.task('clean:styles', () =>
     del(['assets/css/**/*.css'])

@@ -1,0 +1,134 @@
+// SASS Mixins
+// ------------------------------
+
+
+// Typography
+// ---------------
+
+// Font sizing
+// @param {int} $size - Font size in pixels.
+@mixin font-size( $size: 16 ) {
+  font-size: ($size) + px;
+  font-size: ($size / 16) * 1rem;
+}
+
+// Font settings for titles.
+@mixin title-font {
+  font-family: $font-family__base;
+  font-weight: $font-weight__bold;
+}
+
+// Screen-reader text
+@mixin screen-reader {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+
+  &:focus {
+    @include font-size(16);
+    background: #fff;
+    box-shadow: 0 0 2px 2px $shadow;
+    clip: auto !important;
+    color: #333;
+    display: block;
+    font-weight: $font-weight__bold;
+    height: auto;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    width: auto;
+    z-index: 100000; /* Above WP toolbar. */
+  }
+}
+
+// Form placeholder text
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content
+  }
+  :-moz-placeholder {
+    @content
+  }
+  ::-moz-placeholder {
+    @content
+  }
+  :-ms-input-placeholder {
+    @content
+  }
+}
+
+// Buttons
+@mixin button {
+  @include font-size(16);
+  background-color: $button-background-color__base;
+  border: 0;
+  color: $button-text-color__base;
+  cursor: pointer;
+  font-weight: $font-weight__bold;
+  padding: 15px 30px;
+  text-decoration: none;
+  white-space: normal;
+  width: auto;
+
+  &:focus,
+  &:hover {
+    background-color: $button-background-color__hover;
+    color: $button-text-color__hover;
+  }
+
+  &:disabled {
+    background-color: $button-background-color__disabled;
+    color: $button-text-color__disabled;
+    cursor: not-allowed;
+  }
+}
+
+// Layout
+// ---------------
+
+// Manage responsive breakpoints.
+// @param {string} $breakpoint - Breakpoint name.
+// @require $breakpoints
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "No such breakpoint value, `#{$breakpoint}`."
+    + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+// Inner wrap for page containers.
+@mixin inner-wrap {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 96%;
+}
+
+// Clearfix
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// Animation and Transitions
+// ---------------
+@mixin color-transition {
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+@mixin all-transition {
+  transition: all 0.2s ease-in-out;
+}

@@ -101,6 +101,7 @@ class AssetService {
 	 * @return void
 	 */
 	public function enqueueStyles() {
+		wp_enqueue_style( 'dashicons' );
 		$handle = $this->getCurrentStyleHandle();
 		wp_enqueue_style( $handle );
 
