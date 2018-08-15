@@ -10,58 +10,64 @@ function remove_gallery_css() {
  */
 function arras_postheader() {
 	global $post, $id;
-	
+
 	$postheader = '';
-	
+
 	if ( is_singular() ) {
-	
+
 		if ( is_attachment() ) {
-			$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink($post->post_parent) . '" rev="attachment">' . get_the_title($post->post_parent) . '</a>]</h1>';
+			$postheader .= '<h1 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rev="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h1>';
 		} else {
 			$postheader .= '<h1 class="entry-title">' . get_the_title() . '</h1>';
 		}
-		
+
 	} else {
 
 		if ( is_attachment() ) {
-			$postheader .= '<h2 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink($post->post_parent) . '" rev="attachment">' . get_the_title($post->post_parent) . '</a>]</h2>';
+			$postheader .= '<h2 class="entry-title">' . get_the_title() . ' [<a href="' . get_permalink( $post->post_parent ) . '" rev="attachment">' . get_the_title( $post->post_parent ) . '</a>]</h2>';
 		} else {
-			if (!is_page()) $postheader .= '<a class="entry-comments" href="' . get_comments_link() . '">' . get_comments_number() . '</a>';
+			if ( ! is_page() ) {
+				$postheader .= '<a class="entry-comments" href="' . get_comments_link() . '">' . get_comments_number() . '</a>';
+			}
 			$postheader .= '<h2 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a></h2>';
 		}
 	}
-	
-	if ( !is_page() ) {
-		$postheader .= '<div class="entry-info">';
-	
-		if ( arras_get_option('post_author') ) {
-			$postheader .= sprintf( __('<div class="entry-author">By %s</div>', 'arras'), '<address class="author vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta('ID') ) . '" rel="author" title="' . esc_attr(get_the_author()) . '">' . get_the_author() . '</a></address>' );
+
+	if ( ! is_page() ) {
+		$postheader .= '<div class="entry-meta entry-info"><p>';
+
+		if ( arras_get_option( 'post_author' ) ) {
+			$postheader .= sprintf( __( 'By <span class="entry-author">%s</span>', 'arras' ), '<a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" rel="author" title="' . esc_attr( get_the_author() ) . '">' . get_the_author() . '</a>' );
 		}
-		
-		if ( arras_get_option('post_date') ) {
-			$postheader .= ' &ndash; <abbr class="published" title="' . get_the_time('c') . '">' . sprintf( __('Posted %s', 'arras'), arras_posted_on( false ) ) . '</abbr>';
+
+		if ( arras_get_option( 'post_date' ) ) {
+			$postheader .= ' &ndash; <span class="post-date published" title="' . get_the_time( 'c' ) . '">' . sprintf( __( 'Posted %s', 'arras' ), arras_posted_on( false ) ) . '</span>';
 		}
-		
-		if (current_user_can('edit_posts')) {
-			$postheader .= '<a class="post-edit-link" href="' . get_edit_post_link($id) . '" title="' . __('Edit Post', 'arras') . '">' . __('(Edit Post)', 'arras') . '</a>';
+
+		if ( current_user_can( 'edit_posts' ) ) {
+			$postheader .= ' <a class="post-edit-link" href="' . get_edit_post_link( $id ) . '" title="' . __( 'Edit Post', 'arras' ) . '">' . __( '(Edit Post)', 'arras' ) . '</a>';
 		}
-		
-		if ( !is_attachment() && arras_get_option('post_cats') ) {
+
+		$postheader .= '</p>';
+
+		if ( ! is_attachment() && arras_get_option( 'post_cats' ) ) {
 			$post_cats = array();
-			$cats = get_the_category();
-			foreach ($cats as $c) $post_cats[] = '<a href="' . get_category_link($c->cat_ID) . '">' . $c->cat_name . '</a>';
-			
-			$postheader .= sprintf( __('<span class="entry-cat"><strong>Posted in: </strong>%s</span>', 'arras'), implode(', ', $post_cats) );
+			$cats      = get_the_category();
+			foreach ( $cats as $c ) {
+				$post_cats[] = '<a href="' . get_category_link( $c->cat_ID ) . '">' . $c->cat_name . '</a>';
+			}
+
+			$postheader .= sprintf( __( '<p class="entry-cat">Posted in: %s</p>', 'arras' ), implode( ', ', $post_cats ) );
 		}
-		
+
 		$postheader .= '</div>';
 	}
-	
-	if ( arras_get_option('single_thumbs') && has_post_thumbnail($post->ID) ) {
-		$postheader .= '<div class="entry-photo">' . arras_get_thumbnail('single-thumb') . '</div>';
+
+	if ( arras_get_option( 'single_thumbs' ) && has_post_thumbnail( $post->ID ) ) {
+		$postheader .= '<div class="entry-photo">' . arras_get_thumbnail( 'single-thumb' ) . '</div>';
 	}
 
-	echo apply_filters('arras_postheader', $postheader);
+	echo ( apply_filters( 'arras_postheader', $postheader ) );
 }
 
 /**
@@ -131,7 +137,7 @@ function arras_postfooter() {
 	$postfooter = '';
 	
 	if ( arras_get_option('post_tags') && !is_attachment() && is_array(get_the_tags()) )
-			$postfooter .= '<div class="tags"><strong>' . __('Tags:', 'arras') . '</strong>' . get_the_tag_list(' ', ', ', ' ') . '</div>';
+			$postfooter .= '<div class="entry-footer tags">' . __('Tags: ', 'arras') . get_the_tag_list('<span class="tag-list">', ', ', '<span>') . '</div>';
 
 	echo apply_filters('arras_postfooter', $postfooter);
 }
@@ -169,10 +175,10 @@ function arras_post_aboutauthor() {
 	$id = get_the_author_meta('ID');
 	
 	$output = '
-		<div class="about-author clearfix">
+		<div class="author-box about-author clearfix">
 			<a href="' . get_author_posts_url($id) . '">' . get_avatar($id, 64) . '</a>
 			<div class="author-meta">
-				<h4>' . sprintf(__('About %s', 'arras'),  get_the_author_meta('display_name')) . '</h4>
+				<h4 class="author-title">' . sprintf(__('About %s', 'arras'),  get_the_author_meta('display_name')) . '</h4>
 			' . get_the_author_meta('description') . '
 			</div>
 		</div>

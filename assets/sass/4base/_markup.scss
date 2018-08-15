@@ -22,17 +22,10 @@ i {
 }
 
 blockquote {
-  margin: 30px;
-
-  &::before {
-    @include font-size(30);
-    content: "\201C";
-    display: block;
-    height: 0;
-    left: -20px;
-    position: relative;
-    top: -10px;
-  }
+  border-left: 2px solid $border-color__base;
+  color: $text-color__alternate;
+  margin: 15px;
+  padding: 5px 15px 2px;
 }
 
 mark {
@@ -42,12 +35,25 @@ mark {
 
 code,
 pre {
-  background-color: $text-background-color__code;
   font-family: $font-family__monospace;
+}
+
+code {
+  background-color: $text-background-color__code;
 }
 
 pre {
   max-width: 100%;
   overflow: scroll;
   padding: 5px;
+
+  code {
+    background-color: $text-background-color__inverse;
+    color: $text-color__inverse;
+    display: block;
+    margin: -5px;
+    padding: 10px;
+    overflow: scroll;
+  }
 }
+

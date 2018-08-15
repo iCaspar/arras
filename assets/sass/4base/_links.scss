@@ -5,7 +5,7 @@ a {
   &:link {
     @include color-transition;
     color: $link-color__base;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   &:visited {
