@@ -42,9 +42,9 @@ $border-color__dark: $slate;
 
 // Buttons
 // ---------------
-$button-background-color__base: $standard-blue;
-$button-background-color__hover: $silver;
+$button-background-color__base: $white;
+$button-background-color__hover: $link-color__base;
 $button-background-color__disabled: $light-gray;
-$button-text-color__base: $text-color__inverse;
-$button-text-color__hover: $text-color__base;
+$button-text-color__base: $link-color__base;
+$button-text-color__hover: $text-color__inverse;
 $button-text-color__disabled: $dark-gray;

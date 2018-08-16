@@ -64,11 +64,12 @@
 @mixin button {
   @include font-size(16);
   background-color: $button-background-color__base;
-  border: 0;
+  border: 1px solid $border-color__base;
+  border-radius: 5px;
   color: $button-text-color__base;
   cursor: pointer;
   font-weight: $font-weight__bold;
-  padding: 15px 30px;
+  padding: 5px 10px;
   text-decoration: none;
   white-space: normal;
   width: auto;

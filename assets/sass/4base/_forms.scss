@@ -4,12 +4,12 @@
 input,
 select,
 textarea {
-  @include font-size(18);
+  @include font-size(16);
   background-color: $page-background-color__base;
   border: 1px solid $border-color__base;
   color: $text-color__base;
   font-weight: $font-weight__base;
-  padding: 15px;
+  padding: 5px;
   width: 100%;
 }
 
@@ -41,11 +41,15 @@ input[type="submit"] {
 
   &.small {
     @include font-size(14);
-    padding: 8px 16px;
+    padding: 3px 7px;
   }
 }
 
 @include placeholder {
   color: $text-color__inactive;
   opacity: 1;
+}
+
+label {
+
 }
