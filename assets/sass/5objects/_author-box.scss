@@ -15,11 +15,4 @@
     margin-right: 10px;
     padding: 2px;
   }
-
-  .author-meta {
-    .author-title {
-      @include font-size(18);
-      margin-bottom: 5px;
-    }
-  }
 }

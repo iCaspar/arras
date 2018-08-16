@@ -1,0 +1,98 @@
+// Comments
+// ---------------
+
+.comments {
+  background-color: $page-background-color__base;
+  border: 1px solid $border-color__base;
+  margin: 20px 0;
+  padding: 10px;
+
+  .comments-title {
+    @include font-size(18);
+    @include title-font;
+    background-color: $page-background-color__secondary;
+    border-bottom: 1px solid $border-color__base;
+    margin: -10px -10px 10px;
+    padding: 5px 10px;
+  }
+}
+
+.comment {
+  .comment-list {
+    @include clearfix;
+  }
+
+  .comment-node {
+    border: 1px solid $border-color__base;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .children {
+    margin-left: 20px;
+  }
+
+  .comment-reply-link {
+    @include button;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .author-box {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .comment-author-name {
+    @include title-font;
+    @include font-size(16);
+    font-style: normal;
+    font-weight: $font-weight__bold;
+  }
+
+  .comment-meta {
+    @include clearfix;
+    @include font-size(14);
+    border-bottom: 1px dotted $border-color__base;
+    color: $text-color__inactive;
+    font-variant: small-caps;
+    line-height: 1.2;
+    margin: 5px 0;
+    padding-bottom: 5px;
+  }
+
+  .comment-content {
+    @include font-size(14);
+    @include standard-lists;
+  }
+}
+
+.even {
+  & > .comment-node {
+    background-color: $content-background-color__base;
+  }
+}
+
+.odd {
+  & > .comment-node {
+    background-color: $page-background-color__secondary;
+  }
+}
+
+.bypostauthor {
+  & > .comment-node {
+    background-color: $text-background-color__inverse;
+    color: $text-color__inverse-alternate;
+
+    a:not(.comment-reply-link) {
+      color: $text-color__bright;
+
+      &:hover,
+      &:focus {
+        color: $link-color__hover-inverse;
+      }
+    }
+  }
+}

@@ -657,6 +657,7 @@ label.error {
   background: $cloud;
   border: solid $silver;
   border-width: 0 1px 1px;
+  display: block;
   padding: 0 10px 10px;
 
   .current {

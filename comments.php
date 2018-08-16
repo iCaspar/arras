@@ -19,18 +19,18 @@ $comments_by_type = separate_comments( $comments ); ?>
 	<?php if ( have_comments() ) : ?>
 		<?php if ( ! empty( $comments_by_type['comment'] ) ) : ?>
 			<h4 class="comments-title module-title"><?php comments_number( __( 'No Comments', 'arras' ), __( '1 Comment', 'arras' ), _n( '% Comment', '% Comments', get_comments_number(), 'arras' ) ); ?></h4>
-			<ol id="commentlist" class="clearfix">
+			<ul id="commentlist" class="comment-list clearfix">
 				<?php wp_list_comments( 'type=comment&callback=arras_list_comments' ); ?>
-			</ol>
+			</ul>
 		<?php endif; ?>
 
 		<div class="comments-navigation clearfix">
-			<?php paginate_comments_links() ?>
+			<?php echo str_replace( '\\n', '', paginate_comments_links( [ 'echo' => false ] ) ); ?>
 		</div>
 
 		<?php if ( ! empty( $comments_by_type['pings'] ) ) : ?>
 			<h4 class="comments-title module-title"><?php _e( 'Trackbacks / Pings', 'arras' ) ?></h4>
-			<ol class="pingbacks"><?php wp_list_comments( 'type=pings&callback=arras_list_trackbacks' ); ?></ol>
+			<ul class="pingback-list pingbacks"><?php wp_list_comments( 'type=pings&callback=arras_list_trackbacks' ); ?></ul>
 		<?php endif; ?>
 
 	<?php else: ?>

@@ -473,6 +473,7 @@ html[xmlns] .clearfix {
 
 /* Comments */
 #commentlist {
+  display: block;
   list-style: none;
   margin: 0 10px 0 0;
   padding: 10px 10px 0;
@@ -493,6 +494,7 @@ html[xmlns] .clearfix {
 
 #commentlist .comment-node {
   margin-bottom: 10px;
+  position: relative;
 }
 
 #commentlist .children {
@@ -528,8 +530,9 @@ html[xmlns] .clearfix {
 }
 
 #commentlist .comment-controls {
-  padding: 15px 10px;
-  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .comments-navigation {

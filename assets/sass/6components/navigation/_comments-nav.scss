@@ -1,0 +1,23 @@
+// Comments Navigation
+// ---------------
+
+.comments-navigation {
+  text-align: center;
+  margin-bottom: 10px;
+
+  a,
+  span {
+    display: inline-block;
+    line-height: 1;
+    margin: 2px;
+  }
+
+  a {
+    @include button;
+  }
+
+  span {
+    @include button;
+    @include button-disabled;
+  }
+}
