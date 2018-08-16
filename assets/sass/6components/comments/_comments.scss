@@ -11,9 +11,22 @@
     @include font-size(18);
     @include title-font;
     background-color: $page-background-color__secondary;
-    border-bottom: 1px solid $border-color__base;
-    margin: -10px -10px 10px;
+    border: 1px solid $border-color__base;
+    border-left-width: 0;
+    border-right-width: 0;
+    margin: 10px -10px 10px;
     padding: 5px 10px;
+
+    &:first-of-type {
+      border-top-width: 0;
+      margin-top: -10px;
+    }
+  }
+
+  .no-comments {
+    background-color: $content-background-color__base;
+    margin: -10px -10px;
+    padding: 10px;
   }
 }
 
@@ -95,4 +108,13 @@
       }
     }
   }
+}
+
+.pingback-list {
+  @include clearfix;
+  background-color: $content-background-color__base;
+  border-bottom: 1px solid $border-color__base;
+  list-style-type: decimal;
+  margin: -10px -10px 10px;
+  padding: 10px 10px 10px 40px;
 }
