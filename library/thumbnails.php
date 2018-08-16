@@ -51,7 +51,7 @@ function arras_add_image_size($id, $name, $default_width, $default_height) {
 function arras_remove_image_size($id) {
 	global $arras_image_sizes, $_wp_additional_image_sizes;
 	
-	unset($arras_images_sizes[$id]);
+	unset($arras_image_sizes[$id]);
 	unset($_wp_additional_image_sizes[$id]);
 }
 
