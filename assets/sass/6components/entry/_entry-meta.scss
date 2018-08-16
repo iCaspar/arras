@@ -9,6 +9,7 @@
 }
 
 .entry-meta {
+  @include clearfix;
   border-bottom: 1px dotted $border-color__base;
   color: $text-color__inactive;
   font-variant: small-caps;
@@ -23,10 +24,12 @@
 }
 
 .entry-author {
+  @include clearfix;
   font-weight: $font-weight__bold;
 }
 
 .entry-footer {
+  @include clearfix;
   border-top: 1px dotted $border-color__base;
   color: $text-color__inactive;
   font-variant: small-caps;

@@ -2,7 +2,8 @@
 // ---------------
 
 .singular {
-    background-color: $content-background-color__base;
-    border: 1px solid $border-color__base;
-    padding: 10px;
-  }
+  @include clearfix;
+  background-color: $content-background-color__base;
+  border: 1px solid $border-color__base;
+  padding: 10px;
+}
