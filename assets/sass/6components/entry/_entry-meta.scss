@@ -23,8 +23,19 @@
   }
 }
 
+.entry-image {
+  margin: 10px 0;
+
+  img {
+    background-color: $content-background-color__base;
+    border: 1px solid $border-color__base;
+    display: block;
+    margin: 0 auto;
+    padding: 2px;
+  }
+}
+
 .entry-author {
-  @include clearfix;
   font-weight: $font-weight__bold;
 }
 
@@ -40,3 +51,4 @@
     font-variant: normal;
   }
 }
+
