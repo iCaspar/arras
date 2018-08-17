@@ -1,9 +1,4 @@
 <?php
-/* Remove Gallery CSS to make code more compliant */
-function remove_gallery_css() {
-	return '<div class="gallery">';	
-}
-
 /**
  * Called to display post heading for news in single posts
  * @since 1.2.2

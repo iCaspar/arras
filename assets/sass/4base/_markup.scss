@@ -26,6 +26,15 @@ blockquote {
   color: $text-color__alternate;
   margin: 15px;
   padding: 5px 15px 2px;
+
+  cite {
+    font-style: normal;
+    font-weight: $font-weight__bold;
+
+    &::before {
+      content: '\2014\00a0';
+    }
+  }
 }
 
 mark {
@@ -56,4 +65,3 @@ pre {
     overflow: scroll;
   }
 }
-
