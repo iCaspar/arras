@@ -81,7 +81,7 @@ function arras_setup() {
 	add_action( 'wp_head', 'arras_head' );
 
 	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
-	add_filter( 'gallery_style', 'remove_gallery_css' );
+	add_filter( 'use_default_gallery_style', '__return_false' );
 
 	if ( defined( 'ARRAS_CUSTOM_FIELDS' ) && ARRAS_CUSTOM_FIELDS == true ) {
 		add_filter( 'arras_postheader', 'arras_postmeta' );
