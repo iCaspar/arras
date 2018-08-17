@@ -30,7 +30,13 @@
 
 .layout-3c-fixed {
   .primary-content-container {
-    width: 960px;
+    float: none;
+    margin: 0 auto;
+    width: 510px;
+
+    div {
+      margin-right: 0 !important;
+    }
   }
 
   .section {
@@ -38,13 +44,15 @@
   }
 
   .primary-sidebar {
-    float: left;
-    margin: 0 0 0 -960px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
   }
 
   .secondary-sidebar {
-    float: left;
-    margin: 0 0 0 -220px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
 }
 
