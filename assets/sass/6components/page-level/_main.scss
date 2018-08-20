@@ -14,12 +14,16 @@
     grid-column-gap: 10px;
   }
 
+  .layout-1c-fixed .main,
   .no-sidebars .main {
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas: "content" "primary-sidebar" "secondary-sidebar";
   }
 
+  .layout-2c-r-fixed .main,
+  .layout-3c-fixed .main,
+  .layout-3c-r-fixed .main,
   .content-sidebar .main,
   .sidebar-content-sidebar .main,
   .content-sidebar-sidebar .main {
@@ -28,6 +32,7 @@
     grid-template-areas: "content primary-sidebar" "content secondary-sidebar";
   }
 
+  .layout-c2-l-fixed .main,
   .sidebar-content .main,
   .sidebar-sidebar-content .main {
     grid-template-columns: 300px auto;
@@ -43,12 +48,14 @@
     grid-template-areas: "primary-sidebar secondary-sidebar content";
   }
 
+  .layout-3c-fixed .main,
   .sidebar-content-sidebar .main {
     grid-template-columns: 300px auto 300px;
     grid-template-rows: auto;
     grid-template-areas: "primary-sidebar content secondary-sidebar";
   }
 
+  .layout-3c-r-fixed .main,
   .content-sidebar-sidebar .main {
     grid-template-columns: auto 300px 300px;
     grid-template-rows: auto;

@@ -42,7 +42,7 @@ function arras_body_class() {
 	$layout = arras_get_option( 'layout' );
 	$style = arras_get_option( 'style' );
 
-	if ( 'arras-nova' !== $style ) {
+	if ( 'arras-nova' !== $style || strpos( $layout, 'fixed' ) ) {
 		$layout = 'layout-' . $layout;
 	}
 
