@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-<div id="content" class="section">
 <?php arras_above_content() ?>
 
 <?php if (have_posts()) : ?>
@@ -45,7 +44,6 @@
 <?php endif; ?>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

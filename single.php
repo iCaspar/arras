@@ -44,8 +44,6 @@ if ( have_posts() ) {
 
 		<?php arras_below_post(); ?>
 
-		<a name="comments"></a>
-
 		<?php
 		comments_template( '', true );
 

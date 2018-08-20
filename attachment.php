@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-<div id="content" class="section">
 <?php arras_above_content() ?>
 
 <?php if (have_posts()) : the_post(); ?>
@@ -26,8 +25,7 @@
     </div>
     
 	<?php arras_below_post() ?>
-	<a name="comments"></a>
-    <?php comments_template('', true); ?>
+	<?php comments_template('', true); ?>
 	<?php arras_below_comments() ?>
     
 <?php else: ?>
@@ -37,7 +35,6 @@
 <?php endif; ?>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

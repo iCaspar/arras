@@ -42,7 +42,6 @@ if ( have_posts() ) :
 		</div>
 
 		<?php arras_below_post(); ?>
-		<a name="comments"></a>
 		<?php comments_template( '', true ); ?>
 		<?php arras_below_comments(); ?>
 

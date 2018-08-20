@@ -5,4 +5,8 @@
   .content-container {
     grid-area: content;
   }
+
+  .page-template-pagetpl-onecolumn .content-container {
+    grid-area: initial;
+  }
 }

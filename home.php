@@ -16,7 +16,6 @@ $featured2_count 	= (int)arras_get_option('featured2_count');
 $post_blacklist = array();
 ?>
 
-<div id="content" class="section">
 <?php arras_above_content() ?>
 
 <?php if (!$paged) : ?>
@@ -136,7 +135,6 @@ if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
 <?php endif; ?>
 
 <?php arras_below_content() ?>
-</div>
-    
+
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -12,6 +12,7 @@ if ( ! empty( $_SERVER['SCRIPT_FILENAME'] ) && 'comments.php' === basename( $_SE
 }
 
 if ( post_password_required() ) { ?>
+	<a name="comments"></a>
 	<div class="comments">
 		<h4 class="comments-title module-title"><?php esc_html_e( 'Password Required', 'arras' ); ?></h4>
 		<p class="nocomments"><?php esc_html_e( 'This post is password protected. Enter the password to view comments.', 'arras' ); ?></p>
@@ -25,6 +26,7 @@ $arras_comments_by_type = separate_comments( $comments );
 
 
 <?php if ( have_comments() ) : ?>
+	<a name="comments"></a>
 	<div class="comments">
 		<?php if ( ! empty( $arras_comments_by_type['comment'] ) ) : ?>
 			<h4 class="comments-title module-title"><?php comments_number( __( 'No Comments', 'arras' ), __( '1 Comment', 'arras' ), _n( '% Comment', '% Comments', get_comments_number(), 'arras' ) ); ?></h4>
@@ -44,6 +46,7 @@ $arras_comments_by_type = separate_comments( $comments );
 	</div>
 <?php else : ?>
 	<?php if ( 'open' === $post->comment_status ) : ?>
+		<a name="comments"></a>
 		<div class="comments">
 			<h4 class="comments-title module-title"><?php esc_html_e( 'No Comments', 'arras' ); ?></h4>
 			<div class="no-comments">
@@ -57,6 +60,7 @@ $arras_comments_by_type = separate_comments( $comments );
 if ( 'closed' === $post->comment_status ) :
 	if ( ! is_page() ) :
 		?>
+		<a name="comments"></a>
 		<div class="comments">
 			<h4 class="comments-title module-title"><?php esc_html_e( 'Comments Closed', 'arras' ); ?></h4>
 			<div class="no-comments">
