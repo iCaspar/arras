@@ -64,7 +64,7 @@ function arras_setup() {
 		'height'      => 125,
 		'width'       => 400,
 		'flex-width'  => true,
-		'header-text' => [ 'blog-name' ],
+		'header-text' => [ 'site-name', 'site-description' ],
 	] );
 
 	register_nav_menus( array(

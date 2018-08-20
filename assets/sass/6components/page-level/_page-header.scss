@@ -9,6 +9,11 @@
 
   .site-banner {
     @include inner-wrap;
+
+    @include breakpoint('small') {
+      padding: 0 10px;
+      text-align: left;
+    }
   }
 }
 
