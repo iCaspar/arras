@@ -10,12 +10,26 @@
     text-transform: uppercase;
 
     a {
-      color: $text-color__inverse;
+      color: $text-color__inverse-alternate;
       text-decoration: none;
 
       &:hover,
       &:focus {
         color: $text-color__bright;
+      }
+    }
+  }
+
+  @include breakpoint('small') {
+    display: flex;
+
+    .menu-item {
+      border-right: 1px solid $border-color__dark;
+      margin: -10px 0;
+      padding: 10px;
+
+      &:first-child {
+        padding-left: 0;
       }
     }
   }

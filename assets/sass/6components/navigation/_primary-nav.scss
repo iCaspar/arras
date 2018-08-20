@@ -8,15 +8,15 @@
     @include font-size(18);
     text-align: center;
 
-    a {
-      color: $text-color__inverse;
+    & > a {
+      color: $text-color__inverse-alternate;
       display: inline-block;
       text-decoration: none;
+    }
 
-      &:hover,
-      &:focus {
-        color: $text-color__bright;
-      }
+    &:hover > a,
+    &:focus > a {
+      color: $text-color__bright;
     }
   }
 
@@ -31,5 +31,59 @@
 
   .menu-item-has-children.sfHover > a::after {
     transform: rotate(180deg);
+  }
+
+  @include breakpoint('small') {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+
+    .menu-item {
+      padding: 10px;
+      position: relative;
+      text-align: left;
+      transition: all .25s;
+    }
+
+    .sub-menu {
+      background-color: $after-header_background-color__base;
+      left: 0;
+      position: absolute;
+      top: 95%;
+      z-index: 5;
+
+      .menu-item-has-children > a::after {
+        transform: rotate(270deg);
+      }
+
+      .menu-item-has-children.sfHover > a::after {
+        transform: rotate(90deg);
+      }
+
+      .sub-menu {
+        left: 100%;
+        top: 0;
+      }
+
+      .menu-item {
+        border: 1px solid $border-color__focus;
+        border-bottom-width: 0;
+        margin: 0;
+        min-width: 195px;
+
+        &:last-child {
+          border-bottom-width: 1px;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: $content-background-color__base;
+
+          & > a {
+            color: $link-color__base;
+          }
+        }
+      }
+    }
   }
 }

@@ -46,4 +46,8 @@
   .youtube {
     background-image: url(../images/social/youtube.png);
   }
+
+  @include breakpoint('small') {
+    padding: 0;
+  }
 }
