@@ -38,13 +38,21 @@ function arras_tag_query() {
  * Sandbox's version was removed from 1.4 onwards.
  */
 function arras_body_class() {
-	if ( function_exists('body_class') ) {
-		$body_class = array('layout-' . arras_get_option('layout'), 'no-js');
-		
-			$body_class[] = 'style-' . arras_get_option('style');
+	$classes = [];
+	$layout = arras_get_option( 'layout' );
+	$style = arras_get_option( 'style' );
 
-		body_class( apply_filters('arras_body_class', $body_class) );
+	if ( 'arras-nova' !== $style ) {
+		$layout = 'layout-' . $layout;
 	}
+
+	$classes[] = esc_attr( $layout );
+	$classes[] = esc_attr( $style );
+	//$body_class = array( 'layout-' . arras_get_option( 'layout' ) );
+
+	//$body_class[] = 'style-' . arras_get_option( 'style' );
+
+	body_class( apply_filters( 'arras_body_class', $classes ) );
 }
 
 /**

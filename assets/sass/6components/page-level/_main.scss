@@ -14,6 +14,12 @@
     grid-column-gap: 10px;
   }
 
+  .no-sidebars .main {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "content" "primary-sidebar" "secondary-sidebar";
+  }
+
   .content-sidebar .main,
   .sidebar-content-sidebar .main,
   .content-sidebar-sidebar .main {
