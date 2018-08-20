@@ -23,9 +23,9 @@ if ( post_password_required() ) { ?>
 $arras_comments_by_type = separate_comments( $comments );
 ?>
 
-<div class="comments">
 
-	<?php if ( have_comments() ) : ?>
+<?php if ( have_comments() ) : ?>
+	<div class="comments">
 		<?php if ( ! empty( $arras_comments_by_type['comment'] ) ) : ?>
 			<h4 class="comments-title module-title"><?php comments_number( __( 'No Comments', 'arras' ), __( '1 Comment', 'arras' ), _n( '% Comment', '% Comments', get_comments_number(), 'arras' ) ); ?></h4>
 			<ul id="commentlist" class="comment-list clearfix">
@@ -41,49 +41,50 @@ $arras_comments_by_type = separate_comments( $comments );
 			<h4 class="comments-title module-title"><?php esc_html_e( 'Trackbacks / Pings', 'arras' ); ?></h4>
 			<ol class="pingback-list pingbacks"><?php wp_list_comments( 'type=pings&callback=arras_list_trackbacks' ); ?></ol>
 		<?php endif; ?>
-
-	<?php else : ?>
-
-		<?php if ( 'open' === $post->comment_status ) : ?>
+	</div>
+<?php else : ?>
+	<?php if ( 'open' === $post->comment_status ) : ?>
+		<div class="comments">
 			<h4 class="comments-title module-title"><?php esc_html_e( 'No Comments', 'arras' ); ?></h4>
 			<div class="no-comments">
 				<p class="nocomments"><?php esc_html_e( 'Start the ball rolling by posting a comment on this article!', 'arras' ); ?></p>
 			</div>
-		<?php endif ?>
+		</div>
+	<?php endif ?>
+<?php endif; ?>
 
-	<?php endif; ?>
-
-	<?php
-	if ( 'closed' === $post->comment_status ) :
-		if ( ! is_page() ) :
-			?>
+<?php
+if ( 'closed' === $post->comment_status ) :
+	if ( ! is_page() ) :
+		?>
+		<div class="comments">
 			<h4 class="comments-title module-title"><?php esc_html_e( 'Comments Closed', 'arras' ); ?></h4>
 			<div class="no-comments">
 				<p class="nocomments"><?php esc_html_e( 'Comments are closed. You will not be able to post a comment in this post.', 'arras' ); ?></p>
 			</div>
+		</div>
 
-		<?php endif; ?>
+	<?php endif; ?>
 
-	<?php else : ?>
+<?php else : ?>
+	<?php
+	$arras_req       = get_option( 'require_name_email' );
+	$arras_aria_req  = ( $arras_req ? ' aria-required="true"' : '' );
+	$arras_commenter = wp_get_current_commenter();
 
-		<?php
-		$arras_req       = get_option( 'require_name_email' );
-		$arras_aria_req  = ( $arras_req ? ' aria-required="true"' : '' );
-		$arras_commenter = wp_get_current_commenter();
+	comment_form(
+		array(
+			'fields'        => array(
+				'author' => '<p class="comment-form-author"><label for="author">' . __( 'Name', 'arras' ) . '</label> ' . ( $arras_req ? '<span class="required">*</span>' : '' ) .
+				            '<input id="author" class="required" name="author" type="text" value="' . esc_attr( $arras_commenter['comment_author'] ) . '" size="30"' . $arras_aria_req . ' /></p>',
+				'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'arras' ) . '</label> ' . ( $arras_req ? '<span class="required">*</span>' : '' ) .
+				            '<input id="email" class="required email" name="email" type="text" value="' . esc_attr( $arras_commenter['comment_author_email'] ) . '" size="30"' . $arras_aria_req . ' /></p>',
+				'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'arras' ) . '</label>' .
+				            '<input id="url" class="url" name="url" type="text" value="' . esc_attr( $arras_commenter['comment_author_url'] ) . '" size="30" /></p>',
+			),
+			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'arras' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>',
+		)
+	);
+	?>
+<?php endif ?>
 
-		comment_form(
-			array(
-				'fields'        => array(
-					'author' => '<p class="comment-form-author"><label for="author">' . __( 'Name', 'arras' ) . '</label> ' . ( $arras_req ? '<span class="required">*</span>' : '' ) .
-								'<input id="author" class="required" name="author" type="text" value="' . esc_attr( $arras_commenter['comment_author'] ) . '" size="30"' . $arras_aria_req . ' /></p>',
-					'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email', 'arras' ) . '</label> ' . ( $arras_req ? '<span class="required">*</span>' : '' ) .
-								'<input id="email" class="required email" name="email" type="text" value="' . esc_attr( $arras_commenter['comment_author_email'] ) . '" size="30"' . $arras_aria_req . ' /></p>',
-					'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website', 'arras' ) . '</label>' .
-								'<input id="url" class="url" name="url" type="text" value="' . esc_attr( $arras_commenter['comment_author_url'] ) . '" size="30" /></p>',
-				),
-				'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'arras' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="required"></textarea></p>',
-			)
-		);
-		?>
-	<?php endif ?>
-</div>

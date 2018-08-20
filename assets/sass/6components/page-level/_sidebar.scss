@@ -4,3 +4,18 @@
 .sidebar {
   margin-top: 10px;
 }
+
+@include breakpoint('small') {
+  .primary-sidebar,
+  .secondary-sidebar {
+    margin-top: 0;
+  }
+
+  .primary-sidebar {
+    grid-area: primary-sidebar;
+  }
+
+  .secondary-sidebar {
+    grid-area: secondary-sidebar;
+  }
+}
