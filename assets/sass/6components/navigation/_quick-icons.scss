@@ -20,6 +20,7 @@
       color: $text-color__inverse;
       display: block;
       height: 36px;
+      position: relative;
       text-decoration: none;
       text-indent: -9999px;
       width: 36px;
@@ -28,23 +29,37 @@
       &:focus {
         color: $text-color__bright;
       }
+
+      &::before {
+        font-family: Ionicons;
+        @include font-size(36);
+        line-height: 1;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        color: $text-color__inverse;
+        top: 0;
+        left: 0;
+        text-indent: 0;
+      }
     }
   }
 
-  .facebook {
-    background-image: url(../images/social/facebook.png);
+  .facebook::before {
+    content: '\f236';
   }
 
-  .flickr {
-    background-image: url(../images/social/flickr.png);
+  .flickr::before {
+    content: '\f107';
   }
 
-  .twitter {
-    background-image: url(../images/social/twitter.png);
+  .twitter::before {
+    content: '\f2b0';
   }
 
-  .youtube {
-    background-image: url(../images/social/youtube.png);
+  .youtube::before {
+    content: '\f34f';
   }
 
   @include breakpoint('small') {

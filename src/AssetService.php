@@ -40,9 +40,9 @@ class AssetService {
 	/**
 	 * AssetService constructor.
 	 *
-	 * @param array  $config
+	 * @param array $config
 	 * @param string $baseUrl
-	 * @param bool   $isDevEnv
+	 * @param bool $isDevEnv
 	 */
 	public function __construct( array $config, $baseUrl, $isDevEnv = false ) {
 		$this->config   = $config;
@@ -102,6 +102,7 @@ class AssetService {
 	 */
 	public function enqueueStyles() {
 		wp_enqueue_style( 'dashicons' );
+		wp_enqueue_style( 'ionicons', 'https://unpkg.com/ionicons@4.3.0/dist/css/ionicons.min.css', [], '4.3.0', 'all' );
 		$handle = $this->getCurrentStyleHandle();
 		wp_enqueue_style( $handle );
 

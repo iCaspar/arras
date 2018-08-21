@@ -27,6 +27,7 @@
     font-family: dashicons;
     transform: rotate(0);
     transition: transform .25s ease-in-out;
+    vertical-align: bottom;
   }
 
   .menu-item-has-children.sfHover > a::after {
