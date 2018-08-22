@@ -218,7 +218,7 @@ function arras_parse_single_custom_fields() {
 }
 
 function arras_excerpt_more($excerpt) {
-	return ' <a href="' . get_the_permalink() . '">' . __( 'Read more...', 'arras' ) . '</a>';
+	return ' <a class="more-link" href="' . get_the_permalink() . '">' . __( 'Read more...', 'arras' ) . '</a>';
 }
 add_filter('excerpt_more', 'arras_excerpt_more');
 

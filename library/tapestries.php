@@ -275,23 +275,25 @@ function arras_style_tapestry_default() {
 if (!function_exists('arras_tapestry_quick')) {
 	function arras_tapestry_quick($dep = '', $taxonomy) {
 		?>
-		<li <?php arras_post_class() ?>>
+		<div class="quick-entry entry clearfix">
 			<?php echo apply_filters('arras_tapestry_quick_postheader', arras_generic_postheader('quick-preview') ) ?>
 			<div class="entry-summary">
 				<div class="entry-info">
-					<abbr class="published" title="<?php the_time('c') ?>"><?php printf( __('Posted %s', 'arras'), arras_posted_on( false ) ) ?></abbr> | <a href="<?php comments_link() ?>"><?php comments_number() ?></a>
+					<span class="published" title="<?php the_time('c') ?>"><?php printf( __('Posted %s', 'arras'), arras_posted_on( false ) ) ?></span> | <a href="<?php comments_link() ?>"><?php comments_number() ?></a>
 				</div>
-				<?php echo get_the_excerpt() ?>
+				<?php remove_filter( 'excerpt_more', 'arras_excerpt_more' );
+				echo get_the_excerpt();
+				add_filter( 'excerpt_more', 'arras_excerpt_more' ); ?>
 				<p class="quick-read-more"><a href="<?php the_permalink() ?>" title="<?php printf( __('Permalink to %s', 'arras'), get_the_title() ) ?>">
 				<?php _e('Continue Reading...', 'arras') ?>
 				</a></p>
 			</div>	
-		</li>
+		</div>
 		<?php
 	}
 	arras_add_tapestry( 'quick', __('Quick Preview', 'arras'), 'arras_tapestry_quick', array(
-		'before' => '<ul class="hfeed posts-quick clearfix">',
-		'after' => '</ul><!-- .posts-quick -->'		
+		'before' => '<div class="quick-previews hfeed posts-quick clearfix">',
+		'after' => '</div>'
 	) );
 	
 	function arras_add_tapestry_quick_thumbs() {

@@ -72,8 +72,11 @@ function arras_get_image_size($id) {
  */
 function arras_get_thumbnail($size = 'thumbnail', $id = NULL) {
 	global $post, $arras_image_sizes;
-	
-	$empty_thumbnail = '<img src="' . get_template_directory_uri() . '/assets/images/thumbnail.png" alt="featured image placeholder" title="' . get_the_title() . '" />';
+
+	$height = $arras_image_sizes[$size]['h'];
+	$width = $arras_image_sizes[$size]['w'];
+
+	$empty_thumbnail = '<img class="image-placeholder" height="' . (int) $height . '" width="' . (int) $width . '" src="' . get_template_directory_uri() . '/assets/images/thumbnail.png" alt="featured image placeholder" title="' . get_the_title() . '" />';
 	
 	if ($post) $id = $post->ID;
 	
