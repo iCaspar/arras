@@ -170,7 +170,7 @@ if (!function_exists('arras_tapestry_default')) {
 			$tapestry_settings = arras_defaults_tapestry_default();
 		}
 		?>
-		<div <?php arras_post_class() ?>>
+		<div class="node-entry entry clearfix">
 			<?php echo apply_filters('arras_tapestry_default_postheader', arras_generic_postheader('node-based', true) ) ?>
 			<?php if ( isset($tapestry_settings['excerpt']) && $tapestry_settings['excerpt'] ) : ?>
 			<div class="entry-summary">
@@ -181,7 +181,7 @@ if (!function_exists('arras_tapestry_default')) {
 		<?php
 	}
 	arras_add_tapestry( 'default', __('Node Based', 'arras'), 'arras_tapestry_default', array(
-		'before' => '<div class="node- hfeed posts-default clearfix">',
+		'before' => '<div class="nodes hfeed posts-default clearfix">',
 		'after' => '</div><!-- .posts-default -->'
 	) );
 	
@@ -326,7 +326,7 @@ function arras_generic_postheader($tapestry, $show_meta = false) {
 	
 	if ($show_meta) {	
 		$postheader .= '<span class="entry-meta"><span class="entry-comments">' . get_comments_number() . '</span>';
-		$postheader .= '<abbr class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</abbr></span>';
+		$postheader .= '<span class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</span></span>';
 	}
 	
 	$postheader .= '</a>';

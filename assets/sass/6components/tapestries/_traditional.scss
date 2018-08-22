@@ -17,9 +17,10 @@
     opacity: .8;
     padding: 5px 8px;
 
-    &::after {
+    &::before {
       font-family: dashicons;
-      content: ' \f101';
+      content: '\f101\00a0';
+      vertical-align: bottom;
     }
   }
 }
