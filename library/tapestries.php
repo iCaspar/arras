@@ -115,9 +115,9 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 if (!function_exists('arras_tapestry_traditional')) {
 	function arras_tapestry_traditional($dep = '', $taxonomy) {
 		?>
-		<div <?php arras_single_post_class() ?>>
+		<div class="entry traditional-entry clearfix">
 			<?php arras_postheader() ?>
-			<div class="entry-content clearfix"><?php the_content( __('Read the rest of this entry &raquo;', 'arras') ); ?></div>
+			<div class="entry-content clearfix"><?php the_excerpt(); ?></div>
 			<?php arras_postfooter() ?>
 		</div>
 		<?php
@@ -181,7 +181,7 @@ if (!function_exists('arras_tapestry_default')) {
 		<?php
 	}
 	arras_add_tapestry( 'default', __('Node Based', 'arras'), 'arras_tapestry_default', array(
-		'before' => '<div class="hfeed posts-default clearfix">',
+		'before' => '<div class="node- hfeed posts-default clearfix">',
 		'after' => '</div><!-- .posts-default -->'
 	) );
 	

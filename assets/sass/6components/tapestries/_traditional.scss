@@ -1,0 +1,25 @@
+// Traditional Tapestry
+// ---------------
+
+.traditional-entry {
+  @include clearfix;
+  background-color: $content-background-color__base;
+  border: 1px solid $border-color__base;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  .entry-comments {
+    background-color: $text-background-color__inverse;
+    border-radius: 5px;
+    color: $text-color__inverse;
+    float: right;
+    margin-top: 15px;
+    opacity: .8;
+    padding: 5px 8px;
+
+    &::after {
+      font-family: dashicons;
+      content: ' \f101';
+    }
+  }
+}

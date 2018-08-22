@@ -23,9 +23,9 @@ $post_blacklist = array();
 <?php if ( $featured1_cat !== '' && arras_get_option('enable_featured1') ) : ?>
 <?php arras_above_index_featured1_post() ?>
 <!-- Featured Articles #1 -->
-<div id="index-featured1">
+<div id="index-featured1" class="featured-section">
 <?php if ( arras_get_option('featured1_title') != '' ) : ?>
-	<div class="home-title"><?php echo esc_html( arras_get_option('featured1_title') ); ?></div>
+	<div class="home-title featured-section-title"><?php echo esc_html( arras_get_option('featured1_title') ); ?></div>
 <?php endif;
 
 arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras_featured1_query', array(
@@ -34,7 +34,8 @@ arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras
 	'query'				=> array(
 		'posts_per_page' 	=> $featured1_count,
 		'exclude'			=> $post_blacklist,
-		'post_type'			=> arras_get_option('featured1_posttype')
+		'post_type'			=> arras_get_option('featured1_posttype'),
+		'ignore_sticky_posts' => true,
 	)
 ) ) );
 ?>
@@ -44,9 +45,9 @@ arras_featured_loop( arras_get_option('featured1_display'), apply_filters('arras
 <?php if ( $featured2_cat !== '' && arras_get_option('enable_featured2') ) : ?>
 <?php arras_above_index_featured2_post() ?>
 <!-- Featured Articles #2 -->
-<div id="index-featured2">
+<div id="index-featured2" class="featured-section">
 <?php if ( arras_get_option('featured2_title') != '' ) : ?>
-	<div class="home-title"><?php echo esc_html( arras_get_option('featured2_title') ) ?></div>
+	<div class="home-title featured-section-title"><?php echo esc_html( arras_get_option('featured2_title') ) ?></div>
 <?php endif;
 
 arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras_featured2_query', array(
@@ -66,7 +67,7 @@ arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras
 <?php if ( arras_get_option('enable_news') ) : ?>
 <?php arras_above_index_news_post() ?>
 <!-- News Articles -->
-<div id="index-news">
+<div id="index-news" class="featured-section">
 <?php if ( arras_get_option('news_title') != '' ) : ?>
 <div class="home-title"><?php echo esc_html( arras_get_option('news_title') ) ?></div>
 <?php endif ?>

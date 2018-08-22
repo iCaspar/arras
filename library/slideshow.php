@@ -2,7 +2,7 @@
 
 function arras_add_slideshow() {
 	global $post_blacklist, $paged;
-	if ( !is_home() || $paged ) return false;
+	if ( ! is_front_page() || $paged ) return false;
 
 	$slideshow_cat = arras_get_option('slideshow_cat');
 	
