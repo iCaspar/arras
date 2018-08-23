@@ -397,7 +397,7 @@ function arras_add_sidebars() {
 	register_sidebar( array(
 		'name'          => 'Bottom Content #2',
 		'id'            => 'bottom-2',
-		'before_widget' => '<div id="%1$s" class="%2$s widgetcontainer clearfix">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'

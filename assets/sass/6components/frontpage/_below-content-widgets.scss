@@ -1,0 +1,14 @@
+// Featured section
+// ---------------
+
+@include breakpoint('small') {
+  .below-content-widget-area {
+    float: left;
+    margin-left: 2%;
+    width: 49%;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
