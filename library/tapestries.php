@@ -77,7 +77,7 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 		for ( $c; $query->have_posts(); $c++ ) {
 			$query->the_post();
 			if ( $c % $tapestry_settings['nodes'] == 0 ) 
-				echo '<div class="clearfix">';
+				echo '<div class="nodes-row clearfix">';
 			
 			// hack for plugin authors who love to use $post = $wp_query->post
 			$wp_query->post = $query->post;
