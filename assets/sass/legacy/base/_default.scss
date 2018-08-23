@@ -365,7 +365,18 @@ label.error {
 
 .posts-line li {
   border-bottom: 1px solid #EEE;
+  display: block;
   padding: 7px 0;
+  width: 100%;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 }
 
 .posts-line .entry-cat {
