@@ -1,4 +1,47 @@
 // Line Tapestry
 // ---------------
 
+.per-line {
+  background-color: $content-background-color__base;
+  border: 1px solid $border-color__base;
+  margin-bottom: 20px;
+  padding: 10px;
+}
 
+.line-entry {
+  align-items: center;
+  border-bottom: 1px solid $border-color__base;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: start;
+  padding: 10px 0;
+  width: 100%;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .entry-cat,
+  .entry-title,
+  .entry-comments {
+    @include font-size(14);
+  }
+
+  .entry-cat {
+    color: $text-color__inactive;
+  }
+
+  .entry-title {
+    margin: 0;
+  }
+
+  .entry-comments {
+    justify-self: end;
+  }
+}

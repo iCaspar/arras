@@ -135,9 +135,9 @@ if (!function_exists('arras_tapestry_traditional')) {
 if (!function_exists('arras_tapestry_line')) {
 	function arras_tapestry_line($dep = '', $taxonomy) {
 		?>
-		<li <?php arras_post_class() ?>>
+		<li class="line-entry entry clearfix">
 		
-			<span class="entry-cat">
+			<div class="entry-cat">
 				<?php 
 				$terms = get_the_terms( get_the_ID(), $taxonomy );
 				if ( $terms != '' && !is_wp_error($terms) ) {
@@ -146,15 +146,15 @@ if (!function_exists('arras_tapestry_line')) {
 					else echo $terms[0]->name;
 				}
 				?>
-			</span>
+			</div>
 			
 			<h3 class="entry-title"><a rel="bookmark" href="<?php the_permalink() ?>" title="<?php printf( __('Permalink to %s', 'arras'), get_the_title() ) ?>"><?php the_title() ?></a></h3>
-			<a class="entry-comments" href="<?php comments_link() ?>"><?php comments_number() ?></a>
+			<div class="entry-comments"><a class="entry-comments" href="<?php comments_link() ?>"><?php comments_number() ?></a></div>
 		</li>
 		<?php
 	}
 	arras_add_tapestry( 'line', __('Per Line', 'arras'), 'arras_tapestry_line', array(
-		'before' => '<ul class="hfeed posts-line clearfix">',
+		'before' => '<ul class="per-line hfeed posts-line clearfix">',
 		'after' => '</ul><!-- .posts-line -->'
 	) );
 }

@@ -69,7 +69,7 @@ arras_featured_loop( arras_get_option('featured2_display'), apply_filters('arras
 <!-- News Articles -->
 <div id="index-news" class="featured-section">
 <?php if ( arras_get_option('news_title') != '' ) : ?>
-<div class="home-title"><?php echo esc_html( arras_get_option('news_title') ) ?></div>
+<div class="home-title featured-section-title"><?php echo esc_html( arras_get_option('news_title') ) ?></div>
 <?php endif ?>
 <?php
 arras_featured_loop( arras_get_option('news_display'), apply_filters('arras_news_query', array(
