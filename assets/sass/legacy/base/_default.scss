@@ -241,6 +241,7 @@ label.error {
 /* featured slideshow */
 #featured-slideshow {
   border: 5px solid $dark-slate;
+  width: calc(100% - 10px) !important;
 }
 
 .featured-article {
