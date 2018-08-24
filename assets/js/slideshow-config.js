@@ -7,6 +7,8 @@ jQuery(document).ready( function($) {
         timeout: 6000,
         pause: 1,
         slideExpr: '.featured-slideshow-inner',
-        height: slideshow_opts.height
+        height: slideshow_opts.height,
+        width: '100%',
+        fit: true
     });
 } );

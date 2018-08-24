@@ -2,7 +2,7 @@
 
 function arras_add_slideshow() {
 	global $post_blacklist, $paged;
-	if ( ! is_front_page() || $paged ) return false;
+	if ( ! is_home() || $paged ) return false;
 
 	$slideshow_cat = arras_get_option('slideshow_cat');
 	
@@ -23,14 +23,14 @@ function arras_add_slideshow() {
 	if ($q->have_posts()) :
 	?> 
 	<!-- Featured Slideshow -->
-	<div class="featured clearfix">
+	<div class="slideshow-container featured clearfix">
 		<?php if ($q->post_count > 1) : ?>
-		<div id="controls">
+		<div id="controls" class="slide-controls">
 			<a href="" class="prev"><?php _e('Prev', 'arras') ?></a>
 			<a href="" class="next"><?php _e('Next', 'arras') ?></a>
 		</div>
 		<?php endif ?>
-		<div id="featured-slideshow">
+		<div id="featured-slideshow" class="slideshow">
 			<?php $count = 0; ?>
 		
 			<?php while ($q->have_posts()) : $q->the_post(); ?>
