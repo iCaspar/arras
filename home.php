@@ -89,9 +89,9 @@ $post_blacklist = array();
 			if ( function_exists( 'wp_pagenavi' ) ) {
 				wp_pagenavi();
 			} else { ?>
-				<div class="navigation clearfix">
-					<div class="floatleft"><?php next_posts_link( __( 'Older Entries', 'arras' ) ) ?></div>
-					<div class="floatright"><?php previous_posts_link( __( 'Newer Entries', 'arras' ) ) ?></div>
+				<div class="entries-nav navigation clearfix">
+					<div class="next-posts floatleft"><?php next_posts_link( __( 'Older Entries', 'arras' ) ) ?></div>
+					<div class="previous-posts floatright"><?php previous_posts_link( __( 'Newer Entries', 'arras' ) ) ?></div>
 				</div>
 			<?php } ?>
 
@@ -124,7 +124,7 @@ $post_blacklist = array();
 <?php else: ?>
 
 	<?php if ( arras_get_option( 'news_title' ) != '' ) : ?>
-		<div class="home-title"><?php echo esc_html( arras_get_option( 'news_title' ) ) ?></div>
+		<div class="home-title featured-section-title"><?php echo esc_html( arras_get_option( 'news_title' ) ) ?></div>
 	<?php endif ?>
 
 	<div id="archive-posts">
@@ -133,9 +133,9 @@ $post_blacklist = array();
 		<?php if ( function_exists( 'wp_pagenavi' ) ) {
 			wp_pagenavi();
 		} else { ?>
-			<div class="navigation clearfix">
-				<div class="floatleft"><?php next_posts_link( __( 'Older Entries', 'arras' ) ) ?></div>
-				<div class="floatright"><?php previous_posts_link( __( 'Newer Entries', 'arras' ) ) ?></div>
+			<div class="entries-nav navigation clearfix">
+				<div class="next-posts floatleft"><?php next_posts_link( __( 'Older Entries', 'arras' ) ) ?></div>
+				<div class="previous-posts floatright"><?php previous_posts_link( __( 'Newer Entries', 'arras' ) ) ?></div>
 			</div>
 		<?php } ?>
 	</div>

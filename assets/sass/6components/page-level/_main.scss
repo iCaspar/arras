@@ -39,6 +39,10 @@
     grid-template-rows: auto 1fr;
     grid-template-areas: "primary-sidebar content" "secondary-sidebar content";
   }
+
+  .page-template-pagetpl-onecolumn .main {
+    grid-template-areas: "content content";
+  }
 }
 
 @include breakpoint('large') {
@@ -60,5 +64,9 @@
     grid-template-columns: auto 300px 300px;
     grid-template-rows: auto;
     grid-template-areas: "content primary-sidebar secondary-sidebar";
+  }
+
+  .page-template-pagetpl-onecolumn .main {
+    grid-template-areas: "content content content";
   }
 }

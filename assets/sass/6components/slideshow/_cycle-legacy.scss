@@ -5,28 +5,28 @@
   border: 5px solid $border-color__dark;
   overflow: hidden;
   position: relative;
-}
 
-.prev,
-.next {
-  height: 30px;
-  opacity: .75;
-  position: absolute;
-  text-indent: -9999px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  z-index: 5;
-}
+  .prev,
+  .next {
+    height: 30px;
+    opacity: .75;
+    position: absolute;
+    text-indent: -9999px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    z-index: 5;
+  }
 
-.prev {
-  background-image: url('../images/prev.png');
-  left: 10px;
-}
+  .prev {
+    background-image: url('../images/prev.png');
+    left: 10px;
+  }
 
-.next {
-  background-image: url('../images/next.png');
-  right: 10px;
+  .next {
+    background-image: url('../images/next.png');
+    right: 10px;
+  }
 }
 
 .slideshow {

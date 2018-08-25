@@ -1,7 +1,6 @@
 // Featured section
 // ---------------
 
-.featured-section {
   .featured-section-title {
     @include font-size(20);
     @include title-font;
@@ -10,4 +9,3 @@
     padding-bottom: 5px;
     text-transform: uppercase;
   }
-}
