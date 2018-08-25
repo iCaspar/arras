@@ -362,75 +362,75 @@ class Arras_Featured_Stories extends WP_Widget {
 	
 }
 
-class Arras_Widget_Tag_Cloud extends WP_Widget_Tag_Cloud {
-	function __construct() {
-		parent::__construct();
-	}
-	
-	function widget( $args, $instance ) {
-		extract($args);
-		
-		// for WordPress 3.0+
-		if ( function_exists('_get_current_taxonomy') ) {
-			$current_taxonomy = $this->_get_current_taxonomy($instance);
-			if ( !empty($instance['title']) ) {
-				$title = $instance['title'];
-			} else {
-				if ( 'post_tag' == $current_taxonomy ) {
-					$title = __('Tags', 'arras');
-				} else {
-					$tax = get_taxonomy($current_taxonomy);
-					$title = $tax->label;
-				}
-			}
-			$title = apply_filters('widget_title', $title, $instance, $this->id_base);
+//class Arras_Widget_Tag_Cloud extends WP_Widget_Tag_Cloud {
+//	function __construct() {
+//		parent::__construct();
+//	}
+//
+//	function widget( $args, $instance ) {
+//		extract($args);
+//
+//		// for WordPress 3.0+
+//		if ( function_exists('_get_current_taxonomy') ) {
+//			$current_taxonomy = $this->_get_current_taxonomy($instance);
+//			if ( !empty($instance['title']) ) {
+//				$title = $instance['title'];
+//			} else {
+//				if ( 'post_tag' == $current_taxonomy ) {
+//					$title = __('Tags', 'arras');
+//				} else {
+//					$tax = get_taxonomy($current_taxonomy);
+//					$title = $tax->label;
+//				}
+//			}
+//			$title = apply_filters('widget_title', $title, $instance, $this->id_base);
+//
+//			echo $before_widget;
+//			if ( $title )
+//				echo $before_title . $title . $after_title;
+//			echo '<div class="widget-tag-cloud tags">';
+//			wp_tag_cloud( apply_filters('widget_tag_cloud_args', array('taxonomy' => $current_taxonomy, 'smallest' => 9, 'largest' => 16) ) );
+//			echo "</div>\n";
+//			echo $after_widget;
+//		} else {
+//			$title = apply_filters('widget_title', empty($instance['title']) ? __('Tags', 'arras') : $instance['title']);
+//
+//			echo $before_widget;
+//			if ( $title )
+//				echo $before_title . $title . $after_title;
+//			echo '<div class="widget-tag-cloud tags">';
+//			wp_tag_cloud(apply_filters('widget_tag_cloud_args', array()));
+//			echo "</div>\n";
+//			echo $after_widget;
+//		}
+//	}
+//}
 
-			echo $before_widget;
-			if ( $title )
-				echo $before_title . $title . $after_title;
-			echo '<div class="widget-tag-cloud tags">';
-			wp_tag_cloud( apply_filters('widget_tag_cloud_args', array('taxonomy' => $current_taxonomy, 'smallest' => 9, 'largest' => 16) ) );
-			echo "</div>\n";
-			echo $after_widget;
-		} else {
-			$title = apply_filters('widget_title', empty($instance['title']) ? __('Tags', 'arras') : $instance['title']);
-
-			echo $before_widget;
-			if ( $title )
-				echo $before_title . $title . $after_title;
-			echo '<div class="widget-tag-cloud tags">';
-			wp_tag_cloud(apply_filters('widget_tag_cloud_args', array()));
-			echo "</div>\n";
-			echo $after_widget;
-		}
-	}
-}
-
-class Arras_Widget_Search extends WP_Widget {
-
-	function __construct() {
-		$widget_ops = array('classname' => 'widget_search', 'description' => __( "A search form for your site", 'arras' ) );
-		parent::__construct('search', __('Search', 'arras'), $widget_ops);
-	}
-
-	function widget( $args, $instance ) {
-		extract($args);
-		
-		// Use current theme search form if it exists
-		echo '<div class="widget-container widgetcontainer clearfix"><div class="widgetcontent">';
-		get_search_form();
-		echo '</div></div>';
-	}
-
-	function form( $instance ) {
-		
-	}
-
-	function update( $new_instance, $old_instance ) {
-
-	}
-
-}
+//class Arras_Widget_Search extends WP_Widget {
+//
+//	function __construct() {
+//		$widget_ops = array('classname' => 'widget_search', 'description' => __( "A search form for your site", 'arras' ) );
+//		parent::__construct('search', __('Search', 'arras'), $widget_ops);
+//	}
+//
+//	function widget( $args, $instance ) {
+//		extract($args);
+//
+//		// Use current theme search form if it exists
+//		echo '<div class="widget-container widgetcontainer clearfix"><div class="widgetcontent">';
+//		get_search_form();
+//		echo '</div></div>';
+//	}
+//
+//	function form( $instance ) {
+//
+//	}
+//
+//	function update( $new_instance, $old_instance ) {
+//
+//	}
+//
+//}
 
 function arras_widgets_post_loop( $id, $args = array() ) {
 	global $wp_query, $post;
@@ -491,13 +491,13 @@ function arras_widgets_post_loop( $id, $args = array() ) {
 
 // Register Widgets
 function arras_widgets_init() {
-	unregister_widget('WP_Widget_Tag_Cloud');
-	unregister_widget('WP_Widget_Search');
+	//unregister_widget('WP_Widget_Tag_Cloud');
+	//unregister_widget('WP_Widget_Search');
 
 	register_widget('Arras_Tabbed_Sidebar');
 	register_widget('Arras_Featured_Stories');
-	register_widget('Arras_Widget_Tag_Cloud');
-	register_widget('Arras_Widget_Search');
+	//register_widget('Arras_Widget_Tag_Cloud');
+	//register_widget('Arras_Widget_Search');
 }
 
 add_action('widgets_init', 'arras_widgets_init', 1);
