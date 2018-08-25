@@ -1,0 +1,27 @@
+// Search Widget
+// ---------------
+
+.searchform {
+  position: relative;
+
+  .searchsubmit {
+    @include button;
+    background-image: url('../images/search.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-color: $border-color__dark;
+    border-radius: 0;
+    display: block;
+    right: 0;
+    position: absolute;
+    text-indent: -9999px;
+    top: 0;
+    width: 30px;
+
+    &:hover,
+    &:focus {
+      background-color: $page-background-color__secondary;
+    }
+  }
+}

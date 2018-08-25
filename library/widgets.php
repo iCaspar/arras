@@ -417,9 +417,9 @@ class Arras_Widget_Search extends WP_Widget {
 		extract($args);
 		
 		// Use current theme search form if it exists
-		echo '<li class="widgetcontainer clearfix"><div class="widgetcontent">';
+		echo '<div class="widget-container widgetcontainer clearfix"><div class="widgetcontent">';
 		get_search_form();
-		echo '</div></li>';
+		echo '</div></div>';
 	}
 
 	function form( $instance ) {
