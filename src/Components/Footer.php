@@ -28,11 +28,11 @@ class Footer {
 
 		for ( $sidebar_count = 1; $sidebar_count < $footer_sidebars + 1; $sidebar_count ++ ) {
 			?>
-			<ul id="footer-sidebar-<?php echo esc_attr( $sidebar_count ); ?>" class="footer-sidebar clearfix xoxo">
+			<div id="footer-sidebar-<?php echo esc_attr( $sidebar_count ); ?>" class="footer-sidebar clearfix xoxo">
 				<?php if ( ! dynamic_sidebar( 'Footer Sidebar #' . $sidebar_count ) ) : ?>
 					<li></li>
 				<?php endif; ?>
-			</ul>
+			</div>
 		<?php
 		}
 	}
