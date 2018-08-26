@@ -157,11 +157,11 @@ class AssetService {
 			return;
 		}
 
-		wp_enqueue_style( 'jquery-smoothness' );
-		wp_enqueue_style( 'arras-admin' );
+		//wp_enqueue_style( 'smoothness' );
+		wp_enqueue_style( 'admin' );
 
 		if ( is_rtl() ) {
-			wp_enqueue_style( 'arras-admin-rtl' );
+			wp_enqueue_style( 'admin-rtl' );
 		}
 	}
 
