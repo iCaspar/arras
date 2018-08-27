@@ -1,0 +1,20 @@
+// Color Overrides
+// ------------------------------
+
+.before-header {
+  background-color: $before-header-background-color__base;
+  border-bottom-color: $border-color__dark;
+}
+
+.page-header {
+  background-color: $header-background-color__base;
+  border-bottom-color: $border-color__dark;
+
+  .site-description {
+    color: $text-color__muted;
+  }
+}
+
+.after-header {
+  background-color: $after-header-background-color__base;
+}

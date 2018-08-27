@@ -1,0 +1,29 @@
+// Blue Color Variables
+// ------------------------------
+
+// Backgrounds
+// ---------------
+$before-header-background-color__base: $top-menu-bg-blue;
+$header-background-color__base: $header-bg-blue;
+$after-header_background-color__base: $main-menu-bg-blue;
+
+// Text
+// ---------------
+$text-color__alternate: $description-blue;
+$text-color__muted: $description-blue;
+
+// Links
+// ---------------
+$link-color__base: $link-blue;
+$link-color__inverse: $off-white;
+$link-color__visited: $link-blue;
+$link-color__hover: $link-hovered-blue;
+$link-color__hover-inverse: $description-blue;
+$link-color__active: $link-hovered-blue;
+$link-color__focus: $link-hovered-blue;
+
+// Borders
+// ---------------
+$border-color__base: $silver;
+$border-color__focus: $light-gray;
+$border-color__dark: $top-menu-border-blue;
