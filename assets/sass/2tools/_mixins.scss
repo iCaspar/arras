@@ -189,6 +189,8 @@
   transition: all 0.2s ease-in-out;
 }
 
+// Insert a set of Color Variation Overrides
+// ---------------
 @mixin color-variation( $variation, $variation-colors ) {
   .#{$variation} {
     a {
@@ -275,6 +277,15 @@
         &:hover,
         &:focus {
           color: map-get($variation-colors, link-color__inverse);
+        }
+      }
+
+      @include breakpoint('small') {
+        .sub-menu .menu-item a {
+          &:hover,
+          &:focus {
+            color: map-get($variation-colors, link-color__base);
+          }
         }
       }
     }
