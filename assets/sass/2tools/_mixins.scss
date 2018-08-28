@@ -194,20 +194,18 @@
 @mixin color-variation( $variation, $variation-colors ) {
   .#{$variation} {
     a {
-      &:link {
-        color: map-get($variation-colors, link-color__base);
-      }
+      color: map-get($variation-colors, link-color__base);
 
       &:visited {
         color: map-get($variation-colors, link-color__visited);
       }
 
-      &:focus {
-        color: map-get($variation-colors, link-color__focus);
+      &:hover {
+        color: map-get($variation-colors, link-color__hover);
       }
 
-      &:hover {
-        color: map-get($variation-colors, link_color__hover);
+      &:focus {
+        color: map-get($variation-colors, link-color__focus);
       }
 
       &:active {
