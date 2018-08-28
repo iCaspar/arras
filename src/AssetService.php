@@ -115,7 +115,7 @@ class AssetService {
 		}
 
 		// Test enqueue color scheme
-		wp_enqueue_style('arras-blue', get_template_directory_uri() . '/assets/css/color-schemes/blue.css', [ 'arras-nova' ], '' );
+		//wp_enqueue_style('arras-blue', get_template_directory_uri() . '/assets/css/color-schemes/blue.css', [ 'arras-nova' ], '' );
 		do_action( 'arras_load_styles' );
 	}
 

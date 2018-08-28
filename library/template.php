@@ -50,6 +50,8 @@ function arras_body_class() {
 	$classes[] = esc_attr( $style );
 	//$body_class = array( 'layout-' . arras_get_option( 'layout' ) );
 
+	//Testing color variation
+$classes[] = 'arras-blue';
 	//$body_class[] = 'style-' . arras_get_option( 'style' );
 
 	body_class( apply_filters( 'arras_body_class', $classes ) );

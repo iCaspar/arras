@@ -1,7 +1,6 @@
 // SASS Mixins
 // ------------------------------
 
-
 // Typography
 // ---------------
 
@@ -188,4 +187,102 @@
 
 @mixin all-transition {
   transition: all 0.2s ease-in-out;
+}
+
+@mixin color-variation( $variation, $variation-colors ) {
+  .#{$variation} {
+    a {
+      &:link {
+        color: map-get($variation-colors, link-color__base);
+      }
+
+      &:visited {
+        color: map-get($variation-colors, link-color__visited);
+      }
+
+      &:focus {
+        color: map-get($variation-colors, link-color__focus);
+      }
+
+      &:hover {
+        color: map-get($variation-colors, link_color__hover);
+      }
+
+      &:active {
+        color: map-get($variation-colors, link-color__active);
+      }
+    }
+
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"],
+    .button,
+    .quick-entry .quick-read-more a,
+    .entries-nav a,
+    .comment-respond .comment-reply-title small a,
+    .comment-reply-link,
+    .comments-navigation a,
+    .searchform .searchsubmit {
+      color: map-get($variation-colors, link-color__base);
+
+      &:hover,
+      &:focus {
+        background-color: map-get($variation-colors, link-color__base);
+        color: map-get($variation-colors, link-color__inverse);
+      }
+    }
+
+    .before-header {
+      background-color: map-get($variation-colors, before-header-background-color__base);
+      border-bottom-color: map-get($variation-colors, border-color__dark);
+
+      .secondary-nav-menu .menu-item a {
+        color: map-get($variation-colors, text-color__inverse-alternate);
+
+        &:hover,
+        &:focus {
+          color: map-get($variation-colors, link-color__inverse);
+        }
+      }
+    }
+
+    .page-header {
+      background-color: map-get($variation-colors, header-background-color__base);
+      border-bottom-color: map-get($variation-colors, border-color__dark);
+
+      .site-name a {
+        color: map-get($variation-colors, link-color__inverse);
+      }
+
+      .site-description {
+        color: map-get($variation-colors, text-color__muted);
+      }
+    }
+
+    .after-header,
+    .primary-nav-menu .sub-menu,
+    .widget-container .widget-title,
+    .comments .comments-title,
+    .comment-respond .comment-reply-title {
+      background-color: map-get($variation-colors, after-header-background-color__base);
+    }
+
+    .after-header {
+      .primary-nav-menu .menu-item a {
+        color: map-get($variation-colors, text-color__inverse-alternate);
+
+        &:hover,
+        &:focus {
+          color: map-get($variation-colors, link-color__inverse);
+        }
+      }
+    }
+
+    .widget-title,
+    .comments-title,
+    .comment-reply-title {
+      color: map-get($variation-colors, link-color__inverse);
+    }
+  }
 }
