@@ -1,4 +1,10 @@
 <?php
+/**
+ * Arras root file.
+ *
+ * @package Arras
+ * @since 1.0.0
+ */
 
 namespace Arras;
 
@@ -10,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once 'vendor/autoload.php';
 
-initConstants();
+init_constants();
 
 require_once ARRAS_LIB . '/admin/options.php';
 require_once ARRAS_LIB . '/admin/templates/functions.php';
@@ -30,9 +36,16 @@ if ( is_admin() ) {
 	require_once ARRAS_LIB . '/admin/admin.php';
 }
 
-initArras();
+init_arras();
 
-function initConstants() {
+/**
+ * Initialize Arras constants.
+ *
+ * @since 1.7
+ *
+ * @return void
+ */
+function init_constants() {
 	$theme = wp_get_theme();
 
 	define( 'ARRAS_VERSION', $theme->get( 'Version' ) );
@@ -46,13 +59,27 @@ function initConstants() {
 	define( 'ARRAS_CHILD', is_child_theme() );
 }
 
-function initArras() {
+/**
+ * Start Arras theme class.
+ *
+ * @since 1.7
+ *
+ * @return void
+ */
+function init_arras() {
 	$theme = new Theme( include ARRAS_CONFIG_DIR . '/config.php' );
 	do_action( 'arras_init', $theme );
 	$theme->init();
 }
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\arras_setup' );
+/**
+ * Setup Arras theme.
+ *
+ * @since 1.7
+ *
+ * @return void
+ */
 function arras_setup() {
 	load_theme_textdomain( 'arras', get_template_directory() . '/language' );
 
@@ -60,17 +87,21 @@ function arras_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'custom-background' );
-	add_theme_support( 'custom-logo', [
-		'height'      => 125,
-		'width'       => 400,
-		'flex-width'  => true,
-		'header-text' => [ 'site-name', 'site-description' ],
-	] );
+	add_theme_support(
+		'custom-logo', [
+			'height'      => 125,
+			'width'       => 400,
+			'flex-width'  => true,
+			'header-text' => [ 'site-name', 'site-description' ],
+		]
+	);
 
-	register_nav_menus( array(
-		'main-menu' => __( 'Main Menu', 'arras' ),
-		'top-menu'  => __( 'Top Menu', 'arras' )
-	) );
+	register_nav_menus(
+		array(
+			'main-menu' => __( 'Main Menu', 'arras' ),
+			'top-menu'  => __( 'Top Menu', 'arras' ),
+		)
+	);
 
 	arras_add_default_thumbnails();
 
@@ -83,7 +114,7 @@ function arras_setup() {
 	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
 	add_filter( 'use_default_gallery_style', '__return_false' );
 
-	if ( defined( 'ARRAS_CUSTOM_FIELDS' ) && ARRAS_CUSTOM_FIELDS == true ) {
+	if ( defined( 'ARRAS_CUSTOM_FIELDS' ) && ARRAS_CUSTOM_FIELDS === true ) {
 		add_filter( 'arras_postheader', 'arras_postmeta' );
 	}
 
