@@ -50,16 +50,12 @@
     width: 100%;
 
     .entry-title {
+      @include font-size(22);
       color: $link-color__inverse;
-
-      &:hover,
-      &:focus {
-        color: $link-color__hover-inverse;
-      }
     }
 
     .entry-summary {
-      color: $text-color__inverse;
+      color: $text-color__inverse-alternate;
 
       p {
         margin: 0;
