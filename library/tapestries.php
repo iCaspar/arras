@@ -253,7 +253,7 @@ function arras_defaults_tapestry_default() {
 
 add_action( 'wp_enqueue_scripts', 'arras_style_tapestry_default' );
 function arras_style_tapestry_default() {
-	$arras           = Arras\Theme::getArras();
+	$arras           = Arras\Theme::get_arras();
 	$node_based_size = arras_get_image_size( 'node-based-thumb' );
 	$innerWidth      = $node_based_size['w'];
 	$outerWidth      = $node_based_size['w'] + 10;
@@ -303,7 +303,7 @@ if (!function_exists('arras_tapestry_quick')) {
 
 	add_action( 'wp_enqueue_scripts', 'arras_style_tapestry_quick' );
 	function arras_style_tapestry_quick() {
-		$arras              = \Arras\Theme::getArras();
+		$arras              = \Arras\Theme::get_arras();
 		$quick_preview_size = arras_get_image_size( 'quick-preview-thumb' );
 		$quick_preview_w    = $quick_preview_size['w'];
 		$quick_preview_h    = $quick_preview_size['h'];

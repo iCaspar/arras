@@ -344,7 +344,7 @@ function arras_blacklist_duplicates() {
 
 add_action( 'wp_enqueue_scripts', 'arras_constrain_footer_sidebars' );
 function arras_constrain_footer_sidebars() {
-	$arras           = Arras\Theme::getArras();
+	$arras           = Arras\Theme::get_arras();
 	$footer_sidebars = arras_get_option( 'footer_sidebars' );
 
 	if ( $footer_sidebars == '' ) {

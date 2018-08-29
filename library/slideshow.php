@@ -105,7 +105,7 @@ add_action('arras_add_default_thumbnails', 'arras_add_slideshow_thumb_size', 5);
 
 add_action( 'wp_enqueue_scripts', 'arras_slideshow_styles' );
 function arras_slideshow_styles() {
-	$arras               = \Arras\Theme::getArras();
+	$arras               = \Arras\Theme::get_arras();
 	$slideshow_size      = arras_get_image_size( 'featured-slideshow-thumb' );
 	$innerWidth          = $slideshow_size['w'];
 	$innerHeight         = $slideshow_size['h'];

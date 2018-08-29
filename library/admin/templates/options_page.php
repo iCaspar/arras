@@ -5,7 +5,7 @@
 <h2 id="arras-header"><?php _e('Arras Options', 'arras') ?></h2>
 
 <?php
-$arras = \Arras\Theme::getArras();
+$arras = \Arras\Theme::get_arras();
 echo $notices;
 do_action('arras_admin_notices');
 ?>
