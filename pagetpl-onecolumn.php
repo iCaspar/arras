@@ -8,7 +8,6 @@ define('ARRAS_FORCE_LAYOUT', '1c-fixed');
 
 <?php get_header(); ?>
 
-<div id="content" class="section">
 <?php arras_above_content() ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -45,7 +44,6 @@ define('ARRAS_FORCE_LAYOUT', '1c-fixed');
 <?php endif; ?>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
-</div><!-- #container -->
+</div>
 
 <?php get_footer(); ?>

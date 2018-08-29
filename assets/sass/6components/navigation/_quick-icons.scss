@@ -1,0 +1,68 @@
+// Quick Icons Navigation
+// ---------------
+
+.quick-icons {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+  li {
+    @include font-size(14);
+    margin: 5px;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 6px;
+      color: $text-color__inverse;
+      display: block;
+      height: 36px;
+      position: relative;
+      text-decoration: none;
+      text-indent: -9999px;
+      width: 36px;
+
+      &:hover,
+      &:focus {
+        color: $text-color__bright;
+      }
+
+      &::before {
+        font-family: Ionicons;
+        @include font-size(36);
+        line-height: 1;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        color: $text-color__inverse;
+        top: 0;
+        left: 0;
+        text-indent: 0;
+      }
+    }
+  }
+
+  .facebook::before {
+    content: '\f236';
+  }
+
+  .flickr::before {
+    content: '\f107';
+  }
+
+  .twitter::before {
+    content: '\f2b0';
+  }
+
+  .youtube::before {
+    content: '\f34f';
+  }
+
+  @include breakpoint('small') {
+    padding: 0;
+  }
+}

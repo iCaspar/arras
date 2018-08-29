@@ -57,9 +57,14 @@ class Theme {
 
 	private function registerLayouts() {
 		$config = isset( $this->config['layouts'] ) ? $this->config['layouts'] : [];
+		$style = arras_get_option( 'style' );
 
 		foreach ( $config as $slug => $layout ) {
-			register_alternate_layout( $slug, $layout );
+			if ( 'arras-nova' == $style && 'nova' == $layout[1] ) {
+				register_alternate_layout( $slug, $layout[0] );
+			} elseif ( 'arras-nova' != $style && 'legacy' == $layout[1] ) {
+				register_alternate_layout( $slug, $layout[0] );
+			}
 		}
 	}
 

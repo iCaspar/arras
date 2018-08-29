@@ -1,21 +1,28 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Arras 404 ("not found") template.
+ *
+ * @package Arras
+ *
+ * @since 1.0.0
+ */
 
-<div id="content" class="section">
-<?php arras_above_content() ?>
+get_header(); ?>
+
+<?php arras_above_content(); ?>
 
 <div class="single-post">
-	<h1 class="entry-title"><?php _e('Error 404 - Not Found', 'arras') ?></h1>
+	<h1 class="entry-title"><?php esc_html_e( 'Something Went Missing!', 'arras' ); ?></h1>
 	<div class="entry-content clearfix">
-		<p><strong><?php _e( "We're very sorry, but that page doesn't exist or has been moved.", 'arras' ) ?></strong><br />
-		<?php _e( 'Please make sure you have the right URL.', 'arras' ) ?>
+		<p><strong><?php esc_html_e( "We're very sorry, but that page doesn't exist or has been moved.", 'arras' ); ?></strong><br />
+		<?php esc_html_e( 'Please make sure you have the right URL.', 'arras' ); ?>
 		</p>
-		<p><?php _e( "If you still can't find what you're looking for, try using the search form below.", 'arras' ) ?></p>
+		<p><?php esc_html_e( "If you still can't find what you're looking for, try using the search form below.", 'arras' ); ?></p>
 		<?php get_search_form(); ?>
 	</div>
 </div>
 
-<?php arras_below_content() ?>
-</div><!-- #content -->
+<?php arras_below_content(); ?>
 
 <?php get_sidebar(); ?>
 

@@ -1,0 +1,21 @@
+// WordPress Alignments
+// ---------------
+
+.alignleft {
+  float: left;
+  margin-right: 10px;
+}
+
+.aligncenter {
+  display: block;
+  margin: 0 auto;
+}
+
+.alignright {
+  float: right;
+  margin-left: 10px;
+}
+
+.alignnone {
+  max-width: 100%;
+}

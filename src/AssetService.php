@@ -5,9 +5,9 @@
 
 namespace Arras;
 
-
 /**
  * Class AssetService
+ *
  * @package Arras
  */
 class AssetService {
@@ -46,7 +46,7 @@ class AssetService {
 	 */
 	public function __construct( array $config, $baseUrl, $isDevEnv = false ) {
 		$this->config   = $config;
-		$this->baseUrl  = $baseUrl;
+		$this->baseUrl  = $baseUrl . '/';
 		$this->isDevEnv = $isDevEnv;
 	}
 
@@ -56,6 +56,7 @@ class AssetService {
 	public function init() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueStyles' ], 15 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'registerStyles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminStyles' ], 15 );
 	}
@@ -72,7 +73,7 @@ class AssetService {
 		$result = [];
 
 		foreach ( $this->config['styles'] as $handle => $args ) {
-			if ( ! isset ( $args['filename'] ) ) {
+			if ( ! isset( $args['filename'] ) ) {
 				continue;
 			}
 
@@ -83,10 +84,13 @@ class AssetService {
 				isset( $args['deps'] ) ? $args['deps'] : [],
 				isset( $args['version'] ) ? $args['version'] : '',
 				isset( $args['media'] ) ? $args['media'] : 'all'
-			) ? $src : '';
+			) ? [ $handle => $src ] : '';
 
 			if ( $this->isSelectableScheme( $args ) ) {
-				$this->styleSchemes[] = ucfirst( $args['filename'] );
+				$scheme_name                   = isset( $args['nicename'] )
+					? $args['nicename']
+					: ucfirst( $args['filename'] );
+				$this->styleSchemes[ $handle ] = $scheme_name;
 			}
 		}
 
@@ -97,6 +101,8 @@ class AssetService {
 	 * @return void
 	 */
 	public function enqueueStyles() {
+		wp_enqueue_style( 'dashicons' );
+		wp_enqueue_style( 'ionicons', 'https://unpkg.com/ionicons@4.3.0/dist/css/ionicons.min.css', [], '4.3.0', 'all' );
 		$handle = $this->getCurrentStyleHandle();
 		wp_enqueue_style( $handle );
 
@@ -111,17 +117,35 @@ class AssetService {
 		do_action( 'arras_load_styles' );
 	}
 
+	public function enqueue_scripts() {
+		wp_enqueue_script( 'hoverIntent' );
+		wp_enqueue_script(
+			'superfish',
+			$this->getAssetUrl( 'superfish', 'js' ),
+			[ 'jquery' ],
+			'1.7.10',
+			true
+		);
+		wp_enqueue_script(
+			'arras-superfish',
+			$this->getAssetUrl( 'superfish-config', 'js' ),
+			[ 'superfish' ],
+			ARRAS_VERSION,
+			true
+		);
+	}
+
 	/**
 	 * @return string
 	 */
 	public function getCurrentStyleHandle() {
-		$style = '-' . arras_get_option( 'style' );
+		$style = arras_get_option( 'style' );
 
-		if ( ! isset( $style ) || '-default' == $style ) {
+		if ( ! isset( $style ) ) {
 			$style = '';
 		}
 
-		return 'arras' . $style;
+		return $style;
 	}
 
 	/**
@@ -133,11 +157,11 @@ class AssetService {
 			return;
 		}
 
-		wp_enqueue_style( 'jquery-smoothness' );
-		wp_enqueue_style( 'arras-admin' );
+		//wp_enqueue_style( 'smoothness' );
+		wp_enqueue_style( 'admin' );
 
 		if ( is_rtl() ) {
-			wp_enqueue_style( 'arras-admin-rtl' );
+			wp_enqueue_style( 'admin-rtl' );
 		}
 	}
 
@@ -147,6 +171,23 @@ class AssetService {
 	 * @return void
 	 */
 	public function addInlineStyle( $css ) {
+		$this->maybe_add_inline_styles( $css );
+	}
+
+	/**
+	 * Add inline styles for legacy style sets.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @param string $css CSS to be inlined.
+	 *
+	 * @return void
+	 */
+	protected function maybe_add_inline_styles( $css ) {
+		if ( 'arras-nova' == $this->getCurrentStyleHandle() ) {
+			return;
+		}
+
 		$this->inlineCSS .= $css;
 	}
 
@@ -165,9 +206,9 @@ class AssetService {
 	 */
 	private function getAssetUrl( $filename, $filetype ) {
 		if ( $this->isDevEnv ) {
-			return $this->baseUrl . '/src/' . $filetype . '/' . $filename . '.' . $filetype;
+			return $this->baseUrl . $filetype . '/' . $filename . '.' . $filetype;
 		} else {
-			return $this->baseUrl . '/dist/' . $filetype . '/' . $filename . '.min.' . $filetype;
+			return $this->baseUrl . $filetype . '/' . $filename . '.min.' . $filetype;
 		}
 	}
 
@@ -186,8 +227,8 @@ class AssetService {
 	public function buildStyleSchemeChooser() {
 		$menuOpts = [];
 
-		foreach ( $this->styleSchemes as $scheme ) {
-			$menuOpts[ strtolower( $scheme ) ] = $scheme;
+		foreach ( $this->styleSchemes as $scheme => $file ) {
+			$menuOpts[ $scheme ] = $file;
 		}
 
 		return arras_form_dropdown( 'arras-style', $menuOpts, arras_get_option( 'style' ) );

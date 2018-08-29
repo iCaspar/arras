@@ -58,14 +58,13 @@ function arras_setup() {
 
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'nav-menus' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'custom-background' );
 	add_theme_support( 'custom-logo', [
 		'height'      => 125,
 		'width'       => 400,
 		'flex-width'  => true,
-		'header-text' => [ 'blog-name' ],
+		'header-text' => [ 'site-name', 'site-description' ],
 	] );
 
 	register_nav_menus( array(
@@ -80,11 +79,9 @@ function arras_setup() {
 	remove_action( 'wp_head', 'pagenavi_css' );
 	add_action( 'arras_beside_nav', 'arras_social_nav' );
 	add_action( 'wp_head', 'arras_head' );
-	add_action( 'wp_head', 'arras_add_header_js' );
-	add_action( 'wp_footer', 'arras_add_footer_js' );
 
 	add_filter( 'arras_postheader', 'arras_post_taxonomies' );
-	add_filter( 'gallery_style', 'remove_gallery_css' );
+	add_filter( 'use_default_gallery_style', '__return_false' );
 
 	if ( defined( 'ARRAS_CUSTOM_FIELDS' ) && ARRAS_CUSTOM_FIELDS == true ) {
 		add_filter( 'arras_postheader', 'arras_postmeta' );

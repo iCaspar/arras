@@ -1,0 +1,53 @@
+// Default colors
+// ------------------------------
+
+// Backgrounds
+// ---------------
+$page-background-color__base: $cloud;
+$page-background-color__secondary: $off-white;
+
+$before-header-background-color__base: $off-black;
+$header-background-color__base: $deep-red;
+$after-header_background-color__base: $light-rust;
+
+$content-background-color__base: $white;
+
+$text-background-color__code: $light-silver;
+$text-background-color__inverse: $slate;
+
+$table-heading-background-color: $light-silver;
+
+// Text
+// ---------------
+$text-color__base: $slate;
+$text-color__alternate: $carbon;
+$text-color__inactive: $medium-gray;
+$text-color__inverse: $off-white;
+$text-color__inverse-alternate: $silver;
+$text-color__bright: $white;
+$text-color__muted: $light-brown;
+
+// Links
+// ---------------
+$link-color__base: $dark-rust;
+$link-color__inverse: $off-white;
+$link-color__visited: $dark-rust;
+$link-color__hover: $brick;
+$link-color__hover-inverse: $fade;
+$link-color__active: brick;
+$link-color__focus: $brick;
+
+// Borders
+// ---------------
+$border-color__base: $fade;
+$border-color__focus: $light-gray;
+$border-color__dark: $slate;
+
+// Buttons
+// ---------------
+$button-background-color__base: $white;
+$button-background-color__hover: $link-color__base;
+$button-background-color__disabled: $light-gray;
+$button-text-color__base: $link-color__base;
+$button-text-color__hover: $text-color__inverse;
+$button-text-color__disabled: $dark-gray;

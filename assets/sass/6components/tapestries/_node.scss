@@ -1,0 +1,66 @@
+// Node Tapestry
+// ---------------
+
+.nodes-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-column-gap: 10px;
+  align-items: start;
+}
+
+.node-entry {
+  .entry-thumbnails {
+    background-color: $content-background-color__base;
+    border: 1px solid $border-color__base;
+    height: 0;
+    padding: 4px 4px 75%;
+    position: relative;
+
+    a {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      height: calc(100% - 8px);
+      width: calc(100% - 8px);
+    }
+
+    img {
+      display: block;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  .entry-meta {
+    background-color: rgba( $text-background-color__inverse, .7);
+    bottom: 0;
+    color: $text-color__inverse;
+    display: block;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+
+    .entry-comments {
+      float: right;
+
+      &:before {
+        content: '\f101\00a0';
+        font-family: dashicons;
+        vertical-align: bottom;
+      }
+    }
+  }
+
+  .entry-title {
+    @include font-size(20);
+    margin: 5px 5px 10px;
+    position: relative;
+  }
+
+  .entry-summary {
+    @include font-size(14);
+    margin: 5px;
+  }
+}

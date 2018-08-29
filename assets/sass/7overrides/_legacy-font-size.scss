@@ -1,0 +1,6 @@
+// Legacy font-size override
+// ------------------------------
+
+html.legacy {
+  font-size: 75%; /* Sets root element to 12px (legacy Arras font size) in modern browsers */
+}

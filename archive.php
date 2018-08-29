@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-<div id="content" class="section">
 <?php arras_above_content() ?>
 
 <?php is_tag(); if ( have_posts() ) : ?>
@@ -28,9 +27,9 @@
 	<?php arras_render_posts( null, arras_get_option('archive_display') ) ?>    
  
 	<?php if(function_exists('wp_pagenavi')) wp_pagenavi(); else { ?>
-    	<div class="navigation clearfix">
-			<div class="floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
-			<div class="floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
+    	<div class="entries-nav navigation clearfix">
+			<div class="next-posts floatleft"><?php next_posts_link( __('Older Entries', 'arras') ) ?></div>
+			<div class="previous-posts floatright"><?php previous_posts_link( __('Newer Entries', 'arras') ) ?></div>
 		</div>
     <?php } ?>
 	</div><!-- #archive-posts -->
@@ -40,7 +39,6 @@
 <?php endif; ?>
 
 <?php arras_below_content() ?>
-</div><!-- #content -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

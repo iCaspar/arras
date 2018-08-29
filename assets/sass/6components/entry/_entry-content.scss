@@ -1,0 +1,7 @@
+// Entry Content
+// ---------------
+
+.entry-content {
+  @include clearfix;
+  @include standard-lists;
+}

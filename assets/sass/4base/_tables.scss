@@ -1,0 +1,33 @@
+// Tables
+// ------------------------------
+
+table {
+  border: 1px solid $border-color__base;
+  border-collapse: collapse;
+  border-spacing: 0;
+  line-height: 2;
+  margin-bottom: 30px;
+  word-break: break-all;
+}
+
+tbody {
+  border-bottom: 1px solid $border-color__base;
+}
+
+th,
+td {
+  border: 1px solid $border-color__base;
+  padding: 5px;
+}
+
+th {
+  background-color: $table-heading-background-color;
+  font-weight: $font-weight__bold;
+  text-align: center;
+}
+
+td {
+  background-color: $page-background-color__secondary;
+  border-top: 1px solid $border-color__base;
+  padding: 6px;
+}

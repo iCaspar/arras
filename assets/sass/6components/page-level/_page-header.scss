@@ -1,0 +1,39 @@
+// Page Header
+// ---------------
+
+.page-header {
+  background-color: $header-background-color__base;
+  border-bottom: 5px solid $border-color__dark;
+  padding: 15px 0;
+  text-align: center;
+
+  .site-banner {
+    @include inner-wrap;
+
+    @include breakpoint('small') {
+      padding: 0 10px;
+      text-align: left;
+    }
+  }
+}
+
+.site-name {
+  @include font-size(26);
+  @include title-font;
+  color: $text-color__bright;
+  margin: 5px 0;
+  font-variant: small-caps;
+
+  a {
+    color: $text-color__bright;
+    text-decoration: none;
+  }
+}
+
+.site-description {
+  @include title-font;
+  @include font-size(14);
+  color: $text-color__muted;
+  margin: 5px 0;
+  text-transform: uppercase;
+}

@@ -1,0 +1,6 @@
+// Color Overrides
+// ------------------------------
+
+@each $variation, $variation-map in $variations {
+  @include color-variation( $variation, $variation-map);
+}

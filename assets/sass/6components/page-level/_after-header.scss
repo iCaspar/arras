@@ -1,0 +1,18 @@
+// After Header
+// ---------------
+
+.after-header {
+  background-color: $after-header-background-color__base;
+
+  .main-nav-wrap {
+    @include inner-wrap;
+
+    @include breakpoint('small') {
+      display: flex;
+
+      nav {
+        flex: 3;
+      }
+    }
+  }
+}

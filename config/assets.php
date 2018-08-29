@@ -5,54 +5,73 @@
 
 return [
 	'styles' => [
-		'arras'             => [
-			'filename' => 'default',
+		'arras-nova' => [
+			'nicename' => __( 'Arras Nova', 'arras' ),
+			'filename' => 'style',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-blue'        => [
-			'filename' => 'blue',
+		'arras'      => [
+			'nicename' => __( 'Arras 1.x', 'arras' ),
+			'filename' => 'legacy/default',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-green'       => [
-			'filename' => 'green',
+		'blue'       => [
+			'nicename' => __( 'Legacy Blue', 'arras' ),
+			'filename' => 'legacy/blue',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-orange'      => [
-			'filename' => 'orange',
+		'green'      => [
+			'nicename' => __( 'Legacy Green', 'arras' ),
+			'filename' => 'legacy/green',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-red'         => [
-			'filename' => 'red',
+		'orange'     => [
+			'nicename' => __( 'Legacy Orange', 'arras' ),
+			'filename' => 'legacy/orange',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-violet'      => [
-			'filename' => 'violet',
+		'red'        => [
+			'nicename' => __( 'Legacy Red', 'arras' ),
+			'filename' => 'legacy/red',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-legacy'      => [
-			'filename' => 'legacy',
+		'violet'     => [
+			'nicename' => __( 'Legacy Violet', 'arras' ),
+			'filename' => 'legacy/violet',
 			'version'  => ARRAS_VERSION,
 			'scheme'   => true,
 		],
-		'arras-rtl'         => [
-			'filename' => 'rtl',
+		'legacy'     => [
+			'nicename' => __( 'Legacy', 'arras' ),
+			'filename' => 'legacy/legacy',
+			'version'  => ARRAS_VERSION,
+			'scheme'   => true,
+		],
+		'rtl'        => [
+			'filename' => 'legacy/rtl',
 			'version'  => ARRAS_VERSION,
 		],
-		'arras-admin'       => [
+		'admin'      => [
 			'filename' => 'admin',
 			'version'  => ARRAS_VERSION,
+			'deps'     => 'jquery-multi-select',
 		],
-		'arras-admin-rtl'   => [
+		'admin-rtl'  => [
 			'filename' => 'admin-rtl',
 			'version'  => ARRAS_VERSION,
 		],
-		'jquery-smoothness' => [
+		'jquery-multiselect' => [
+			'filename' => 'jquery.multiselect',
+			'version' => '2.0.1',
+			'deps' => [ 'admin' ],
+		],
+		'smoothness' => [
 			'filename' => 'jquery-ui-1.8.2.custom',
 			'version'  => ARRAS_VERSION,
 		],

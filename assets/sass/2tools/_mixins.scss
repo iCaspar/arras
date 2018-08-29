@@ -1,0 +1,297 @@
+// SASS Mixins
+// ------------------------------
+
+// Typography
+// ---------------
+
+// Font sizing
+// @param {int} $size - Font size in pixels.
+@mixin font-size( $size: 16 ) {
+  font-size: ($size) + px;
+  font-size: ($size / 16) * 1rem;
+}
+
+// Font settings for titles.
+@mixin title-font {
+  font-family: $font-family__base;
+  font-weight: $font-weight__bold;
+}
+
+// Screen-reader text
+@mixin screen-reader {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+
+  &:focus {
+    @include font-size(16);
+    background: #fff;
+    box-shadow: 0 0 2px 2px $shadow;
+    clip: auto !important;
+    color: #333;
+    display: block;
+    font-weight: $font-weight__bold;
+    height: auto;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    width: auto;
+    z-index: 100000; /* Above WP toolbar. */
+  }
+}
+
+// Form placeholder text
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content
+  }
+  :-moz-placeholder {
+    @content
+  }
+  ::-moz-placeholder {
+    @content
+  }
+  :-ms-input-placeholder {
+    @content
+  }
+}
+
+// Buttons
+@mixin button {
+  @include font-size(16);
+  background-color: $button-background-color__base;
+  border: 1px solid $border-color__base;
+  border-radius: 5px;
+  color: $button-text-color__base;
+  cursor: pointer;
+  font-weight: $font-weight__bold;
+  padding: 5px 10px;
+  text-decoration: none;
+  white-space: normal;
+  width: auto;
+
+  &:focus,
+  &:hover {
+    background-color: $button-background-color__hover;
+    color: $button-text-color__hover;
+  }
+
+  &:disabled {
+    background-color: $button-background-color__disabled;
+    color: $button-text-color__disabled;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-disabled {
+  background-color: $button-background-color__disabled;
+  color: $button-text-color__disabled;
+  cursor: not-allowed;
+
+  &:focus,
+  &:hover {
+    background-color: $button-background-color__disabled;
+    color: $button-text-color__disabled;
+  }
+}
+
+// Nested Ordered Lists
+@mixin standard-lists {
+  ul,
+  ol {
+    margin-left: 24px;
+    padding-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: disc;
+
+    ol,
+    ul {
+      padding-bottom: 0;
+    }
+
+    ul {
+      list-style-type: circle;
+
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+
+    ol,
+    ul {
+      padding-bottom: 0;
+    }
+
+    ol {
+      list-style-type: upper-latin;
+      padding-bottom: 0;
+
+      ol {
+        list-style-type: lower-roman;
+      }
+    }
+  }
+}
+
+// Layout
+// ---------------
+
+// Manage responsive breakpoints.
+// @param {string} $breakpoint - Breakpoint name.
+// @require $breakpoints
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "No such breakpoint value, `#{$breakpoint}`."
+    + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+// Inner wrap for page containers.
+@mixin inner-wrap {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 96%;
+}
+
+// Clearfix
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// Animation and Transitions
+// ---------------
+@mixin color-transition {
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+@mixin all-transition {
+  transition: all 0.2s ease-in-out;
+}
+
+// Insert a set of Color Variation Overrides
+// ---------------
+@mixin color-variation( $variation, $variation-colors ) {
+  .#{$variation} {
+    a {
+      color: map-get($variation-colors, link-color__base);
+
+      &:visited {
+        color: map-get($variation-colors, link-color__visited);
+      }
+
+      &:hover {
+        color: map-get($variation-colors, link-color__hover);
+      }
+
+      &:focus {
+        color: map-get($variation-colors, link-color__focus);
+      }
+
+      &:active {
+        color: map-get($variation-colors, link-color__active);
+      }
+    }
+
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"],
+    .button,
+    .quick-entry .quick-read-more a,
+    .entries-nav a,
+    .comment-respond .comment-reply-title small a,
+    .comment-reply-link,
+    .comments-navigation a,
+    .searchform .searchsubmit {
+      color: map-get($variation-colors, link-color__base);
+
+      &:hover,
+      &:focus {
+        background-color: map-get($variation-colors, link-color__base);
+        color: map-get($variation-colors, link-color__inverse);
+      }
+    }
+
+    .before-header {
+      background-color: map-get($variation-colors, before-header-background-color__base);
+      border-bottom-color: map-get($variation-colors, border-color__dark);
+
+      .secondary-nav-menu .menu-item a {
+        color: map-get($variation-colors, text-color__inverse-alternate);
+
+        &:hover,
+        &:focus {
+          color: map-get($variation-colors, link-color__inverse);
+        }
+      }
+    }
+
+    .page-header {
+      background-color: map-get($variation-colors, header-background-color__base);
+      border-bottom-color: map-get($variation-colors, border-color__dark);
+
+      .site-name a {
+        color: map-get($variation-colors, link-color__inverse);
+      }
+
+      .site-description {
+        color: map-get($variation-colors, text-color__muted);
+      }
+    }
+
+    .after-header,
+    .primary-nav-menu .sub-menu,
+    .widget-container .widget-title,
+    .comments .comments-title,
+    .comment-respond .comment-reply-title {
+      background-color: map-get($variation-colors, after-header-background-color__base);
+    }
+
+    .after-header {
+      .primary-nav-menu .menu-item a {
+        color: map-get($variation-colors, text-color__inverse-alternate);
+
+        &:hover,
+        &:focus {
+          color: map-get($variation-colors, link-color__inverse);
+        }
+      }
+
+      @include breakpoint('small') {
+        .sub-menu .menu-item a {
+          &:hover,
+          &:focus {
+            color: map-get($variation-colors, link-color__base);
+          }
+        }
+      }
+    }
+
+    .widget-title,
+    .comments-title,
+    .comment-reply-title {
+      color: map-get($variation-colors, link-color__inverse);
+    }
+  }
+}

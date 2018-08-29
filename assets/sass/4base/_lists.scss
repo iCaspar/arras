@@ -1,0 +1,18 @@
+// Lists
+// ------------------------------
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+dt {
+  font-weight: $font-weight__bold;
+  margin-bottom: 4px;
+}
+
+dd {
+  margin: 0 0 20px 15px;
+}

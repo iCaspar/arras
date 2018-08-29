@@ -1,0 +1,28 @@
+// Comment Replies
+// ---------------
+
+.comment-respond {
+  background-color: $content-background-color__base;
+  border: 1px solid $border-color__base;
+
+  .comment-reply-title {
+    @include clearfix;
+    @include font-size(18);
+    @include title-font;
+    background-color: $page-background-color__secondary;
+    border-bottom: 1px solid $border-color__base;
+    margin-bottom: 0;
+    padding: 5px 10px;
+
+    small a {
+      @include button;
+      float: right;
+      font-size: small;
+      padding: 2px 10px;
+    }
+  }
+
+  .comment-form {
+    padding: 10px;
+  }
+}

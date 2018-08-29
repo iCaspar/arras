@@ -77,7 +77,7 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 		for ( $c; $query->have_posts(); $c++ ) {
 			$query->the_post();
 			if ( $c % $tapestry_settings['nodes'] == 0 ) 
-				echo '<div class="clearfix">';
+				echo '<div class="nodes-row clearfix">';
 			
 			// hack for plugin authors who love to use $post = $wp_query->post
 			$wp_query->post = $query->post;
@@ -115,9 +115,9 @@ function arras_get_tapestry_callback($type, $query, $taxonomy = 'category') {
 if (!function_exists('arras_tapestry_traditional')) {
 	function arras_tapestry_traditional($dep = '', $taxonomy) {
 		?>
-		<div <?php arras_single_post_class() ?>>
+		<div class="entry traditional-entry clearfix">
 			<?php arras_postheader() ?>
-			<div class="entry-content clearfix"><?php the_content( __('Read the rest of this entry &raquo;', 'arras') ); ?></div>
+			<div class="entry-content clearfix"><?php the_excerpt(); ?></div>
 			<?php arras_postfooter() ?>
 		</div>
 		<?php
@@ -135,9 +135,9 @@ if (!function_exists('arras_tapestry_traditional')) {
 if (!function_exists('arras_tapestry_line')) {
 	function arras_tapestry_line($dep = '', $taxonomy) {
 		?>
-		<li <?php arras_post_class() ?>>
+		<li class="line-entry entry clearfix">
 		
-			<span class="entry-cat">
+			<div class="entry-cat">
 				<?php 
 				$terms = get_the_terms( get_the_ID(), $taxonomy );
 				if ( $terms != '' && !is_wp_error($terms) ) {
@@ -146,15 +146,15 @@ if (!function_exists('arras_tapestry_line')) {
 					else echo $terms[0]->name;
 				}
 				?>
-			</span>
+			</div>
 			
 			<h3 class="entry-title"><a rel="bookmark" href="<?php the_permalink() ?>" title="<?php printf( __('Permalink to %s', 'arras'), get_the_title() ) ?>"><?php the_title() ?></a></h3>
-			<a class="entry-comments" href="<?php comments_link() ?>"><?php comments_number() ?></a>
+			<div class="entry-comments"><a class="entry-comments" href="<?php comments_link() ?>"><?php comments_number() ?></a></div>
 		</li>
 		<?php
 	}
 	arras_add_tapestry( 'line', __('Per Line', 'arras'), 'arras_tapestry_line', array(
-		'before' => '<ul class="hfeed posts-line clearfix">',
+		'before' => '<ul class="per-line hfeed posts-line clearfix">',
 		'after' => '</ul><!-- .posts-line -->'
 	) );
 }
@@ -170,7 +170,7 @@ if (!function_exists('arras_tapestry_default')) {
 			$tapestry_settings = arras_defaults_tapestry_default();
 		}
 		?>
-		<div <?php arras_post_class() ?>>
+		<div class="node-entry entry clearfix">
 			<?php echo apply_filters('arras_tapestry_default_postheader', arras_generic_postheader('node-based', true) ) ?>
 			<?php if ( isset($tapestry_settings['excerpt']) && $tapestry_settings['excerpt'] ) : ?>
 			<div class="entry-summary">
@@ -181,7 +181,7 @@ if (!function_exists('arras_tapestry_default')) {
 		<?php
 	}
 	arras_add_tapestry( 'default', __('Node Based', 'arras'), 'arras_tapestry_default', array(
-		'before' => '<div class="hfeed posts-default clearfix">',
+		'before' => '<div class="nodes hfeed posts-default clearfix">',
 		'after' => '</div><!-- .posts-default -->'
 	) );
 	
@@ -275,23 +275,25 @@ function arras_style_tapestry_default() {
 if (!function_exists('arras_tapestry_quick')) {
 	function arras_tapestry_quick($dep = '', $taxonomy) {
 		?>
-		<li <?php arras_post_class() ?>>
+		<div class="quick-entry entry clearfix">
 			<?php echo apply_filters('arras_tapestry_quick_postheader', arras_generic_postheader('quick-preview') ) ?>
 			<div class="entry-summary">
 				<div class="entry-info">
-					<abbr class="published" title="<?php the_time('c') ?>"><?php printf( __('Posted %s', 'arras'), arras_posted_on( false ) ) ?></abbr> | <a href="<?php comments_link() ?>"><?php comments_number() ?></a>
+					<span class="published" title="<?php the_time('c') ?>"><?php printf( __('Posted %s', 'arras'), arras_posted_on( false ) ) ?></span> | <a href="<?php comments_link() ?>"><?php comments_number() ?></a>
 				</div>
-				<?php echo get_the_excerpt() ?>
+				<?php remove_filter( 'excerpt_more', 'arras_excerpt_more' );
+				echo get_the_excerpt();
+				add_filter( 'excerpt_more', 'arras_excerpt_more' ); ?>
 				<p class="quick-read-more"><a href="<?php the_permalink() ?>" title="<?php printf( __('Permalink to %s', 'arras'), get_the_title() ) ?>">
 				<?php _e('Continue Reading...', 'arras') ?>
 				</a></p>
 			</div>	
-		</li>
+		</div>
 		<?php
 	}
 	arras_add_tapestry( 'quick', __('Quick Preview', 'arras'), 'arras_tapestry_quick', array(
-		'before' => '<ul class="hfeed posts-quick clearfix">',
-		'after' => '</ul><!-- .posts-quick -->'		
+		'before' => '<div class="quick-previews hfeed posts-quick clearfix">',
+		'after' => '</div>'
 	) );
 	
 	function arras_add_tapestry_quick_thumbs() {
@@ -326,7 +328,7 @@ function arras_generic_postheader($tapestry, $show_meta = false) {
 	
 	if ($show_meta) {	
 		$postheader .= '<span class="entry-meta"><span class="entry-comments">' . get_comments_number() . '</span>';
-		$postheader .= '<abbr class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</abbr></span>';
+		$postheader .= '<span class="published" title="' . get_the_time('c') . '">' . get_the_time( get_option('date_format') ) . '</span></span>';
 	}
 	
 	$postheader .= '</a>';

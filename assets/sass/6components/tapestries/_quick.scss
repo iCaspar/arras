@@ -1,0 +1,35 @@
+// Quick Tapestry
+// ---------------
+
+.quick-entry {
+  @include clearfix;
+  margin-bottom: 10px;
+
+  .entry-thumbnails {
+    background-color: $content-background-color__base;
+    border: 1px solid $border-color__base;
+    float: left;
+    margin-right: 10px;
+    padding: 4px;
+  }
+
+  .entry-title {
+    @include font-size(20);
+    margin-top: 0;
+  }
+
+  .entry-info {
+    @include font-size(14);
+    border-bottom: 1px dotted $border-color__base;
+    color: $text-color__inactive;
+    font-variant: small-caps;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .quick-read-more a {
+    @include button;
+    display: inline-block;
+    margin: 5px 0;
+  }
+}
