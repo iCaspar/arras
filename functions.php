@@ -16,7 +16,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once 'vendor/autoload.php';
 
-init_constants();
+arras_init_constants();
+/**
+ * Initialize Arras constants.
+ *
+ * @since 1.7
+ *
+ * @return void
+ */
+function arras_init_constants() {
+	$theme = wp_get_theme();
+
+	define( 'ARRAS_VERSION', $theme->get( 'Version' ) );
+	define( 'ARRAS_URL', $theme->get( 'ThemeURI' ) );
+	define( 'ARRAS_CONFIG_DIR', get_template_directory() . '/config' );
+	define( 'ARRAS_LIB', get_template_directory() . '/library' );
+	define( 'ARRAS_ASSET_URL', get_template_directory_uri() . '/assets' );
+	define( 'ARRAS_REVIEW_SCORE', 'score' );
+	define( 'ARRAS_REVIEW_PROS', 'pros' );
+	define( 'ARRAS_REVIEW_CONS', 'cons' );
+	define( 'ARRAS_CHILD', is_child_theme() );
+}
 
 require_once ARRAS_LIB . '/admin/options.php';
 require_once ARRAS_LIB . '/admin/templates/functions.php';
@@ -36,29 +56,7 @@ if ( is_admin() ) {
 	require_once ARRAS_LIB . '/admin/admin.php';
 }
 
-init_arras();
-
-/**
- * Initialize Arras constants.
- *
- * @since 1.7
- *
- * @return void
- */
-function init_constants() {
-	$theme = wp_get_theme();
-
-	define( 'ARRAS_VERSION', $theme->get( 'Version' ) );
-	define( 'ARRAS_URL', $theme->get( 'ThemeURI' ) );
-	define( 'ARRAS_CONFIG_DIR', get_template_directory() . '/config' );
-	define( 'ARRAS_LIB', get_template_directory() . '/library' );
-	define( 'ARRAS_ASSET_URL', get_template_directory_uri() . '/assets' );
-	define( 'ARRAS_REVIEW_SCORE', 'score' );
-	define( 'ARRAS_REVIEW_PROS', 'pros' );
-	define( 'ARRAS_REVIEW_CONS', 'cons' );
-	define( 'ARRAS_CHILD', is_child_theme() );
-}
-
+arras_init();
 /**
  * Start Arras theme class.
  *
@@ -66,7 +64,7 @@ function init_constants() {
  *
  * @return void
  */
-function init_arras() {
+function arras_init() {
 	$theme = new Theme( include ARRAS_CONFIG_DIR . '/config.php' );
 	do_action( 'arras_init', $theme );
 	$theme->init();
