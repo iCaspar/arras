@@ -46,8 +46,8 @@ function arras_body_class() {
 		$layout = 'layout-' . $layout;
 	}
 
-	$classes[] = esc_attr( $layout );
-	$classes[] = esc_attr( $style );
+	$classes[] = $layout;
+	$classes[] = $style;
 	//$body_class = array( 'layout-' . arras_get_option( 'layout' ) );
 
 	//$body_class[] = 'style-' . arras_get_option( 'style' );
