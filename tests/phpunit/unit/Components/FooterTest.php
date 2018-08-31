@@ -14,5 +14,7 @@ use Arras\Tests\Unit\ArrasUnitTestCase;
 
 class FooterTest extends ArrasUnitTestCase {
 
-
+	public function test_sample() {
+		$this->assertTrue( true );
+	}
 }
