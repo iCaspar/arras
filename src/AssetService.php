@@ -141,8 +141,12 @@ class AssetService {
 	public function getCurrentStyleHandle() {
 		$style = arras_get_option( 'style' );
 
+		if ( 'default' === $style ) {
+			$style = 'arras';
+		}
+
 		if ( ! isset( $style ) ) {
-			$style = '';
+			$style = 'arras-nova';
 		}
 
 		return $style;
