@@ -50,7 +50,7 @@
         <properties>
             <property name="blank_line_check" value="true" />
         </properties>
-        <!-- Beans requires a new blank line BEFORE each control structure.
+        <!-- Arras requires a new blank line BEFORE each control structure.
              Excluding this rule will allow a blank line after all control structures. -->
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterStart"/>
     </rule>
