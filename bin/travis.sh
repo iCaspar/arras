@@ -14,7 +14,7 @@ else
 
     # Run sniffers.
     lint_js_files
-    #lint_php_files
+    lint_php_files
 
     # Run unit tests.
     echo '## Running unit tests:'
