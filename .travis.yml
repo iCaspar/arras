@@ -7,7 +7,6 @@ cache:
     vendor
 
 php:
-  - 5.6
   - 7.2
 
 env:
