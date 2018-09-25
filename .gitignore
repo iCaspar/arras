@@ -1,6 +1,5 @@
 composer.phar
 vendor/
-bin/
 node_modules/
 logs
 *.log
