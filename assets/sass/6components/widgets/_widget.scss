@@ -1,0 +1,19 @@
+// Widget
+// ---------------
+
+.widget-container {
+  background-color: $content-background-color__base;
+  border: 1px solid $border-color__base;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  .widget-title {
+    @include font-size(18);
+    @include title-font;
+    background-color: $page-background-color__base;
+    background-image: linear-gradient(180deg, rgba(white, 0), rgba(white, 0) 30%, rgba(white, .8));
+    border-bottom: 1px solid $border-color__base;
+    margin: -10px -10px 10px;
+    padding: 5px 10px;
+  }
+}

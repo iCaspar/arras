@@ -1,0 +1,28 @@
+// Sidebar
+// ---------------
+
+.sidebar {
+  @include clearfix;
+  margin-top: 10px;
+}
+
+@include breakpoint('small') {
+  .primary-sidebar,
+  .secondary-sidebar {
+    margin-top: 0;
+  }
+
+  .no-sidebars {
+    .primary-sidebar {
+      margin-top: 10px;
+    }
+  }
+
+  .primary-sidebar {
+    grid-area: primary-sidebar;
+  }
+
+  .secondary-sidebar {
+    grid-area: secondary-sidebar;
+  }
+}

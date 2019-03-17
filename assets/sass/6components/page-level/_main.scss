@@ -1,0 +1,72 @@
+// Main Content
+// ---------------
+
+.main {
+  @include inner-wrap;
+  background-color: $page-background-color__secondary;
+  border: 1px solid $border-color__base;
+  padding: 10px;
+}
+
+@include breakpoint('small') {
+  .main {
+    display: grid;
+    grid-column-gap: 10px;
+  }
+
+  .layout-1c-fixed .main,
+  .no-sidebars .main {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "content" "primary-sidebar" "secondary-sidebar";
+  }
+
+  .layout-2c-r-fixed .main,
+  .layout-3c-fixed .main,
+  .layout-3c-r-fixed .main,
+  .content-sidebar .main,
+  .sidebar-content-sidebar .main,
+  .content-sidebar-sidebar .main {
+    grid-template-columns: auto 300px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "content primary-sidebar" "content secondary-sidebar";
+  }
+
+  .layout-c2-l-fixed .main,
+  .sidebar-content .main,
+  .sidebar-sidebar-content .main {
+    grid-template-columns: 300px auto;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "primary-sidebar content" "secondary-sidebar content";
+  }
+
+  .page-template-pagetpl-onecolumn .main {
+    grid-template-areas: "content content";
+  }
+}
+
+@include breakpoint('large') {
+  .sidebar-sidebar-content .main {
+    grid-template-columns: 300px 300px auto;
+    grid-template-rows: auto;
+    grid-template-areas: "primary-sidebar secondary-sidebar content";
+  }
+
+  .layout-3c-fixed .main,
+  .sidebar-content-sidebar .main {
+    grid-template-columns: 300px auto 300px;
+    grid-template-rows: auto;
+    grid-template-areas: "primary-sidebar content secondary-sidebar";
+  }
+
+  .layout-3c-r-fixed .main,
+  .content-sidebar-sidebar .main {
+    grid-template-columns: auto 300px 300px;
+    grid-template-rows: auto;
+    grid-template-areas: "content primary-sidebar secondary-sidebar";
+  }
+
+  .page-template-pagetpl-onecolumn .main {
+    grid-template-areas: "content content content";
+  }
+}

@@ -1,0 +1,45 @@
+// Blue variation colors
+// ------------------------------
+
+$map-blue: (
+        page-background-color__base: $cloud,
+        page-background-color__secondary: $off-white,
+        before-header-background-color__base: $top-menu-bg-blue,
+        header-background-color__base: $header-bg-blue,
+        after-header-background-color__base: $main-menu-bg-blue,
+        content-background-color__base: $white,
+        text-background-color__code: $light-silver,
+        text-background-color__inverse: $slate,
+        table-heading-background-color: $light-silver,
+  // Text
+  // ---------------
+        text-color__base: $slate,
+        text-color__alternate: $description-blue,
+        text-color__inactive: $medium-gray,
+        text-color__inverse: $off-white,
+        text-color__inverse-alternate: $silver,
+        text-color__bright: $white,
+        text-color__muted: $description-blue,
+  // Links
+  // ---------------
+        link-color__base: $link-blue,
+        link-color__inverse: $off-white,
+        link-color__visited: $link-blue,
+        link-color__hover: $link-hovered-blue,
+        link-color__hover-inverse: $description-blue,
+        link-color__active: $link-hovered-blue,
+        link-color__focus: $link-hovered-blue,
+  // Borders
+  // ---------------
+        border-color__base: $silver,
+        border-color__focus: $light-gray,
+        border-color__dark: $top-menu-border-blue,
+  // Buttons
+  // ---------------
+        button-background-color__base: $white,
+        button-background-color__hover: $link-color__base,
+        button-background-color__disabled: $light-gray,
+        button-text-color__base: $link-color__base,
+        button-text-color__hover: $text-color__inverse,
+        button-text-color__disabled: $dark-gray
+);

@@ -1,0 +1,11 @@
+// Featured section
+// ---------------
+
+  .featured-section-title {
+    @include font-size(20);
+    @include title-font;
+    border-bottom: 1px solid $border-color__base;
+    margin: 15px 0 10px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+  }

@@ -1,0 +1,13 @@
+// Calendar Widget
+// ---------------
+
+.widget_calendar {
+  table {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  caption {
+    @include title-font;
+  }
+}

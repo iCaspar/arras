@@ -1,0 +1,40 @@
+// Footer
+// ---------------
+
+.site-footer {
+  @include inner-wrap;
+  background-color: $page-background-color__secondary;
+  border: 1px solid $border-color__base;
+  margin-top: 20px;
+  padding-bottom: 10px;
+
+  .footer-sidebar-container {
+    border-bottom: 1px solid $border-color__base;
+    margin: 10px;
+  }
+
+  .footer-message {
+    @include font-size(12);
+    padding: 10px 15px 0;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@include breakpoint('small') {
+  .footer-sidebar-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .footer-sidebar {
+      flex: 1 1 auto;
+      margin-left: 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

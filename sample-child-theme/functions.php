@@ -19,7 +19,7 @@
  * The following will cause the child theme's styles to be loaded after the main Arras theme styles.
  */
 function arras_add_child_styles() {
-	$arras                  = \Arras\Theme::getArras();                 // pull in the Arras Theme
+	$arras                  = \Arras\Theme::get_arras();                 // pull in the Arras Theme
 	$currentArrasStylesheet = $arras->assets->getCurrentStyleHandle();  // get the current main theme stylesheet
 
 	wp_enqueue_style(                                                   // enqueue the child theme's style.css file
@@ -34,7 +34,7 @@ function arras_add_child_styles() {
 // Un-comment the next line to use the arras_child_replace_styles function
 //add_action( 'wp_enqueue_scripts', 'arras_child_replace_styles' );
 function arras_child_replace_styles() {
-	$arras = \Arras\Theme::getArras();                                  // pull in the Arras Theme
+	$arras = \Arras\Theme::get_arras();                                  // pull in the Arras Theme
 	remove_action( 'wp_enqueue_scripts',                                // remove the Arras Theme styles
 		[ $arras->assets, 'enqueueStyles' ], 15 );
 

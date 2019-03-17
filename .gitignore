@@ -1,6 +1,5 @@
 composer.phar
 vendor/
-bin/
 node_modules/
 logs
 *.log
@@ -18,4 +17,6 @@ logs
 .AppleDB
 
 /assets/dist
-/assets/src/css/*.css
+/assets/src
+/assets/css/**/*.css
+/assets/js/**/*.min.js

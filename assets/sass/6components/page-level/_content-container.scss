@@ -1,0 +1,9 @@
+// Content Container
+// ---------------
+
+@include breakpoint('small') {
+  .content-container {
+    grid-area: content;
+    min-width: 0;
+  }
+}

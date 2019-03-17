@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<ruleset name="arras">
+    <description>The code standard for Arras.</description>
+
+    <file>.</file>
+
+    <!-- Ignore these directories -->
+    <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/vendors/*</exclude-pattern>
+
+    <!-- PHP only. We'll use other validators for JS, CSS, etc. -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Reporting Configuration -->
+    <arg name="colors" />
+    <arg value="sp"/>
+    <arg name="report" value="full"/>
+    <arg name="report" value="summary"/>
+    <arg name="report" value="source"/>
+
+    <!-- PHP Rules -->
+    <rule ref="PHPCompatibility">
+        <!-- Tests are at PHP 7.1 -->
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <config name="testVersion" value="5.6-"/>
+
+    <!-- WordPress Rules -->
+    <rule ref="WordPress">
+        <exclude name="WordPress.VIP"/>
+    </rule>
+
+    <rule ref="WordPress.Files.FileName">
+        <properties>
+            <property name="is_theme" value="true"/>
+            <property name="strict_class_file_names" value="false"/>
+        </properties>
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    </rule>
+
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array" value="arras,_arras,_Arras" />
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+        <properties>
+            <property name="blank_line_check" value="true" />
+        </properties>
+        <!-- Arras requires a new blank line BEFORE each control structure.
+             Excluding this rule will allow a blank line after all control structures. -->
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterStart"/>
+    </rule>
+
+    <rule ref="WordPress.WP.DeprecatedFunctions">
+        <properties>
+            <property name="minimum_supported_version" value="4.8" />
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array" value="arras" />
+        </properties>
+    </rule>
+</ruleset>

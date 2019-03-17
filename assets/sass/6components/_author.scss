@@ -1,0 +1,22 @@
+// Author
+// ---------------
+
+.author {
+  .author-box {
+    background-color: $content-background-color__base;
+    margin-bottom: 20px;
+
+    dl {
+      margin-top: 0;
+    }
+  }
+
+  .author-posts-title {
+    @include font-size(20);
+    @include title-font;
+    border-bottom: 1px solid $border-color__base;
+    margin: 15px 0 10px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+  }
+}

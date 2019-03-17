@@ -1,0 +1,67 @@
+// Markup elements
+// ------------------------------
+
+hr {
+  border: 0;
+  border-collapse: collapse;
+  border-top: 1px solid $border-color__base;
+  clear: both;
+  margin: 30px;
+}
+
+b,
+strong {
+  font-weight: $font-weight__bold;
+}
+
+blockquote,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  border-left: 2px solid $border-color__base;
+  color: $text-color__alternate;
+  margin: 15px;
+  padding: 5px 15px 2px;
+
+  cite {
+    font-style: normal;
+    font-weight: $font-weight__bold;
+
+    &::before {
+      content: '\2014\00a0';
+    }
+  }
+}
+
+mark {
+  background-color: $text-background-color__inverse;
+  color: $text-color__inverse;
+}
+
+code,
+pre {
+  font-family: $font-family__monospace;
+}
+
+code {
+  background-color: $text-background-color__code;
+}
+
+pre {
+  max-width: 100%;
+  overflow: scroll;
+  padding: 5px;
+
+  code {
+    background-color: $text-background-color__inverse;
+    color: $text-color__inverse;
+    display: block;
+    margin: -5px;
+    padding: 10px;
+    overflow: scroll;
+  }
+}

@@ -4,30 +4,6 @@ function arras_get_page_no() {
 	if ( get_query_var('paged') ) print ' | Page ' . get_query_var('paged');
 }
 
-function arras_add_header_js() {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		$('.sf-menu').superfish({autoArrows: true, speed: 'fast', dropShadows: 'true'});
-		<?php if ( is_single() ) : ?>
-			$( '#commentform' ).validate();
-		<?php endif ?>
-		<?php do_action( 'arras_custom_js-header' ) ?>
-	} );
-	</script>
-	<?php
-}
-
-function arras_add_footer_js() {
-	?>
-	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		<?php do_action( 'arras_custom_js-footer' ) ?>
-	} );
-	</script>
-	<?php	
-}
-
 /**
  * Based on Thematic's thematic_tag_query()
  */
@@ -62,13 +38,21 @@ function arras_tag_query() {
  * Sandbox's version was removed from 1.4 onwards.
  */
 function arras_body_class() {
-	if ( function_exists('body_class') ) {
-		$body_class = array('layout-' . arras_get_option('layout'), 'no-js');
-		
-			$body_class[] = 'style-' . arras_get_option('style');
+	$classes = [];
+	$layout = arras_get_option( 'layout' );
+	$style = arras_get_option( 'style' );
 
-		body_class( apply_filters('arras_body_class', $body_class) );
+	if ( 'arras-nova' !== $style || strpos( $layout, 'fixed' ) ) {
+		$layout = 'layout-' . $layout;
 	}
+
+	$classes[] = $layout;
+	$classes[] = $style;
+	//$body_class = array( 'layout-' . arras_get_option( 'layout' ) );
+
+	//$body_class[] = 'style-' . arras_get_option( 'style' );
+
+	body_class( apply_filters( 'arras_body_class', $classes ) );
 }
 
 /**
@@ -191,30 +175,30 @@ function arras_list_comments($comment, $args, $depth) {
 ?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
 		<div class="comment-node" id="comment-<?php comment_ID(); ?>">
-			<div class="comment-controls">
-			<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-			</div>
-			<div class="comment-author vcard">
-			<?php echo get_avatar($comment, $size = 32) ?>
-			<cite class="fn"><?php echo get_comment_author_link() ?></cite>
+			<div class="comment-author author-box vcard">
+			<?php echo get_avatar($comment, $size = 48) ?>
+			<cite class="comment-author-name fn"><?php echo get_comment_author_link() ?></cite>
 			</div>
 			<?php if ( $comment->comment_approved == '0' ) : ?>
 				<span class="comment-moderation"><?php _e('Your comment is awaiting moderation.', 'arras') ?></span>	
 			<?php endif; ?>
 			<div class="comment-meta commentmetadata">
-				<?php printf( __('Posted %1$s at %2$s', 'arras'), '<abbr class="comment-datetime" title="' . get_comment_time( __('c', 'arras') ) . '">' . get_comment_time( __('F j, Y', 'arras') ), get_comment_time( __('g:i A', 'arras') ) . '</abbr>' ); ?>
+				<?php printf( __('Posted: %1$s at %2$s', 'arras'), '<span class="comment-datetime" title="' . get_comment_time( __('c', 'arras') ) . '">' . get_comment_time( __('F j, Y', 'arras') ), get_comment_time( __('g:i A', 'arras') ) . '</span>' ); ?>
 			</div>
 			<div class="comment-content"><?php comment_text() ?></div>
+			<div class="comment-controls">
+				<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+			</div>
 		</div>
 <?php	
 }
 
 function arras_post_class() {
-	return post_class( apply_filters('arras_post_class', array( 'entry', 'clearfix' ) ) );
+	post_class( apply_filters('arras_post_class', array( 'entry', 'clearfix' ) ) );
 }
 
 function arras_single_post_class() {
-	return post_class( apply_filters('arras_single_post_class', array('clearfix', 'single-post')) );
+	post_class( apply_filters('arras_single_post_class', array( 'singular', 'clearfix', 'single-post')) );
 }
 
 function arras_parse_single_custom_fields() {
@@ -234,7 +218,7 @@ function arras_parse_single_custom_fields() {
 }
 
 function arras_excerpt_more($excerpt) {
-	return str_replace(' [...]', '...', $excerpt);
+	return ' <a class="more-link" href="' . get_the_permalink() . '">' . __( 'Read more...', 'arras' ) . '</a>';
 }
 add_filter('excerpt_more', 'arras_excerpt_more');
 
@@ -316,9 +300,7 @@ function arras_posted_on( $echo = 1 ) {
 
 function arras_social_nav() {
 ?>
-	<ul class="quick-nav clearfix">
-		<li><a class="rss" title="<?php printf( __( '%s RSS Feed', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php bloginfo('rss2_url'); ?>"><?php _e('RSS Feed', 'arras') ?></a></li>
-		
+	<ul class="quick-icons quick-nav clearfix">
 		<?php $facebook_profile = arras_get_option('facebook_profile'); ?>
 		<?php if ($facebook_profile != '') : ?>
 			<li><a class="facebook" title="<?php printf( __( '%s Facebook', 'arras' ), esc_html( get_bloginfo('name'), 1 ) ) ?>" href="<?php echo $facebook_profile ?>" target="_blank"><?php _e('Facebook', 'arras') ?></a></li>
@@ -362,7 +344,7 @@ function arras_blacklist_duplicates() {
 
 add_action( 'wp_enqueue_scripts', 'arras_constrain_footer_sidebars' );
 function arras_constrain_footer_sidebars() {
-	$arras           = Arras\Theme::getArras();
+	$arras           = Arras\Theme::get_arras();
 	$footer_sidebars = arras_get_option( 'footer_sidebars' );
 
 	if ( $footer_sidebars == '' ) {
@@ -391,33 +373,33 @@ function arras_add_sidebars() {
 	register_sidebar( array(
 		'name'          => 'Primary Sidebar',
 		'id'            => 'primary',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
 		'name'          => 'Secondary Sidebar',
 		'id'            => 'secondary',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
 		'name'          => 'Bottom Content #1',
 		'id'            => 'bottom-1',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 	register_sidebar( array(
 		'name'          => 'Bottom Content #2',
 		'id'            => 'bottom-2',
-		'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-		'after_widget'  => '</li>',
-		'before_title'  => '<h5 class="widgettitle">',
+		'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h5 class="widget-title widgettitle">',
 		'after_title'   => '</h5>'
 	) );
 
@@ -430,9 +412,9 @@ function arras_add_sidebars() {
 		register_sidebar( array(
 			'name'          => 'Footer Sidebar #' . $i,
 			'id'            => 'footer-' . $i,
-			'before_widget' => '<li id="%1$s" class="%2$s widgetcontainer clearfix">',
-			'after_widget'  => '</li>',
-			'before_title'  => '<h5 class="widgettitle">',
+			'before_widget' => '<div id="%1$s" class="%2$s widget-container widgetcontainer clearfix">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h5 class="widget-title widgettitle">',
 			'after_title'   => '</h5>'
 		) );
 	}

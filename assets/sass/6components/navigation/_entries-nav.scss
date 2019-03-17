@@ -1,0 +1,20 @@
+// Entries Navigation
+// ---------------
+
+.entries-nav {
+  @include clearfix;
+  margin-bottom: 20px;
+
+  a {
+    @include button;
+    display: inline-block;
+  }
+
+  .next-posts {
+    float: left;
+  }
+
+  .previous-posts {
+    float: right;
+  }
+}
